@@ -1,0 +1,103 @@
+#! /bin/sh
+#
+# Copyright (c) 2010 Christopher Thompson
+# All rights reserved.
+#
+# Author: Christopher Thompson, 2010
+#
+# /etc/init.d/virtualbox
+#
+# Description: The virtualbox headless service allows a specified virtualbox
+#    VM to be run with just RDP access.
+#
+
+SERVICENAME=virtualbox-headless
+VIRTUALMACHINE=$2
+VIRTUALBOX_USER=casadibot
+VMSTATUS=`VBoxManage list runningvms | grep $VIRTUALMACHINE | wc -l`
+PIDFILE=$SERVICENAME-$VIRTUALMACHINE.pid
+
+# Check for missing binaries
+VIRTUALBOX_BIN=/usr/bin/VBoxHeadless
+test -x $VIRTUALBOX_BIN || { echo "$VIRTUALBOX_BIN not installed";
+if [ "$1" = "stop" ]; then exit 0;
+else exit 5; fi; }
+
+# Check for existence of needed config file and read it
+VIRTUALMACHINE_CONFIG=/etc/virtualbox/$VIRTUALMACHINE.xml
+test -r $VIRTUALMACHINE_CONFIG || { echo "$VIRTUALMACHINE_CONFIG does not exist";
+if [ "$1" = "stop" ]; then exit 0;
+else exit 6; fi; }
+
+
+case "$1" in
+   start)
+      echo -n "Starting $SERVICENAME: $VIRTUALMACHINE "
+      if [ $VMSTATUS = "1" ]; then echo "ALREADY RUNNING"; exit 2; else echo ""; fi;
+      ## Start daemon with start-stop-daemon. If this fails
+      ## the return value is set appropriately by start-stop-daemon.
+      /sbin/start-stop-daemon --background --make-pidfile --pidfile $PIDFILE --start -c $VIRTUALBOX_USER --exec $VIRTUALBOX_BIN -- --startvm "$VIRTUALMACHINE"
+      echo "Starting up $VIRTUALMACHINE"
+      while [ `VBoxManage list runningvms | grep $VIRTUALMACHINE | wc -l` = "0" ]
+      do
+        echo -n "."
+        sleep 2
+      done
+      echo "Done"
+      ;;
+   stop)
+      echo "ACPI power button pressed."
+      echo -n "Shutting down $SERVICENAME: $VIRTUALMACHINE "
+      if [ $VMSTATUS = "0" ]; then echo "NOT RUNNING"; exit 2; else echo ""; fi;
+      VBoxManage controlvm $VIRTUALMACHINE acpipowerbutton
+      echo -n "Waiting for shutdown: "
+      while [ `VBoxManage list runningvms | grep $VIRTUALMACHINE | wc -l` = "1" ]
+      do
+        echo -n "."
+        sleep 2
+      done
+      echo "Done"
+      rm -f $PIDFILE
+      ;;
+   save)
+      echo "Savestate."
+      echo -n "Saving state of $SERVICENAME: $VIRTUALMACHINE "
+      if [ $VMSTATUS = "0" ]; then echo "NOT RUNNING"; exit 2; else echo ""; fi;
+      VBoxManage controlvm $VIRTUALMACHINE savestate
+      echo -n "Waiting for savestate: "
+      while [ `VBoxManage list runningvms | grep $VIRTUALMACHINE | wc -l` = "1" ]
+      do
+        echo -n "."
+        sleep 2
+      done
+      echo "Done"
+      rm -f $PIDFILE
+      ;;
+   force-stop)
+      echo "This is a very harsh way of managing the machines, please shut them down using SSH or RDP"
+      echo -n "Shutting down $SERVICENAME: $VIRTUALMACHINE "
+      if [ $VMSTATUS = "0" ]; then echo "NOT RUNNING"; exit 2; else echo ""; fi;
+      /sbin/start-stop-daemon --pidfile $PIDFILE -c $VIRTUALBOX_USER --stop $VIRTUALBOX_BIN -- --startvm "$VIRTUALMACHINE"
+      rm -f $PIDFILE
+      ;;
+   restart)
+      ## Stop the service and regardless of whether it was
+      ## running or not, start it again.
+      $0 stop
+      $0 start
+      ;;
+   status)
+      echo -n "Checking for service $SERVICENAME : "
+      if [ $VMSTATUS = "1" ]; then echo "RUNNING";
+      else echo "NOT RUNNING"; fi;
+      #VBoxManage showvminfo "$VIRTUALMACHINE"
+      ;;
+   *)
+      ## If no parameters are given, print which are avaiable.
+      echo "Usage: $0 {start|stop|force-stop|status|restart}"
+      exit 1
+      ;;
+esac
+
+:
+

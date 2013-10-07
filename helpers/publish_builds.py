@@ -6,6 +6,11 @@ from os.path import join, split
 import sys
 import os
 
+import struct
+
+bit_size = 8 * struct.calcsize("P") # 32 or 64
+
+
 if len(sys.argv)>1:
     release = sys.argv[1]
 else:
@@ -54,9 +59,9 @@ if '+' in release:
 else:
     releasedir = release
 f.close()
-p = subprocess.Popen(["python","setup.py","bdist_rpm","--force-arch=x86_64"],cwd="python")
+p = subprocess.Popen(["python","setup.py","bdist_rpm","--force-arch=" + ("x86_64" if bit_size==64 else "i686")],cwd="python")
 p.wait()
-p = subprocess.Popen(["fakeroot","alien",glob("python/dist/*64.rpm")[-1].split("/")[-1]],cwd="python/dist")
+p = subprocess.Popen(["fakeroot","alien",glob("python/dist/*"+("64" if bit_size==64 else "686")+".rpm")[-1].split("/")[-1]],cwd="python/dist")
 p.wait()
 if True:
 	f = file('temp.batchftp','w')
@@ -67,9 +72,10 @@ if True:
 
 	f = file('temp.batchftp','w')
 	f.write("cd %s\n" % releasedir)
-	f.write("put python/dist/*64.rpm\n")
+	f.write("put python/dist/*" + ("64" if bit_size==64 else "686")+".rpm\n")
 	f.write("put python/dist/*.deb\n")
-	f.write("put python/dist/*.tar.gz\n")
+	if bit_size==64:
+	  f.write("put python/dist/*.tar.gz\n")
 	f.close()
 	p = subprocess.Popen(["sftp","-b","temp.batchftp","casaditestbot,casadi@web.sourceforge.net:/home/pfs/project/c/ca/casadi/CasADi"])
 	p.wait()

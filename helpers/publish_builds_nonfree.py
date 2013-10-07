@@ -18,6 +18,8 @@ else:
         pass
 
 print "Releasing as version " , release
+
+nonfree_server = os.environ["NONFREE_SERVER"] if "NONFREE_SERVER" in os.eviron else "localhost"
     
 def copy_files(src_glob, dst_folder):
     for fname in iglob(src_glob):
@@ -54,17 +56,17 @@ if '+' in release:
 else:
     releasedir = release
 f.close()
-p = subprocess.Popen(["python","setup.py","bdist_rpm","--force-arch=x86_64"],cwd="python")
+p = subprocess.Popen(["python","setup.py","bdist_rpm","--force-arch="+ ("x86_64" if bit_size==64 else "i686")],cwd="python")
 p.wait()
-p = subprocess.Popen(["fakeroot","alien",glob("python/dist/*64.rpm")[-1].split("/")[-1]],cwd="python/dist")
+p = subprocess.Popen(["fakeroot","alien",glob("python/dist/*"+("64" if bit_size==64 else "686")+".rpm")[-1].split("/")[-1]],cwd="python/dist")
 p.wait()
 if True:
         os.chdir("python/dist")
-        subprocess.Popen(["ssh","nonfree@localhost","mkdir -p /home/nonfree/casadi/" + releasedir]).wait()
+        subprocess.Popen(["ssh","nonfree@"+nonfree_server,"mkdir -p /home/nonfree/casadi/" + releasedir]).wait()
 	links = []
         f = file('temp.batchftp','w')
 	f.write("cd %s\n" % releasedir)
-        for name in ["*.deb","*.tar.gz","*64.rpm"]:
+        for name in (["*.deb","*.tar.gz","*64.rpm"] if bit_size==64 else ["*.deb","*686.rpm"]):
 	  target = glob(name)[0]
           f.write("put %s\n" % target)
 	  if '+' in release:
@@ -73,6 +75,6 @@ if True:
             links.append("ln -f -s %s %s" % (target,ln))
             links.append("ln -f -s %s %s" % (target,ln2))
 	f.close()
-	p = subprocess.Popen(["sftp","-b","temp.batchftp","nonfree@localhost:/home/nonfree/casadi"])
+	p = subprocess.Popen(["sftp","-b","temp.batchftp","nonfree@"+nonfree_server+":/home/nonfree/casadi"])
 	p.wait()
-        subprocess.Popen(["ssh","nonfree@localhost","cd /home/nonfree/casadi/" + releasedir + " && " + " && ".join(links)]).wait()
+        subprocess.Popen(["ssh","nonfree@"+nonfree_server,"cd /home/nonfree/casadi/" + releasedir + " && " + " && ".join(links)]).wait()

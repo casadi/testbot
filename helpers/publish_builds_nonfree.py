@@ -19,7 +19,7 @@ else:
 
 print "Releasing as version " , release
 
-nonfree_server = os.environ["NONFREE_SERVER"] if "NONFREE_SERVER" in os.eviron else "localhost"
+nonfree_server = os.environ["NONFREE_SERVER"] if "NONFREE_SERVER" in os.environ else "localhost"
     
 def copy_files(src_glob, dst_folder):
     for fname in iglob(src_glob):

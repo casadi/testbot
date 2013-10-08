@@ -6,6 +6,10 @@ from os.path import join, split
 import sys
 import os
 import re
+
+bit_size = 8 * struct.calcsize("P") # 32 or 64
+
+
 if len(sys.argv)>1:
     release = sys.argv[1]
 else:

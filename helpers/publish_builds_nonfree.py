@@ -7,6 +7,7 @@ import sys
 import os
 import re
 
+import struct
 bit_size = 8 * struct.calcsize("P") # 32 or 64
 
 

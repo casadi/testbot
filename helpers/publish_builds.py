@@ -35,8 +35,7 @@ def copy_files(src_glob, dst_folder):
 #copy_files("..\\..\\libraries\\*.dll","python\\casadi")
 
 # Clean dist dir
-for i in glob("for i in glob("*.deb"):
-  releaseFile(release,i,label="Development version (libraries and headers)")python/dist/*"):
+for i in glob("python/dist/*"):
     os.remove(i)
 f = file('python/setup.py','w')
 f.write("""

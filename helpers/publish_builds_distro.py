@@ -1,5 +1,5 @@
 from distro import *
-from glob import iglob, glo
+from glob import iglob, glob
 
 import casadi
 release = casadi.__version__

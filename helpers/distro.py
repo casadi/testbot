@@ -7,6 +7,7 @@ import sys
 
 
 sys.path.append('/home/casadibot')
+sys.path.append('/home/casadibot/master')
 sys.path.append('C:\\Users\\casadibot')
 
 from testbotcredentials import TestBotCredentials

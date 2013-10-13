@@ -83,16 +83,20 @@ def getRelease(name):
 def putFile(release,filename,alias=None,label=""):
   if alias is None:
     alias = os.path.basename(filename)
+  print "Releasing %s -> %s" % (filename,alias)
     
   assets = s.get('https://api.github.com/repos/casadi/casadi/releases/%d/assets' % release["id"])
   assert(assets.ok)
   
   for a in assets.json():
-    if a["name"]==alias:
-      s.delete(a["url"])
+    print a["name"]
+    if a["name"]==alias or a["name"]==alias.replace("+","."):
+     print "Overwriting"
+     r = s.delete(a["url"])
+     assert r.ok, str(r)
       
   rs = s.post(release["upload_url"].replace("{?name}",""),params={"name": alias,"label": label},data=file(filename,"r"),verify=False,headers={"Content-Type":guessMimeType(alias)})
-  assert(rs.ok)
+  assert rs.ok, str(rs.json())
   return rs
   
 def releaseFile(version,filename,alias=None,label=""):

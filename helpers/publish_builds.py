@@ -2,6 +2,7 @@ import subprocess
 from glob import iglob, glob
 from shutil import copy, copyfile
 from os.path import join, split
+from distro import *
 
 import sys
 import os
@@ -34,7 +35,8 @@ def copy_files(src_glob, dst_folder):
 #copy_files("..\\..\\libraries\\*.dll","python\\casadi")
 
 # Clean dist dir
-for i in glob("python/dist/*"):
+for i in glob("for i in glob("*.deb"):
+  releaseFile(release,i,label="Development version (libraries and headers)")python/dist/*"):
     os.remove(i)
 f = file('python/setup.py','w')
 f.write("""
@@ -71,10 +73,13 @@ if True:
 
 	f = file('temp.batchftp','w')
 	f.write("cd %s\n" % releasedir)
+  releaseFile(casadi.__version__,glob("python/dist/*" + ("64" if bit_size==64 else "686")+".rpm")[0])
 	f.write("put python/dist/*" + ("64" if bit_size==64 else "686")+".rpm\n")
+  releaseFile(casadi.__version__,glob("python/dist/*.deb")[0])
 	f.write("put python/dist/*.deb\n")
 	if bit_size==64:
 	  f.write("put python/dist/*.tar.gz\n")
+	  releaseFile(casadi.__version__,glob("python/dist/*.tar.gz")[0])
 	f.close()
 	p = subprocess.Popen(["sftp","-b","temp.batchftp","casaditestbot,casadi@web.sourceforge.net:/home/pfs/project/c/ca/casadi/CasADi"])
 	p.wait()

@@ -3,6 +3,16 @@ import json
 import re
 import os
 
+import sys
+
+
+sys.path.append('/home/casadibot')
+sys.path.append('C:\\Users\\casadibot')
+
+from testbotcredentials import TestBotCredentials
+
+tbc = TestBotCredentials()
+
 def scrapeVersion():
   version = None
   git_describe = None
@@ -19,7 +29,7 @@ def scrapeVersion():
     return version
 
 s = requests.Session()
-s.auth = ('casadibot', 'kl76^63+-*')
+s.auth = tbc.github
 s.headers.update({'Accept': 'application/vnd.github.manifold-preview'})
 
 def guessMimeType(a):

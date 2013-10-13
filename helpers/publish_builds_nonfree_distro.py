@@ -2,6 +2,8 @@ from distro import *
 import subprocess
 from glob import iglob, glob
 
+release = scrapeVersion()
+
 if '+' in release:
     releasedir = 'tested'
 else:

@@ -3,6 +3,21 @@ import json
 import re
 import os
 
+def scrapeVersion():
+  version = None
+  git_describe = None
+  for l in file('../symbolic/casadi_meta.cpp','r'):
+    m = re.search("version = \"(.*)\"",l)
+    if m:
+      version = m.group(1)
+    m = re.search("git_describe = \"(.*)\"",l)
+    if m:
+      git_describe = m.group(1)
+  if "+" in version and git_describe!="":
+    return git_describe
+  else:
+    return version
+
 s = requests.Session()
 s.auth = ('casadibot', 'kl76^63+-*')
 s.headers.update({'Accept': 'application/vnd.github.manifold-preview'})

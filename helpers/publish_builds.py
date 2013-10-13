@@ -72,9 +72,9 @@ if True:
 
 	f = file('temp.batchftp','w')
 	f.write("cd %s\n" % releasedir)
-  releaseFile(casadi.__version__,glob("python/dist/*" + ("64" if bit_size==64 else "686")+".rpm")[0])
+	releaseFile(casadi.__version__,glob("python/dist/*" + ("64" if bit_size==64 else "686")+".rpm")[0])
 	f.write("put python/dist/*" + ("64" if bit_size==64 else "686")+".rpm\n")
-  releaseFile(casadi.__version__,glob("python/dist/*.deb")[0])
+	releaseFile(casadi.__version__,glob("python/dist/*.deb")[0])
 	f.write("put python/dist/*.deb\n")
 	if bit_size==64:
 	  f.write("put python/dist/*.tar.gz\n")

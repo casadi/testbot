@@ -6,4 +6,4 @@ release = casadi.__version__
 
 for i in glob("*.deb"):
   os.remove(i)
-  releaseFile(release,i,label=""):
+  releaseFile(release,i,label="Development version (libraries and headers)")

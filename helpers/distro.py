@@ -57,7 +57,8 @@ def getRelease(name):
     m = re.search("\+(\d+)\.(.*)$",name)
     target_commit = m.group(2)
     r = s.get('https://api.github.com/repos/casadi/casadi/releases')
-    print r
+    print r, str(r)
+    print type(r), dir(r)
     assert r.ok, str(r)
     id = filter(lambda x: x["name"]=="tested",r.json())[0]["id"]
     r = s.patch('https://api.github.com/repos/casadi/casadi/releases/%d' % id,data=json.dumps({"tag_name": "tested","target_commitish": getHash(target_commit),"body": "CasADi bleeding edge: "+name,"draft": False,"prerelease": True}))

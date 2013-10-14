@@ -63,12 +63,12 @@ def getRelease(name):
     id = filter(lambda x: x["name"]=="tested",r.json())[0]["id"]
     r = s.patch('https://api.github.com/repos/casadi/casadi/releases/%d' % id,data=json.dumps({"tag_name": "tested","target_commitish": getHash(target_commit),"body": "CasADi bleeding edge: "+name,"draft": False,"prerelease": True}))
     assert r ,str(r)
-    return r
+    return r.json()
   if name.startswith('v'):
     name = name[1:]
   r=s.get('https://api.github.com/repos/casadi/casadi/releases')
   assert r, str(r)
-  l = filter(lambda x: x.json()["name"]==name,r)
+  l = filter(lambda x: x["name"]==name,r.json())
   if len(l)==0: # no release yet
     # Note: tag may not exist, but this matters only when you make it public
     r=s.post('https://api.github.com/repos/casadi/casadi/releases',data=json.dumps({"tag_name": name,"name": name,"body": "CasADi release v"+name,"draft": True,
@@ -82,7 +82,7 @@ def getRelease(name):
     #else:
     #  r=s.post('https://api.github.com/repos/casadi/casadi/releases',data=json.dumps({"tag_name": name,"name": name,"body": "CasADi release v"+name,"draft": True,
     #  "prerelease": True}))
-    return r
+    return r.json()
   else:
     return l[0]
     
@@ -107,4 +107,4 @@ def putFile(release,filename,alias=None,label=""):
   
 def releaseFile(version,filename,alias=None,label=""):
   r = getRelease(version)
-  rs = putFile(r.json(),filename,label=label,alias=alias)
+  rs = putFile(r,filename,label=label,alias=alias)

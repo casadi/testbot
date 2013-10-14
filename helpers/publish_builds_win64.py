@@ -73,5 +73,6 @@ f.close()
 p = subprocess.Popen(["sftp","-b","temp.batchftp","-i","../../../casadibot.key","-oUserKnownHostsFile=../../../known_hosts","casaditestbot,casadi@web.sourceforge.net:/home/pfs/project/c/ca/casadi/CasADi"])
 p.wait()
 
-for i in glob("python/dist/*"):
-  releaseFile(casadi.__version__,i)
+# Something is badly wrong here
+#for i in glob("python/dist/*"):
+#  releaseFile(casadi.__version__,i)

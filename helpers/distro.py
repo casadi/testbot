@@ -2,6 +2,7 @@ import requests
 import json
 import re
 import os
+import time
 
 import sys
 
@@ -93,6 +94,7 @@ def putFile(release,filename,alias=None,label=""):
     
   assets = s.get('https://api.github.com/repos/casadi/casadi/releases/%d/assets' % release["id"])
   assert(assets.ok)
+  time.sleep(1)
   
   for a in assets.json():
     print a["name"]
@@ -100,6 +102,7 @@ def putFile(release,filename,alias=None,label=""):
      print "Overwriting"
      r = s.delete(a["url"])
      assert r.ok, str(r)
+     time.sleep(1)
       
   rs = s.post(release["upload_url"].replace("{?name}",""),params={"name": alias,"label": label},data=file(filename,"r"),verify=False,headers={"Content-Type":guessMimeType(alias)})
   assert rs.ok, str(rs.json())

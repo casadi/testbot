@@ -3,6 +3,8 @@ from glob import iglob, glob
 from shutil import copy, copyfile
 from os.path import join, split
 
+from distro import *
+
 import sys
 import os
 
@@ -38,7 +40,7 @@ from distutils.core import setup, Extension
 from glob import glob
 from shutil import copyfile
 
-setup(name="casadi",
+setup(name="python-casadi",
     version="%s",
     description="CasADi is a symbolic framework for automatic differentation and numeric optimization",
     maintainer="Joris Gillis",
@@ -70,3 +72,6 @@ f.write("put python/dist/*\n")
 f.close()
 p = subprocess.Popen(["sftp","-b","temp.batchftp","-i","../../../casadibot.key","-oUserKnownHostsFile=../../../known_hosts","casaditestbot,casadi@web.sourceforge.net:/home/pfs/project/c/ca/casadi/CasADi"])
 p.wait()
+
+for i in glob("python/dist/*"):
+  releaseFile(casadi.__version__,i)

@@ -43,7 +43,7 @@ from distutils.core import setup, Extension
 from glob import glob
 from shutil import copyfile
 
-setup(name="casadi",
+setup(name="python-casadi",
     version="%s",
     description="CasADi is a symbolic framework for automatic differentation and numeric optimization",
     maintainer="Joris Gillis",

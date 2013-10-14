@@ -42,6 +42,8 @@ def guessMimeType(a):
     return "application/gzip"
   elif a.endswith('.pdf'):
     return "application/pdf"
+  else:
+    return "application/octet-stream"
 
 def getHash(short):
   return s.get('https://api.github.com/repos/casadi/casadi/commits/%s' % short).json()["sha"]
@@ -54,20 +56,23 @@ def getRelease(name):
   if "+" in name:
     m = re.search("\+(\d+)\.(.*)$",name)
     target_commit = m.group(2)
-    id = filter(lambda x: x["name"]=="tested",s.get('https://api.github.com/repos/casadi/casadi/releases').json())[0]["id"]
+    r = s.get('https://api.github.com/repos/casadi/casadi/releases')
+    print r
+    assert r.ok, str(r)
+    id = filter(lambda x: x["name"]=="tested",r.json())[0]["id"]
     r = s.patch('https://api.github.com/repos/casadi/casadi/releases/%d' % id,data=json.dumps({"tag_name": "tested","target_commitish": getHash(target_commit),"body": "CasADi bleeding edge: "+name,"draft": False,"prerelease": True}))
-    assert(r)
+    assert r ,str(r)
     return r
   if name.startswith('v'):
     name = name[1:]
   r=s.get('https://api.github.com/repos/casadi/casadi/releases')
-  assert(r.ok)
+  assert r, str(r)
   l = filter(lambda x: x["name"]==name,r.json())
   if len(l)==0: # no release yet
     # Note: tag may not exist, but this matters only when you make it public
     r=s.post('https://api.github.com/repos/casadi/casadi/releases',data=json.dumps({"tag_name": name,"name": name,"body": "CasADi release v"+name,"draft": True,
       "prerelease": True}))
-    assert(r.ok)
+    assert r.ok, str(r)
     #r=s.get('https://api.github.com/repos/casadi/casadi/tags').json()
     #l = filter(lambda x: x["name"]==name)
     #if len(l)==0: # no release tag yet

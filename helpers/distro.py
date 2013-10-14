@@ -68,7 +68,7 @@ def getRelease(name):
     name = name[1:]
   r=s.get('https://api.github.com/repos/casadi/casadi/releases')
   assert r, str(r)
-  l = filter(lambda x: x["name"]==name,r.json())
+  l = filter(lambda x: x.json()["name"]==name,r)
   if len(l)==0: # no release yet
     # Note: tag may not exist, but this matters only when you make it public
     r=s.post('https://api.github.com/repos/casadi/casadi/releases',data=json.dumps({"tag_name": name,"name": name,"body": "CasADi release v"+name,"draft": True,

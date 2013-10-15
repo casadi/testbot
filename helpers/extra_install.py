@@ -6,6 +6,6 @@ p = subprocess.Popen(["pkg-config","--libs-only-L","ipopt"],stdout=subprocess.PI
 
 d = out.split(" ")[0][2:]
 
-f = file("install_extra.cmake","w")
+f = file("extra_install.cmake","w")
 for i in glob(d+"/*.a"):
   f.write("install(FILES %s DESTINATION ipopt/dir)\n" % i)

@@ -8,4 +8,4 @@ d = out.split(" ")[0][2:]
 
 f = file("install_extra.cmake","w")
 for i in glob(d+"/*.a"):
-  f.write("install(FILES %s DESTINATION ipopt/dir)\n")
+  f.write("install(FILES %s DESTINATION ipopt/dir)\n" % i)

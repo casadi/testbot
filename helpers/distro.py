@@ -113,19 +113,24 @@ def releaseFile(version,filename,alias=None,label=""):
   rs = putFile(r,filename,label=label,alias=alias)
   
 def purgeLatest():
-  r = getRelease("1.7.0+")
-  assets = s.get('https://api.github.com/repos/casadi/casadi/releases/%d/assets' % r["id"])
+  r = s.get('https://api.github.com/repos/casadi/casadi/releases')
+  assert r.ok, str(r)
+  id = filter(lambda x: x["name"]=="tested",r.json())[0]["id"]
+  assets = s.get('https://api.github.com/repos/casadi/casadi/releases/%d/assets' % id)
   assert(assets.ok)
   time.sleep(1)
   result = {}
   for a in assets.json():
-    m = re.search("(\d+)[-\.][a-f0-9]{8}",a["name"])
+    m = re.search("(\d+)[-\.][a-f0-9]{7,8}[-\._]",a["name"])
     if m:
-      result.setdefault(s[:m.start()]+s[m.end():],[]).append((int(m.group(1)),a))
+      result.setdefault(a["name"][:m.start()]+a["name"][m.end():],[]).append((int(m.group(1)),a))
+    else:
+      print "excluded",a["name"]
   remove = []
-  
-  for v in result.values():
+  for k,v in result.items():
     v.sort()
     remove += map(lambda x: x[1],v[:-1])
+    print k, map(lambda x : x["url"],v[:-1])
   for r in remove:
     s.delete(r["url"])
+    time.sleep(1)

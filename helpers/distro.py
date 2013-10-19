@@ -111,3 +111,21 @@ def putFile(release,filename,alias=None,label=""):
 def releaseFile(version,filename,alias=None,label=""):
   r = getRelease(version)
   rs = putFile(r,filename,label=label,alias=alias)
+  
+def purgeLatest():
+  r = getRelease("1.7.0+")
+  assets = s.get('https://api.github.com/repos/casadi/casadi/releases/%d/assets' % r["id"])
+  assert(assets.ok)
+  time.sleep(1)
+  result = {}
+  for a in assets.json():
+    m = re.search("(\d+)[-\.][a-f0-9]{8}",a["name"])
+    if m:
+      result.setdefault(s[:m.start()]+s[m.end():],[]).append((int(m.group(1)),a))
+  remove = []
+  
+  for v in result.values():
+    v.sort()
+    remove += map(lambda x: x[1],v[:-1])
+  for r in remove:
+    s.delete(r["url"])

@@ -8,6 +8,7 @@ d = out.split(" ")[0][2:]
 
 f = file("extra_install.cmake","w")
 for i in glob(d+"/*.a"):
-  f.write("install(FILES %s DESTINATION lib/ipopt)\n" % i)
+  ri = "libcasadi_"+i[3:]
+  f.write("install(FILES %s DESTINATION lib RENAME %s)\n" % (i,ri))
   
 f.write("install(FILES ${PROJECT_BINARY_DIR}/swig/CasadiTree.hs ${PROJECT_BINARY_DIR}/swig/CasadiClasses.hs ${PROJECT_BINARY_DIR}/swig/swiginclude.hpp DESTINATION share/casadi)\n")

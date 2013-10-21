@@ -3,6 +3,7 @@ import json
 import re
 import os
 import time
+from glob import glob
 
 import sys
 
@@ -14,6 +15,10 @@ sys.path.append('C:\\Users\\casadibot')
 from testbotcredentials import TestBotCredentials
 
 tbc = TestBotCredentials()
+
+# remove all previous *.deb
+for i in glob("*.deb"):
+  os.remove(i)
 
 def scrapeVersion():
   version = None

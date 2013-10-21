@@ -126,11 +126,12 @@ def purgeLatest():
       result.setdefault(a["name"][:m.start()]+a["name"][m.end():],[]).append((int(m.group(1)),a))
     else:
       print "excluded",a["name"]
+  print result
   remove = []
   for k,v in result.items():
     v.sort()
     remove += map(lambda x: x[1],v[:-1])
-    print k, map(lambda x : x["url"],v[:-1])
+    print k, map(lambda x : x[1],v[:-1])
   for r in remove:
     s.delete(r["url"])
     time.sleep(1)

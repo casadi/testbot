@@ -8,10 +8,12 @@ if '+' in release:
     releasedir = 'tested'
 else:
     releasedir = release
+   
     
 nonfree_server = os.environ["NONFREE_SERVER"] if "NONFREE_SERVER" in os.environ else "localhost"
 
 f = file('temp.batchftp','w')
+f.write("cd %s\n" % releasedir)
 
 for i in glob("*.deb"):
   f.write("put %s\n" % i)

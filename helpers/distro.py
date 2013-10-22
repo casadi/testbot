@@ -16,10 +16,6 @@ from testbotcredentials import TestBotCredentials
 
 tbc = TestBotCredentials()
 
-# remove all previous *.deb
-for i in glob("*.deb"):
-  os.remove(i)
-
 def scrapeVersion():
   version = None
   git_describe = None

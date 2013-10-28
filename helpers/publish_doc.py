@@ -28,7 +28,7 @@ else:
 
 
 def rsync(source,dest):
-  p = subprocess.Popen(["rsync","-avP","-e","ssh"] + glob(source) + ["casaditestbot,casadi@web.sourceforge.net:/home/groups/c/ca/casadi/htdocs/" + dest],bufsize=0)
+  p = subprocess.Popen(["rsync","-avP","--delete","-e","ssh"] + glob(source) + ["casaditestbot,casadi@web.sourceforge.net:/home/groups/c/ca/casadi/htdocs/" + dest],bufsize=0)
   p.wait()
 
 if official_release:
@@ -44,6 +44,7 @@ if official_release:
   rsync("cheatsheet/*.pdf","v%s/cheatsheets/" % release)
 else:
   rsync("api-doc/html","api/")
+  file('tutorials/python/pdf/.htaccess','w').write("Options +Indexes")
   rsync("tutorials/python/pdf/","tutorials/")
   rsync("documents/*.pdf","documents/")
   rsync("cheatsheet/*.pdf","cheatsheets/")

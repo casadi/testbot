@@ -7,6 +7,7 @@ from glob import glob
 
 import sys
 
+timeout = 100
 
 sys.path.append('/home/casadibot')
 sys.path.append('/home/casadibot/master')
@@ -31,7 +32,7 @@ def scrapeVersion():
   else:
     return version
 
-s = requests.Session(timeout=300)
+s = requests.Session()
 s.auth = tbc.github
 s.headers.update({'Accept': 'application/vnd.github.manifold-preview'})
 
@@ -48,7 +49,7 @@ def guessMimeType(a):
     return "application/octet-stream"
 
 def getHash(short):
-  return s.get('https://api.github.com/repos/casadi/casadi/commits/%s' % short).json()["sha"]
+  return s.get('https://api.github.com/repos/casadi/casadi/commits/%s' % short,timeout=timeout).json()["sha"]
 
 def getRelease(name):
   """
@@ -58,23 +59,23 @@ def getRelease(name):
   if "+" in name:
     m = re.search("\+(\d+)\.(.*)$",name)
     target_commit = m.group(2)
-    r = s.get('https://api.github.com/repos/casadi/casadi/releases')
+    r = s.get('https://api.github.com/repos/casadi/casadi/releases',timeout=timeout)
     print r, str(r)
     print type(r), dir(r)
     assert r.ok, str(r)
     id = filter(lambda x: x["name"]=="tested",r.json())[0]["id"]
-    r = s.patch('https://api.github.com/repos/casadi/casadi/releases/%d' % id,data=json.dumps({"tag_name": "tested","target_commitish": getHash(target_commit),"body": "CasADi bleeding edge: "+name,"draft": False,"prerelease": True}))
+    r = s.patch('https://api.github.com/repos/casadi/casadi/releases/%d' % id,data=json.dumps({"tag_name": "tested","target_commitish": getHash(target_commit),"body": "CasADi bleeding edge: "+name,"draft": False,"prerelease": True}),timeout=timeout)
     assert r ,str(r)
     return r.json()
   if name.startswith('v'):
     name = name[1:]
-  r=s.get('https://api.github.com/repos/casadi/casadi/releases')
+  r=s.get('https://api.github.com/repos/casadi/casadi/releases',timeout=timeout)
   assert r, str(r)
   l = filter(lambda x: x["name"]==name,r.json())
   if len(l)==0: # no release yet
     # Note: tag may not exist, but this matters only when you make it public
     r=s.post('https://api.github.com/repos/casadi/casadi/releases',data=json.dumps({"tag_name": name,"name": name,"body": "CasADi release v"+name,"draft": True,
-      "prerelease": True}))
+      "prerelease": True}),timeout=timeout)
     assert r.ok, str(r)
     #r=s.get('https://api.github.com/repos/casadi/casadi/tags').json()
     #l = filter(lambda x: x["name"]==name)
@@ -93,7 +94,7 @@ def putFile(release,filename,alias=None,label=""):
     alias = os.path.basename(filename)
   print "Releasing %s -> %s" % (filename,alias)
     
-  assets = s.get('https://api.github.com/repos/casadi/casadi/releases/%d/assets' % release["id"])
+  assets = s.get('https://api.github.com/repos/casadi/casadi/releases/%d/assets' % release["id"],timeout=timeout)
   assert(assets.ok)
   time.sleep(1)
   
@@ -105,7 +106,7 @@ def putFile(release,filename,alias=None,label=""):
      assert r.ok, str(r)
      time.sleep(1)
       
-  rs = s.post(release["upload_url"].replace("{?name}",""),params={"name": alias,"label": label},data=file(filename,"r"),verify=False,headers={"Content-Type":guessMimeType(alias)})
+  rs = s.post(release["upload_url"].replace("{?name}",""),params={"name": alias,"label": label},data=file(filename,"r"),verify=False,headers={"Content-Type":guessMimeType(alias)},timeout=timeout)
   assert rs.ok, str(rs.json())
   return rs
   
@@ -120,10 +121,10 @@ def releaseFile(version,filename,alias=None,label=""):
     releaseFile(version,filename,alias=alias,label=label)
   
 def purgeLatest():
-  r = s.get('https://api.github.com/repos/casadi/casadi/releases')
+  r = s.get('https://api.github.com/repos/casadi/casadi/releases',timeout=timeout)
   assert r.ok, str(r)
   id = filter(lambda x: x["name"]=="tested",r.json())[0]["id"]
-  assets = s.get('https://api.github.com/repos/casadi/casadi/releases/%d/assets' % id)
+  assets = s.get('https://api.github.com/repos/casadi/casadi/releases/%d/assets' % id,timeout=timeout)
   assert(assets.ok)
   time.sleep(1)
   result = {}
@@ -140,5 +141,5 @@ def purgeLatest():
     remove += map(lambda x: x[1],v[:-1])
     print k, map(lambda x : x[1],v[:-1])
   for r in remove:
-    s.delete(r["url"])
+    s.delete(r["url"],timeout=timeout)
     time.sleep(1)

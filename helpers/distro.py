@@ -31,7 +31,7 @@ def scrapeVersion():
   else:
     return version
 
-s = requests.Session()
+s = requests.Session(timeout=300)
 s.auth = tbc.github
 s.headers.update({'Accept': 'application/vnd.github.manifold-preview'})
 
@@ -110,8 +110,14 @@ def putFile(release,filename,alias=None,label=""):
   return rs
   
 def releaseFile(version,filename,alias=None,label=""):
-  r = getRelease(version)
-  rs = putFile(r,filename,label=label,alias=alias)
+  try:
+    r = getRelease(version)
+    rs = putFile(r,filename,label=label,alias=alias)
+  except requests.exceptions.ConnectionError as e:
+    print e
+    print "Trying again after 100 seconds"
+    time.sleep(100)
+    releaseFile(version,filename,alias=alias,label=label)
   
 def purgeLatest():
   r = s.get('https://api.github.com/repos/casadi/casadi/releases')

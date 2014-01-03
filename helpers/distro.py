@@ -64,7 +64,7 @@ def getRelease(name):
     print type(r), dir(r)
     assert r.ok, str(r)
     id = filter(lambda x: x["name"]=="tested",r.json())[0]["id"]
-    r = s.patch('https://api.github.com/repos/casadi/casadi/releases/%d' % id,data=json.dumps({"tag_name": "tested","target_commitish": getHash(target_commit),"body": "CasADi bleeding edge: "+name,"draft": False,"prerelease": True}),timeout=timeout)
+    r = s.patch('https://api.github.com/repos/casadi/casadi/releases/%d' % id,data=json.dumps({"tag_name": "tested-dummy-tag","target_commitish": getHash(target_commit),"body": "CasADi bleeding edge: "+name,"draft": False,"prerelease": True}),timeout=timeout)
     assert r ,str(r)
     return r.json()
   if name.startswith('v'):

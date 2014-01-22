@@ -10,4 +10,4 @@ read SLAVENAME
 echo -n "Enter password of slave: "
 read SLAVEPASS
 mkdir -p slaves
-buildslave create-slave --keepalive=30 --maxdelay=30 --umask=022 $SLAVENAME 10.0.2.2 $SLAVENAME SLAVEPASS
+buildslave create-slave --keepalive=30 --maxdelay=30 --umask=022 slaves 10.0.2.2 $SLAVENAME SLAVEPASS

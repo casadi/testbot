@@ -1,5 +1,7 @@
 #!/bin/bash
 sudo apt-get install git
+git config --global user.name "casadibot"
+git config --global user.email casaditestbot@gmail.com
 ssh-keygen -t rsa
 cat .ssh/id_rsa.pub
 pause

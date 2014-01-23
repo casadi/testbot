@@ -6,7 +6,7 @@ ssh-keygen -t rsa
 cat .ssh/id_rsa.pub
 pause
 git clone git@github.com:casadi/testbot.git
-sudo apt-get install alien build-essential buildbot-slave cmake fakeroot gfortran libblas-dev libblas3gf openssh-server python-dev python-matplotlib python-numpy python-scipy 
+sudo apt-get install alien build-essential buildbot-slave cmake fakeroot gfortran libblas-dev libblas3gf openssh-server python-dev python-matplotlib python-numpy python-scipy swig liblapack-dev 
 echo -n "Enter name of slave: [-bot]"
 read SLAVENAME
 echo -n "Enter password of slave: "

@@ -37,9 +37,9 @@ def copy_files(src_glob, dst_folder):
 #copy_files("..\\..\\libraries\\*.dll","python\\casadi")
 
 # Clean dist dir
-for i in glob("python/dist/*"):
+for i in glob("python_install/dist/*"):
     os.remove(i)
-f = file('python/setup.py','w')
+f = file('python_install/setup.py','w')
 f.write("""
 from distutils.core import setup, Extension
 from glob import glob
@@ -61,12 +61,12 @@ if '+' in release:
 else:
     releasedir = release
 f.close()
-p = subprocess.Popen(["python","setup.py","bdist_rpm","--force-arch="+ ("x86_64" if bit_size==64 else "i686")],cwd="python")
+p = subprocess.Popen(["python","setup.py","bdist_rpm","--force-arch="+ ("x86_64" if bit_size==64 else "i686")],cwd="python_install")
 p.wait()
-p = subprocess.Popen(["fakeroot","alien",glob("python/dist/*"+("64" if bit_size==64 else "686")+".rpm")[-1].split("/")[-1]],cwd="python/dist")
+p = subprocess.Popen(["fakeroot","alien",glob("python_install/dist/*"+("64" if bit_size==64 else "686")+".rpm")[-1].split("/")[-1]],cwd="python_install/dist")
 p.wait()
 if True:
-        os.chdir("python/dist")
+        os.chdir("python_install/dist")
         subprocess.Popen(["ssh","nonfree@"+nonfree_server,"mkdir -p /home/nonfree/casadi/" + releasedir]).wait()
 	links = []
         f = file('temp.batchftp','w')

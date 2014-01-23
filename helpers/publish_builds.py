@@ -41,9 +41,9 @@ def copy_files(src_glob, dst_folder):
 #copy_files("..\\..\\libraries\\*.dll","python\\casadi")
 
 # Clean dist dir
-for i in glob("python/dist/*"):
+for i in glob("python_install/dist/*"):
     os.remove(i)
-f = file('python/setup.py','w')
+f = file('python_install/setup.py','w')
 f.write("""
 from distutils.core import setup, Extension
 from glob import glob
@@ -65,9 +65,9 @@ if '+' in release:
 else:
     releasedir = release
 f.close()
-p = subprocess.Popen(["python","setup.py","bdist_rpm","--force-arch=" + ("x86_64" if bit_size==64 else "i686")],cwd="python")
+p = subprocess.Popen(["python","setup.py","bdist_rpm","--force-arch=" + ("x86_64" if bit_size==64 else "i686")],cwd="python_install")
 p.wait()
-p = subprocess.Popen(["fakeroot","alien",glob("python/dist/*"+("64" if bit_size==64 else "686")+".rpm")[-1].split("/")[-1]],cwd="python/dist")
+p = subprocess.Popen(["fakeroot","alien",glob("python_install/dist/*"+("64" if bit_size==64 else "686")+".rpm")[-1].split("/")[-1]],cwd="python_install/dist")
 p.wait()
 if False:
 	f = file('temp.batchftp','w')
@@ -85,11 +85,11 @@ if False:
 	f = file('temp.batchftp','w')
 	f.write("cd %s\n" % (releasedir+"/"+platform_name))
 	releaseFile(casadi.__version__,glob("python/dist/*" + ("64" if bit_size==64 else "686")+".rpm")[0])
-	f.write("put python/dist/*" + ("64" if bit_size==64 else "686")+".rpm\n")
+	f.write("put python_install/dist/*" + ("64" if bit_size==64 else "686")+".rpm\n")
 	releaseFile(casadi.__version__,glob("python/dist/*.deb")[0])
-	f.write("put python/dist/*.deb\n")
+	f.write("put python_install/dist/*.deb\n")
 	if bit_size==64:
-	  f.write("put python/dist/*.tar.gz\n")
+	  f.write("put python_install/dist/*.tar.gz\n")
 	  releaseFile(casadi.__version__,glob("python/dist/*.tar.gz")[0])
 	f.close()
 	p = subprocess.Popen(["sftp","-b","temp.batchftp","casaditestbot,casadi@web.sourceforge.net:/home/pfs/project/c/ca/casadi/CasADi"])

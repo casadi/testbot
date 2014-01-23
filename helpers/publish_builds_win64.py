@@ -29,10 +29,8 @@ def copy_files(src_glob, dst_folder):
             print str(e)
             pass
 
-copy_files("..\\..\\..\\libraries\\*.dll","python\\casadi")
-
 # Clean dist dir
-for i in glob("python/dist/*"):
+for i in glob("python_install/dist/*"):
     os.remove(i)
 f = file('setup.py','w')
 f.write("""
@@ -56,9 +54,9 @@ if '+' in release:
 else:
     releasedir = release
 f.close()
-p = subprocess.Popen(["python","..\\setup.py","bdist_wininst","--target-version=2.7","--title=CasADi"],cwd="python")
+p = subprocess.Popen(["python","..\\setup.py","bdist_wininst","--target-version=2.7","--title=CasADi"],cwd="python_install")
 p.wait()
-p = subprocess.Popen(["python","..\\setup.py","bdist","--format=zip"],cwd="python")
+p = subprocess.Popen(["python","..\\setup.py","bdist","--format=zip"],cwd="python_install")
 p.wait()
 f = file('temp.batchftp','w')
 f.write("mkdir %s\n" % releasedir)
@@ -68,7 +66,7 @@ p.wait()
 
 f = file('temp.batchftp','w')
 f.write("cd %s\n" % releasedir)
-f.write("put python/dist/*\n")
+f.write("put python_install/dist/*\n")
 f.close()
 p = subprocess.Popen(["sftp","-b","temp.batchftp","-i","../../../casadibot.key","-oUserKnownHostsFile=../../../known_hosts","casaditestbot,casadi@web.sourceforge.net:/home/pfs/project/c/ca/casadi/CasADi"])
 p.wait()

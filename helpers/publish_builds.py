@@ -7,6 +7,12 @@ from distro import *
 import sys
 import os
 
+import platform
+
+a,b,_ = platform.dist()
+
+platform_name = a+"-".replace("/","-")
+
 import struct
 bit_size = 8 * struct.calcsize("P") # 32 or 64
 
@@ -63,15 +69,21 @@ p = subprocess.Popen(["python","setup.py","bdist_rpm","--force-arch=" + ("x86_64
 p.wait()
 p = subprocess.Popen(["fakeroot","alien",glob("python/dist/*"+("64" if bit_size==64 else "686")+".rpm")[-1].split("/")[-1]],cwd="python/dist")
 p.wait()
-if True:
+if False:
 	f = file('temp.batchftp','w')
 	f.write("mkdir %s\n" % releasedir)
 	f.close()
 	p = subprocess.Popen(["sftp","-b","temp.batchftp","casaditestbot,casadi@web.sourceforge.net:/home/pfs/project/c/ca/casadi/CasADi"])
 	p.wait()
+	
+	f = file('temp.batchftp','w')
+	f.write("mkdir %s\n" % releasedir+"/"+platform_name)
+	f.close()
+	p = subprocess.Popen(["sftp","-b","temp.batchftp","casaditestbot,casadi@web.sourceforge.net:/home/pfs/project/c/ca/casadi/CasADi"])
+	p.wait()
 
 	f = file('temp.batchftp','w')
-	f.write("cd %s\n" % releasedir)
+	f.write("cd %s\n" % (releasedir+"/"+platform_name))
 	releaseFile(casadi.__version__,glob("python/dist/*" + ("64" if bit_size==64 else "686")+".rpm")[0])
 	f.write("put python/dist/*" + ("64" if bit_size==64 else "686")+".rpm\n")
 	releaseFile(casadi.__version__,glob("python/dist/*.deb")[0])

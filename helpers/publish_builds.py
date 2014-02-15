@@ -84,13 +84,13 @@ if True:
 
 	f = file('temp.batchftp','w')
 	f.write("cd %s\n" % (releasedir+"/"+platform_name))
-	releaseFile(casadi.__version__,glob("python/dist/*" + ("64" if bit_size==64 else "686")+".rpm")[0])
+	releaseFile(casadi.__version__,glob("python_install/dist/*" + ("64" if bit_size==64 else "686")+".rpm")[0])
 	f.write("put python_install/dist/*" + ("64" if bit_size==64 else "686")+".rpm\n")
-	releaseFile(casadi.__version__,glob("python/dist/*.deb")[0])
+	releaseFile(casadi.__version__,glob("python_install/dist/*.deb")[0])
 	f.write("put python_install/dist/*.deb\n")
 	if bit_size==64:
 	  f.write("put python_install/dist/*.tar.gz\n")
-	  releaseFile(casadi.__version__,glob("python/dist/*.tar.gz")[0])
+	  releaseFile(casadi.__version__,glob("python_install/dist/*.tar.gz")[0])
 	f.close()
 	p = subprocess.Popen(["sftp","-b","temp.batchftp","casaditestbot,casadi@web.sourceforge.net:/home/pfs/project/c/ca/casadi/CasADi"])
 	p.wait()

@@ -61,14 +61,14 @@ p.wait()
 f = file('temp.batchftp','w')
 f.write("mkdir %s\n" % releasedir)
 f.close()
-p = subprocess.Popen(["sftp","-b","temp.batchftp","-i","../../../casadibot.key","-oUserKnownHostsFile=../../../known_hosts","casaditestbot,casadi@web.sourceforge.net:/home/pfs/project/c/ca/casadi/CasADi"])
+p = subprocess.Popen(["sftp","-b","temp.batchftp","-i","../../casadibot.key","-oUserKnownHostsFile=../../../known_hosts","casaditestbot,casadi@web.sourceforge.net:/home/pfs/project/c/ca/casadi/CasADi"])
 p.wait()
 
 f = file('temp.batchftp','w')
 f.write("cd %s\n" % releasedir)
 f.write("put python_install/dist/*\n")
 f.close()
-p = subprocess.Popen(["sftp","-b","temp.batchftp","-i","../../../casadibot.key","-oUserKnownHostsFile=../../../known_hosts","casaditestbot,casadi@web.sourceforge.net:/home/pfs/project/c/ca/casadi/CasADi"])
+p = subprocess.Popen(["sftp","-b","temp.batchftp","-i","../../casadibot.key","-oUserKnownHostsFile=../../../known_hosts","casaditestbot,casadi@web.sourceforge.net:/home/pfs/project/c/ca/casadi/CasADi"])
 p.wait()
 
 # Something is badly wrong here

@@ -69,7 +69,7 @@ p = subprocess.Popen(["python","setup.py","bdist_rpm","--force-arch=" + ("x86_64
 p.wait()
 p = subprocess.Popen(["fakeroot","alien",glob("python_install/dist/*"+("64" if bit_size==64 else "686")+".rpm")[-1].split("/")[-1]],cwd="python_install/dist")
 p.wait()
-if False:
+if True:
 	f = file('temp.batchftp','w')
 	f.write("mkdir %s\n" % releasedir)
 	f.close()

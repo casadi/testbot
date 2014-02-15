@@ -11,7 +11,7 @@ import platform
 
 a,b,_ = platform.dist()
 
-platform_name = a+"-".replace("/","-")
+platform_name = a+b.replace("/","-")
 
 import struct
 bit_size = 8 * struct.calcsize("P") # 32 or 64

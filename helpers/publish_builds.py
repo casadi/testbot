@@ -11,7 +11,7 @@ import platform
 
 a,b,_ = platform.dist()
 
-platform_name = a+b.replace("/","-")
+platform_name = a+"-" + b.replace("/","-")
 
 import struct
 bit_size = 8 * struct.calcsize("P") # 32 or 64
@@ -77,7 +77,7 @@ if True:
 	p.wait()
 	
 	f = file('temp.batchftp','w')
-	f.write("mkdir %s\n" % releasedir+"/"+platform_name)
+	f.write("mkdir %s\n" % (releasedir+"/"+platform_name))
 	f.close()
 	p = subprocess.Popen(["sftp","-b","temp.batchftp","casaditestbot,casadi@web.sourceforge.net:/home/pfs/project/c/ca/casadi/CasADi"])
 	p.wait()

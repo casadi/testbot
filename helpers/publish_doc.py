@@ -38,6 +38,7 @@ if official_release:
   p = subprocess.Popen(["sftp","casaditestbot,casadi@web.sourceforge.net:/home/groups/c/ca/casadi/htdocs/"],stdin=subprocess.PIPE)
   p.communicate(input="mkdir v%s\nmkdir v%s/api\nmkdir v%s/tutorials\nmkdir v%s/users_guide\nmkdir v%s/cheatsheets\nmkdir v%s/users_guide/html" % (releasedir,releasedir,releasedir,releasedir,releasedir,releasedir))
   rsync("api-doc/html","v%s/api/" % release)  
+  rsync("api-doc/internal","v%s/api/" % release)  
   file('tutorials/python/pdf/.htaccess','w').write("Options +Indexes")
   rsync("tutorials/python/pdf/","v%s/tutorials/" % release)  
   p = subprocess.Popen(["sftp","casaditestbot,casadi@web.sourceforge.net:/home/pfs/project/c/ca/casadi/CasADi"],stdin=subprocess.PIPE)
@@ -48,9 +49,13 @@ if official_release:
   
   for line in fileinput.input("api-doc/html/search/search.js", inplace = True):
     print line.replace("dbLocation", "\"../htdocs/v%s/api/html/doxysearch.db\"" % release)
+
+  for line in fileinput.input("api-doc/internal/search/search.js", inplace = True):
+    print line.replace("dbLocation", "\"../htdocs/v%s/api/internal/doxysearch.db\"" % release)
     
 else:
   rsync("api-doc/html","api/")
+  rsync("api-doc/internal","api/")
   file('tutorials/python/pdf/.htaccess','w').write("Options +Indexes")
   rsync("tutorials/python/pdf/","tutorials/")
   rsync("documents/*.pdf","documents/")
@@ -63,3 +68,6 @@ else:
   
   for line in fileinput.input("api-doc/html/search/search.js", inplace = True):
     print line.replace("dbLocation", "\"../htdocs/api/html/doxysearch.db\"")
+
+  for line in fileinput.input("api-doc/internal/search/search.js", inplace = True):
+    print line.replace("dbLocation", "\"../htdocs/api/internal/doxysearch.db\"")

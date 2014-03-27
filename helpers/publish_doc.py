@@ -6,6 +6,9 @@ from os.path import join, split
 import sys
 import os
 
+import fileinput
+
+
 if len(sys.argv)>1:
     release = sys.argv[1]
 else:
@@ -42,6 +45,10 @@ if official_release:
   rsync("users_guide/*.pdf","v%s/users_guide/" % release)
   rsync("users_guide/casadi-users_guide/","v%s/users_guide/html" % release)
   rsync("cheatsheet/*.pdf","v%s/cheatsheets/" % release)
+  
+  for line in fileinput.input("api-doc/html/search/search.js", inplace = True):
+    print line.replace("dbLocation", "\"../htdocs/v%s/api/html/doxysearch.db\"" % release)
+    
 else:
   rsync("api-doc/html","api/")
   file('tutorials/python/pdf/.htaccess','w').write("Options +Indexes")
@@ -53,3 +60,6 @@ else:
 
   p=subprocess.Popen(["sftp","casaditestbot,casadi@web.sourceforge.net:/home/pfs/project/c/ca/casadi/CasADi"],stdin=subprocess.PIPE)
   p.communicate(input="cd %s\nput example_pack/example_pack.zip\nrename example_pack.zip casadi-%s_example_pack.zip\n" % (releasedir,release))
+  
+  for line in fileinput.input("api-doc/html/search/search.js", inplace = True):
+    print line.replace("dbLocation", "\"../htdocs/api/html/doxysearch.db\"")

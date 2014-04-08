@@ -43,8 +43,8 @@ if official_release:
     
   p = subprocess.Popen(["sftp","casaditestbot,casadi@web.sourceforge.net:/home/groups/c/ca/casadi/htdocs/"],stdin=subprocess.PIPE)
   p.communicate(input="mkdir v%s\nmkdir v%s/api\nmkdir v%s/tutorials\nmkdir v%s/users_guide\nmkdir v%s/cheatsheets\nmkdir v%s/users_guide/html" % (releasedir,releasedir,releasedir,releasedir,releasedir,releasedir))
-  rsync("api-doc/html","v%s/api/" % release)  
-  rsync("api-doc/internal","v%s/api/" % release)  
+  rsync("api/html","v%s/api/" % release)  
+  rsync("api/internal","v%s/api/" % release)  
   file('tutorials/python/pdf/.htaccess','w').write("Options +Indexes")
   rsync("tutorials/python/pdf/","v%s/tutorials/" % release)  
   p = subprocess.Popen(["sftp","casaditestbot,casadi@web.sourceforge.net:/home/pfs/project/c/ca/casadi/CasADi"],stdin=subprocess.PIPE)
@@ -61,8 +61,8 @@ else:
   for line in fileinput.input("api-doc/internal/search/search.js", inplace = True):
     sys.stdout.write(line.replace("dbLocation", "\"../htdocs/api/internal/doxysearch.db\""))
     
-  rsync("api-doc/html","api/")
-  rsync("api-doc/internal","api/")
+  rsync("api/html","api/")
+  rsync("api/internal","api/")
   file('tutorials/python/pdf/.htaccess','w').write("Options +Indexes")
   rsync("tutorials/python/pdf/","tutorials/")
   rsync("documents/*.pdf","documents/")

@@ -35,10 +35,10 @@ def rsync(source,dest):
   p.wait()
 
 if official_release:
-  for line in fileinput.input("api-doc/html/search/search.js", inplace = True):
+  for line in fileinput.input("api/html/search/search.js", inplace = True):
     sys.stdout.write(line.replace("dbLocation", "\"../htdocs/v%s/api/html/doxysearch.db\"" % release))
 
-  for line in fileinput.input("api-doc/internal/search/search.js", inplace = True):
+  for line in fileinput.input("api/internal/search/search.js", inplace = True):
     sys.stdout.write(line.replace("dbLocation", "\"../htdocs/v%s/api/internal/doxysearch.db\"" % release))
     
   p = subprocess.Popen(["sftp","casaditestbot,casadi@web.sourceforge.net:/home/groups/c/ca/casadi/htdocs/"],stdin=subprocess.PIPE)
@@ -55,10 +55,10 @@ if official_release:
   
     
 else:
-  for line in fileinput.input("api-doc/html/search/search.js", inplace = True):
+  for line in fileinput.input("api/html/search/search.js", inplace = True):
     sys.stdout.write(line.replace("dbLocation", "\"../htdocs/api/html/doxysearch.db\""))
 
-  for line in fileinput.input("api-doc/internal/search/search.js", inplace = True):
+  for line in fileinput.input("api/internal/search/search.js", inplace = True):
     sys.stdout.write(line.replace("dbLocation", "\"../htdocs/api/internal/doxysearch.db\""))
     
   rsync("api/html","api/")

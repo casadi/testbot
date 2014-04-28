@@ -5,6 +5,9 @@ from os.path import join, split
 from distro import *
 
 import sys
+sys.exit(0)
+
+import sys
 import os
 
 import platform

@@ -4,8 +4,8 @@ from shutil import copy, copyfile
 from os.path import join, split
 from distro import *
 
-import sys
-sys.exit(0)
+#import sys
+#sys.exit(0)
 
 import sys
 import os
@@ -59,7 +59,7 @@ setup(name="python-casadi",
     author="Joel Andersson",
     url="casadi.org",
     packages=["casadi","casadi.tools","casadi.tools.graph"],
-    package_data={"casadi": ["*.so"]}
+    package_data={"casadi": ["*.so","../lib/*.so"]}
 )
 
 """ % release)

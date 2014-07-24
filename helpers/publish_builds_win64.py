@@ -30,7 +30,7 @@ def copy_files(src_glob, dst_folder):
             pass
 
 # Copy extra dll files
-for i in glob("C:/Users/casadibot/extradll/*.dll"):
+for i in glob("C:/MinGW/bin/*.dll"):
   copyfile(i,"python_install/lib/")
     
     

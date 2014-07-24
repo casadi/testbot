@@ -29,6 +29,11 @@ def copy_files(src_glob, dst_folder):
             print str(e)
             pass
 
+# Copy extra dll files
+for i in glob("C:/Users/casadibot/extradll/*.dll"):
+  copyfile(i,"python_install/lib/")
+    
+    
 # Clean dist dir
 for i in glob("python_install/dist/*"):
     os.remove(i)

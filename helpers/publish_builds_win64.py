@@ -30,8 +30,7 @@ def copy_files(src_glob, dst_folder):
             pass
 
 # Copy extra dll files
-for i in glob("C:/MinGW/bin/*.dll"):
-  copyfile(i,"python_install/casadi/")
+copy_files("C:/MinGW/bin/*.dll","python_install/casadi/")
     
     
 # Clean dist dir

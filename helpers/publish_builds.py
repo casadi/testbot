@@ -43,7 +43,7 @@ def copy_files(src_glob, dst_folder):
             print str(e)
             pass
 
-copy_files("python_install/lib/*.so","python_install/casadi")
+copy_files("python_install/lib/*.so*","python_install/casadi")
 
 # Clean dist dir
 for i in glob("python_install/dist/*"):

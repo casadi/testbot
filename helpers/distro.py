@@ -20,7 +20,7 @@ tbc = TestBotCredentials()
 def scrapeVersion():
   version = None
   git_describe = None
-  for l in file('../symbolic/casadi_meta.cpp','r'):
+  for l in file('../build/casadi_meta.cpp','r'):
     m = re.search("version = \"(.*)\"",l)
     if m:
       version = m.group(1)

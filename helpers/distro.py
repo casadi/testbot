@@ -18,9 +18,11 @@ from testbotcredentials import TestBotCredentials
 tbc = TestBotCredentials()
 
 def scrapeVersion():
+  #import casadi
+  #return casadi.__version__
   version = None
   git_describe = None
-  for l in file('../build/casadi_meta.cpp','r'):
+  for l in file('casadi_meta.cpp','r'):
     m = re.search("version = \"(.*)\"",l)
     if m:
       version = m.group(1)

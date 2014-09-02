@@ -1,4 +1,5 @@
 import subprocess
+import shutil
 from glob import iglob, glob
 from shutil import copy, copyfile
 from os.path import join, split
@@ -40,6 +41,14 @@ def copy_files(src_glob, dst_folder):
 # Clean dist dir
 for i in glob("python_install/dist/*"):
     os.remove(i)
+
+for i in glob("python_install/lib/*.so"):
+  if os.path.islink(i):
+    ir = os.path.realpath(i)
+    os.unlink(i)       
+    shutil.copyfile(ir,i)
+
+
 f = file('python_install/setup.py','w')
 f.write("""
 from distutils.core import setup, Extension
@@ -53,7 +62,8 @@ setup(name="python-casadi",
     author="Joel Andersson",
     url="casadi.org",
     packages=["casadi","casadi.tools","casadi.tools.graph"],
-    package_data={"casadi": ["*.so"]}
+    package_data={"casadi": ["*.so"]},
+    data_files=[('/usr/lib',glob("lib/*.so"))]
 )
 
 """ % release)

@@ -69,7 +69,7 @@ setup(name="python-casadi",
     url="casadi.org",
     packages=["casadi","casadi.tools","casadi.tools.graph"],
     package_data={"casadi": ["*.so"]},
-    data_files=[('/usr/lib',glob("lib/*.so"))]
+    data_files=[('/usr/lib',glob("lib/*.so")),('/usr/lib',glob("lib/casadi/*.so"))]
 )
 
 """ % release)

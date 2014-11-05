@@ -22,8 +22,8 @@ def upload(filename):
   l = filter(lambda x: x["name"]=="Perpetual",r.json())
   release = l[0]
 
-  assets = s.get('https://api.github.com/repos/jgillis/releases/%d/assets' % release["id"],timeout=timeout)
-  assert(assets.ok)
+  assets = s.get(release["assets_url"],timeout=timeout)
+  assert(assets.ok), str(assets)
   time.sleep(1)
 
   for a in assets.json():

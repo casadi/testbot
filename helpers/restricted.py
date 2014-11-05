@@ -34,7 +34,7 @@ def upload(filename):
      assert r.ok, str(r)
      time.sleep(1)
         
-  rs = s.post(release["upload_url"].replace("{?name}",""),params={"name": filename,"label": ""},data=file(filename,"r"),verify=False,headers={"Content-Type":"application/octet-stream"},timeout=timeout)
+  rs = s.post(release["upload_url"].replace("{?name}",""),params={"name": filename,"label": ""},data=file(filename,"r"),verify=False,headers={"Content-Type":"application/gzip"},timeout=timeout)
   assert rs.ok, str(rs.json())
   return rs
   

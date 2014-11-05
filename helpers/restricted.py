@@ -22,7 +22,7 @@ def upload(filename):
   l = filter(lambda x: x["name"]=="perpetual",r.json())
   release = l[0]
 
-  assets = s.get('https://api.github.com/repos/repos/jgillis/releases/%d/assets' % release["id"],timeout=timeout)
+  assets = s.get('https://api.github.com/repos/jgillis/releases/%d/assets' % release["id"],timeout=timeout)
   assert(assets.ok)
   time.sleep(1)
 

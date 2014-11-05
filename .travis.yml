@@ -1,13 +1,12 @@
 env: 
   global: 
-    - IPOPT_DEFAULT_LINEAR_SOLVER=ma57
-    - LD_LIBRARY_PATH=/home/travis/casadi/casadi/coinhsl-install/lib
-    - secure: KvMG4VORV7Ja09shvmsMpiaRMoWqupR76dKxOd7W28I//F4YDIn5ZZefM4aoXsmRgs4G9YqloU8JjVpHutZARmKn2drUwHVMA+96iKb9eDODwZaKXgFYsrQIX5c/OgO8ZpsXynD2daqH3bMK8Mjz1+4fjbFToPFXHggxqQuHm1U=
+  - IPOPT_DEFAULT_LINEAR_SOLVER=ma57
+  - LD_LIBRARY_PATH=/home/travis/casadi/casadi/coinhsl-install/lib
+  - secure: bOPhFqXlBfwm73ac6BMSba2UR3vwnYVDqyXeAs/5SxrW2hW7/V/MmYLQL3h3BpOYfPBa1ganEAKYrd9K6HWJN16MHyROBEbFpZmZ5DFbK/pUjYaJp+8giSytxWBzEjo2f129azETNgvzjANbpAe0+uYaxupUPvpfQkPPrII+2Jc=
 compiler: 
   - gcc
-before_install:
+before_install: 
   - recipes/setup.sh
   - sudo apt-get update -qq
-  
 install: 
   - recipes/coinhsl.sh

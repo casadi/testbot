@@ -41,6 +41,8 @@ def upload(filename):
     
 def download(filename):
   r = s.get('https://api.github.com/repos/jgillis/restricted/releases',timeout=timeout)
+  assert r.ok, str(r)
+  print r.json()
   l = filter(lambda x: x["name"]=="Perpetual",r.json())
   release = l[0]
 

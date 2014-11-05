@@ -1,4 +1,4 @@
 #!/bin/bash
 mypwd=`pwd`
-export PYTHONPATH="$PYTHONPATH:$mypwd/testbot/helpers" && python -c "from restricted import *; download('$1')"
+export PYTHONPATH="$PYTHONPATH:$mypwd/testbot/helpers:$mypwd/testbot" && python -c "from restricted import *; download('$1')"
 

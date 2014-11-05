@@ -17,6 +17,8 @@ s.headers.update({'Accept': 'application/vnd.github.manifold-preview'})
 def upload(filename):
 
   r = s.get('https://api.github.com/repos/jgillis/restricted/releases',timeout=timeout)
+  assert r.ok, str(r)
+  print r.json()
   l = filter(lambda x: x["name"]=="perpetual",r.json())
   release = l[0]
 

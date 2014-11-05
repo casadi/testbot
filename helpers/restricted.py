@@ -1,6 +1,7 @@
 import requests
 import json
 import time
+import sys
 
 timeout = 100
 
@@ -52,9 +53,10 @@ def download(filename):
 
   for a in assets.json():
     if a["name"]==filename:
-      rs = s.get(a["url"], stream=True,verify=False,headers={"Content-Type":"application/octet-stream"},timeout=timeout)
-      assert rs.ok, str(rs.json())
+      rs = s.get(a["url"], stream=True,verify=False,headers={"Accept":"application/octet-stream"},timeout=timeout)
+      rs = requests.get(rs.history[0].headers["location"])
+      assert rs.ok, str(rs)
       with open(filename, 'wb') as f:
-          for chunk in r.iter_content():
+          for chunk in rs.iter_content():
               f.write(chunk)
   

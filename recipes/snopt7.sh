@@ -10,7 +10,6 @@ mkdir "$mypwd/snopt7-install"
 pushd restricted && tar -xvf snopt7.tar.gz && cd snopt7 && ./configure --prefix "$mypwd/snopt7-install" && make && make install && popd
 ls -al "$mypwd/snopt7-install/lib"
 git clone https://github.com/snopt/snopt-interface.git
-mkdir "$mypwd/snopt7-interface-install"
-pushd snopt-interface && ./autogen.sh && ./configure --with-snopt="$mypwd/snopt7-install/lib" --prefix="$mypwd/snopt7-interface-install" && make && make install && popd
+pushd snopt-interface && ./autogen.sh && ./configure --with-snopt="$mypwd/snopt7-install/lib" --prefix="$mypwd/snopt7-install" && make && make lib && popd
 tar -zcvf snopt7.tar.gz -C snopt7-install .
 export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('snopt7.tar.gz')"

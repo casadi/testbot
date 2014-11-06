@@ -12,7 +12,7 @@ before_install:
   - pwd 
   - recipes/setup.sh
   - ls
-  - ld restricted
+  - ls restricted
   - restricted/GetMac.linux32.old
   - ls
   - sudo apt-get update -qq

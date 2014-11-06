@@ -1,6 +1,6 @@
 #!/bin/bash
 sudo apt-get install -y libblas-dev liblapack-dev gfortran f2c
-sudo add-apt-repository ppa:costamagnagianfranco/autoconf
+sudo add-apt-repository -y ppa:costamagnagianfranco/autoconf
 sudo apt-get update -q
 sudo apt-get install -y autogen
 mypwd=`pwd`

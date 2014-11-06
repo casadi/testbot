@@ -2,7 +2,7 @@
 sudo apt-get install -y libblas-dev liblapack-dev gfortran f2c
 sudo add-apt-repository -y ppa:costamagnagianfranco/autoconf
 sudo apt-get update -q
-sudo apt-get install -y autogen
+sudo apt-get install -y autoconf
 mypwd=`pwd`
 mkdir "$mypwd/snopt7-install"
 pushd restricted && tar -xvf snopt7.tar.gz && cd snopt7 && ./configure --prefix "$mypwd/snopt7-install" && make && make install && popd

@@ -11,8 +11,7 @@ compiler:
 before_install:
   - sudo apt-get update -q
   - DEBIAN_FRONTEND=noninteractive DEBIAN_PRIORITY=critical sudo apt-get -q -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" dist-upgrade
-  - sudo apt-get install ia32-libs-multiarch -y
-  - apt-get -f install
+  - sudo apt-get -f install ia32-libs-multiarch -y; sudo apt-get -f install
   - recipes/setup.sh
   - file restricted/GetMac.linux32.new
   - restricted/GetMac.linux32.old

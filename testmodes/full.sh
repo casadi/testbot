@@ -8,9 +8,10 @@ pushd build && make json && popd
 pushd docs/api && make full && popd
 
 if [[ $TRAVIS_BRANCH == 'develop' ]]; then
-    pushd docs/api && python /home/casadibot/testbot/helpers/publish_doc.py && popd
+    pushd docs/api && python /home/travis/build/testbot/helpers/publish_doc.py && popd
     git pull
     sh /home/travis/build/testbot/helpers/acommit.sh "automatic documentation update"
+    python /home/travis/build/testbot/helpers/publish_builds.py
 fi
 
 

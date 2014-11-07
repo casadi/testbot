@@ -1,3 +1,4 @@
+@echo on
 mkdir my_build_msys
 cd my_build_msys
 cmake "-GMSYS Makefiles" ..

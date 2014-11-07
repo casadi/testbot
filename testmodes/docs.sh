@@ -9,7 +9,7 @@ popd
 
 git clone https://github.com/jgillis/pyreport.git
 pushd pyreport && sudo python setup.py install && popd
-sudo apt-get install python-lxml python-docutils texlive-science valgrind -y
+sudo apt-get install python-lxml python-docutils texlive-science valgrind texlive-font-utils -y
 
 pushd docs/api && make full && popd
 

@@ -13,7 +13,7 @@ before_install:
   - recipes/setup.sh
   - ls
   - ls restricted
-  - restricted/GetMac.linux32.new
+  - sudo restricted/GetMac.linux32.new
   - restricted/GetMac.linux32.old
   - ls
   - sudo apt-get update -qq
@@ -22,3 +22,4 @@ install:
   - recipes/$recipe.sh
 script:
   - echo "All is fine"
+  

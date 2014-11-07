@@ -12,4 +12,6 @@ export languagetool="$mypwd/LanguageTool-2.7"
 pushd build && make lint && popd
 pushd build && export languagetool="$mypwd/LanguageTool-2.7" make spell && popd
 pushd misc && python autogencode.py && popd
-ssh-agent bash -c 'ssh-add /home/travis/build/testbot/id_rsa_travis; sh /home/travis/build/testbot/helpers/acommit.sh "automatic code generation"'
+sh /home/travis/build/testbot/helpers/acommit.sh "automatic code generation"
+git pull
+ssh-agent bash -c 'ssh-add /home/travis/build/testbot/id_rsa_travis; git push'

@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo apt-get install python-lxml -y
 python -c "from casadi.tools import *;loadAllCompiledPlugins()"
 pushd test & make trunktesterbot MEMCHECK=-memcheck & popd
 pushd build && make json && popd

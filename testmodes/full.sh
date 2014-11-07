@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo apt-get install python-lxml python-docutils texlive-science -y
+sudo apt-get install python-lxml python-docutils texlive-science valgrind -y
 git clone https://github.com/jgillis/pyreport.git
 nm $SNOPT/lib/libsnopt7.so | grep snlog2_
 pushd pyreport && sudo python setup.py install && popd

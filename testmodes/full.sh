@@ -9,7 +9,7 @@ popd
 
 git clone https://github.com/jgillis/pyreport.git
 pushd pyreport && sudo python setup.py install && popd
-sudo apt-get install python-lxml python-docutils texlive-science valgrind -y
+sudo apt-get install python-lxml valgrind -y
 
 python -c "from casadi.tools import *;loadAllCompiledPlugins()"
 pushd test && make trunktesterbot MEMCHECK=-memcheck && popd

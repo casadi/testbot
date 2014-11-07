@@ -9,7 +9,6 @@ python:
 compiler: 
   - gcc
 before_install:
-  - sudo dpkg --add-architecture i386
   - sudo apt-get update -q
   - DEBIAN_FRONTEND=noninteractive DEBIAN_PRIORITY=critical sudo apt-get -q -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" dist-upgrade
   - sudo apt-get install ia32-libs-multiarch -y

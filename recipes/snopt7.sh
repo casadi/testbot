@@ -9,7 +9,7 @@ sudo ln -s /usr/lib/libf2c.a /usr/lib/libf2c.so
 mkdir "$mypwd/snopt7-install"
 pushd restricted && tar -xvf snopt7.tar.gz && cd snopt7 && ./configure --prefix "$mypwd/snopt7-install" && make && make install && popd
 ls -al "$mypwd/snopt7-install/lib"
-git clone https://github.com/snopt/snopt-interface.git
+git clone https://github.com/jgillis/snopt-interface.git
 pushd snopt-interface && ./autogen.sh && ./configure --with-snopt="$mypwd/snopt7-install/lib" --prefix="$mypwd/snopt7-install" && make lib && make install && popd
 tar -zcvf snopt7.tar.gz -C snopt7-install .
 export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('snopt7.tar.gz')"

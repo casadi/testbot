@@ -10,7 +10,7 @@ compiler:
   - gcc
 before_install:
   - sudo apt-get update -q
-  - sudo apt-get dist-upgrade
+  - sudo apt-get dist-upgrade -y
   - sudo apt-get install ia32-libs -y
   - pwd 
   - recipes/setup.sh

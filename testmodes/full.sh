@@ -4,7 +4,7 @@ git clone https://github.com/jgillis/pyreport.git
 nm $SNOPT/lib/libsnopt7.so | grep snlog2_
 pushd pyreport && sudo python setup.py install && popd
 python -c "from casadi.tools import *;loadAllCompiledPlugins()"
-pushd test & make trunktesterbot MEMCHECK=-memcheck & popd
+pushd test && make trunktesterbot MEMCHECK=-memcheck && popd
 pushd build && make json && popd
 pushd docs/api && make full && popd
 

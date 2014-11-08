@@ -9,8 +9,9 @@ popd
 
 git clone https://github.com/jgillis/pyreport.git
 pushd pyreport && sudo python setup.py install && popd
-sudo apt-get install python-lxml valgrind graphviz texlive-science texlive-latex-base texlive-latex-recommended -y
+sudo apt-get install python-lxml valgrind graphviz texlive-science texlive-latex-base texlive-latex-recommended texlive-latex-extra latex2html doxygen python-ipdb -y
 sudo pip install --allow-unverified pydot pydot==1.0.28
+sudo pip install texttable
 
 python -c "from casadi.tools import *;loadAllCompiledPlugins()"
 pushd test && make trunktesterbot_no_unittests_py && popd

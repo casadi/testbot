@@ -10,6 +10,9 @@ popd
 git clone https://github.com/jgillis/pyreport.git
 pushd pyreport && sudo python setup.py install && popd
 sudo apt-get install python-lxml valgrind graphviz -y
+pip --version
+pip install -U pip
+pip --version
 sudo pip install --upgrade pydot
 
 python -c "from casadi.tools import *;loadAllCompiledPlugins()"

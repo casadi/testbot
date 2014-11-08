@@ -7,12 +7,9 @@ make -j2
 sudo make -j2 install
 popd
 
-git clone https://github.com/jgillis/pyreport.git
-pushd pyreport && sudo python setup.py install && popd
-sudo apt-get install python-lxml valgrind -y
+sudo apt-get install valgrind -y
 
 python -c "from casadi.tools import *;loadAllCompiledPlugins()"
 pushd test && make unittests_py_valgrind && popd
-pushd build && make json && popd
 
 

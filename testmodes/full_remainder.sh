@@ -12,7 +12,7 @@ pushd pyreport && sudo python setup.py install && popd
 sudo apt-get install python-lxml valgrind -y
 
 python -c "from casadi.tools import *;loadAllCompiledPlugins()"
-pushd test && make trunktesterbot MEMCHECK=-memcheck && popd
+pushd test && make trunktesterbot_no_unittests_py && popd
 pushd build && make json && popd
 
 

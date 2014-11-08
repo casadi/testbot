@@ -9,7 +9,7 @@ popd
 
 git clone https://github.com/jgillis/pyreport.git
 pushd pyreport && sudo python setup.py install && popd
-sudo apt-get install python-lxml valgrind graphviz -y
+sudo apt-get install python-lxml valgrind graphviz texlive-science texlive-latex-base -y
 sudo pip install --allow-unverified pydot pydot==1.0.28
 
 python -c "from casadi.tools import *;loadAllCompiledPlugins()"

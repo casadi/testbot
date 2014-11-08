@@ -10,10 +10,7 @@ popd
 git clone https://github.com/jgillis/pyreport.git
 pushd pyreport && sudo python setup.py install && popd
 sudo apt-get install python-lxml valgrind graphviz -y
-pip --version
-pip install -U pip
-pip --version
-sudo pip install --upgrade pydot
+sudo pip install --allow-unverified pydot pydot==1.0.28
 
 python -c "from casadi.tools import *;loadAllCompiledPlugins()"
 pushd test && make trunktesterbot_no_unittests_py && popd

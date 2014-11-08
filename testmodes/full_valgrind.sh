@@ -12,7 +12,7 @@ pushd pyreport && sudo python setup.py install && popd
 sudo apt-get install python-lxml valgrind -y
 
 python -c "from casadi.tools import *;loadAllCompiledPlugins()"
-pushd test && make unittest_py_valgrind && popd
+pushd test && make unittests_py_valgrind && popd
 pushd build && make json && popd
 
 

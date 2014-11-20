@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 sudo pip install requests
 openssl aes-256-cbc -k "$keypass" -in id_rsa_travis.enc -out id_rsa_travis -d
 openssl aes-256-cbc -k "$keypass" -in testbotcredentials.py.enc -out testbotcredentials.py -d

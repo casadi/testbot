@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 mkdir build
 pushd build
 cmake -DWITH_WORHP=ON -DWITH_SLICOT=ON ..

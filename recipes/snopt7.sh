@@ -14,4 +14,4 @@ ls -al "$mypwd/snopt7-install/lib"
 git clone https://github.com/jgillis/snopt-interface.git
 pushd snopt-interface && ./autogen.sh && ./configure --with-snopt="$mypwd/snopt7-install/lib" --prefix="$mypwd/snopt7-install" && make lib && make install && popd
 tar -zcvf snopt7.tar.gz -C snopt7-install .
-export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && travis_retry python -c "from restricted import *; upload('snopt7.tar.gz')"
+export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('snopt7.tar.gz')"

@@ -7,6 +7,36 @@ $BASE_URL = "https://www.python.org/ftp/python/"
 $GET_PIP_URL = "https://bootstrap.pypa.io/get-pip.py"
 $GET_PIP_PATH = "C:\get-pip.py"
 
+function DownloadFile ($url, $filename) {
+    $webclient = New-Object System.Net.WebClient
+
+    $basedir = $pwd.Path + "\"
+    $filepath = $basedir + $filename
+    if (Test-Path $filename) {
+        Write-Host "Reusing" $filepath
+        return $filepath
+    }
+
+    # Download and retry up to 3 times in case of network transient errors.
+    Write-Host "Downloading" $filename "from" $url
+    $retry_attempts = 2
+    for($i=0; $i -lt $retry_attempts; $i++){
+        try {
+            $webclient.DownloadFile($url, $filepath)
+            break
+        }
+        Catch [Exception]{
+            Start-Sleep 1
+        }
+   }
+   if (Test-Path $filepath) {
+       Write-Host "File saved at" $filepath
+   } else {
+       # Retry once to get the error message if any at the last try
+       $webclient.DownloadFile($url, $filepath)
+   }
+   return $filepath
+}
 
 function DownloadPython ($python_version, $platform_suffix) {
     $webclient = New-Object System.Net.WebClient
@@ -172,9 +202,18 @@ function InstallMinicondaPip ($python_home) {
     }
 }
 
+function Installxy ($file) {
+    Write-Host "Installing pip..."
+    $args = "/S"
+    Write-Host $file $args
+    Start-Process -FilePath "$file" -ArgumentList $args -Wait -Passthru
+}
+
 function main () {
-    InstallPython $env:PYTHON_VERSION $env:PYTHON_ARCH $env:PYTHON
-    InstallPip $env:PYTHON
+    #InstallPython $env:PYTHON_VERSION $env:PYTHON_ARCH $env:PYTHON
+    #InstallPip $env:PYTHON
+    DownloadFile("http://downloads.sourceforge.net/project/python-xy/plugins/numpy-1.8.2-7_py27.exe","numpy.exe")
+    Installxy("numpy.exe")
 }
 
 main

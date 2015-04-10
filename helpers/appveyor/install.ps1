@@ -212,8 +212,8 @@ function Installxy ($file) {
 function main () {
     #InstallPython $env:PYTHON_VERSION $env:PYTHON_ARCH $env:PYTHON
     #InstallPip $env:PYTHON
-    DownloadFile("http://downloads.sourceforge.net/project/python-xy/plugins/numpy-1.8.2-7_py27.exe","numpy.exe")
-    Installxy("numpy.exe")
+    DownloadFile "http://downloads.sourceforge.net/project/python-xy/plugins/numpy-1.8.2-7_py27.exe" "numpy.exe"
+    Installxy "numpy.exe"
 }
 
 main

@@ -56,7 +56,10 @@ def download(filename):
       rs = s.get(a["url"], stream=True,verify=False,headers={"Accept":"application/octet-stream"},timeout=timeout)
       rs = requests.get(rs.history[0].headers["location"])
       assert rs.ok, str(rs)
+      i = 0
       with open(filename, 'wb') as f:
+          if i % 100 == 0:
+            print '...'
           for chunk in rs.iter_content():
               f.write(chunk)
   

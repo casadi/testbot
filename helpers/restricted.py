@@ -59,7 +59,7 @@ def download(filename):
       i = 0
       with open(filename, 'wb') as f:
           for chunk in rs.iter_content():
-              if i % 100000 == 0:
+              if i % 1000000 == 0:
                 print '...'
               i+= 1
               f.write(chunk)

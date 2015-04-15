@@ -58,9 +58,9 @@ def download(filename):
       assert rs.ok, str(rs)
       i = 0
       with open(filename, 'wb') as f:
-          for chunk in rs.iter_content():
-              if i % 100000000 == 0:
-                print '...'
+          for chunk in rs.iter_content(chunk_size=1024*1024):
+              if i % 10 == 0:
+                print i, ' MB'
               i+= 1
               f.write(chunk)
   

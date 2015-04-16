@@ -3,13 +3,23 @@ import json
 import time
 import sys
 
+import psutil
+
+import os
+
+
 timeout = 100
 
 from testbotcredentials import TestBotCredentials
 
 tbc = TestBotCredentials()
 
-
+def getinfo(p):
+  ret = []
+  ret.append(p.get_memory_info())
+  ret.append(p.get_ext_memory_info())
+  ret+= [i for i in p.get_memory_maps() if "casadi" in i.path]
+  return ret
 
 s = requests.Session()
 s.auth = tbc.github
@@ -39,7 +49,11 @@ def upload(filename):
   rs = s.post(release["upload_url"].replace("{?name}",""),params={"name": filename,"label": ""},data=file(filename,"r"),verify=False,headers={"Content-Type":"application/gzip"},timeout=timeout)
   assert rs.ok, str(rs.json())
   return rs
-    
+
+pid = os.getpid()
+
+p = psutil.Process(pid)
+
 def download(filename):
   r = s.get('https://api.github.com/repos/jgillis/restricted/releases',timeout=timeout)
   assert r.ok, str(r)
@@ -61,6 +75,7 @@ def download(filename):
           for chunk in rs.iter_content(chunk_size=1024*1024):
               if i % 10 == 0:
                 print i, ' MB'
+                print getinfo(p)
               i+= 1
               f.write(chunk)
   

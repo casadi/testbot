@@ -5,6 +5,7 @@ env:
     - recipe=coinhsl
     - recipe=snopt7
     - recipe=swig
+    - recipe=swig_matlab
 python:
 - "2.7_with_system_site_packages"
 compiler: 

@@ -13,8 +13,8 @@ environment:
 
 install:
   - cinst -y openssl.light 
-  - openssl aes-256-cbc -k "$keyA" -in id_rsa_travis.enc -out id_rsa_travis -d
-  - openssl aes-256-cbc -k "$keyA" -in testbotcredentials.py.enc -out testbotcredentials.py -d
+  - "C:\Program Files\OpenSSL\bin\openssl.exe" aes-256-cbc -k %keyA% -in id_rsa_travis.enc -out id_rsa_travis -d
+  - "C:\Program Files\OpenSSL\bin\openssl.exe" aes-256-cbc -k %keyA% -in testbotcredentials.py.enc -out testbotcredentials.py -d
   - ECHO "Filesystem root:"
   - ps: "ls \"C:/\""
 

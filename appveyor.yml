@@ -1,0 +1,52 @@
+environment:
+  global:
+    # SDK v7.0 MSVC Express 2008's SetEnv.cmd script will fail if the
+    # /E:ON and /V:ON options are not enabled in the batch script intepreter
+    # See: http://stackoverflow.com/a/13751649/163740
+    CMD_IN_ENV: "cmd /E:ON /V:ON /C .\\helpers\\run_with_env.cmd"
+    PYTHON: "C:\\Python27"
+    PYTHON_VERSION: "2.7.8"
+    PYTHON_ARCH: "32"
+    keyA:
+      secure: 44jgfY+doJx9eHLCweOl6Mf7qoeeRlA2Dch0cLUGbvRorXaqr6bs8tVsJ/KXGPVIA4DrXLlpaEeb2eJ5LM4Mdeq5Ux2txHsQpTAnBDSihWQ=
+
+
+install:
+  - cinst -y openssl.light 
+  - openssl aes-256-cbc -k "$keyA" -in id_rsa_travis.enc -out id_rsa_travis -d
+  - openssl aes-256-cbc -k "$keyA" -in testbotcredentials.py.enc -out testbotcredentials.py -d
+  - ECHO "Filesystem root:"
+  - ps: "ls \"C:/\""
+
+  - ECHO "Installed SDKs:"
+  - ps: "ls \"C:/Program Files/Microsoft SDKs/Windows\""
+
+  # Install Python (from the official .msi of http://python.org) and pip when
+  # not already installed.
+  - "powershell ./helpers/install.ps1"
+
+  # Prepend newly installed Python to the PATH of this build (this cannot be
+  # done from inside the powershell script as it would require to restart
+  # the parent CMD process).
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+
+  # Check that we have the expected version and architecture for Python
+  - "python --version"
+  - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
+
+  - "%CMD_IN_ENV% pip install wheel"
+
+  # Now that wheel has been installed, check to see if a numpy wheel has been
+  # made yet. If it hasn't, compile it and put it in C:\tmp.
+  - "powershell ./helpers/install_numpy.ps1"
+  
+  # This is where I install numpy from the pre-built wheel I compiled either
+  # earlier in this session, or in a previous session.
+  - "%CMD_IN_ENV% pip install --no-index --find-links=c:\\tmp numpy"
+  - git clone https://github.com/casadi/testbot.git
+  - cinst -y mingw
+  - cinst -y mingw-get
+  - cinst -y swig
+  - set PATH=%PATH%;C:\MinGW\msys\1.0\bin;C:\MinGW\bin;C:\tools\MinGW\bin
+  - mingw-get install gcc g++ msys-base
+  - 7z a archive_%PYTHON_VERSION%_%PYTHON_ARCH%.zip C:\tmp C:\ProgramData\chocolatey\bin C:\ProgramData\chocolatey\lib

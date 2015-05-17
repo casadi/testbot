@@ -51,5 +51,5 @@ install:
   - mingw-get install gcc g++ msys-base
   - 7z a prereq_%PYTHON_VERSION%_%PYTHON_ARCH%.zip C:\tmp C:\ProgramData\chocolatey\bin C:\ProgramData\chocolatey\lib
   - set PYTHONPATH=%PYTHONPATH%;C:\projects\testbot\helpers
-  - ps: "ls \"C:\projects\testbot\helpers\"" 
+  - ps: "ls \"C:/projects/testbot/helpers\"" 
   - python -c "from restricted import *; upload('prereq_%PYTHON_VERSION%_%PYTHON_ARCH%.zip')"

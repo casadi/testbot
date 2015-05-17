@@ -10,6 +10,7 @@ environment:
     keyA:
       secure: 44jgfY+doJx9eHLCweOl6Mf7qoeeRlA2Dch0cLUGbvRorXaqr6bs8tVsJ/KXGPVIA4DrXLlpaEeb2eJ5LM4Mdeq5Ux2txHsQpTAnBDSihWQ=
 
+build: false
 
 install:
   - openssl aes-256-cbc -k "%keyA%" -in id_rsa_travis.enc -out id_rsa_travis -d
@@ -48,4 +49,5 @@ install:
   - cinst -y swig
   - set PATH=%PATH%;C:\MinGW\msys\1.0\bin;C:\MinGW\bin;C:\tools\MinGW\bin
   - mingw-get install gcc g++ msys-base
-  - 7z a archive_%PYTHON_VERSION%_%PYTHON_ARCH%.zip C:\tmp C:\ProgramData\chocolatey\bin C:\ProgramData\chocolatey\lib
+  - 7z a prereq_%PYTHON_VERSION%_%PYTHON_ARCH%.zip C:\tmp C:\ProgramData\chocolatey\bin C:\ProgramData\chocolatey\lib
+  - python -c "from restricted import *; upload('prereq_%PYTHON_VERSION%_%PYTHON_ARCH%.zip')"

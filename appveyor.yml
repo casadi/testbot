@@ -53,4 +53,5 @@ install:
   - set PYTHONPATH=%PYTHONPATH%;C:\projects\testbot\helpers
   - ps: "ls \"C:/projects/testbot/helpers\"" 
   - pip install requests github3.py
+  - python -c "import github3;print github3.__version__;import requests;print requests.__version__"
   - python -c "from github3 import login;from testbotcredentials import TestBotCredentials;tbc = TestBotCredentials();l = login(*tbc.github);repo = l.repository('jgillis','restricted');perpetual = list(repo.iter_releases())[0];perpetual.upload_asset(content_type='application/zip',name='prereq_%PYTHON_VERSION%_%PYTHON_ARCH%.zip',asset=file('prereq_%PYTHON_VERSION%_%PYTHON_ARCH%.zip','r'))"

@@ -51,6 +51,7 @@ install:
   - mingw-get install gcc g++ msys-base
   - 7z a prereq_%PYTHON_VERSION%_%PYTHON_ARCH%.zip C:\tmp C:\ProgramData\chocolatey\bin C:\ProgramData\chocolatey\lib
   - set PYTHONPATH=%PYTHONPATH%;C:\projects\testbot\helpers
+  - ps: "ls"
   - ps: "ls \"C:/projects/testbot/helpers\""
-  - pip install requests==2.4.3
-  - python -c "from restricted import *; upload('prereq_%PYTHON_VERSION%_%PYTHON_ARCH%.zip')"
+  - pip install requests==2.4.3 github3.py
+  - python -c "from github3 import login;from testbotcredentials import TestBotCredentials;tbc = TestBotCredentials();l = login(*tbc.github);repo = l.repository('jgillis','restricted');perpetual = list(repo.iter_releases())[0];perpetual.upload_asset(content_type='application/zip',name='prereq_%PYTHON_VERSION%_%PYTHON_ARCH%.zip',asset=file('prereq_%PYTHON_VERSION%_%PYTHON_ARCH%.zip','r'))"

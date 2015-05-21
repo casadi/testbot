@@ -58,9 +58,9 @@ if '+' in release:
 else:
     releasedir = release
 f.close()
-p = subprocess.Popen(["python","..\\setup.py","bdist_wininst","--target-version=2.7","--title=CasADi"],cwd="python_install")
+p = subprocess.Popen(["python","../setup.py","bdist_wininst","--target-version=2.7","--title=CasADi"],cwd="python_install")
 p.wait()
-p = subprocess.Popen(["python","..\\setup.py","bdist","--format=zip"],cwd="python_install")
+p = subprocess.Popen(["python","../setup.py","bdist","--format=zip"],cwd="python_install")
 p.wait()
 f = file('temp.batchftp','w')
 f.write("mkdir %s\n" % releasedir)

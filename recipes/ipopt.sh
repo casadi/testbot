@@ -3,6 +3,8 @@ set -e
 
 VERSION=3.12.3
 
+mypwd=`pwd`
+
 wget http://www.coin-or.org/download/source/Ipopt/Ipopt-$VERSION.tgz
 tar -xvf Ipopt-$VERSION.tgz
 pushd Ipopt-$VERSION

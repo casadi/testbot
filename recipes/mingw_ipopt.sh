@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+mypwd=`pwd`
 
 sudo apt-get update -qq
 sudo apt-get remove -qq -y mingw32

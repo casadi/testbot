@@ -18,6 +18,7 @@ pushd build
 ../configure --prefix=/home/travis/ipopt_install --disable-shared ADD_FFLAGS=-fPIC ADD_CFLAGS=-fPIC ADD_CXXFLAGS=-fPIC --with-blas=BUILD --with-lapack=BUILD --with-mumps=BUILD --with-metis=BUILD --without-hsl --with-asl=BUILD
 make
 make install
+popd
 tar -zcvf ipopt.tar.gz -C /home/travis/ipopt_install .
 export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('ipopt.tar.gz')"
 popd

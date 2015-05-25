@@ -6,6 +6,8 @@ env:
     - recipe=snopt7
     - recipe=swig
     - recipe=swig_matlab
+    - recipe=ipopt
+    - recipe=mingw_ipopt
 python:
 - "2.7_with_system_site_packages"
 compiler: 

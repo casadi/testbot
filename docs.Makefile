@@ -94,6 +94,7 @@ fulllocal:
 	#cd ../tutorials/cpp && make
 	cd ../users_guide && make
 	cd ../cheatsheet && make
+	patch -u Doxyfile.in publish.patch -o - |  sed 's/ENABLED_SECTIONS       = /ENABLED_SECTIONS       = INTERNAL DEPRECATED CLUTTER UNSAFE SWIGINTERNAL/' |   sed 's/GENERATE_HTML          = YES/GENERATE_HTML          = NO/' | sed 's/                         \*\.dox/                         *.dox *.cpp/' | sed 's/XML_OUTPUT             = XML/XML_OUTPUT             = XML_internal/' | sed 's/PREDEFINED+=             WITHOUT_PRE_1_9_X//' | sed 's/PREDEFINED+=             SWIG//' | doxygen -
 	python extra/fetch_examples_pdf.py
 	make doxpublishlocal
 	cd ../example_pack && make

@@ -100,14 +100,14 @@ fulllocal:
 	cd ../example_pack && make
 
 export:
-	mkdir -p export/api export/users_guide export/cheatsheets/
+	mkdir -p export/api export/users_guide export/cheatsheets/ export/documents/
 	cp -r html/ export/api/
 	cp -r internal/ export/api/
 	cp -r ../tutorials/python/pdf export/tutorials/
 	cp  ../users_guide/*.pdf export/users_guide/
 	cp -r ../users_guide/casadi-users_guide export/users_guide/html/
 	cp  ../cheatsheet/*.pdf export/cheatsheets/
-	cp -r ../documents/ export/
+	cp  ../documents/*.pdf export/documents/
 
 clean: 
 	rm -rf XML/ html/ 

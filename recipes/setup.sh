@@ -3,6 +3,7 @@ set -e
 
 ssh-keyscan github.com >> ~/.ssh/known_hosts
 ssh-keyscan web.sourceforge.net >> ~/.ssh/known_hosts
+ssh-keyscan shell.sourceforge.net >> ~/.ssh/known_hosts
 
 sudo pip install requests==2.6.0
 sudo pip install psutil

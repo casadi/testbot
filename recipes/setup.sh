@@ -13,13 +13,11 @@ openssl aes-256-cbc -k "$keypass" -in id_rsa_travis.enc -out id_rsa_travis -d
 openssl aes-256-cbc -k "$keypass" -in testbotcredentials.py.enc -out testbotcredentials.py -d
 sudo chmod 600 id_rsa_travis
 
-PWD=`pwd`
-KEY=`$pwd/id_rsa_travis`
 cat <<EOF >> ~/.ssh/config
 Host github.com
         Hostname github.com
         User git
-        IdentityFile $KEY
+        IdentityFile $(pwd)/id_rsa_travis
 EOF
 
 git clone git@github.com:jgillis/restricted.git

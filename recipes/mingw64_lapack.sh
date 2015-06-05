@@ -39,10 +39,7 @@ EOF
 
 cmake -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake ..
 make lapack -j2
-pushd lib && tar -cvf ../lapack_mingw64.tar.gz . && popd
+pushd lib && tar -cvf $mypwd/lapack_mingw64.tar.gz . && popd
+popd && popd
 export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('lapack_mingw64.tar.gz')"
-
-popd
-
-
 

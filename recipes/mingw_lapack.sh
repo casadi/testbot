@@ -10,6 +10,8 @@ sudo apt-get remove -qq -y mingw32
 sudo apt-get install -q -y mingw-w64
 sudo apt-get install -q -y mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfortran-mingw-w64
 
+ls ${compilerprefix}-ar
+
 VERSION=3.4.2
 
 wget http://www.coin-or.org/BuildTools/Lapack/lapack-$VERSION.tgz
@@ -30,6 +32,8 @@ SET(CMAKE_C_COMPILER $compilerprefix-gcc)
 SET(CMAKE_CXX_COMPILER $compilerprefix-g++)
 SET(CMAKE_Fortran_COMPILER $compilerprefix-gfortran)
 set(CMAKE_RC_COMPILER $compilerprefix-windres)
+set(CMAKE_RANLIB $compilerprefix-ranlib)
+set(CMAKE_AR $compilerprefix-ar)
 # where is the target environment
 SET(CMAKE_FIND_ROOT_PATH /usr/$compilerprefix)
 # search for programs in the build host directories

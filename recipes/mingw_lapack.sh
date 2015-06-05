@@ -44,6 +44,7 @@ SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE NEVER)
 EOF
 
 cmake -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake ..
+grep RANLIB **/* 
 make lapack -j2 VERBOSE=1
 pushd lib && tar -cvf $mypwd/lapack_mingw.tar.gz . && popd
 popd && popd

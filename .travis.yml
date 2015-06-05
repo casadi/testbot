@@ -8,7 +8,9 @@ env:
     #- recipe=swig_matlab
     #- recipe=ipopt
     #- recipe=mingw_ipopt
-    - recipe=mingw64_ipopt
+    #- recipe=mingw64_ipopt
+    - recipe=mingw_lapack
+    - recipe=mingw64_lapack
 python:
 - "2.7_with_system_site_packages"
 compiler: 

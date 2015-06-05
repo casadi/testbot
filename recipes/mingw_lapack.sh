@@ -10,7 +10,7 @@ sudo apt-get remove -qq -y mingw32
 sudo apt-get install -q -y mingw-w64
 sudo apt-get install -q -y mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfortran-mingw-w64
 
-ls ${compilerprefix}-ar
+which ${compilerprefix}-ar
 
 VERSION=3.4.2
 

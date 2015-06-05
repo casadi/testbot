@@ -24,6 +24,9 @@ SET(CMAKE_SYSTEM_NAME Windows)
 #this one not so much
 SET(CMAKE_SYSTEM_VERSION 1)
 # specify the cross compiler
+
+set(COMPILER_PREFIX "$compilerprefix")
+
 SET(CMAKE_C_COMPILER $compilerprefix-gcc)
 SET(CMAKE_CXX_COMPILER $compilerprefix-g++)
 SET(CMAKE_Fortran_COMPILER $compilerprefix-gfortran)

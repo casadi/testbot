@@ -38,7 +38,7 @@ SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE NEVER)
 EOF
 
 cmake -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake ..
-make -j2
+make lapack -j2
 pushd lib && tar -cvf ../lapack_mingw64.tar.gz . && popd
 export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('lapack_mingw64.tar.gz')"
 

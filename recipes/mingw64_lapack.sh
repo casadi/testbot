@@ -31,6 +31,9 @@ SET(CMAKE_C_COMPILER $compilerprefix-gcc)
 SET(CMAKE_CXX_COMPILER $compilerprefix-g++)
 SET(CMAKE_Fortran_COMPILER $compilerprefix-gfortran)
 set(CMAKE_RC_COMPILER $compilerprefix-windres)
+set(CMAKE_RANLIB $compilerprefix-ranlib)
+set(CMAKE_AR $compilerprefix-ar)
+
 # where is the target environment
 SET(CMAKE_FIND_ROOT_PATH /usr/$compilerprefix)
 # search for programs in the build host directories

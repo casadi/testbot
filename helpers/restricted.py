@@ -55,7 +55,7 @@ def download(filename):
   for a in assets.json():
     if a["name"]==filename:
       rs = s.get(a["url"], stream=True,verify=False,headers={"Accept":"application/octet-stream"},timeout=timeout)
-      rs = requests.get(rs.history[0].headers["location"])
+      rs = requests.get(rs.history[0].headers["location"],stream = True)
       assert rs.ok, str(rs)
       i = 0
       with open(filename, 'wb') as f:

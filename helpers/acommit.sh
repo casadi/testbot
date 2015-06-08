@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git diff
+git status
 git diff-files --quiet
 dirty=$?
 if [ $dirty -ne 0 ]; then

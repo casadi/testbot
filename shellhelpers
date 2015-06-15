@@ -1,0 +1,12 @@
+allowfail() {
+        ERR=$?
+        for var in "$@"
+        do
+        if [ $ERR -eq $var ]
+        then
+                $(exit 0);
+                return;
+        fi
+        done
+        $(exit $ERR);
+}

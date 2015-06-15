@@ -23,6 +23,9 @@ before_install:
   - sudo apt-get install -y gcc g++ gfortran
 install: 
   - recipes/$recipe.sh
+  - source shellhelpers && false || allowfail 1 && echo "okay"
+  - false || allowfail 1 && echo "okay"
+  - false || allowfail 0 && echo "okay"
 script:
   - echo "All is fine"
   

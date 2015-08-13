@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-svn co http://llvm.org/svn/llvm-project/llvm/tags/RELEASE_362/final/ llvm
+svn co http://llvm.org/svn/llvm-project/llvm/tags/RELEASE_342/final/ llvm
 cd llvm/tools
-svn co http://llvm.org/svn/llvm-project/cfe/tags/RELEASE_362/final/ clang
+svn co http://llvm.org/svn/llvm-project/cfe/tags/RELEASE_342/final/ clang
 cd ../..
 mkdir build
 cd build

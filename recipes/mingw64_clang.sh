@@ -8,9 +8,9 @@ sudo apt-get remove -qq -y mingw32
 sudo apt-get install -q -y mingw-w64
 sudo apt-get install -q -y mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfortran-mingw-w64
 
-svn co http://llvm.org/svn/llvm-project/llvm/RELEASE_362/final/ llvm
+svn co http://llvm.org/svn/llvm-project/llvm/tags/RELEASE_362/final/ llvm
 cd llvm/tools
-svn co http://llvm.org/svn/llvm-project/cfe/RELEASE_362/final/ clang
+svn co http://llvm.org/svn/llvm-project/cfe/tags/RELEASE_362/final/ clang
 cd ../..
 mkdir build
 cd build

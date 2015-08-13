@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-compilerprefix=x86_64-w64-mingw32
+export compilerprefix=x86_64-w64-mingw32
 
 sudo add-apt-repository ppa:umn-claoit-rce/compute-packages -y
 sudo add-apt-repository ppa:baltix-members/ppa -y # for libslicot-dev
@@ -28,16 +28,16 @@ SET(CMAKE_SYSTEM_NAME Windows)
 SET(CMAKE_SYSTEM_VERSION 1)
 
 # x86_64 # i686
-SET(PREFIX "${compilerprefix}")
+SET(PREFIX "$compilerprefix")
 
 # specify the cross compiler
-SET(CMAKE_C_COMPILER   ${PREFIX}-gcc)
-SET(CMAKE_CXX_COMPILER ${PREFIX}-g++)
-SET(CMAKE_Fortran_COMPILER ${PREFIX}-gfortran)
-SET(CMAKE_RC_COMPILER ${PREFIX}-windres)
+SET(CMAKE_C_COMPILER   $compilerprefix-gcc)
+SET(CMAKE_CXX_COMPILER $compilerprefix-g++)
+SET(CMAKE_Fortran_COMPILER $compilerprefix-gfortran)
+SET(CMAKE_RC_COMPILER $compilerprefix-windres)
 
 # where is the target environment 
-SET(CMAKE_FIND_ROOT_PATH  /usr/${PREFIX})
+SET(CMAKE_FIND_ROOT_PATH  /usr/$compilerprefix)
 
 # search for programs in the build host directories
 SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)

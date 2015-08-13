@@ -26,6 +26,9 @@ svn co http://llvm.org/svn/llvm-project/llvm/tags/RELEASE_342/final/ llvm
 cd llvm/tools
 svn co http://llvm.org/svn/llvm-project/cfe/tags/RELEASE_342/final/ clang
 cd ../..
+
+git clone https://github.com/casadi/casadi.git
+cd casadi
 mkdir build
 cd build
 
@@ -53,7 +56,7 @@ SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 SET(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY NEVER)
 SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE NEVER)
 EOF
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake ../llvm
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake ..
 make -j2
 
 pushd lib && tar -cvf $mypwd/clang_mingw32.tar.gz . && popd

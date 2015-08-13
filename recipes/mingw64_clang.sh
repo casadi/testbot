@@ -26,19 +26,19 @@ cat <<EOF >toolchain.cmake
 SET(CMAKE_SYSTEM_NAME Windows)
 #this one not so much
 SET(CMAKE_SYSTEM_VERSION 1)
+
+# x86_64 # i686
+SET(PREFIX "${compilerprefix}")
+
 # specify the cross compiler
+SET(CMAKE_C_COMPILER   ${PREFIX}-gcc)
+SET(CMAKE_CXX_COMPILER ${PREFIX}-g++)
+SET(CMAKE_Fortran_COMPILER ${PREFIX}-gfortran)
+SET(CMAKE_RC_COMPILER ${PREFIX}-windres)
 
-set(COMPILER_PREFIX "$compilerprefix")
+# where is the target environment 
+SET(CMAKE_FIND_ROOT_PATH  /usr/${PREFIX})
 
-SET(CMAKE_C_COMPILER $compilerprefix-gcc)
-SET(CMAKE_CXX_COMPILER $compilerprefix-g++)
-SET(CMAKE_Fortran_COMPILER $compilerprefix-gfortran)
-set(CMAKE_RC_COMPILER $compilerprefix-windres)
-set(CMAKE_RANLIB $compilerprefix-ranlib)
-set(CMAKE_AR $compilerprefix-ar)
-
-# where is the target environment
-SET(CMAKE_FIND_ROOT_PATH /usr/$compilerprefix)
 # search for programs in the build host directories
 SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 # for libraries and headers in the target directories

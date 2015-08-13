@@ -8,6 +8,20 @@ sudo apt-get remove -qq -y mingw32
 sudo apt-get install -q -y mingw-w64
 sudo apt-get install -q -y mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfortran-mingw-w64
 
+sudo add-apt-repository -y ppa:pipelight/daily
+sudo apt-get -qy update
+sudo apt-get install -y wine-staging winbind
+
+export PATH="/opt/wine-staging/bin:$PATH"
+
+WINEARCH=wineboot
+
+wget http://winetricks.org/winetricks
+chmod +x winetricks
+./winetricks nocrashdialog
+
+ls -al /home/travis/.wine/drive_c/
+
 svn co http://llvm.org/svn/llvm-project/llvm/tags/RELEASE_342/final/ llvm
 cd llvm/tools
 svn co http://llvm.org/svn/llvm-project/cfe/tags/RELEASE_342/final/ clang

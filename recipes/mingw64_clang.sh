@@ -7,7 +7,7 @@ sudo add-apt-repository ppa:umn-claoit-rce/compute-packages -y
 sudo add-apt-repository ppa:baltix-members/ppa -y # for libslicot-dev
 sudo add-apt-repository ppa:tkelman/mingw-backport -y
 sudo apt-get update -qq
-sudo apt-get install -y binutils gcc g++ gfortran git cmake liblapack-dev ipython python-dev python-numpy python-scipy python-matplotlib coinor-libipopt-dev libmumps-seq-dev libblas-dev liblapack-dev libslicot-dev libxml2-dev
+sudo apt-get install -y binutils gcc g++ gfortran git cmake
 
 sudo apt-get update -qq
 sudo apt-get remove -qq -y mingw32

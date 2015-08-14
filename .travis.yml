@@ -13,7 +13,7 @@ env:
     #- recipe=mingw64_lapack
     - recipe=mingw64_clang
     - recipe=mingw_clang
-    #- recipe=clang
+    - recipe=clang
 python:
 - "2.7_with_system_site_packages"
 compiler: 

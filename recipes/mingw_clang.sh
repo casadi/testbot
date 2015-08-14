@@ -3,6 +3,10 @@ set -e
 
 mypwd=`pwd`
 
+export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; download('clang.tar.gz')"
+
+mkdir clang && tar -xvf clang.tar.gz -C clang
+
 compilerprefix=i686-w64-mingw32
 
 sudo add-apt-repository ppa:umn-claoit-rce/compute-packages -y
@@ -50,9 +54,7 @@ SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE NEVER)
 EOF
 
 
-sudo apt-get install llvm
-
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CROSSCOMPILING=True -DCLANG_TABLEGEN=clang-tblgen -DLLVM_TABLEGEN=llvm-tblgen  -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake -DCMAKE_INSTALL_PREFIX="$mypwd/install"  -DCLANG_ENABLE_ARCMT=OFF -DCLANG_ENABLE_REWRITER=OFF -DCLANG_ENABLE_STATIC_ANALYZER=OFF  ../llvm
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CROSSCOMPILING=True -DCLANG_TABLEGEN=$pwd/clang/bin/clang-tblgen -DLLVM_TABLEGEN=$pwd/clang/bin/llvm-tblgen  -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake -DCMAKE_INSTALL_PREFIX="$mypwd/install"  -DCLANG_ENABLE_ARCMT=OFF -DCLANG_ENABLE_REWRITER=OFF -DCLANG_ENABLE_STATIC_ANALYZER=OFF  ../llvm
 make install -j2
 
 pushd ../install && tar -cvf $mypwd/clang_minwg32.tar.gz . && popd

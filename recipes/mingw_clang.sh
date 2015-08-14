@@ -55,4 +55,5 @@ make install -j2
 
 pushd ../install && tar -cvf $mypwd/clang_minw32.tar.gz . && popd
 
+cd $mypwd
 export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('clang_minw32.tar.gz')"

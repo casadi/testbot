@@ -52,7 +52,7 @@ EOF
 
 sudo apt-get install llvm
 
-cmake -DCMAKE_BUILD_TYPE=Release -DCLANG_TABLEGEN=clang-tblgen -DLLVM_TABLEGEN=llvm-tblgen  -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake -DCMAKE_INSTALL_PREFIX="$mypwd/install"  -DCLANG_ENABLE_ARCMT=OFF -DCLANG_ENABLE_REWRITER=OFF -DCLANG_ENABLE_STATIC_ANALYZER=OFF  ../llvm
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CROSSCOMPILING=True -DCLANG_TABLEGEN=clang-tblgen -DLLVM_TABLEGEN=llvm-tblgen  -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake -DCMAKE_INSTALL_PREFIX="$mypwd/install"  -DCLANG_ENABLE_ARCMT=OFF -DCLANG_ENABLE_REWRITER=OFF -DCLANG_ENABLE_STATIC_ANALYZER=OFF  ../llvm
 make install -j2
 
 pushd ../install && tar -cvf $mypwd/clang_minwg32.tar.gz . && popd

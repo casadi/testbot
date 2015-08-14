@@ -51,7 +51,7 @@ EOF
 
 
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$mypwd/install"  -DCLANG_ENABLE_ARCMT=OFF -DCLANG_ENABLE_REWRITER=OFF -DCLANG_ENABLE_STATIC_ANALYZER=OFF  ../llvm
-make install
+make install -j2
 
 pushd ../install && tar -cvf $mypwd/clang_minw32.tar.gz . && popd
 

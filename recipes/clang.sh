@@ -11,7 +11,7 @@ mkdir build
 cd build
 
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$mypwd/install" ../llvm
-make install
+make install -j2
 
 pushd ../install && tar -cvf $mypwd/clang.tar.gz . && popd
 

@@ -54,5 +54,5 @@ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$mypwd/install"  -DCLAN
 make install
 
 pushd ../install && tar -cvf $mypwd/clang_minw32.tar.gz . && popd
-popd && popd
+
 export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('clang_minw32.tar.gz')"

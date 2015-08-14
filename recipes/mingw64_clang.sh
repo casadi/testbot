@@ -21,6 +21,9 @@ cd ../..
 mkdir build
 cd build
 
+ls /usr/bin/
+cmake --version
+
 cat <<EOF >toolchain.cmake
 # this one is important
 SET(CMAKE_SYSTEM_NAME Windows)
@@ -45,8 +48,9 @@ SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 SET(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY NEVER)
 SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE NEVER)
 EOF
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake ../llvm
-make -j2
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake -DCLANG_ENABLE_ARCMT=OFF -DCLANG_ENABLE_REWRITER=OFF -DCLANG_ENABLE_STATIC_ANALYZER=OFF ../llvm
+cat toolchain.cmake
+make
 
 pushd lib && tar -cvf $mypwd/clang_mingw64.tar.gz . && popd
 popd && popd

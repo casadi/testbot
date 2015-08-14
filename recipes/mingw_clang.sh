@@ -1,34 +1,27 @@
 #!/bin/bash
 set -e
 
+mypwd=`pwd`
+
 compilerprefix=i686-w64-mingw32
+
+sudo add-apt-repository ppa:umn-claoit-rce/compute-packages -y
+sudo add-apt-repository ppa:baltix-members/ppa -y # for libslicot-dev
+sudo add-apt-repository ppa:tkelman/mingw-backport -y
+sudo apt-get update -qq
+sudo apt-get install -y binutils gcc g++ gfortran git cmake
+
 
 sudo apt-get update -qq
 sudo apt-get remove -qq -y mingw32
 sudo apt-get install -q -y mingw-w64
 sudo apt-get install -q -y mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfortran-mingw-w64
 
-sudo add-apt-repository -y ppa:pipelight/daily
-sudo apt-get -qy update
-sudo apt-get install -y wine-staging winbind
-
-export PATH="/opt/wine-staging/bin:$PATH"
-
-WINEARCH=wineboot
-
-wget http://winetricks.org/winetricks
-chmod +x winetricks
-./winetricks nocrashdialog
-
-ls -al /home/travis/.wine/drive_c/
-
 svn co http://llvm.org/svn/llvm-project/llvm/tags/RELEASE_342/final/ llvm
 cd llvm/tools
 svn co http://llvm.org/svn/llvm-project/cfe/tags/RELEASE_342/final/ clang
 cd ../..
 
-git clone https://github.com/casadi/casadi.git
-cd casadi
 mkdir build
 cd build
 
@@ -39,14 +32,13 @@ SET(CMAKE_SYSTEM_NAME Windows)
 SET(CMAKE_SYSTEM_VERSION 1)
 # specify the cross compiler
 
-set(COMPILER_PREFIX "$compilerprefix")
+SET(COMPILER_PREFIX "$compilerprefix")
 
 SET(CMAKE_C_COMPILER $compilerprefix-gcc)
 SET(CMAKE_CXX_COMPILER $compilerprefix-g++)
 SET(CMAKE_Fortran_COMPILER $compilerprefix-gfortran)
-set(CMAKE_RC_COMPILER $compilerprefix-windres)
-set(CMAKE_RANLIB $compilerprefix-ranlib)
-set(CMAKE_AR $compilerprefix-ar)
+SET(CMAKE_RC_COMPILER $compilerprefix-windres)
+
 
 # where is the target environment
 SET(CMAKE_FIND_ROOT_PATH /usr/$compilerprefix)
@@ -56,9 +48,11 @@ SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 SET(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY NEVER)
 SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE NEVER)
 EOF
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake ..
-make -j2
 
-pushd lib && tar -cvf $mypwd/clang_mingw32.tar.gz . && popd
+
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$mypwd/install"  -DCLANG_ENABLE_ARCMT=OFF -DCLANG_ENABLE_REWRITER=OFF -DCLANG_ENABLE_STATIC_ANALYZER=OFF  ../llvm
+make install
+
+pushd ../install && tar -cvf $mypwd/clang_minw32.tar.gz . && popd
 popd && popd
-export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('clang_mingw32.tar.gz')"
+export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('clang_minw32.tar.gz')"

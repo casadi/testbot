@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+mypwd=`pwd`
+
 export compilerprefix=x86_64-w64-mingw32
 
 sudo add-apt-repository ppa:umn-claoit-rce/compute-packages -y
@@ -48,10 +50,10 @@ SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 SET(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY NEVER)
 SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE NEVER)
 EOF
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake -DCLANG_ENABLE_ARCMT=OFF -DCLANG_ENABLE_REWRITER=OFF -DCLANG_ENABLE_STATIC_ANALYZER=OFF ../llvm
-cat toolchain.cmake
-make
 
-pushd lib && tar -cvf $mypwd/clang_mingw64.tar.gz . && popd
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$mypwd/install"  -DCLANG_ENABLE_ARCMT=OFF -DCLANG_ENABLE_REWRITER=OFF -DCLANG_ENABLE_STATIC_ANALYZER=OFF  ../llvm
+make install
+
+pushd ../install && tar -cvf $mypwd/clang_minw64.tar.gz . && popd
 popd && popd
-export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('clang_mingw64.tar.gz')"
+export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('clang_minw64.tar.gz')"

@@ -12,6 +12,7 @@ cd build
 
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$mypwd/install" ../llvm
 make clang-tblgen install -j2
+cp build/bin/clang-tblgen "$mypwd/install/bin"
 
 pushd ../install && tar -cvf $mypwd/clang.tar.gz . && popd
 

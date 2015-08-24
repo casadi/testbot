@@ -11,9 +11,12 @@ env:
     #- recipe=mingw64_ipopt
     #- recipe=mingw_lapack
     #- recipe=mingw64_lapack
-    - recipe=mingw64_clang
-    - recipe=mingw_clang
-    - recipe=clang
+    #- recipe=mingw64_clang
+    #- recipe=mingw_clang
+    #- recipe=clang
+    - recipe=mingw64_ecos
+    - recipe=mingw_ecos
+    - recipe=ecos
 python:
 - "2.7_with_system_site_packages"
 compiler: 

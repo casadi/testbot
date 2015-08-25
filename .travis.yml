@@ -1,22 +1,32 @@
 env: 
   global: 
     - secure: bOPhFqXlBfwm73ac6BMSba2UR3vwnYVDqyXeAs/5SxrW2hW7/V/MmYLQL3h3BpOYfPBa1ganEAKYrd9K6HWJN16MHyROBEbFpZmZ5DFbK/pUjYaJp+8giSytxWBzEjo2f129azETNgvzjANbpAe0+uYaxupUPvpfQkPPrII+2Jc=
-  matrix:
-    #- recipe=coinhsl
-    #- recipe=snopt7
-    #- recipe=swig
-    #- recipe=swig_matlab
-    #- recipe=ipopt
-    #- recipe=mingw_ipopt
-    #- recipe=mingw64_ipopt
-    #- recipe=mingw_lapack
-    #- recipe=mingw64_lapack
-    #- recipe=mingw64_clang
-    #- recipe=mingw_clang
-    #- recipe=clang
-    - recipe=mingw64_ecos
-    - recipe=mingw_ecos
-    - recipe=ecos
+
+os: linux
+
+matrix:
+  include:
+    - os: osx
+      before_install:
+        - recipes/setup.sh
+      env: recipe=ipopt_osx
+#    - env: recipe=ipopt_osx
+#    - env: recipe=coinhsl
+#    - env: recipe=snopt7
+#    - env: recipe=swig
+#    - env: recipe=swig_matlab
+#    - env: recipe=ipopt
+#    - env: recipe=mingw_ipopt
+#    - env: recipe=mingw64_ipopt
+#    - env: recipe=mingw_lapack
+#    - env: recipe=mingw64_lapack
+#    - env: recipe=mingw64_clang
+#    - env: recipe=mingw_clang
+#    - env: recipe=clang
+#    - env: recipe=mingw64_ecos
+#    - env: recipe=mingw_ecos
+#    - env: recipe=ecos
+
 python:
 - "2.7_with_system_site_packages"
 compiler: 

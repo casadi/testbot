@@ -21,8 +21,8 @@ pushd build
 make
 make install
 popd && popd
-tar -zcvf ipopt.tar.gz -C /Users/travis/ipopt-install .
-export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('ipopt.tar.gz')"
+tar -zcvf ipopt_osx.tar.gz -C /Users/travis/ipopt-install .
+export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('ipopt_osx.tar.gz')"
 
 
 

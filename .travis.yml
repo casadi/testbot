@@ -10,7 +10,7 @@ matrix:
       before_install:
         - recipes/setup.sh
       env: recipe=ipopt_osx
-#    - env: recipe=ipopt_osx
+    - env: recipe=ipopt
 #    - env: recipe=coinhsl
 #    - env: recipe=snopt7
 #    - env: recipe=swig

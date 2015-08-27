@@ -6,10 +6,18 @@ os: linux
 
 matrix:
   include:
+#    - os: osx
+#      before_install:
+#        - recipes/setup.sh
+#      env: recipe=ipopt_osx
     - os: osx
       before_install:
         - recipes/setup.sh
-      env: recipe=ipopt_osx
+      env: recipe=clang_osx
+    - os: osx
+      before_install:
+        - recipes/setup.sh
+      env: recipe=ecos_osx
     - env: recipe=ipopt
 #    - env: recipe=coinhsl
 #    - env: recipe=snopt7

@@ -10,15 +10,16 @@ matrix:
 #      before_install:
 #        - recipes/setup.sh
 #      env: recipe=ipopt_osx
-    - os: osx
-      before_install:
-        - recipes/setup.sh
-      env: recipe=clang_osx
-    - os: osx
-      before_install:
-        - recipes/setup.sh
-      env: recipe=ecos_osx
-    - env: recipe=ipopt
+#    - os: osx
+#      before_install:
+#        - recipes/setup.sh
+#      env: recipe=clang_osx
+#    - os: osx
+#      before_install:
+#        - recipes/setup.sh
+#      env: recipe=ecos_osx
+#    - env: recipe=ipopt
+    - env: recipe=snopt75
 #    - env: recipe=coinhsl
 #    - env: recipe=snopt7
 #    - env: recipe=swig

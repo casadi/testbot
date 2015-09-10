@@ -19,11 +19,11 @@ matrix:
 #        - recipes/setup.sh
 #      env: recipe=ecos_osx
 #    - env: recipe=ipopt
-    - env: recipe=snopt75
+#    - env: recipe=snopt75
 #    - env: recipe=coinhsl
 #    - env: recipe=snopt7
 #    - env: recipe=swig
-#    - env: recipe=swig_matlab
+     - env: recipe=swig_matlab
 #    - env: recipe=ipopt
 #    - env: recipe=mingw_ipopt
 #    - env: recipe=mingw64_ipopt

@@ -5,6 +5,8 @@ VERSION=342
 
 mypwd=`pwd`
 
+sudo apt-get install libc6-dev
+
 svn co http://llvm.org/svn/llvm-project/llvm/tags/RELEASE_$VERSION/final/ llvm
 cd llvm/tools
 svn co http://llvm.org/svn/llvm-project/cfe/tags/RELEASE_$VERSION/final/ clang

@@ -9,6 +9,7 @@ export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted imp
 
 mkdir clang && tar -xvf clang.tar.gz -C clang
 
+sudo apt-get install libc6-dev -y
 
 sudo add-apt-repository ppa:umn-claoit-rce/compute-packages -y
 sudo add-apt-repository ppa:baltix-members/ppa -y # for libslicot-dev

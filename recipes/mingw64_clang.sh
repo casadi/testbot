@@ -26,7 +26,7 @@ VERSION=342
 svn co http://llvm.org/svn/llvm-project/llvm/tags/RELEASE_$VERSION/final/ llvm
 cd llvm/tools
 svn co http://llvm.org/svn/llvm-project/cfe/tags/RELEASE_$VERSION/final/ clang
-cd llvm/projects
+cd ../projects
 svn co http://llvm.org/svn/llvm-project/libcxx/tags/RELEASE_$VERSION/final/ libcxx
 cd ../..
 mkdir build

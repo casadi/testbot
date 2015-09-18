@@ -12,7 +12,7 @@ cd llvm/tools
 svn co http://llvm.org/svn/llvm-project/cfe/tags/RELEASE_$VERSION/final/ clang
 cd ../projects
 svn co http://llvm.org/svn/llvm-project/libcxx/tags/RELEASE_$VERSION/final/ libcxx
-cd libcxx && patch -p0 -i ../libcxx.patch && cd ..
+cd libcxx && patch -p0 -i $mypwd/recipes/libcxx.patch && cd ..
 cd ../..
 mkdir build
 cd build

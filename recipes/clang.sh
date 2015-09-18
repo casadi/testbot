@@ -1,11 +1,15 @@
 #!/bin/bash
 set -e
 
+VERSION=342
+
 mypwd=`pwd`
 
-svn co http://llvm.org/svn/llvm-project/llvm/tags/RELEASE_342/final/ llvm
+svn co http://llvm.org/svn/llvm-project/llvm/tags/RELEASE_$VERSION/final/ llvm
 cd llvm/tools
-svn co http://llvm.org/svn/llvm-project/cfe/tags/RELEASE_342/final/ clang
+svn co http://llvm.org/svn/llvm-project/cfe/tags/RELEASE_$VERSION/final/ clang
+cd llvm/projects
+svn co http://llvm.org/svn/llvm-project/libcxx/tags/RELEASE_$VERSION/final/ libcxx
 cd ../..
 mkdir build
 cd build

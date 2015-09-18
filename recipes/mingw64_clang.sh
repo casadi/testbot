@@ -20,7 +20,7 @@ sudo apt-get install -y binutils gcc g++ gfortran git cmake
 sudo apt-get update -qq
 sudo apt-get remove -qq -y mingw32
 sudo apt-get install -q -y mingw-w64
-sudo apt-get install -q -y mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfortran-mingw-w64
+sudo apt-get install -q -y mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfortran-mingw-w64 mingw-w64-common
 
 VERSION=342
 

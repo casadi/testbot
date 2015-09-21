@@ -29,12 +29,13 @@ matrix:
 #    - env: recipe=mingw64_ipopt
 #    - env: recipe=mingw_lapack
 #    - env: recipe=mingw64_lapack
-     - env: recipe=mingw64_clang
-     - env: recipe=mingw_clang
-     - env: recipe=clang
+#     - env: recipe=mingw64_clang
+#     - env: recipe=mingw_clang
+#     - env: recipe=clang
 #    - env: recipe=mingw64_ecos
 #    - env: recipe=mingw_ecos
 #    - env: recipe=ecos
+     - env: recipe=gcc47
 
 python:
 - "2.7_with_system_site_packages"

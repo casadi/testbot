@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e
+
+mypwd=`pwd`
+
+sudo apt-get install libc6-dev
+sudo apt-get install lbmpfr-dev ibmpc-dev flex bison
+
+svn co svn://gcc.gnu.org/svn/gcc/tags/gcc_4_7_4_release/ gcc-4.7
+cd gcc-4.7
+
+mkdir build
+cd build
+../configure --prefix="$mypwd/install" --disable-nls --enable-languages=c,c++
+
+pushd ../install && tar -cvf $mypwd/gcc47.tar.gz . && popd
+
+cd $mypwd
+export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('gcc47.tar.gz')"

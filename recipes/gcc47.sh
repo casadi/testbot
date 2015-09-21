@@ -3,7 +3,7 @@ set -e
 
 mypwd=`pwd`
 
-sudo apt-get install libc6-dev
+sudo apt-get install libc6-dev libc6-dev-i386
 sudo apt-get install lbmpfr-dev ibmpc-dev flex bison
 
 svn co svn://gcc.gnu.org/svn/gcc/tags/gcc_4_7_4_release/ gcc-4.7

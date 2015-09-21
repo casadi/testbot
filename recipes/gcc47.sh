@@ -12,6 +12,9 @@ cd gcc-4.7
 mkdir build
 cd build
 ../configure --prefix="$mypwd/install" --disable-nls --enable-languages=c,c++
+make -j2
+make install
+
 
 pushd ../install && tar -cvf $mypwd/gcc47.tar.gz . && popd
 

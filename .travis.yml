@@ -10,10 +10,10 @@ matrix:
 #      before_install:
 #        - recipes/setup.sh
 #      env: recipe=ipopt_osx
-     - os: osx
-       before_install:
-         - recipes/setup.sh
-       env: recipe=clang_osx
+#     - os: osx
+#       before_install:
+#         - recipes/setup.sh
+#       env: recipe=clang_osx
 #    - os: osx
 #      before_install:
 #        - recipes/setup.sh
@@ -23,10 +23,10 @@ matrix:
 #    - env: recipe=coinhsl
 #    - env: recipe=snopt7
 #    - env: recipe=swig
-     - env: recipe=swig_matlab
+#     - env: recipe=swig_matlab
 #    - env: recipe=ipopt
 #    - env: recipe=mingw_ipopt
-#    - env: recipe=mingw64_ipopt
+     - env: recipe=mingw64_ipopt
 #    - env: recipe=mingw_lapack
 #    - env: recipe=mingw64_lapack
 #     - env: recipe=mingw64_clang
@@ -35,7 +35,7 @@ matrix:
 #    - env: recipe=mingw64_ecos
 #    - env: recipe=mingw_ecos
 #    - env: recipe=ecos
-     - env: recipe=gcc47
+#    - env: recipe=gcc47
 
 python:
 - "2.7_with_system_site_packages"

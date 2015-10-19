@@ -25,7 +25,7 @@ matrix:
 #    - env: recipe=swig
 #     - env: recipe=swig_matlab
 #    - env: recipe=ipopt
-#    - env: recipe=mingw_ipopt
+     - env: recipe=mingw_ipopt
      - env: recipe=mingw64_ipopt
 #    - env: recipe=mingw_lapack
 #    - env: recipe=mingw64_lapack

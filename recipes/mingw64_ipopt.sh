@@ -27,7 +27,7 @@ pushd build
 make
 make install
 popd && popd
-tar -zcvf ipopt_mingw64.tar.gz -C /home/travis/ipopt-install .
+tar -zcvf ipopt_mingw64_shared.tar.gz -C /home/travis/ipopt-install .
 export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('ipopt_mingw64_shared.tar.gz')"
 
 

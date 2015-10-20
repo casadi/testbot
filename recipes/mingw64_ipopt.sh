@@ -23,11 +23,11 @@ popd
 mkdir build
 pushd build
 # build must contain mingw, in order for the hsl loader to look for .dll as opposed to .so
-../configure --host x86_64-w64-mingw32 --build mingw32 --prefix=/home/travis/ipopt-install --enable-static --enable-shared ADD_FFLAGS=-fPIC ADD_CFLAGS=-fPIC ADD_CXXFLAGS=-fPIC --with-blas=BUILD --with-lapack=BUILD --with-mumps=BUILD --with-metis=BUILD --without-hsl --without-asl
+../configure --host x86_64-w64-mingw32 --build mingw32 --prefix=/home/travis/ipopt-install --disable-static --enable-shared ADD_FFLAGS=-fPIC ADD_CFLAGS=-fPIC ADD_CXXFLAGS=-fPIC --with-blas=BUILD --with-lapack=BUILD --with-mumps=BUILD --with-metis=BUILD --without-hsl --without-asl
 make
 make install
 popd && popd
 tar -zcvf ipopt_mingw64.tar.gz -C /home/travis/ipopt-install .
-export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('ipopt_mingw64.tar.gz')"
+export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('ipopt_mingw64_shared.tar.gz')"
 
 

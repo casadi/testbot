@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-export PYTHONPATH="$PYTHONPATH:$mypwd/helpers"
-
 mypwd=`pwd`
+
+export PYTHONPATH="$PYTHONPATH:$mypwd/helpers"
 
 sudo apt-get update -qq
 sudo apt-get remove -qq -y mingw32

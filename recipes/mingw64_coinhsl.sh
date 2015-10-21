@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+export PYTHONPATH="$PYTHONPATH:$mypwd/helpers"
+
 mypwd=`pwd`
 
 sudo apt-get update -qq

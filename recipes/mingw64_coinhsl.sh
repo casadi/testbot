@@ -8,7 +8,10 @@ sudo apt-get remove -qq -y mingw32
 sudo apt-get install -q -y mingw-w64
 sudo apt-get install -q -y mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfortran-mingw-w64
 
-testbot/recipes/fetch.sh matlab$MATLABRELEASE.tar.gz
+pwd
+ls
+
+recipes/fetch.sh matlab$MATLABRELEASE.tar.gz
 
 export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; download('ipopt_mingw64.tar.gz')"
 mkdir ipopt && tar -xf ipopt_mingw64.tar.gz -C ipopt

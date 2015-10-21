@@ -19,11 +19,13 @@ export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted imp
 mkdir ipopt && tar -xf ipopt_mingw64.tar.gz -C ipopt
 pushd /home/travis/ && ln -s $mypwd/ipopt ipopt-install  && popd
 
+ls /home/travis/ipopt-install/lib
+
 pushd restricted
 wget http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/OLD/metis-4.0.3.tar.gz
 tar -xvf coinhsl.tar.gz && cd coinhsl-2014.01.10 && tar -xvf ../metis-4.0.3.tar.gz
 
-./configure --host x86_64-w64-mingw32 --prefix=$mypwd/coinhsl-install LIBS="-L/home/travis/ipopt-install/lib" --with-blas="-lcoinblas -lcoinlapack -lcoinblas" CXXFLAGS="-fopenmp" FCFLAGS="-O2 -fopenmp" CFLAGS="-O2 -fopenmp"
+./configure --host x86_64-w64-mingw32 --prefix=$mypwd/coinhsl-install LIBS="-L/home/travis/ipopt-install/lib" --with-blas="-lcoinblas -lcoinlapack -lcoinblas" CXXFLAGS="-fopenmp" FCFLAGS="-O2 -fopenmp" CFLAGS="-O2 -fopenmp" || cat config.log
 sed -i "s/deplibs_check_method=.*/deplibs_check_method=\"pass_all\"/" libtool
 make
 make install

@@ -17,6 +17,7 @@ sudo apt-get install locate
 sudo updatedb
 
 locate libgomp.spec
+locate libgfortran
 
 recipes/fetch.sh matlab$MATLABRELEASE.tar.gz
 
@@ -35,12 +36,16 @@ sed -i "s/deplibs_check_method=.*/deplibs_check_method=\"pass_all\"/" libtool
 make
 make install
 
-cd $mypwd/coinhsl-install/lib && cp libcoinhsl-0.dll libcoinhsl.dll && cp libcoinhsl-0.dll libcoinhsl.so
-cp /usr/lib/gcc/x86_64-w64-mingw32/4.9-posix/libgfortran-3.dll .
-cp /usr/lib/gcc/x86_64-w64-mingw32/4.9-posix/libgomp-1.dll .
-cp /usr/x86_64-w64-mingw32/lib/libwinpthread-1.dll .
-cp /usr/lib/gcc/x86_64-w64-mingw32/4.9-posix/libgcc_s_seh-1.dll .
-zip -r libhsl_mingw64.zip *.dll *.so
+mkdir $mypwd/pack
+cd $mypwd/coinhsl-install/lib
+ls
+cp libcoinhsl-0.dll $mypwd/pack/libhsl.dll && cp libcoinhsl-0.dll $mypwd/pack/libhsl.so
+
+cp /usr/lib/gcc/x86_64-w64-mingw32/4.9-posix/libgfortran-3.dll $mypwd/pack
+cp /usr/lib/gcc/x86_64-w64-mingw32/4.9-posix/libgomp-1.dll $mypwd/pack
+cp /usr/x86_64-w64-mingw32/lib/libwinpthread-1.dll $mypwd/pack
+cp /usr/lib/gcc/x86_64-w64-mingw32/4.9-posix/libgcc_s_seh-1.dll $mypwd/pack
+zip -r libhsl_mingw64.zip $mypwd/pack/*.dll $mypwd/pack/*.so
 
 export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('libhsl_mingw64.zip')"
 

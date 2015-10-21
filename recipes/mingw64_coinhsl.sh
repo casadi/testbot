@@ -13,6 +13,11 @@ sudo apt-get install -q -y mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfortran-mingw-
 pwd
 ls
 
+sudo apt-get install locate
+sudo updatedb
+
+locate libgomp.spec
+
 recipes/fetch.sh matlab$MATLABRELEASE.tar.gz
 
 export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; download('ipopt_mingw64.tar.gz')"
@@ -25,7 +30,7 @@ pushd restricted
 wget http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/OLD/metis-4.0.3.tar.gz
 tar -xvf coinhsl.tar.gz && cd coinhsl-2014.01.10 && tar -xvf ../metis-4.0.3.tar.gz
 
-./configure --host x86_64-w64-mingw32 --prefix=$mypwd/coinhsl-install LIBS="-L/home/travis/ipopt-install/lib" --with-blas="-lcoinblas -lcoinlapack -lcoinblas" CXXFLAGS="-fopenmp" FCFLAGS="-O2 -fopenmp" CFLAGS="-O2 -fopenmp" || cat config.log
+./configure --host x86_64-w64-mingw32 --prefix=$mypwd/coinhsl-install LIBS="-L/home/travis/ipopt-install/lib" --with-blas="-lcoinblas -lcoinlapack -lcoinblas" CXXFLAGS="" FCFLAGS="-O2" CFLAGS="-O2" || cat config.log
 sed -i "s/deplibs_check_method=.*/deplibs_check_method=\"pass_all\"/" libtool
 make
 make install

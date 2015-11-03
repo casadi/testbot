@@ -6,9 +6,9 @@ ssh-keyscan web.sourceforge.net >> ~/.ssh/known_hosts
 ssh-keyscan shell.sourceforge.net >> ~/.ssh/known_hosts
 
 
-
-sudo pip install requests==2.6.0
-sudo pip install psutil
+export PATH=$HOME/.local/bin:$PATH
+pip install --user requests==2.6.0
+pip install --user psutil
 openssl aes-256-cbc -k "$keypass" -in id_rsa_travis.enc -out id_rsa_travis -d
 openssl aes-256-cbc -k "$keypass" -in testbotcredentials.py.enc -out testbotcredentials.py -d
 openssl aes-256-cbc -k "$keypass" -in env.sh.enc -out env.sh -d

@@ -12,7 +12,7 @@ pip install --user psutil
 openssl aes-256-cbc -k "$keypass" -in id_rsa_travis.enc -out id_rsa_travis -d
 openssl aes-256-cbc -k "$keypass" -in testbotcredentials.py.enc -out testbotcredentials.py -d
 openssl aes-256-cbc -k "$keypass" -in env.sh.enc -out env.sh -d
-sudo chmod 600 id_rsa_travis
+chmod 600 id_rsa_travis
 
 cat <<EOF >> ~/.ssh/config
 Host github.com

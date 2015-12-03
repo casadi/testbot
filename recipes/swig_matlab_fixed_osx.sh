@@ -2,7 +2,7 @@
 set -e
 brew install pcre automake
 
-echo "touch \${@: -1}" > yodl2man && chmod +x yodl2man
+echo "touch \${@: -2}" > yodl2man && chmod +x yodl2man
 export PATH=$PATH:`pwd`
 
 mypwd=`pwd`

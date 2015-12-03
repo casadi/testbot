@@ -16,6 +16,7 @@ s = requests.Session()
 s.auth = tbc.github
 s.headers.update({'Accept': 'application/vnd.github.manifold-preview'})
 
+myparams = {"per_page": 100}
 
 def upload(filename):
 
@@ -25,7 +26,7 @@ def upload(filename):
   l = filter(lambda x: x["name"]=="Perpetual",r.json())
   release = l[0]
 
-  assets = s.get(release["assets_url"],timeout=timeout)
+  assets = s.get(release["assets_url"],timeout=timeout,params=myparams)
   assert(assets.ok), str(assets)
   time.sleep(1)
 
@@ -48,7 +49,7 @@ def download(filename):
   release = l[0]
 
   print release["assets_url"]
-  assets = s.get(release["assets_url"],timeout=timeout)
+  assets = s.get(release["assets_url"],timeout=timeout,params=myparams)
   assert(assets.ok), str(assets)
   time.sleep(1)
 

@@ -18,6 +18,10 @@ matrix:
 #      before_install:
 #        - recipes/setup.sh
 #      env: recipe=ecos_osx
+    - os: osx
+      before_install:
+        - recipes/setup.sh
+      env: recipe=swig_matlab_fixed_osx
 #    - env: recipe=ipopt
 #    - env: recipe=snopt75
 #    - env: recipe=coinhsl

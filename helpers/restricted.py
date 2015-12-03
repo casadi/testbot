@@ -48,12 +48,10 @@ def download(filename):
   l = filter(lambda x: x["name"]=="Perpetual",r.json())
   release = l[0]
 
-  print release["assets_url"]
   assets = s.get(release["assets_url"],timeout=timeout,params=myparams)
   assert(assets.ok), str(assets)
   time.sleep(1)
 
-  print assets.json()
   for a in assets.json():
     if a["name"]==filename:
       rs = s.get(a["url"], stream=True,verify=False,headers={"Accept":"application/octet-stream"},timeout=timeout)

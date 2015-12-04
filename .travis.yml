@@ -25,7 +25,8 @@ matrix:
 #    - env: recipe=ipopt
 #    - env: recipe=snopt75
 #    - env: recipe=coinhsl
-#     - env: recipe=mingw64_coinhsl
+     - env: recipe=mingw64_coinhsl
+     - env: recipe=mingw_coinhsl
 #    - env: recipe=snopt7
 #    - env: recipe=swig
      - env: recipe=swig_matlab

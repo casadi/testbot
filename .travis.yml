@@ -1,10 +1,9 @@
 env: 
   global: 
     - secure: bOPhFqXlBfwm73ac6BMSba2UR3vwnYVDqyXeAs/5SxrW2hW7/V/MmYLQL3h3BpOYfPBa1ganEAKYrd9K6HWJN16MHyROBEbFpZmZ5DFbK/pUjYaJp+8giSytxWBzEjo2f129azETNgvzjANbpAe0+uYaxupUPvpfQkPPrII+2Jc=
+    - DISTSUFFIX=""
 
 os: linux
-dist: trusty
-language: generic
 
 matrix:
   include:
@@ -41,7 +40,9 @@ matrix:
 #     - env: recipe=mingw64_clang
 #     - env: recipe=mingw_clang
 #     - env: recipe=clang
-     - env: recipe=mingw64_ecos_trusty
+     - env: recipe=mingw64_ecos DISTSUFFIX=_trust
+       dist: trusty
+       language: generic
 #    - env: recipe=mingw_ecos
 #    - env: recipe=ecos
 #    - env: recipe=gcc47

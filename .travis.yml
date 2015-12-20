@@ -43,7 +43,10 @@ matrix:
 #     - env: recipe=mingw64_ecos_trusty
 #       dist: trusty
 #       language: generic
-     - env: recipe=mingw64_clang_trusty
+#     - env: recipe=mingw64_clang_trusty
+#       dist: trusty
+#       language: generic
+     - env: recipe=mingw64_lapack_trusty
        dist: trusty
        language: generic
 #    - env: recipe=mingw_ecos

@@ -16,8 +16,22 @@ sudo apt-get install -y binutils gcc g++ gfortran git cmake
 
 sudo apt-get update -qq
 sudo apt-get remove -qq -y mingw32
-sudo apt-get install -q -y mingw-w64
-sudo apt-get install -q -y mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfortran-mingw-w64
+cat <<EOF | sudo tee --append  /etc/apt/sources.list
+deb-src http://archive.ubuntu.com/ubuntu vivid main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu vivid main restricted universe multiverse
+EOF
+cat <<EOF | sudo tee /etc/apt/preferences.d/mytest
+Package: *
+Pin: release n=trusty
+Pin-priority: 700
+
+Package: *
+Pin: release n=vivid
+Pin-priority: 600
+EOF
+sudo apt-get update -qq
+sudo apt-get install -q -y -t vivid mingw-w64
+sudo apt-get install -q -y -t vivid mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfortran-mingw-w64
 
 VERSION=342
 

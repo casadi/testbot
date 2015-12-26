@@ -32,20 +32,20 @@ matrix:
 #    - env: recipe=swig
 #     - env: recipe=swig_matlab
 #     - env: recipe=swig_matlab_fixed
-#    - env: recipe=ipopt
-#     - env: recipe=mingw_ipopt
-#     - env: recipe=mingw64_ipopt_trusty
+    - env: recipe=ipopt
+     - env: recipe=mingw_ipopt
+     - env: recipe=mingw64_ipopt_trusty
 #    - env: recipe=mingw_lapack
 #    - env: recipe=mingw64_lapack
 #     - env: recipe=mingw64_clang
 #     - env: recipe=mingw_clang
 #     - env: recipe=clang
-#     - env: recipe=mingw64_ecos_trusty
-#       dist: trusty
-#       language: generic
-#     - env: recipe=mingw64_clang_trusty
-#       dist: trusty
-#       language: generic
+     - env: recipe=mingw64_ecos_trusty
+       dist: trusty
+       language: generic
+     - env: recipe=mingw64_clang_trusty
+       dist: trusty
+       language: generic
      - env: recipe=mingw64_lapack_trusty
        dist: trusty
        language: generic

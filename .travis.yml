@@ -19,6 +19,10 @@ matrix:
 #      before_install:
 #        - recipes/setup.sh
 #      env: recipe=ecos_osx
+     - os: osx
+       before_install:
+        - recipes/setup.sh
+       env: recipe=swig_matlab_osx
 #     - os: osx
 #       before_install:
 #        - recipes/setup.sh
@@ -30,13 +34,13 @@ matrix:
 #     - env: recipe=mingw_coinhsl
 #    - env: recipe=snopt7
 #    - env: recipe=swig
-#     - env: recipe=swig_matlab
+     - env: recipe=swig_matlab
 #     - env: recipe=swig_matlab_fixed
 #     - env: recipe=ipopt
 #     - env: recipe=mingw_ipopt
-     - env: recipe=mingw64_ipopt_trusty
-       dist: trusty
-       language: generic
+#     - env: recipe=mingw64_ipopt_trusty
+#       dist: trusty
+#       language: generic
 #    - env: recipe=mingw_lapack
 #    - env: recipe=mingw64_lapack
 #     - env: recipe=mingw64_clang

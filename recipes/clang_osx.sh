@@ -15,7 +15,7 @@ cd ../..
 mkdir build
 cd build
 
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$mypwd/install" ../llvm
+cmake -DLLVM_ENABLE_TERMINFO=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$mypwd/install" ../llvm
 make clang-tblgen install -j2
 cp bin/clang-tblgen "$mypwd/install/bin"
 

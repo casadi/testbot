@@ -7,8 +7,22 @@ export PYTHONPATH="$PYTHONPATH:$mypwd/helpers"
 
 sudo apt-get update -qq
 sudo apt-get remove -qq -y mingw32
-sudo apt-get install -q -y mingw-w64
-sudo apt-get install -q -y mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfortran-mingw-w64
+cat <<EOF | sudo tee --append  /etc/apt/sources.list
+deb-src http://archive.ubuntu.com/ubuntu vivid main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu vivid main restricted universe multiverse
+EOF
+cat <<EOF | sudo tee /etc/apt/preferences.d/mytest
+Package: *
+Pin: release n=trusty
+Pin-priority: 700
+
+Package: *
+Pin: release n=vivid
+Pin-priority: 600
+EOF
+sudo apt-get update -qq
+sudo apt-get install -q -y -t vivid mingw-w64
+sudo apt-get install -q -y -t vivid mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfortran-mingw-w64
 
 pwd
 ls
@@ -39,12 +53,12 @@ make install
 mkdir $mypwd/pack
 cd $mypwd/coinhsl-install/lib
 ls
-cp libcoinhsl-0.dll $mypwd/pack/libhsl.dll && cp libcoinhsl-0.dll $mypwd/pack/libhsl.so
+cp libcoinhsl-0.dll $mypwd/pack/libhsl.dll
 
-cp /usr/lib/gcc/x86_64-w64-mingw32/4.9-posix/libgfortran-3.dll $mypwd/pack
-cp /usr/lib/gcc/x86_64-w64-mingw32/4.9-posix/libgomp-1.dll $mypwd/pack
-cp /usr/x86_64-w64-mingw32/lib/libwinpthread-1.dll $mypwd/pack
-cp /usr/lib/gcc/x86_64-w64-mingw32/4.9-posix/libgcc_s_seh-1.dll $mypwd/pack
+cp /usr/lib/gcc/$compilerprefix/4.9-win32/*.dll $mypwd/pack
+cp -RL /usr/$compilerprefix/include $mypwd/pack
+cp -R /home/travis/build/clang/include/c++/v1 $mypwd/pack
+
 zip -r libhsl_mingw64.zip $mypwd/pack/*.dll $mypwd/pack/*.so
 
 export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('libhsl_mingw64.zip')"

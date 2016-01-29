@@ -46,6 +46,9 @@ matrix:
 #     - env: recipe=mingw64_clang
 #     - env: recipe=mingw_clang
 #     - env: recipe=clang
+      - env: recipe=mingw64_coinhsl_trusty
+        dist: trusty
+        language: generic
 #     - env: recipe=mingw64_ecos_trusty
 #       dist: trusty
 #       language: generic

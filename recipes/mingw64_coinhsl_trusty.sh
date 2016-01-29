@@ -35,7 +35,7 @@ locate libgfortran
 
 recipes/fetch.sh matlab$MATLABRELEASE.tar.gz
 
-export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; download('ipopt_mingw64.tar.gz')"
+export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; download('ipopt_mingw64_trusty.tar.gz')"
 mkdir ipopt && tar -xf ipopt_mingw64.tar.gz -C ipopt
 pushd /home/travis/ && ln -s $mypwd/ipopt ipopt-install  && popd
 
@@ -61,5 +61,5 @@ cp -R /home/travis/build/clang/include/c++/v1 $mypwd/pack
 
 zip -r libhsl_mingw64.zip $mypwd/pack/*.dll $mypwd/pack/*.so
 
-export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('libhsl_mingw64.zip')"
+export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('libhsl_mingw64_trusty.zip')"
 

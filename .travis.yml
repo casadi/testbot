@@ -29,7 +29,7 @@ matrix:
 #      env: recipe=swig_matlab_fixed_osx
 #    - env: recipe=ipopt
 #    - env: recipe=snopt75
-#    - env: recipe=coinhsl
+     - env: recipe=coinhsl
 #     - env: recipe=mingw64_coinhsl
 #     - env: recipe=mingw_coinhsl
 #    - env: recipe=snopt7

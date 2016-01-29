@@ -41,12 +41,10 @@ make install
 mkdir $mypwd/pack
 cd $mypwd/coinhsl-install/lib
 ls
-cp libcoinhsl-0.dll $mypwd/pack/libhsl.dll && cp libcoinhsl-0.dll $mypwd/pack/libhsl.dll && cp libcoinhsl-0.dll $mypwd/pack/libhsl.so
+cp $mypwd/coinhsl-install/bin/libcoinhsl-0.dll $mypwd/pack/libhsl.dll
 
-cp /usr/lib/gcc/i686-w64-mingw32/4.9-posix/libgfortran-3.dll $mypwd/pack
-cp /usr/lib/gcc/i686-w64-mingw32/4.9-posix/libgomp-1.dll $mypwd/pack
-cp /usr/i686-w64-mingw32/lib/libwinpthread-1.dll $mypwd/pack
-cp /usr/lib/gcc/i686-w64-mingw32/4.9-posix/libgcc_s_seh-1.dll $mypwd/pack
+cp /usr/lib/gcc/$compilerprefix/4.9-posix/*.dll $mypwd/pack
+cp /usr/$compilerprefix/lib/libwinpthread-1.dll $mypwd/pack
 zip -r libhsl_mingw.zip $mypwd/pack/*.dll $mypwd/pack/*.so
 
 export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('libhsl_mingw.zip')"

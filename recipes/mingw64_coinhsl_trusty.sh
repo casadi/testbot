@@ -56,8 +56,6 @@ mkdir $mypwd/pack
 cp $mypwd/coinhsl-install/bin/libcoinhsl-0.dll $mypwd/pack/libhsl.dll
 
 cp /usr/lib/gcc/$compilerprefix/4.9-win32/*.dll $mypwd/pack
-cp -RL /usr/$compilerprefix/include $mypwd/pack
-cp -R /home/travis/build/clang/include/c++/v1 $mypwd/pack
 
 zip -r libhsl_mingw64.zip $mypwd/pack/*.dll $mypwd/pack/*.so
 

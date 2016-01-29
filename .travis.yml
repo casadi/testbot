@@ -70,7 +70,7 @@ before_install:
   - sudo dpkg --add-architecture i386
   - sudo apt-get update -q
   - sudo apt-get install libpython2.7-dev libc6:i386 libncurses5:i386 libstdc++6:i386
-  - recipes/setup.sh
+  - source recipes/setup.sh
   - sudo apt-get update -qq
   - sudo apt-get install -y gcc g++ gfortran
 install: 

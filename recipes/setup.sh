@@ -15,6 +15,9 @@ openssl aes-256-cbc -k "$keypass" -in testbotcredentials.py.enc -out testbotcred
 openssl aes-256-cbc -k "$keypass" -in env.sh.enc -out env.sh -d
 chmod 600 id_rsa_travis
 
+mypwd=`pwd`
+export PYTHONPATH="$PYTHONPATH:$mypwd:$mypwd/helpers"
+
 cat <<EOF >> ~/.ssh/config
 Host github.com
         Hostname github.com

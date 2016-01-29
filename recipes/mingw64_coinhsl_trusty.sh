@@ -57,7 +57,7 @@ cp $mypwd/coinhsl-install/bin/libcoinhsl-0.dll $mypwd/pack/libhsl.dll
 
 cp /usr/lib/gcc/$compilerprefix/4.9-win32/*.dll $mypwd/pack
 
-zip -r libhsl_mingw64.zip $mypwd/pack/*.dll $mypwd/pack/*.so
+zip -r libhsl_mingw64_trusty.zip $mypwd/pack/*.dll $mypwd/pack/*.so
 
-export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('libhsl_mingw64_trusty.zip')"
+python -c "from restricted import *; upload('libhsl_mingw64_trusty.zip')"
 

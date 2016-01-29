@@ -38,7 +38,7 @@ matrix:
 #     - env: recipe=swig_matlab_fixed
 #     - env: recipe=ipopt
 #     - env: recipe=mingw_ipopt
-#     - env: recipe=mingw64_ipopt_trusty
+     - env: recipe=mingw64_ipopt_trusty
 #       dist: trusty
 #       language: generic
 #    - env: recipe=mingw_lapack

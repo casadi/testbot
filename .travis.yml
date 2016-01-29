@@ -39,8 +39,8 @@ matrix:
 #     - env: recipe=ipopt
 #     - env: recipe=mingw_ipopt
      - env: recipe=mingw64_ipopt_trusty
-#       dist: trusty
-#       language: generic
+       dist: trusty
+       language: generic
 #    - env: recipe=mingw_lapack
 #    - env: recipe=mingw64_lapack
 #     - env: recipe=mingw64_clang

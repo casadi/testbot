@@ -41,7 +41,8 @@ make install
 mkdir $mypwd/pack
 cd $mypwd/coinhsl-install/lib
 ls
-cp libcoinhsl-0.dll $mypwd/pack/libhsl.dll && cp libcoinhsl-0.dll $mypwd/pack/libhsl.dll && cp libcoinhsl-0.dll $mypwd/pack/libhsl.so
+cp libcoinhsl-0.dll $mypwd/pack/libhsl.dll
+cp libmetis-0.dll $mypwd/pack/libmetis.dll
 
 cp /usr/lib/gcc/i686-w64-mingw32/4.9-posix/libgfortran-3.dll $mypwd/pack
 cp /usr/lib/gcc/i686-w64-mingw32/4.9-posix/libgomp-1.dll $mypwd/pack

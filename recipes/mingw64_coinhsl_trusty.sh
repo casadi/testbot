@@ -55,7 +55,7 @@ mkdir $mypwd/pack
 
 ls $mypwd/coinhsl-install/bin
 cp $mypwd/coinhsl-install/bin/libcoinhsl-0.dll $mypwd/pack/libhsl.dll
-
+cp $mypwd/coinhsl-install/bin/libmetis-0.dll $mypwd/pack/libmetis.dll
 cp /usr/lib/gcc/$compilerprefix/4.9-win32/*.dll $mypwd/pack
 
 zip -j libhsl_mingw64_trusty.zip $mypwd/pack/*.dll

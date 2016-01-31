@@ -21,10 +21,8 @@ sudo updatedb
 locate libgomp.spec
 locate libgfortran
 
-recipes/fetch.sh matlab$MATLABRELEASE.tar.gz
-
-export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; download('ipopt_mingw64.tar.gz')"
-mkdir ipopt && tar -xf ipopt_mingw.tar.gz -C ipopt
+export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; download('ipopt_mingw32.tar.gz')"
+mkdir ipopt && tar -xf ipopt_mingw32.tar.gz -C ipopt
 pushd /home/travis/ && ln -s $mypwd/ipopt ipopt-install  && popd
 
 ls /home/travis/ipopt-install/lib

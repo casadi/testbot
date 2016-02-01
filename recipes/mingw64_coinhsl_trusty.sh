@@ -26,7 +26,6 @@ sudo apt-get install -q -y -t vivid mingw-w64
 sudo apt-get install -q -y -t vivid mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfortran-mingw-w64
 
 pwd
-ls
 
 sudo apt-get install locate
 sudo updatedb

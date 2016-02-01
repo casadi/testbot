@@ -42,11 +42,9 @@ ls
 cp libcoinhsl-0.dll $mypwd/pack/libhsl.dll
 cp libmetis-0.dll $mypwd/pack/libmetis.dll
 
-cp /usr/lib/gcc/i686-w64-mingw32/4.9-posix/libgfortran-3.dll $mypwd/pack
-cp /usr/lib/gcc/i686-w64-mingw32/4.9-posix/libgomp-1.dll $mypwd/pack
+cp /usr/lib/gcc/i686-w64-mingw32/4.9-posix/*.dll $mypwd/pack
 cp /usr/i686-w64-mingw32/lib/libwinpthread-1.dll $mypwd/pack
-cp /usr/lib/gcc/i686-w64-mingw32/4.9-posix/libgcc_s_seh-1.dll $mypwd/pack
-zip -r libhsl_mingw.zip $mypwd/pack/*.dll $mypwd/pack/*.so
+zip -r libhsl_mingw.zip $mypwd/pack/*.dll
 
 export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('libhsl_mingw.zip')"
 

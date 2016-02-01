@@ -37,7 +37,7 @@ make
 make install
 
 mkdir $mypwd/pack
-cd $mypwd/coinhsl-install/lib
+cd $mypwd/coinhsl-install/bin
 ls
 cp libcoinhsl-0.dll $mypwd/pack/libhsl.dll
 cp libmetis-0.dll $mypwd/pack/libmetis.dll

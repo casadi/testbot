@@ -27,6 +27,7 @@ VERSION=1.8.4
 wget http://www.coin-or.org/Tarballs/Bonmin/Bonmin-$VERSION.tgz
 tar -xvf Bonmin-$VERSION.tgz
 pushd Bonmin-$VERSION
+pushd ThirdParty
 #pushd ASL && ./get.ASL && popd
 pushd Blas && ./get.Blas && popd 
 pushd Lapack && ./get.Lapack && popd 

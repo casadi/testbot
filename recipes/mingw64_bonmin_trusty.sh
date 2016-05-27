@@ -41,7 +41,7 @@ pushd build
 make
 make install
 popd && popd
-tar -zcvf ipopt_mingw64_trusty.tar.gz -C /home/travis/bonmin-install .
+tar -zcvf bonmin_mingw64_trusty.tar.gz -C /home/travis/bonmin-install .
 export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('bonmin_mingw64_trusty.tar.gz')"
 
 

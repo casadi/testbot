@@ -18,7 +18,7 @@ mkdir build
 pushd build
 ../configure --prefix=/Users/travis/bonmin-install --disable-shared ADD_FFLAGS=-fPIC ADD_CFLAGS=-fPIC ADD_CXXFLAGS=-fPIC --with-blas=BUILD --with-lapack=BUILD --with-mumps=BUILD --with-metis=BUILD --without-hsl --without-asl
 make
-make install
+sudo make install
 popd && popd
 tar -zcvf bonmin_osx.tar.gz -C /Users/travis/bonmin-install .
 export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('bonmin_osx.tar.gz')"

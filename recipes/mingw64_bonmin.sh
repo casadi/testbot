@@ -26,7 +26,7 @@ pushd build
 make
 make install
 popd && popd
-tar -zcvf bonmin_mingw64_shared.tar.gz -C /home/travis/bonmin-install .
+tar -zcvf bonmin_mingw6.tar.gz -C /home/travis/bonmin-install .
 export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('bonmin_mingw64.tar.gz')"
 
 

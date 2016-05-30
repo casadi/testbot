@@ -24,9 +24,13 @@ matrix:
 #      env: recipe=swig_matlab_fixed_osx
 #    - env: recipe=ipopt
 #     - env: recipe=bonmin
+     - os: osx
+       before_install:
+        - recipes/setup.sh
+       env: recipe=bonmin_osx
 #     - env: recipe=bonmin_osx
 #     - env: recipe=mingw_bonmin
-     - env: recipe=mingw64_bonmin
+#     - env: recipe=mingw64_bonmin
 #    - env: recipe=snopt75
 #    - env: recipe=coinhsl
 #     - env: recipe=mingw64_coinhsl

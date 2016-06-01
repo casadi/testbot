@@ -8,6 +8,6 @@ pushd autoconf-2.69 && ./configure && make && sudo make install && popd
 mypwd=`pwd`
 mkdir "$mypwd/snopt7-install"
 export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; download('snopt75-src.tar.gz')"
-tar -xvf snopt75-src.tar.gz && pushd snopt7 && ./configure --prefix "$mypwd/snopt7-install" --with-cpp  --with-64 && make && make install && popd
+tar -xvf snopt75-src.tar.gz && pushd snopt7 && ./configure --prefix "$mypwd/snopt7-install" --with-c && make && make install && popd
 tar -zcvf snopt75.tar.gz -C snopt7-install .
 export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('snopt75.tar.gz')"

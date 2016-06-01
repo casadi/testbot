@@ -31,7 +31,8 @@ matrix:
 #     - env: recipe=bonmin_osx
 #     - env: recipe=mingw_bonmin
 #     - env: recipe=mingw64_bonmin
-#    - env: recipe=snopt75
+     - env: recipe=snopt75
+
 #    - env: recipe=coinhsl
 #     - env: recipe=mingw64_coinhsl
 #     - env: recipe=mingw_coinhsl

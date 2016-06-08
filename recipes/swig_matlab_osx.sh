@@ -1,13 +1,21 @@
 #!/bin/bash
 set -e
-brew install pcre automake
 
-echo "touch \${@: -2}" > yodl2man && chmod +x yodl2man
-export PATH=$PATH:`pwd`
+if [ -z "$SETUP" ]; then
+  brew install pcre automake
 
-mypwd=`pwd`
-pushd restricted && git clone https://github.com/jaeandersson/swig.git
-pushd swig && git checkout matlab && ./autogen.sh && ./configure --prefix=$mypwd/swig-matlab-install && make && make install
-popd && popd
-tar -zcvf swig_matlab_osx.tar.gz -C swig-matlab-install .
-export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('swig_matlab_osx.tar.gz')"
+  echo "touch \${@: -2}" > yodl2man && chmod +x yodl2man
+  export PATH=$PATH:`pwd`
+
+  mypwd=`pwd`
+  pushd restricted && git clone https://github.com/jaeandersson/swig.git
+  pushd swig && git checkout matlab && ./autogen.sh && ./configure --prefix=$mypwd/swig-matlab-install && make && make install
+  popd && popd
+  tar -zcvf swig_matlab_osx.tar.gz -C swig-matlab-install .
+  export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('swig_matlab_osx.tar.gz')"
+
+else
+  fetch_tar swig matlab_osx
+  pushd /home/travis/build/casadi/testbot && ln -s  /home/travis/build/swig  swig-install  && popd
+  export PATH=/home/travis/build/swig/bin:$PATH
+fi

@@ -26,7 +26,7 @@ if [ -z "$SETUP" ]; then
   make install
   popd && popd
   tar -zcvf bonmin$SUFFIXFILE.tar.gz -C /home/travis/bonmin-install .
-  slurp_put bonmin_$SUFFIXFILE.tar.gz
+  slurp_put bonmin$SUFFIXFILE.tar.gz
 else
   fetch_tar bonmin $SUFFIX
   

@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-VERSION=342
+source recipes/clang_common.sh
 
 mypwd=`pwd`
 
@@ -21,7 +21,7 @@ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$mypwd/install" ../llvm
 make clang-tblgen install -j2
 cp bin/clang-tblgen "$mypwd/install/bin"
 
-pushd ../install && tar -cvf $mypwd/clang.tar.gz . && popd
+pushd ../install && tar -cvf $mypwd/clang_trusty.tar.gz . && popd
 
 cd $mypwd
-export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('clang.tar.gz')"
+export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('clang_trusty.tar.gz')"

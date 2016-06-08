@@ -19,7 +19,12 @@ matrix:
     
     - env: recipe=bonmin_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
     - env: recipe=bonmin_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
-      
+    - env: recipe=bonmin
+    - os: osx
+      before_install:
+        - recipes/setup.sh
+      env: recipe=bonmin_osx
+ 
     - env: recipe=ecos_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
     - env: recipe=ecos_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
     - env: recipe=ecos
@@ -33,7 +38,12 @@ matrix:
     
     - env: recipe=clang_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
     - env: recipe=clang_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
-
+    - env: recipe=clang
+    - os: osx
+      before_install:
+        - recipes/setup.sh
+      env: recipe=clang_osx
+      
     - env: recipe=swig
 
 

@@ -18,7 +18,7 @@ if [ -z "$SETUP" ]; then
 
   mingw_setup
 
-  VERSION=342
+  source recipes/clang_common.sh
 
   svn co http://llvm.org/svn/llvm-project/llvm/tags/RELEASE_$VERSION/final/ llvm
   cd llvm/tools

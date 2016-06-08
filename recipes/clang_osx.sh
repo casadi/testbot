@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-VERSION=342
+source recipes/clang_common.sh
 
 mypwd=`pwd`
 

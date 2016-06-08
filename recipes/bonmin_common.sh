@@ -26,8 +26,7 @@ if [ -z "$SETUP" ]; then
   make install
   popd && popd
   tar -zcvf bonmin$SUFFIXFILE.tar.gz -C /home/travis/bonmin-install .
-  export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('bonmin_$SUFFIXFILE.tar.gz')"
-
+  slurp_put bonmin_$SUFFIXFILE.tar.gz
 else
   fetch_tar bonmin $SUFFIX
   

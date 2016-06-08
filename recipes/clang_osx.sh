@@ -22,4 +22,4 @@ cp bin/clang-tblgen "$mypwd/install/bin"
 pushd ../install && tar -cvf $mypwd/clang_osx.tar.gz . && popd
 
 cd $mypwd
-export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('clang_osx.tar.gz')"
+slurp_put clang_osx.tar.gz

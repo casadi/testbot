@@ -33,3 +33,7 @@ sudo apt-get install -q -y -t vivid mingw-w64
 sudo apt-get install -q -y -t vivid mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfortran-mingw-w64
 }
 
+function slurp_put() {
+  export PYTHONPATH="$PYTHONPATH:$HOME/build/casadi/testbot/helpers"
+  python -c "from restricted import *; upload('$1')"
+}

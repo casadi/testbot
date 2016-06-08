@@ -24,4 +24,4 @@ cp bin/clang-tblgen "$mypwd/install/bin"
 pushd ../install && tar -cvf $mypwd/clang_trusty.tar.gz . && popd
 
 cd $mypwd
-export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('clang_trusty.tar.gz')"
+slurp_put clang_trusty.tar.gz

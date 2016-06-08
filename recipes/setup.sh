@@ -43,6 +43,9 @@ function slurp() {
   elif [ -f $HOME/build/testbot/recipes/$1_${SLURP_CROSS}_${SLURP_OS}.sh ];
   then
     SETUP=1 source $HOME/build/testbot/recipes/$1_${SLURP_CROSS}_${SLURP_OS}.sh
+  elif [ -f $HOME/build/testbot/recipes/$1_${SLURP_OS}.sh ];
+  then
+    SETUP=1 source $HOME/build/testbot/recipes/$1_${SLURP_OS}.sh
   else
     SETUP=1 source $HOME/build/testbot/recipes/$1.sh
   fi

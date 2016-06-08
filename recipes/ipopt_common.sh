@@ -21,7 +21,7 @@ if [ -z "$SETUP" ]; then
   make install
   popd && popd
   tar -zcvf ipopt$SUFFIXFILE.tar.gz -C /home/travis/ipopt-install .
-  export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('ipopt$SUFFIXFILE.tar.gz')"
+  export PYTHONPATH="$PYTHONPATH:$HOME/build/helpers" && python -c "from restricted import *; upload('ipopt$SUFFIXFILE.tar.gz')"
 
 else
   fetch_tar ipopt $SUFFIX

@@ -9,50 +9,50 @@ language: generic
 
 matrix:
   include: 
-    - env: recipe=ipopt_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-    - env: recipe=ipopt_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
-    - env: recipe=ipopt_trusty
+#    - env: recipe=ipopt_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
+#    - env: recipe=ipopt_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+#    - env: recipe=ipopt_trusty
     - os: osx
       before_install:
         - recipes/setup.sh
       env: recipe=ipopt_osx
     
-    - env: recipe=bonmin_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-    - env: recipe=bonmin_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
-    - env: recipe=bonmin_trusty
+#    - env: recipe=bonmin_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
+#    - env: recipe=bonmin_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+#    - env: recipe=bonmin_trusty
     - os: osx
       before_install:
         - recipes/setup.sh
       env: recipe=bonmin_osx
  
     - env: recipe=ecos_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-    - env: recipe=ecos_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
-    - env: recipe=ecos_trusty
+#    - env: recipe=ecos_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+#    - env: recipe=ecos_trusty
     - os: osx
       before_install:
         - recipes/setup.sh
       env: recipe=ecos_osx
 
-    - env: recipe=lapack_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-    - env: recipe=lapack_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+#    - env: recipe=lapack_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
+#    - env: recipe=lapack_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
     
-    - env: recipe=clang_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-    - env: recipe=clang_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
-    - env: recipe=clang_trusty
+#    - env: recipe=clang_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
+#    - env: recipe=clang_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+#    - env: recipe=clang_trusty
     - os: osx
       before_install:
         - recipes/setup.sh
       env: recipe=clang_osx
       
-    - env: recipe=swig_trusty
-    - env: recipe=swig_matlab
-    - os: osx
-      before_install:
-        - recipes/setup.sh
-      env: recipe=swig_matlab_osx
+#    - env: recipe=swig_trusty
+#    - env: recipe=swig_matlab
+#    - os: osx
+#      before_install:
+#        - recipes/setup.sh
+#      env: recipe=swig_matlab_osx
 
-    - env: recipe=hsl_trusty
-    - env: recipe=hsl_osx
+#    - env: recipe=hsl_trusty
+#    - env: recipe=hsl_osx
     
     
 #     - os: osx
@@ -116,9 +116,9 @@ before_install:
   - sudo apt-get install libpython2.7-dev libc6:i386 libncurses5:i386 libstdc++6:i386
   - sudo apt-get update -qq
   - sudo apt-get install -y gcc g++ gfortran
-  - source recipes/setup.sh
 install:
   - set -e
+  - source recipes/setup.sh
   - source shellhelpers && false || allowfail 1 && echo "okay"
   - source recipes/$recipe.sh
 script:

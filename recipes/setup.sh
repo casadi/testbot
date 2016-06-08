@@ -47,3 +47,8 @@ function slurp() {
     SETUP=1 source $HOME/build/testbot/recipes/$1.sh
   fi
 }
+
+function slurp_put() {
+  export PYTHONPATH="$PYTHONPATH:$HOME/build/casadi/testbot/helpers"
+  python -c "from restricted import *; upload('$1')"
+}

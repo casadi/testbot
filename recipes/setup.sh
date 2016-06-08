@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+source shellhelpers
+
 ssh-keyscan github.com >> ~/.ssh/known_hosts
 ssh-keyscan web.sourceforge.net >> ~/.ssh/known_hosts
 ssh-keyscan shell.sourceforge.net >> ~/.ssh/known_hosts
@@ -25,3 +27,22 @@ EOF
 git clone git@github.com:jgillis/restricted.git
 git config --global user.email "testbot@casadidev.org"
 git config --global user.name "casaditestbot"
+
+sudo apt-get install p7zip-full zip -y
+
+fetch_tar() {
+  travis_retry $HOME/build/testbot/recipes/fetch.sh $1_$2.tar.gz && mkdir $1 && tar -xf $1_$2.tar.gz -C $1 && rm $1_$2.tar.gz
+}
+
+fetch_zip() {
+  travis_retry $HOME/build/testbot/recipes/fetch.sh $1_$2.zip && mkdir $1 && unzip $1_$2.tar.gz -d $1 && rm $1_$2.tar.gz
+}
+
+slurp() {
+  if [ -f $HOME/build/testbot/recipes/$1_$SLURP_SUFFIX.sh ];
+  then
+    SETUP=1 source $HOME/build/testbot/recipes/$1_$SLURP_SUFFIX.sh
+  else
+    SETUP=1 source $HOME/build/testbot/recipes/$1.sh
+  fi
+}

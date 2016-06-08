@@ -4,8 +4,18 @@ env:
 
 os: linux
 
+dist: trusty
+language: generic
+       
 matrix:
   include:
+    - env: recipe=ipopt_mingw64_trusty
+    - env: recipe=bonmin_mingw64_trusty
+    - env: recipe=ecos_mingw64_trusty
+    - env: recipe=lapack_mingw64_trusty
+    - env: recipe=clang_mingw64_trusty
+    - env: recipe=swig
+    
 #     - os: osx
 #       before_install:
 #         - recipes/setup.sh
@@ -24,25 +34,25 @@ matrix:
 #      env: recipe=swig_matlab_fixed_osx
 #    - env: recipe=ipopt
 #     - env: recipe=bonmin
-     - os: osx
-       before_install:
-        - recipes/setup.sh
-       env: recipe=bonmin_osx
+#     - os: osx
+#       before_install:
+#        - recipes/setup.sh
+#       env: recipe=bonmin_osx
 #     - env: recipe=bonmin_osx
 #     - env: recipe=mingw_bonmin
 #     - env: recipe=mingw64_bonmin
-     - env: recipe=snopt75
-
+#     - env: recipe=snopt75
+#
 #    - env: recipe=coinhsl
 #     - env: recipe=mingw64_coinhsl
 #     - env: recipe=mingw_coinhsl
 #     - env: recipe=snopt7
 #    - env: recipe=swig
-     - os: osx
-       before_install:
-        - recipes/setup.sh
-       env: recipe=swig_matlab_osx
-     - env: recipe=swig_matlab
+#     - os: osx
+#       before_install:
+#        - recipes/setup.sh
+#       env: recipe=swig_matlab_osx
+#     - env: recipe=swig_matlab
 #     - env: recipe=swig_matlab_fixed
 #    - env: recipe=ipopt
 #     - env: recipe=mingw_ipopt
@@ -62,9 +72,10 @@ python:
 compiler: 
   - gcc
 before_install:
+  - sudo dpkg --add-architecture i386
   - sudo apt-get update -q
-  - sudo apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386
-  - recipes/setup.sh
+  - sudo apt-get install libpython2.7-dev libc6:i386 libncurses5:i386 libstdc++6:i386
+  - source recipes/setup.sh
   - sudo apt-get update -qq
   - sudo apt-get install -y gcc g++ gfortran
 install: 

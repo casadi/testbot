@@ -1,9 +1,18 @@
 #!/bin/bash
 set -e
-sudo apt-get install -y libpcre3-dev
-mypwd=`pwd`
-pushd restricted && wget http://sourceforge.net/projects/swig/files/swig/swig-2.0.12/swig-2.0.12.tar.gz && tar -xvf swig-2.0.12.tar.gz >/dev/null
-pushd swig-2.0.12 && ./configure --prefix=$mypwd/swig-install && make && make install
-popd && popd
-tar -zcvf swig.tar.gz -C swig-install .
-export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('swig.tar.gz')"
+
+if [ -z "$SETUP" ]; then
+
+  sudo apt-get install -y libpcre3-dev
+  mypwd=`pwd`
+  pushd restricted && wget http://sourceforge.net/projects/swig/files/swig/swig-2.0.12/swig-2.0.12.tar.gz && tar -xvf swig-2.0.12.tar.gz >/dev/null
+  pushd swig-2.0.12 && ./configure --prefix=$mypwd/swig-install && make && make install
+  popd && popd
+  tar -zcvf swig.tar.gz -C swig-install .
+  export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('swig_trusty.tar.gz')"
+
+else
+  fetch_tar swig trusty
+  pushd /home/travis/build/casadi/testbot && ln -s  /home/travis/build/swig  swig-install  && popd
+  export PATH=/home/travis/build/swig/bin:$PATH
+fi

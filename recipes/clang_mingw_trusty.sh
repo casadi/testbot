@@ -7,8 +7,6 @@ if [ -z "$SETUP" ]; then
 
   mypwd=`pwd`
 
-  export compilerprefix=x86_64-w64-mingw32
-
   export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; download('clang.tar.gz')"
 
   mkdir clang && tar -xvf clang.tar.gz -C clang
@@ -38,7 +36,7 @@ if [ -z "$SETUP" ]; then
   #this one not so much
   SET(CMAKE_SYSTEM_VERSION 1)
 
-  # x86_64 # i686
+  # x86_${BITNESS} # i686
   SET(PREFIX "$compilerprefix")
 
   # specify the cross compiler
@@ -62,13 +60,13 @@ if [ -z "$SETUP" ]; then
 
   svn export http://llvm.org/svn/llvm-project/libcxx/tags/RELEASE_$VERSION/final/include $mypwd/install/include/c++/v1/
 
-  pushd ../install && tar -cvf $mypwd/clang_mingw64_trusty.tar.gz . && popd
+  pushd ../install && tar -cvf $mypwd/clang_mingw${BITNESS}_trusty.tar.gz . && popd
 
   cd $mypwd
-  export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('clang_mingw64_trusty.tar.gz')"
+  export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('clang_mingw${BITNESS}_trusty.tar.gz')"
 
 else
-  fetch_tar clang mingw64_trusty
+  fetch_tar clang mingw${BITNESS}_trusty
   
   export CLANG=/home/travis/build/clang
 fi

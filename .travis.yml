@@ -3,11 +3,21 @@ env:
     - secure: bOPhFqXlBfwm73ac6BMSba2UR3vwnYVDqyXeAs/5SxrW2hW7/V/MmYLQL3h3BpOYfPBa1ganEAKYrd9K6HWJN16MHyROBEbFpZmZ5DFbK/pUjYaJp+8giSytxWBzEjo2f129azETNgvzjANbpAe0+uYaxupUPvpfQkPPrII+2Jc=
 
   matrix:
-    - recipe=ipopt_mingw64_trusty
-    - recipe=bonmin_mingw64_trusty
-    - recipe=ecos_mingw64_trusty
-    - recipe=lapack_mingw64_trusty
-    - recipe=clang_mingw64_trusty
+    - recipe=ipopt_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
+    - recipe=ipopt_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+    
+    - recipe=bonmin_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
+    - recipe=bonmin_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+      
+    - recipe=ecos_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
+    - recipe=ecos_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+    
+    - recipe=lapack_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
+    - recipe=lapack_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+    
+    - recipe=clang_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
+    - recipe=clang_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+
     - recipe=swig
 os: linux
 
@@ -78,8 +88,8 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -y gcc g++ gfortran
 install: 
-  - recipes/$recipe.sh
   - source shellhelpers && false || allowfail 1 && echo "okay"
+  - recipes/$recipe.sh
 script:
   - echo "All is fine"
   

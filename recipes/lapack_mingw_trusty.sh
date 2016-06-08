@@ -7,8 +7,6 @@ if [ -z "$SETUP" ]; then
 
   mypwd=`pwd`
 
-  compilerprefix=x86_64-w64-mingw32
-
   mingw_setup
 
   VERSION=3.4.2
@@ -46,12 +44,12 @@ if [ -z "$SETUP" ]; then
 
   cmake -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake ..
   make lapack -j2
-  pushd lib && tar -cvf $mypwd/lapack_mingw64_trusty.tar.gz . && popd
+  pushd lib && tar -cvf $mypwd/lapack_mingw${BITNESS}_trusty.tar.gz . && popd
   popd && popd
-  export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('lapack_mingw64_trusty.tar.gz')"
+  export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('lapack_mingw${BITNESS}_trusty.tar.gz')"
 
 else
-  fetch_tar lapack mingw64_trusty
+  fetch_tar lapack mingw${BITNESS}_trusty
   export LIB=/home/travis/build/lapack
 fi
 

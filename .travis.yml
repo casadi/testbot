@@ -14,7 +14,7 @@ matrix:
 #    - env: recipe=ipopt_trusty
     - os: osx
       before_install:
-        - recipes/setup.sh
+        - source recipes/setup.sh
       env: recipe=ipopt_osx
     
 #    - env: recipe=bonmin_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
@@ -22,15 +22,15 @@ matrix:
 #    - env: recipe=bonmin_trusty
     - os: osx
       before_install:
-        - recipes/setup.sh
+        - source recipes/setup.sh
       env: recipe=bonmin_osx
  
-    - env: recipe=ecos_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
+#    - env: recipe=ecos_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=ecos_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=ecos_trusty
     - os: osx
       before_install:
-        - recipes/setup.sh
+        - source recipes/setup.sh
       env: recipe=ecos_osx
 
 #    - env: recipe=lapack_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
@@ -41,7 +41,7 @@ matrix:
 #    - env: recipe=clang_trusty
     - os: osx
       before_install:
-        - recipes/setup.sh
+        - source recipes/setup.sh
       env: recipe=clang_osx
       
 #    - env: recipe=swig_trusty
@@ -55,57 +55,6 @@ matrix:
 #    - env: recipe=hsl_osx
     
     
-#     - os: osx
-#       before_install:
-#         - recipes/setup.sh
-#       env: recipe=ipopt_osx
-#     - os: osx
-#       before_install:
-#         - recipes/setup.sh
-#       env: recipe=clang_osx
-#    - os: osx
-#      before_install:
-#        - recipes/setup.sh
-#      env: recipe=ecos_osx
-#     - os: osx
-#       before_install:
-#        - recipes/setup.sh
-#      env: recipe=swig_matlab_fixed_osx
-#    - env: recipe=ipopt
-#     - env: recipe=bonmin
-#     - os: osx
-#       before_install:
-#        - recipes/setup.sh
-#       env: recipe=bonmin_osx
-#     - env: recipe=bonmin_osx
-#     - env: recipe=mingw_bonmin
-#     - env: recipe=mingw64_bonmin
-#     - env: recipe=snopt75
-#
-#    - env: recipe=coinhsl
-#     - env: recipe=mingw64_coinhsl
-#     - env: recipe=mingw_coinhsl
-#     - env: recipe=snopt7
-#    - env: recipe=swig
-#     - os: osx
-#       before_install:
-#        - recipes/setup.sh
-#       env: recipe=swig_matlab_osx
-#     - env: recipe=swig_matlab
-#     - env: recipe=swig_matlab_fixed
-#    - env: recipe=ipopt
-#     - env: recipe=mingw_ipopt
-#     - env: recipe=mingw64_ipopt
-#    - env: recipe=mingw_lapack
-#    - env: recipe=mingw64_lapack
-#     - env: recipe=mingw64_clang
-#     - env: recipe=mingw_clang
-#     - env: recipe=clang
-#    - env: recipe=mingw64_ecos
-#    - env: recipe=mingw_ecos
-#    - env: recipe=ecos
-#    - env: recipe=gcc47
-
 python:
 - "2.7_with_system_site_packages"
 compiler: 

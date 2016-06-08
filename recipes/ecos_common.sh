@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 if [ -z "$SETUP" ]; then
   mypwd=`pwd`
 
@@ -11,6 +9,7 @@ if [ -z "$SETUP" ]; then
   slurp_put ecos$SUFFIXFILE.tar.gz
 
 else
+  echo "SUFFIX" $SUFFIX
   fetch_tar ecos $SUFFIX
   export ECOS=/home/travis/build/ecos
 fi

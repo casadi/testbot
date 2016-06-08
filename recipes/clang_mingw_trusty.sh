@@ -30,30 +30,30 @@ if [ -z "$SETUP" ]; then
   ls /usr/bin/
   cmake --version
 
-  cat <<EOF >toolchain.cmake
-  # this one is important
-  SET(CMAKE_SYSTEM_NAME Windows)
-  #this one not so much
-  SET(CMAKE_SYSTEM_VERSION 1)
+cat <<EOF >toolchain.cmake
+# this one is important
+SET(CMAKE_SYSTEM_NAME Windows)
+#this one not so much
+SET(CMAKE_SYSTEM_VERSION 1)
 
-  # x86_${BITNESS} # i686
-  SET(PREFIX "$compilerprefix")
+# x86_${BITNESS} # i686
+SET(PREFIX "$compilerprefix")
 
-  # specify the cross compiler
-  SET(CMAKE_C_COMPILER   $compilerprefix-gcc)
-  SET(CMAKE_CXX_COMPILER $compilerprefix-g++)
-  SET(CMAKE_Fortran_COMPILER $compilerprefix-gfortran)
-  SET(CMAKE_RC_COMPILER $compilerprefix-windres)
+# specify the cross compiler
+SET(CMAKE_C_COMPILER   $compilerprefix-gcc)
+SET(CMAKE_CXX_COMPILER $compilerprefix-g++)
+SET(CMAKE_Fortran_COMPILER $compilerprefix-gfortran)
+SET(CMAKE_RC_COMPILER $compilerprefix-windres)
 
-  # where is the target environment 
-  SET(CMAKE_FIND_ROOT_PATH  /usr/$compilerprefix)
+# where is the target environment 
+SET(CMAKE_FIND_ROOT_PATH  /usr/$compilerprefix)
 
-  # search for programs in the build host directories
-  SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
-  # for libraries and headers in the target directories
-  SET(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY NEVER)
-  SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE NEVER)
-  EOF
+# search for programs in the build host directories
+SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+# for libraries and headers in the target directories
+SET(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY NEVER)
+SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE NEVER)
+EOF
 
   cmake -DCMAKE_BUILD_TYPE=Release -DCLANG_TABLEGEN=$mypwd/clang/bin/clang-tblgen -DLLVM_TABLEGEN=$mypwd/clang/bin/llvm-tblgen  -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake -DCMAKE_INSTALL_PREFIX="$mypwd/install"  -DCLANG_ENABLE_ARCMT=OFF -DCLANG_ENABLE_REWRITER=OFF -DCLANG_ENABLE_STATIC_ANALYZER=OFF  ../llvm
   make install -j2

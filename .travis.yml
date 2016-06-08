@@ -5,6 +5,7 @@ env:
   matrix:
     - recipe=ipopt_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
     - recipe=ipopt_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+    - recipe=ipopt
     
     - recipe=bonmin_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
     - recipe=bonmin_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
@@ -89,7 +90,7 @@ before_install:
   - sudo apt-get install -y gcc g++ gfortran
 install: 
   - source shellhelpers && false || allowfail 1 && echo "okay"
-  - source ecipes/$recipe.sh
+  - source recipes/$recipe.sh
 script:
   - echo "All is fine"
   

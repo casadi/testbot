@@ -2,28 +2,35 @@ env:
   global: 
     - secure: bOPhFqXlBfwm73ac6BMSba2UR3vwnYVDqyXeAs/5SxrW2hW7/V/MmYLQL3h3BpOYfPBa1ganEAKYrd9K6HWJN16MHyROBEbFpZmZ5DFbK/pUjYaJp+8giSytxWBzEjo2f129azETNgvzjANbpAe0+uYaxupUPvpfQkPPrII+2Jc=
 
-  matrix:
-    - recipe=ipopt_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-    - recipe=ipopt_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
-    - recipe=ipopt
-    
-    - recipe=bonmin_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-    - recipe=bonmin_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
-      
-    - recipe=ecos_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-    - recipe=ecos_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
-    
-    - recipe=lapack_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-    - recipe=lapack_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
-    
-    - recipe=clang_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-    - recipe=clang_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
-
-    - recipe=swig
 os: linux
 
 dist: trusty
 language: generic
+
+matrix:
+  include: 
+    - env: recipe=ipopt_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
+    - env: recipe=ipopt_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+    - env: recipe=ipopt
+    - os: osx
+      before_install:
+        - recipes/setup.sh
+      env: recipe=ipopt_osx
+    
+    - env: recipe=bonmin_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
+    - env: recipe=bonmin_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+      
+    - env: recipe=ecos_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
+    - env: recipe=ecos_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+    
+    - env: recipe=lapack_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
+    - env: recipe=lapack_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+    
+    - env: recipe=clang_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
+    - env: recipe=clang_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+
+    - env: recipe=swig
+
 
     
 #     - os: osx

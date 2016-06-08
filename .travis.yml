@@ -20,9 +20,14 @@ matrix:
     - env: recipe=bonmin_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
     - env: recipe=bonmin_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
       
-    - env: recipe=ecos_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-    - env: recipe=ecos_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
-    
+#    - env: recipe=ecos_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
+#    - env: recipe=ecos_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+    - env: recipe=ecos
+    - os: osx
+      before_install:
+        - recipes/setup.sh
+      env: recipe=ecos_osx
+
     - env: recipe=lapack_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
     - env: recipe=lapack_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
     
@@ -92,9 +97,9 @@ before_install:
   - sudo dpkg --add-architecture i386
   - sudo apt-get update -q
   - sudo apt-get install libpython2.7-dev libc6:i386 libncurses5:i386 libstdc++6:i386
-  - source recipes/setup.sh
   - sudo apt-get update -qq
   - sudo apt-get install -y gcc g++ gfortran
+  - source recipes/setup.sh
 install: 
   - source shellhelpers && false || allowfail 1 && echo "okay"
   - source recipes/$recipe.sh

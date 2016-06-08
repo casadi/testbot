@@ -28,8 +28,6 @@ git clone git@github.com:jgillis/restricted.git
 git config --global user.email "testbot@casadidev.org"
 git config --global user.name "casaditestbot"
 
-sudo apt-get install p7zip-full zip -y
-
 function fetch_tar() {
   travis_retry $HOME/build/testbot/recipes/fetch.sh $1_$2.tar.gz && mkdir $1 && tar -xf $1_$2.tar.gz -C $1 && rm $1_$2.tar.gz
 }

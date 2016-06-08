@@ -30,15 +30,15 @@ git config --global user.name "casaditestbot"
 
 sudo apt-get install p7zip-full zip -y
 
-fetch_tar() {
+function fetch_tar() {
   travis_retry $HOME/build/testbot/recipes/fetch.sh $1_$2.tar.gz && mkdir $1 && tar -xf $1_$2.tar.gz -C $1 && rm $1_$2.tar.gz
 }
 
-fetch_zip() {
+function fetch_zip() {
   travis_retry $HOME/build/testbot/recipes/fetch.sh $1_$2.zip && mkdir $1 && unzip $1_$2.tar.gz -d $1 && rm $1_$2.tar.gz
 }
 
-slurp() {
+function slurp() {
   if [ -f $HOME/build/testbot/recipes/$1_$SLURP_SUFFIX.sh ];
   then
     SETUP=1 source $HOME/build/testbot/recipes/$1_$SLURP_SUFFIX.sh

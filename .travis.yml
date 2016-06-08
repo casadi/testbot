@@ -8,13 +8,12 @@ dist: trusty
 language: generic
        
 matrix:
-  include:
-    - env: recipe=ipopt_mingw64_trusty
-    - env: recipe=bonmin_mingw64_trusty
-    - env: recipe=ecos_mingw64_trusty
-    - env: recipe=lapack_mingw64_trusty
-    - env: recipe=clang_mingw64_trusty
-    - env: recipe=swig
+  - recipe=ipopt_mingw64_trusty
+  - recipe=bonmin_mingw64_trusty
+  - recipe=ecos_mingw64_trusty
+  - recipe=lapack_mingw64_trusty
+  - recipe=clang_mingw64_trusty
+  - recipe=swig
     
 #     - os: osx
 #       before_install:

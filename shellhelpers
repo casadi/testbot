@@ -1,4 +1,4 @@
-allowfail() {
+function allowfail() {
         ERR=$?
         for var in "$@"
         do
@@ -12,7 +12,7 @@ allowfail() {
 }
 
 
-mingw_setup() {
+function mingw_setup() {
 sudo apt-get update -qq
 sudo apt-get remove -qq -y mingw32
 cat <<EOF | sudo tee --append  /etc/apt/sources.list

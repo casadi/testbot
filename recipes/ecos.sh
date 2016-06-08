@@ -2,7 +2,9 @@
 
 set -e
 
-export FLAGS=""
-export SUFFIX=trusty
-export SUFFIXFILE=_$SUFFIX
-source recipes/ecos_common.sh
+if [ -z "$SETUP" ]; then
+  export FLAGS=""
+  export SUFFIX=trusty
+  export SUFFIXFILE=_$SUFFIX
+fi
+source $RECIPES_FOLDER/ecos_common.sh

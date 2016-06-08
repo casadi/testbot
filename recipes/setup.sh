@@ -52,3 +52,5 @@ function slurp_put() {
   export PYTHONPATH="$PYTHONPATH:$HOME/build/casadi/testbot/helpers"
   python -c "from restricted import *; upload('$1')"
 }
+
+export RECIPES_FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"

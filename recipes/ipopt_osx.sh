@@ -1,5 +1,8 @@
 #!/bin/bash
-export SUFFIX=osx
-export SUFFIXFILE=_$SUFFIX
-export FLAGS=""
-source recipes/ipopt_common.sh
+if [ -z "$SETUP" ]; then
+  export SUFFIX=osx
+  export SUFFIXFILE=_$SUFFIX
+  export FLAGS=""
+fi
+
+source $RECIPES_FOLDER/ipopt_common.sh

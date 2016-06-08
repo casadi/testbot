@@ -117,7 +117,8 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -y gcc g++ gfortran
   - source recipes/setup.sh
-install: 
+install:
+  - set -e
   - source shellhelpers && false || allowfail 1 && echo "okay"
   - source recipes/$recipe.sh
 script:

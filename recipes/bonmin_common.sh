@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 if [ -z "$SETUP" ]; then
 
   mypwd=`pwd`

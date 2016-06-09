@@ -72,5 +72,4 @@ function test_commit() {
   popd
   fi
 }
-fi
 

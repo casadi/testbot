@@ -29,5 +29,5 @@ if [ -z "$SETUP" ]; then
 
 else
   fetch_tar clang trusty
-  export ECOS=$HOME/build/clang
+  export CLANG=$HOME/build/clang
 fi

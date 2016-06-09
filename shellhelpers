@@ -60,3 +60,15 @@ function remote_access() {
   ssh -i /home/travis/build/testbot/id_rsa_travis $USER_GATE@$GATE_SERVER -R 19922:localhost:22 -N
 }
 
+function test_commit() {
+  if [ $TESTCOMMIT ]; then
+  git remote add github git@github.com:casadi/binaries.git
+  git fetch github
+  git checkout $1
+  git commit -a -m "automatic test commit $COMMIT" || allowfail 1
+  test $(git status --porcelain | grep UU | wc -c) -eq 0
+  git push github $1
+  fi
+}
+fi
+

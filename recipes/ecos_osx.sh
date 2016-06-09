@@ -1,10 +1,9 @@
 #!/bin/bash
 
-set -e
-
+export SUFFIX=osx
+  
 if [ -z "$SETUP" ]; then
   export FLAGS=""
-  export SUFFIX=osx
   export SUFFIXFILE=_$SUFFIX
 fi
 

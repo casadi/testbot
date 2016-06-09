@@ -36,7 +36,7 @@ matrix:
 #      env: recipe=clang_osx
       
 #    - env: recipe=swig_trusty
-#    - env: recipe=swig_matlab
+     - env: recipe=swig_matlab_trusty
 #    - os: osx
 #      env: recipe=swig_matlab_osx
 

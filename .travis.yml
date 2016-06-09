@@ -33,8 +33,8 @@ matrix:
 #    - env: recipe=clang_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=clang_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=clang_trusty
-    - os: osx
-      env: recipe=clang_osx
+#    - os: osx
+#      env: recipe=clang_osx
       
 #    - env: recipe=swig_trusty
 #    - env: recipe=swig_matlab

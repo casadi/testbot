@@ -62,12 +62,14 @@ function remote_access() {
 
 function test_commit() {
   if [ $TESTCOMMIT ]; then
+  pushd $HOME/build/casadi/binaries
   git remote add github git@github.com:casadi/binaries.git
   git fetch github
   git checkout $1
   git commit -a -m "automatic test commit $COMMIT" || allowfail 1
   test $(git status --porcelain | grep UU | wc -c) -eq 0
   git push github $1
+  popd
   fi
 }
 fi

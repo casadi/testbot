@@ -16,17 +16,17 @@ if [ -z "$SETUP" ]; then
   popd
   mkdir build
   pushd build
-  ../configure $FLAGS --prefix=/home/travis/ipopt-install --disable-shared ADD_FFLAGS=-fPIC ADD_CFLAGS=-fPIC ADD_CXXFLAGS=-fPIC --with-blas=BUILD --with-lapack=BUILD --with-mumps=BUILD --with-metis=BUILD --without-hsl --without-asl
+  ../configure $FLAGS --prefix=$HOME/ipopt-install --disable-shared ADD_FFLAGS=-fPIC ADD_CFLAGS=-fPIC ADD_CXXFLAGS=-fPIC --with-blas=BUILD --with-lapack=BUILD --with-mumps=BUILD --with-metis=BUILD --without-hsl --without-asl
   make
   make install
   popd && popd
-  tar -zcvf ipopt$SUFFIXFILE.tar.gz -C /home/travis/ipopt-install .
+  tar -zcvf ipopt$SUFFIXFILE.tar.gz -C $HOME/ipopt-install .
   slurp_put ipopt$SUFFIXFILE.tar.gz
 
 else
   fetch_tar ipopt $SUFFIX
   
-  export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/home/travis/ipopt-install/lib/pkgconfig
-  pushd /home/travis/ && ln -s  /home/travis/build/ipopt ipopt-install && popd
+  export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$HOME/ipopt-install/lib/pkgconfig
+  pushd $HOME && ln -s  $HOME/build/ipopt ipopt-install && popd
 fi
 

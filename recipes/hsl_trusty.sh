@@ -21,5 +21,5 @@ if [ -z "$SETUP" ]; then
   export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('hsl_trusty.tar.gz')"
 else
   fetch_tar hsl trusty
-  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/travis/build/hsl
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/build/hsl
 fi

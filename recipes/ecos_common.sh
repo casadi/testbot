@@ -11,6 +11,6 @@ if [ -z "$SETUP" ]; then
 else
   echo "SUFFIX" $SUFFIX
   fetch_tar ecos $SUFFIX
-  export ECOS=/home/travis/build/ecos
+  export ECOS=$HOME/build/ecos
 fi
 

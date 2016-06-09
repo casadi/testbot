@@ -50,6 +50,6 @@ EOF
 
 else
   fetch_tar lapack mingw${BITNESS}_trusty
-  export LIB=/home/travis/build/lapack
+  export LIB=$HOME/build/lapack
 fi
 

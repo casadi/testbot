@@ -68,6 +68,6 @@ EOF
 else
   fetch_tar clang mingw${BITNESS}_trusty
   
-  export CLANG=/home/travis/build/clang
+  export CLANG=$HOME/build/clang
 fi
 

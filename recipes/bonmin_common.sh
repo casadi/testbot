@@ -19,16 +19,16 @@ if [ -z "$SETUP" ]; then
   mkdir build
   pushd build
   # build must contain mingw, in order for the hsl loader to look for .dll as opposed to .so
-  ../configure $FLAGS --prefix=/home/travis/bonmin-install --disable-shared ADD_FFLAGS=-fPIC ADD_CFLAGS=-fPIC ADD_CXXFLAGS=-fPIC --with-blas=BUILD --with-lapack=BUILD --with-mumps=BUILD --with-metis=BUILD --without-hsl --without-asl
+  ../configure $FLAGS --prefix=$HOME/bonmin-install --disable-shared ADD_FFLAGS=-fPIC ADD_CFLAGS=-fPIC ADD_CXXFLAGS=-fPIC --with-blas=BUILD --with-lapack=BUILD --with-mumps=BUILD --with-metis=BUILD --without-hsl --without-asl
   make
   make install
   popd && popd
-  tar -zcvf bonmin$SUFFIXFILE.tar.gz -C /home/travis/bonmin-install .
+  tar -zcvf bonmin$SUFFIXFILE.tar.gz -C $HOME/bonmin-install .
   slurp_put bonmin$SUFFIXFILE.tar.gz
 else
   fetch_tar bonmin $SUFFIX
   
-  export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/home/travis/bonmin-install/lib/pkgconfig
-  pushd /home/travis/ && ln -s  /home/travis/build/bonmin bonmin-install && popd
+  export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$HOME/bonmin-install/lib/pkgconfig
+  pushd $HOME/ && ln -s  $HOME/build/bonmin bonmin-install && popd
 fi
 

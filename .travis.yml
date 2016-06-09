@@ -12,25 +12,19 @@ matrix:
 #    - env: recipe=ipopt_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=ipopt_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=ipopt_trusty
-    - os: osx
-      before_install:
-        - source recipes/setup.sh
-      env: recipe=ipopt_osx
+#    - os: osx
+#      env: recipe=ipopt_osx
     
 #    - env: recipe=bonmin_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=bonmin_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=bonmin_trusty
     - os: osx
-      before_install:
-        - source recipes/setup.sh
       env: recipe=bonmin_osx
  
 #    - env: recipe=ecos_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=ecos_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=ecos_trusty
 #    - os: osx
-#      before_install:
-#        - source recipes/setup.sh
 #      env: recipe=ecos_osx
 
 #    - env: recipe=lapack_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
@@ -40,15 +34,11 @@ matrix:
 #    - env: recipe=clang_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=clang_trusty
     - os: osx
-      before_install:
-        - source recipes/setup.sh
       env: recipe=clang_osx
       
 #    - env: recipe=swig_trusty
 #    - env: recipe=swig_matlab
 #    - os: osx
-#      before_install:
-#        - recipes/setup.sh
 #      env: recipe=swig_matlab_osx
 
 #    - env: recipe=hsl_trusty
@@ -60,11 +50,15 @@ python:
 compiler: 
   - gcc
 before_install:
-  - sudo dpkg --add-architecture i386
-  - sudo apt-get update -q
-  - sudo apt-get install libpython2.7-dev libc6:i386 libncurses5:i386 libstdc++6:i386
-  - sudo apt-get update -qq
-  - sudo apt-get install -y gcc g++ gfortran
+  - |
+    if [[ $TRAVIS_OS_NAME == *linux* ]]
+    then
+    sudo dpkg --add-architecture i386
+    sudo apt-get update -q
+    sudo apt-get install libpython2.7-dev libc6:i386 libncurses5:i386 libstdc++6:i386
+    sudo apt-get update -qq
+    sudo apt-get install -y gcc g++ gfortran
+    fi
   - source recipes/setup.sh
 install:
   - set -e

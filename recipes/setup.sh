@@ -35,6 +35,7 @@ function fetch_tar() {
     VERSIONSUFFIX="${VERSIONSUFFIX}_gcc${SLURP_GCC}"
   fi
   if [ -f $HOME/build/testbot/recipes/$1.yaml ];
+  then
     export BAKEVERSION=`python $HOME/build/testbot/helpers/gitmatch.py $HOME/build/testbot/recipes/$1.yaml $HOME/build/casadi/binaries/casadi`
     echo "For $1, choosing bake version $BAKEVERSION" 
     VERSIONSUFFIX="${VERSIONSUFFIX}_bake${BAKEVERSION}"
@@ -69,6 +70,7 @@ function slurp_put() {
     VERSIONSUFFIX="${VERSIONSUFFIX}_gcc${GCCVERSION}"
   fi
   if [ -n ${BAKEVERSION} ];
+  then
     VERSIONSUFFIX="${VERSIONSUFFIX}_bake${BAKEVERSION}"
   fi
   export PYTHONPATH="$PYTHONPATH:$HOME/build/casadi/testbot/helpers"

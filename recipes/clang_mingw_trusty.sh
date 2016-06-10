@@ -63,7 +63,7 @@ EOF
   pushd ../install && tar -cvf $mypwd/clang_mingw${BITNESS}_trusty.tar.gz . && popd
 
   cd $mypwd
-  export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('clang_mingw${BITNESS}_trusty.tar.gz')"
+  slurp_put clang_mingw${BITNESS}_trusty
 
 else
   fetch_tar clang mingw${BITNESS}_trusty

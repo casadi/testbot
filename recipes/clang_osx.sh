@@ -23,7 +23,7 @@ if [ -z "$SETUP" ]; then
   pushd ../install && tar -cvf $mypwd/clang_osx.tar.gz . && popd
 
   cd $mypwd
-  slurp_put clang_osx.tar.gz
+  slurp_put clang_osx
 
 else
   fetch_tar clang osx

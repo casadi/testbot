@@ -8,8 +8,7 @@ if [ -z "$SETUP" ]; then
   pushd swig && git checkout matlab && ./autogen.sh && ./configure --prefix=$mypwd/swig-matlab-install && make && make install
   popd && popd
   tar -zcvf swig_matlab_trusty.tar.gz -C swig-matlab-install .
-  export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('swig_matlab_trusty.tar.gz')"
-
+  slurp_put swig_matlab_trusty
 else
   fetch_tar swig_matlab trusty
   mkdir -p  $HOME/build/casadi/testbot

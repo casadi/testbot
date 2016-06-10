@@ -21,7 +21,7 @@ if [ -z "$SETUP" ]; then
   make install
   popd && popd
   tar -zcvf ipopt$SUFFIXFILE.tar.gz -C $HOME/ipopt-install .
-  slurp_put ipopt$SUFFIXFILE.tar.gz
+  slurp_put ipopt$SUFFIXFILE
 
 else
   fetch_tar ipopt $SUFFIX

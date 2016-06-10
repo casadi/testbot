@@ -17,8 +17,7 @@ if [ -z "$SETUP" ]; then
   popd
   tar -zcvf hsl_osx.tar.gz -C $mypwd/coinhsl-install/lib . 
 
-  #echo "test" > libhsl.tar.gz
-  export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('hsl_osx.tar.gz')"
+  slurp_put hsl_osx
 else
   fetch_tar hsl osx
   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/build/hsl

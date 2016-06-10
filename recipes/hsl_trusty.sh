@@ -18,7 +18,7 @@ if [ -z "$SETUP" ]; then
   tar -zcvf hsl_trusty.tar.gz -C $mypwd/coinhsl-install/lib . 
 
   #echo "test" > libhsl.tar.gz
-  export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('hsl_trusty.tar.gz')"
+  slurp_put hsl_trusty
 else
   fetch_tar hsl trusty
   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/build/hsl

@@ -9,7 +9,7 @@ if [ -z "$SETUP" ]; then
   pushd swig-2.0.12 && ./configure --prefix=$mypwd/swig-install && make && make install
   popd && popd
   tar -zcvf swig_trusty.tar.gz -C swig-install .
-  export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('swig_trusty.tar.gz')"
+  slurp_put swig_trusty
 
 else
   fetch_tar swig trusty

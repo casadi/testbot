@@ -6,7 +6,7 @@ if [ -z "$SETUP" ]; then
   git clone https://github.com/jgillis/ecos.git && pushd ecos && make $FLAGS && tar -cvf $mypwd/ecos$SUFFIXFILE.tar.gz . && popd
 
   cd $mypwd
-  slurp_put ecos$SUFFIXFILE.tar.gz
+  slurp_put ecos$SUFFIXFILE
 
 else
   echo "SUFFIX" $SUFFIX

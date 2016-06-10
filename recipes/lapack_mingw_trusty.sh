@@ -46,7 +46,7 @@ EOF
   make lapack -j2
   pushd lib && tar -cvf $mypwd/lapack_mingw${BITNESS}_trusty.tar.gz . && popd
   popd && popd
-  slurp_put lapack_mingw${BITNESS}_trusty.tar.gz
+  slurp_put lapack_mingw${BITNESS}_trusty
 
 else
   fetch_tar lapack mingw${BITNESS}_trusty

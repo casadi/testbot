@@ -18,8 +18,9 @@ s.headers.update({'Accept': 'application/vnd.github.manifold-preview'})
 
 myparams = {"per_page": 100}
 
-def upload(filename):
-
+def upload(filename,remote_filename=None):
+  if remote_filename is None:
+    remote_filename = filename
   r = s.get('https://api.github.com/repos/jgillis/restricted/releases',timeout=timeout)
   assert r.ok, str(r)
   print r.json()
@@ -38,7 +39,7 @@ def upload(filename):
      time.sleep(1)
         
 
-  rs = s.post(release["upload_url"].replace("{?name,label}",""),params={"name": filename,"label": ""},data=file(filename,"rb"),verify=False,headers={"Content-Type":"application/gzip"},timeout=timeout)
+  rs = s.post(release["upload_url"].replace("{?name,label}",""),params={"name": remote_filename,"label": ""},data=file(filename,"rb"),verify=False,headers={"Content-Type":"application/gzip"},timeout=timeout)
   assert rs.ok, str(rs.json())
   return rs
 

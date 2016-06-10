@@ -25,7 +25,7 @@ if [ -z "$SETUP" ]; then
   pushd ../install && tar -cvf $mypwd/clang_trusty.tar.gz . && popd
 
   cd $mypwd
-  slurp_put clang_trusty.tar.gz
+  slurp_put clang_trusty
 
 else
   fetch_tar clang trusty

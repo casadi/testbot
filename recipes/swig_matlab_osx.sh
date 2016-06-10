@@ -12,8 +12,7 @@ if [ -z "$SETUP" ]; then
   pushd swig && git checkout matlab && ./autogen.sh && ./configure --prefix=$mypwd/swig-matlab-install && make && make install
   popd && popd
   tar -zcvf swig_matlab_osx.tar.gz -C swig-matlab-install .
-  export PYTHONPATH="$PYTHONPATH:$mypwd/helpers" && python -c "from restricted import *; upload('swig_matlab_osx.tar.gz')"
-
+  slurp_put swig_matlab_osx
 else
   fetch_tar swig matlab_osx
   mkdir -p  $HOME/build/casadi/testbot

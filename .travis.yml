@@ -12,17 +12,20 @@ matrix:
 #    - env: recipe=ipopt_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=ipopt_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=ipopt_trusty
+    - env: recipe=ipopt_trusty GCCVERSION=4.7
 #    - os: osx
 #      env: recipe=ipopt_osx
     
 #    - env: recipe=bonmin_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=bonmin_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=bonmin_trusty
+    - env: recipe=bonmin_trusty GCCVERSION=4.7
 #    - {env: recipe=bonmin_osx, os: osx}
  
 #    - env: recipe=ecos_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=ecos_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=ecos_trusty
+    - env: recipe=ecos_trusty GCCVERSION=4.7
 #    - os: osx
 #      env: recipe=ecos_osx
 
@@ -32,6 +35,7 @@ matrix:
 #    - env: recipe=clang_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=clang_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=clang_trusty
+    - env: recipe=clang_trusty GCCVERSION=4.7
 #    - os: osx
 #      env: recipe=clang_osx
       
@@ -41,6 +45,7 @@ matrix:
 #      env: recipe=swig_matlab_osx
 
 #    - env: recipe=hsl_trusty
+    - env: recipe=hsl_trusty GCCVERSION=4.7
 #    - env: recipe=hsl_osx
     
     
@@ -56,7 +61,14 @@ before_install:
     sudo apt-get update -q
     sudo apt-get install libpython2.7-dev libc6:i386 libncurses5:i386 libstdc++6:i386
     sudo apt-get update -qq
-    sudo apt-get install -y gcc g++ gfortran
+
+    fi
+  - |
+    if [[ $GCCVERSION == 4.7 ]]
+    then
+      sudo apt-get install -y gcc-4.7 g++-4.7 gfortran-4.7
+    else
+      sudo apt-get install -y gcc g++ gfortran    
     fi
   - source recipes/setup.sh
 install:

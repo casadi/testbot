@@ -18,4 +18,7 @@ else
   mkdir -p  $HOME/build/casadi/testbot
   pushd $HOME/build/casadi/testbot && ln -s  $HOME/build/swig  swig-install  && popd
   export PATH=$HOME/build/swig/bin:$HOME/build/swig/share:$PATH
+  
+  ls $HOME/build/swig/bin
+  swig --version
 fi

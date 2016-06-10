@@ -44,9 +44,7 @@ matrix:
     - env: recipe=swig_matlab_trusty BAKEVERSION=82714bf35c33fe2
 
     - os: osx
-      env: recipe=swig_matlab_osx BAKEVERSION=matlab
-    - os: osx
-      env: recipe=swig_matlab_osx BAKEVERSION=82714bf35c33fe2
+      env: recipe=swig_matlab_osx
 
 #    - env: recipe=hsl_trusty
     - env: recipe=hsl_trusty GCCVERSION=4.7
@@ -63,18 +61,16 @@ before_install:
     sudo apt-get update -q
     sudo apt-get install libpython2.7-dev libc6:i386 libncurses5:i386 libstdc++6:i386
     sudo apt-get update -qq
-
-    fi
-  - |
     if [[ $GCCVERSION == 4.7 ]]
-    then
-      sudo apt-get install -y gcc-4.7 g++-4.7 gfortran-4.7
-      export CC=gcc-4.7
-      export CXX=g++-4.7
-      export FC=gfortran-4.7
-      export F77=gfortran-4.7
-    else
-      sudo apt-get install -y gcc g++ gfortran    
+      then
+        sudo apt-get install -y gcc-4.7 g++-4.7 gfortran-4.7
+        export CC=gcc-4.7
+        export CXX=g++-4.7
+        export FC=gfortran-4.7
+        export F77=gfortran-4.7
+      else
+        sudo apt-get install -y gcc g++ gfortran    
+      fi
     fi
   - source recipes/setup.sh
 install:

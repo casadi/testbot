@@ -17,5 +17,5 @@ else
   fetch_tar swig matlab_osx
   mkdir -p  $HOME/build/casadi/testbot
   pushd $HOME/build/casadi/testbot && ln -s  $HOME/build/swig  swig-install  && popd
-  export PATH=$HOME/build/swig/bin:$PATH
+  export PATH=$HOME/build/swig/bin:$HOME/build/swig/share:$PATH
 fi

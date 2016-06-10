@@ -12,6 +12,7 @@ if [ -z "$SETUP" ]; then
 
 else
   fetch_tar swig_matlab trusty
-  pushd $HOME/build/testbot && ln -s  $HOME/build/swig_matlab  swig-matlab-install  && popd
+  mkdir -p  $HOME/build/casadi/testbot
+  pushd $HOME/build/casadi/testbot && ln -s  $HOME/build/swig_matlab  swig-matlab-install  && popd
   export PATH=$HOME/build/swig_matlab/bin:$HOME/build/swig_matlab/share:$PATH
 fi

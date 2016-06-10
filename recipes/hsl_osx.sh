@@ -21,4 +21,5 @@ if [ -z "$SETUP" ]; then
 else
   fetch_tar hsl osx
   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/build/hsl
+  export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$HOME/build/hsl
 fi

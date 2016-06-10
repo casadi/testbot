@@ -30,7 +30,8 @@ git config --global user.name "casaditestbot"
 
 function fetch_tar() {
   export SUFFIX=""
-  if [ -z "$SLURP_GCC" ]
+  if [ -z "$SLURP_GCC" ];
+  then
     SUFFIX="$SUFFIX_gcc${SLURP_GCC}"
   fi
   travis_retry $HOME/build/testbot/recipes/fetch.sh $1_$2$SUFFIX.tar.gz && mkdir $1 && tar -xf $1_$2$SUFFIX.tar.gz -C $1 && rm $1_$2$SUFFIX.tar.gz
@@ -57,7 +58,8 @@ function slurp() {
 
 function slurp_put() {
   SUFFIX=""
-  if [ -z "$GCCVERSION" ]
+  if [ -z "$GCCVERSION" ];
+  then
     SUFFIX="$SUFFIX_gcc${GCCVERSION}"
   fi
 

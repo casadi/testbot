@@ -5,7 +5,7 @@ if [ -z "$SETUP" ]; then
   sudo apt-get install -y libpcre3-dev automake yodl
   mypwd=`pwd`
   pushd restricted && git clone https://github.com/jaeandersson/swig.git
-  pushd swig && git checkout matlab && ./autogen.sh && ./configure --prefix=$mypwd/swig-matlab-install && make && make install
+  pushd swig && git checkout $BAKEVERSION && ./autogen.sh && ./configure --prefix=$mypwd/swig-matlab-install && make && make install
   popd && popd
   tar -zcvf swig_matlab_trusty.tar.gz -C swig-matlab-install .
   slurp_put swig_matlab_trusty

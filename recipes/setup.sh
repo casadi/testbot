@@ -34,6 +34,11 @@ function fetch_tar() {
   then
     VERSIONSUFFIX="${VERSIONSUFFIX}_gcc${SLURP_GCC}"
   fi
+  if [ -f $HOME/build/testbot/recipes/$1.yaml ];
+    export BAKEVERSION=`python $HOME/build/testbot/helpers/gitmatch.py $HOME/build/testbot/recipes/$1.yaml $HOME/build/casadi/binaries/casadi`
+    echo "For $1, choosing bake version $BAKEVERSION" 
+    VERSIONSUFFIX="${VERSIONSUFFIX}_bake${BAKEVERSION}"
+  fi
   travis_retry $HOME/build/testbot/recipes/fetch.sh $1_$2$SUFFIX.tar.gz && mkdir $1 && tar -xf $1_$2$SUFFIX.tar.gz -C $1 && rm $1_$2$SUFFIX.tar.gz
 }
 
@@ -42,6 +47,7 @@ function fetch_zip() {
 }
   
 function slurp() {
+
   if [ -f $HOME/build/testbot/recipes/$1_${SLURP_CROSS}${BITNESS}_${SLURP_OS}.sh ];
   then
     SETUP=1 source $HOME/build/testbot/recipes/$1_${SLURP_CROSS}${BITNESS}_${SLURP_OS}.sh
@@ -62,7 +68,9 @@ function slurp_put() {
   then
     VERSIONSUFFIX="${VERSIONSUFFIX}_gcc${GCCVERSION}"
   fi
-
+  if [ -n ${BAKEVERSION} ];
+    VERSIONSUFFIX="${VERSIONSUFFIX}_bake${BAKEVERSION}"
+  fi
   export PYTHONPATH="$PYTHONPATH:$HOME/build/casadi/testbot/helpers"
   python -c "from restricted import *; upload('$1.tar.gz','$1$VERSIONSUFFIX.tar.gz')"
 }

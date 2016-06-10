@@ -9,7 +9,7 @@ if [ -z "$SETUP" ]; then
 
   mypwd=`pwd`
   pushd restricted && git clone https://github.com/jaeandersson/swig.git
-  pushd swig && git checkout matlab && ./autogen.sh && ./configure --prefix=$mypwd/swig-matlab-install && make && make install
+  pushd swig && git checkout $BAKEVERSION && ./autogen.sh && ./configure --prefix=$mypwd/swig-matlab-install && make && make install
   popd && popd
   tar -zcvf swig_matlab_osx.tar.gz -C swig-matlab-install .
   slurp_put swig_matlab_osx

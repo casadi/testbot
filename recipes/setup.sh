@@ -29,10 +29,10 @@ git config --global user.email "testbot@casadidev.org"
 git config --global user.name "casaditestbot"
 
 function fetch_tar() {
-  export SUFFIX=""
+  export VERSIONSUFFIX=""
   if [ -z "$SLURP_GCC" ];
   then
-    SUFFIX="$SUFFIX_gcc${SLURP_GCC}"
+    VERSIONSUFFIX="${VERSIONSUFFIX}_gcc${SLURP_GCC}"
   fi
   travis_retry $HOME/build/testbot/recipes/fetch.sh $1_$2$SUFFIX.tar.gz && mkdir $1 && tar -xf $1_$2$SUFFIX.tar.gz -C $1 && rm $1_$2$SUFFIX.tar.gz
 }
@@ -57,14 +57,14 @@ function slurp() {
 }
 
 function slurp_put() {
-  SUFFIX=""
+  VERSIONSUFFIX=""
   if [ -n "$GCCVERSION" ];
   then
-    SUFFIX="$SUFFIX_gcc${GCCVERSION}"
+    VERSIONSUFFIX="${VERSIONSUFFIX}_gcc${GCCVERSION}"
   fi
 
   export PYTHONPATH="$PYTHONPATH:$HOME/build/casadi/testbot/helpers"
-  python -c "from restricted import *; upload('$1.tar.gz','$1$SUFFIX.tar.gz')"
+  python -c "from restricted import *; upload('$1.tar.gz','$1$VERSIONSUFFIX.tar.gz')"
 }
 
 export RECIPES_FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"

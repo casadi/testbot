@@ -13,6 +13,7 @@ if [ -z "$SETUP" ]; then
 
 else
   fetch_tar swig trusty
-  pushd $HOME/build/testbot && ln -s  $HOME/build/swig  swig-install  && popd
+  mkdir -p  $HOME/build/casadi/testbot
+  pushd $HOME/build/casadi/testbot && ln -s  $HOME/build/swig  swig-install  && popd
   export PATH=$HOME/build/swig/bin:$PATH
 fi

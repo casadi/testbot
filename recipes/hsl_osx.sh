@@ -2,14 +2,15 @@
 set -e
 
 if [ -z "$SETUP" ]; then
-  sudo apt-get install -y libblas-dev liblapack-dev
+  pushd $HOME/build && slurp ipopt && popd
+  
   mypwd=`pwd`
   pushd restricted
   wget http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/OLD/metis-4.0.3.tar.gz
   tar -xvf coinhsl.tar.gz
   cd coinhsl-2014.01.10
   tar -xvf ../metis-4.0.3.tar.gz
-  ./configure --prefix=$mypwd/coinhsl-install LIBS="-llapack" --with-blas="-L/usr/lib -lblas" CXXFLAGS="-g -O2 -fopenmp" FCFLAGS="-g -O2 -fopenmp"
+  ./configure --prefix=$mypwd/coinhsl-install LIBS="-L$HOME/build/ipopt-install/lib" --with-blas="-lcoinblas -lcoinlapack -lcoinblas" CXXFLAGS="-g -O2 -fopenmp" FCFLAGS="-g -O2 -fopenmp"
   make
   make install
   cd $mypwd/coinhsl-install/lib

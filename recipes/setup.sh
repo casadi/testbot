@@ -40,7 +40,7 @@ function fetch_tar() {
     echo "For $1, choosing bake version $BAKEVERSION" 
     VERSIONSUFFIX="${VERSIONSUFFIX}_bake${BAKEVERSION}"
   fi
-  travis_retry $HOME/build/testbot/recipes/fetch.sh $1_$2$SUFFIX.tar.gz && mkdir $1 && tar -xf $1_$2$SUFFIX.tar.gz -C $1 && rm $1_$2$SUFFIX.tar.gz
+  travis_retry $HOME/build/testbot/recipes/fetch.sh $1_$2$VERSIONSUFFIX.tar.gz && mkdir $1 && tar -xf $1_$2$VERSIONSUFFIX.tar.gz -C $1 && rm $1_$2$VERSIONSUFFIX.tar.gz
 }
 
 function fetch_zip() {

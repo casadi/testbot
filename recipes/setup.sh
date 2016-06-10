@@ -58,7 +58,7 @@ function slurp() {
 
 function slurp_put() {
   SUFFIX=""
-  if [ -z "$GCCVERSION" ];
+  if [ -n "$GCCVERSION" ];
   then
     SUFFIX="$SUFFIX_gcc${GCCVERSION}"
   fi

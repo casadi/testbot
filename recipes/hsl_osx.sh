@@ -2,6 +2,7 @@
 set -e
 
 if [ -z "$SETUP" ]; then
+  export SLURP_OS=osx
   pushd $HOME/build && slurp ipopt && popd
   
   mypwd=`pwd`

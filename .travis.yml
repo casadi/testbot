@@ -39,7 +39,7 @@ matrix:
 #    - os: osx
 #      env: recipe=clang_osx
       
-    - env: recipe=swig_trusty
+#    - env: recipe=swig_trusty
     - env: recipe=swig_matlab_trusty GCCVERSION=4.7 BAKEVERSION=matlab
     - env: recipe=swig_matlab_trusty GCCVERSION=4.7 BAKEVERSION=5d3770e452b7126
 

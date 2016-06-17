@@ -41,7 +41,7 @@ matrix:
       
     - env: recipe=swig_trusty
     - env: recipe=swig_matlab_trusty GCCVERSION=4.7 BAKEVERSION=matlab
-    - env: recipe=swig_matlab_trusty GCCVERSION=4.7 BAKEVERSION=82714bf35c33fe2
+    - env: recipe=swig_matlab_trusty GCCVERSION=4.7 BAKEVERSION=5d3770e452b7126
 
     - os: osx
       env: recipe=swig_matlab_osx

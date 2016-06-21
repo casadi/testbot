@@ -33,7 +33,7 @@ git config --global user.name "casaditestbot"
 
 function try_fetch_tar () {
   echo "Fetching $1 -> $2"
-  travis_retry $HOME/build/testbot/recipes/fetch.sh $1 && mkdir $2 && tar -xf $1 -C $2 && rm $1
+  travis_retry $HOME/build/testbot/recipes/fetch.sh $1 && mkdir  -p $2 && tar -xf $1 -C $2 && rm $1
 }
 
 function fetch_tar() {

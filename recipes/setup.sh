@@ -30,12 +30,19 @@ git clone git@github.com:jgillis/restricted.git
 git config --global user.email "testbot@casadidev.org"
 git config --global user.name "casaditestbot"
 
+
+function try_fetch () {
+  echo "Fetching $1"
+  travis_retry $HOME/build/testbot/recipes/fetch.sh $1
+}
+
 function fetch_tar() {
-  export VERSIONSUFFIX=""
+  export GCCSUFFIX=""
   if [ -n "$SLURP_GCC" ];
   then
-    VERSIONSUFFIX="${VERSIONSUFFIX}_gcc${SLURP_GCC}"
+    export GCCSUFFIX="gcc${SLURP_GCC}"
   fi
+  export BAKESUFFIX=""
   if [ -f $HOME/build/testbot/recipes/$1.yaml ];
   then
     if [ -d $HOME/build/casadi/binaries/casadi ];
@@ -45,10 +52,12 @@ function fetch_tar() {
       export BAKEVERSION=`python $HOME/build/testbot/helpers/gitmatch.py $HOME/build/testbot/recipes/$1.yaml $HOME/build/casadi/casadi`
     fi
     echo "For $1, choosing bake version $BAKEVERSION" 
-    VERSIONSUFFIX="${VERSIONSUFFIX}_bake${BAKEVERSION}"
+    export BAKESUFFIX="bake${BAKEVERSION}"
   fi
-  echo "Fetching $1_$2$VERSIONSUFFIX.tar.gz"
-  travis_retry $HOME/build/testbot/recipes/fetch.sh $1_$2$VERSIONSUFFIX.tar.gz && mkdir $1 && tar -xf $1_$2$VERSIONSUFFIX.tar.gz -C $1 && rm $1_$2$VERSIONSUFFIX.tar.gz
+  try_fetch $1_$2_${GCCVERSION}_${BAKEVERSION}.tar.gz || try_fetch $1_$2_${BAKEVERSION}.tar.gz
+  mkdir $1
+  tar -xf $1_$2_${GCCVERSION}_${BAKEVERSION}.tar.gz -C $1 || tar -xf $1_$2_${BAKEVERSION}.tar.gz -C $1
+  rm $1_$2_${GCCVERSION}_${BAKEVERSION}.tar.gz || rm $1_$2_${BAKEVERSION}.tar.gz
 }
 
 function fetch_zip() {

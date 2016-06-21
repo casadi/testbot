@@ -38,7 +38,12 @@ function fetch_tar() {
   fi
   if [ -f $HOME/build/testbot/recipes/$1.yaml ];
   then
-    export BAKEVERSION=`python $HOME/build/testbot/helpers/gitmatch.py $HOME/build/testbot/recipes/$1.yaml $HOME/build/casadi/binaries/casadi`
+    if [ -d $HOME/build/casadi/binaries/casadi ];
+    then
+      export BAKEVERSION=`python $HOME/build/testbot/helpers/gitmatch.py $HOME/build/testbot/recipes/$1.yaml $HOME/build/casadi/binaries/casadi`
+    else
+      export BAKEVERSION=`python $HOME/build/testbot/helpers/gitmatch.py $HOME/build/testbot/recipes/$1.yaml $HOME/build/casadi/casadi`
+    fi
     echo "For $1, choosing bake version $BAKEVERSION" 
     VERSIONSUFFIX="${VERSIONSUFFIX}_bake${BAKEVERSION}"
   fi

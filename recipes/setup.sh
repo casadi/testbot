@@ -40,7 +40,7 @@ function fetch_tar() {
   export GCCSUFFIX=""
   if [ -n "$SLURP_GCC" ];
   then
-    export GCCSUFFIX="gcc${SLURP_GCC}"
+    GCCSUFFIX="gcc${SLURP_GCC}"
   fi
   export BAKESUFFIX=""
   if [ -f $HOME/build/testbot/recipes/$1.yaml ];
@@ -52,7 +52,7 @@ function fetch_tar() {
       export BAKEVERSION=`python $HOME/build/testbot/helpers/gitmatch.py $HOME/build/testbot/recipes/$1.yaml $HOME/build/casadi/casadi`
     fi
     echo "For $1, choosing bake version $BAKEVERSION" 
-    export BAKESUFFIX="bake${BAKEVERSION}"
+    BAKESUFFIX="bake${BAKEVERSION}"
   fi
   try_fetch_tar $1_$2_${GCCSUFFIX}_${BAKEVERSION}.tar.gz $1 || try_fetch $1_$2_${BAKEVERSION}.tar.gz $1
 }

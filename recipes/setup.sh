@@ -54,7 +54,7 @@ function fetch_tar() {
     echo "For $1, choosing bake version $BAKEVERSION" 
     BAKESUFFIX="bake${BAKEVERSION}"
   fi
-  try_fetch_tar $1_$2_${GCCSUFFIX}_${BAKEVERSION}.tar.gz $1 || try_fetch_tar $1_$2_${BAKEVERSION}.tar.gz $1
+  try_fetch_tar $1_$2_${GCCSUFFIX}_${BAKESUFFIX}.tar.gz $1 || try_fetch_tar $1_$2_${BAKESUFFIX}.tar.gz $1
 }
 
 function fetch_zip() {

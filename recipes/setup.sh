@@ -31,9 +31,9 @@ git config --global user.email "testbot@casadidev.org"
 git config --global user.name "casaditestbot"
 
 
-function try_fetch () {
-  echo "Fetching $1"
-  travis_retry $HOME/build/testbot/recipes/fetch.sh $1
+function try_fetch_tar () {
+  echo "Fetching $1 -> $2"
+  travis_retry $HOME/build/testbot/recipes/fetch.sh $1 && mkdir $2 && tar -xf $1 -C $2 && rm $1
 }
 
 function fetch_tar() {
@@ -54,10 +54,7 @@ function fetch_tar() {
     echo "For $1, choosing bake version $BAKEVERSION" 
     export BAKESUFFIX="bake${BAKEVERSION}"
   fi
-  try_fetch $1_$2_${GCCVERSION}_${BAKEVERSION}.tar.gz || try_fetch $1_$2_${BAKEVERSION}.tar.gz
-  mkdir $1
-  tar -xf $1_$2_${GCCVERSION}_${BAKEVERSION}.tar.gz -C $1 || tar -xf $1_$2_${BAKEVERSION}.tar.gz -C $1
-  rm $1_$2_${GCCVERSION}_${BAKEVERSION}.tar.gz || rm $1_$2_${BAKEVERSION}.tar.gz
+  try_fetch_tar $1_$2_${GCCSUFFIX}_${BAKEVERSION}.tar.gz $1 || try_fetch $1_$2_${BAKEVERSION}.tar.gz $1
 }
 
 function fetch_zip() {

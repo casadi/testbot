@@ -3,6 +3,7 @@ set -e
 
 if [ -z "$SETUP" ]; then
   mypwd=`pwd`
+  sudo apt-get install -y automake
   hg clone http://hg.octave.org/mxe-octave/
   cd mxe-octave
   autoconf

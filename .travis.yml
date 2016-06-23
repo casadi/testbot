@@ -40,13 +40,14 @@ matrix:
 #      env: recipe=clang_osx
       
 #    - env: recipe=swig_trusty
-    - env: recipe=swig_matlab_trusty BAKEVERSION=matlab
-    - env: recipe=swig_matlab_trusty BAKEVERSION=82714bf35c33fe2
-    - env: recipe=swig_matlab_trusty BAKEVERSION=234d6ea3a08ef71
+#    - env: recipe=swig_matlab_trusty BAKEVERSION=matlab
+#    - env: recipe=swig_matlab_trusty BAKEVERSION=82714bf35c33fe2
+#    - env: recipe=swig_matlab_trusty BAKEVERSION=234d6ea3a08ef71
     
-    - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=matlab }
-    - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=82714bf35c33fe2 }
-    - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=234d6ea3a08ef71 }
+#    - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=matlab }
+#    - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=82714bf35c33fe2 }
+#    - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=234d6ea3a08ef71 }
+    - env: recipe=mingw_octave_trusty
     
 #    - env: recipe=hsl_trusty
 #    - env: recipe=hsl_trusty GCCVERSION=4.7

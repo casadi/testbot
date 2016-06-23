@@ -8,7 +8,9 @@ if [ -z "$SETUP" ]; then
   autoconf
   ./configure
   make mingw-w64
-  tar -zcvf mingw_octave_trusty.tar.gz -C $mypwd .
+  tar -zcvf mingw_octave$SUFFIXFILE.tar.gz -C $mypwd .
+  slurp_put mingw_octave$SUFFIXFILE
 else
+  fetch_tar mingw_octave $SUFFIX
   export PATH=$HOME/build/mingw_octave:$PATH
 fi

@@ -7,7 +7,8 @@ if [ -z "$SETUP" ]; then
   cd mxe-octave
   autoconf
   ./configure
-  make mingw-w64
+  (while true ; do sleep 60 ; echo "ping" ; done ) &
+  make -j2 mingw-w64
   tar -zcvf mingw_octave$SUFFIXFILE.tar.gz -C $mypwd .
   slurp_put mingw_octave$SUFFIXFILE
 else

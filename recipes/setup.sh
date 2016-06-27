@@ -87,7 +87,7 @@ function slurp_put() {
   then
     VERSIONSUFFIX="${VERSIONSUFFIX}_bake${BAKEVERSION}"
   fi
-  export PYTHONPATH="$PYTHONPATH:$HOME/build/casadi/testbot/helpers:$HOME/build"
+  export PYTHONPATH="$PYTHONPATH:$HOME/build/casadi/testbot/helpers:/home/travis/build/casadi/testbot"
   python -c "from restricted import *; upload('$1.tar.gz','$1$VERSIONSUFFIX.tar.gz')"
 }
 

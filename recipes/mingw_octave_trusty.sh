@@ -18,5 +18,6 @@ if [ -z "$SETUP" ]; then
   slurp_put mingw_octave$SUFFIXFILE
 else
   fetch_tar mingw_octave trusty
+  export MINGW_ROOT=$HOME/build/mingw_octave/usr
   export PATH=$HOME/build/mingw_octave/usr/bin:$PATH
 fi

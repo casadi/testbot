@@ -19,5 +19,6 @@ if [ -z "$SETUP" ]; then
 else
   fetch_tar mingw_octave trusty
   export MINGW_ROOT=$HOME/build/mingw_octave/usr
-  export PATH=$HOME/build/mingw_octave/usr/bin:$PATH
+  export PATH=$HOME/build/mingw_octave/usr/bin:$HOME/build/mingw_octave/usr/bin/i686-w64-mingw32:$PATH
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/build/mingw_octave/usr/x86_64-unknown-linux-gnu/i686-w64-mingw32/lib/
 fi

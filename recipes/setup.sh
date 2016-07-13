@@ -65,14 +65,18 @@ function slurp() {
 
   if [ -f $HOME/build/testbot/recipes/$1_${SLURP_CROSS}${BITNESS}_${SLURP_OS}.sh ];
   then
+    echo 123;
     SETUP=1 source $HOME/build/testbot/recipes/$1_${SLURP_CROSS}${BITNESS}_${SLURP_OS}.sh
   elif [ -f $HOME/build/testbot/recipes/$1_${SLURP_CROSS}_${SLURP_OS}.sh ];
   then
+    echo 456;
     SETUP=1 source $HOME/build/testbot/recipes/$1_${SLURP_CROSS}_${SLURP_OS}.sh
   elif [ -f $HOME/build/testbot/recipes/$1_${SLURP_OS}.sh ];
   then
+    echo 678;
     SETUP=1 source $HOME/build/testbot/recipes/$1_${SLURP_OS}.sh
   else
+    echo 101;
     SETUP=1 source $HOME/build/testbot/recipes/$1.sh
   fi
 }

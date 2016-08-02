@@ -4,7 +4,6 @@ export SUFFIX=mingwoct${BITNESS}_trusty
 
 if [ -z "$SETUP" ]; then
   export SLURP_OS=trusty
-  export SLURP_CROSS=mingw
   slurp mingw_octave
   export SUFFIXFILE=_$SUFFIX
   # build must contain mingw, in order for the hsl loader to look for .dll as opposed to .so

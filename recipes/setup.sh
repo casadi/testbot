@@ -77,6 +77,7 @@ function slurp() {
     SETUP=1 source $HOME/build/testbot/recipes/$1_${SLURP_OS}.sh
   else
     echo 101;
+    echo "$HOME/build/testbot/recipes/$1_${SLURP_OS}.sh"
     SETUP=1 source $HOME/build/testbot/recipes/$1.sh
   fi
 }

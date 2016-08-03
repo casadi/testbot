@@ -1,7 +1,8 @@
 #!/bin/bash
 
+export SUFFIX=trusty
+
 if [ -z "$SETUP" ]; then
-  export SUFFIX=trusty
   export SUFFIXFILE=_$SUFFIX
   export FLAGS="coin_skip_warn_cxxflags=yes"
 fi

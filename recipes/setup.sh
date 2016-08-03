@@ -50,6 +50,7 @@ function fetch_tar() {
     GCCSUFFIX="_gcc${SLURP_GCC}"
   fi
   export BAKESUFFIX=""
+  echo "Checking for $RECIPES_DIR/$1.yaml"
   if [ -f $RECIPES_DIR/$1.yaml ];
   then
     if [ -d $HOME/build/casadi/binaries/casadi ];
@@ -60,6 +61,8 @@ function fetch_tar() {
     fi
     echo "For $1, choosing bake version $BAKEVERSION" 
     BAKESUFFIX="_bake${BAKEVERSION}"
+  else
+    echo "Null bake"
   fi
   try_fetch_tar $1_$2${GCCSUFFIX}${BAKESUFFIX}.tar.gz $1 || try_fetch_tar $1_$2${BAKESUFFIX}.tar.gz $1
   unset BAKESUFFIX;export BAKESUFFIX

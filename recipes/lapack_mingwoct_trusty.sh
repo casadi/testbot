@@ -47,7 +47,7 @@ EOF
 
   cmake -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake ..
   make lapack -j2
-  pushd lib && tar -cvf $mypwd/lapack_mingw${BITNESS}_trusty.tar.gz . && popd
+  pushd lib && tar -cvf $mypwd/lapack_mingwoct${BITNESS}_trusty.tar.gz . && popd
   popd && popd
   slurp_put lapack_mingwoct${BITNESS}_trusty
 

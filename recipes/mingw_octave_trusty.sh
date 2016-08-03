@@ -17,7 +17,9 @@ if [ -z "$SETUP" ]; then
   tar -zcvf mingw_octave$SUFFIXFILE.tar.gz usr >/dev/null
   slurp_put mingw_octave$SUFFIXFILE
 else
+  echo $BAKEVERSION
   fetch_tar mingw_octave trusty
+  echo $BAKEVERSION
   export MINGW_ROOT=$HOME/build/mingw_octave/usr
   export PATH=$HOME/build/mingw_octave/usr/bin:$HOME/build/mingw_octave/usr/bin/i686-w64-mingw32:$PATH
   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/build/mingw_octave/usr/x86_64-unknown-linux-gnu/i686-w64-mingw32/lib/

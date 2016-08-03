@@ -61,18 +61,14 @@ function fetch_tar() {
     echo "For $1, choosing bake version $BAKEVERSION" 
     BAKESUFFIX="_bake${BAKEVERSION}"
   fi
-  pushd $HOME/build
   try_fetch_tar $1_$2${GCCSUFFIX}${BAKESUFFIX}.tar.gz $1 || try_fetch_tar $1_$2${BAKESUFFIX}.tar.gz $1
-  popd
   export BAKESUFFIX=
   export GCCSUFFIX=
   export BAKEVERSION=
 }
 
 function fetch_zip() {
-  pushd $HOME/build
   travis_retry $RECIPES_DIR/fetch.sh $1_$2.zip && mkdir $1 && unzip $1_$2.tar.gz -d $1 && rm $1_$2.tar.gz
-  popd
 }
   
 function slurp() {

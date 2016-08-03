@@ -8,7 +8,9 @@ if [ -z "$SETUP" ]; then
   mypwd=`pwd`
 
   export SLURP_OS=trusty
+  pushd $HOME/build
   slurp mingw_octave
+  popd
 
   VERSION=3.4.2
 

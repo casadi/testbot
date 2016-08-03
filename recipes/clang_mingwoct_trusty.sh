@@ -17,8 +17,10 @@ if [ -z "$SETUP" ]; then
   sudo apt-get install -y binutils gcc g++ gfortran git cmake
 
   export SLURP_OS=trusty
+  pushd $HOME/build
   slurp mingw_octave
-
+  popd
+  
   source recipes/clang_common.sh
 
   svn co http://llvm.org/svn/llvm-project/llvm/tags/RELEASE_$VERSION/final/ llvm

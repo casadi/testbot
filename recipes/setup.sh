@@ -62,6 +62,8 @@ function fetch_tar() {
     BAKESUFFIX="_bake${BAKEVERSION}"
   fi
   try_fetch_tar $1_$2${GCCSUFFIX}${BAKESUFFIX}.tar.gz $1 || try_fetch_tar $1_$2${BAKESUFFIX}.tar.gz $1
+  export BAKESUFFIX=""
+  export GCCSUFFIX=""
 }
 
 function fetch_zip() {
@@ -69,7 +71,8 @@ function fetch_zip() {
 }
   
 function slurp() {
-
+  export SUFFIX_BACKUP=$SUFFIX
+  export SUFFIXFILE_BACKUP=$SUFFIXFILE
   if [ -f $RECIPES_DIR/$1_${SLURP_CROSS}${BITNESS}_${SLURP_OS}.sh ];
   then
     echo 123;
@@ -87,6 +90,8 @@ function slurp() {
     echo "$RECIPES_DIR/$1_${SLURP_OS}.sh"
     SETUP=1 source $RECIPES_DIR/$1.sh
   fi
+  export SUFFIX=$SUFFIX_BACKUP
+  export SUFFIXFILE=$SUFFIXFILE_BACKUP
 }
 
 function slurp_put() {
@@ -101,6 +106,7 @@ function slurp_put() {
   fi
   export PYTHONPATH="$PYTHONPATH:$TESTBOT_DIR/helpers:$TESTBOT_DIR"
   python -c "from restricted import *; upload('$1.tar.gz','$1$VERSIONSUFFIX.tar.gz')"
+  export VERSIONSUFFIX=""
 }
 
 export RECIPES_FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"

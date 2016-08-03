@@ -19,7 +19,7 @@ if [ -z "$SETUP" ]; then
 else
   echo "mingw_octave_start :$BAKEVERSION:"
   fetch_tar mingw_octave trusty
-  echo "mingw_octave_start :$BAKEVERSION:"
+  echo "mingw_octave_end :$BAKEVERSION:"
   export MINGW_ROOT=$HOME/build/mingw_octave/usr
   export PATH=$HOME/build/mingw_octave/usr/bin:$HOME/build/mingw_octave/usr/bin/i686-w64-mingw32:$PATH
   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/build/mingw_octave/usr/x86_64-unknown-linux-gnu/i686-w64-mingw32/lib/

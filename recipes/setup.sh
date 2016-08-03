@@ -101,7 +101,7 @@ function slurp_put() {
   then
     VERSIONSUFFIX="${VERSIONSUFFIX}_gcc${GCCVERSION}"
   fi
-  if [ -n ${BAKEVERSION} ];
+  if [ -n "${BAKEVERSION}" ];
   then
     echo "here :$BAKEVERSION:"
     VERSIONSUFFIX="${VERSIONSUFFIX}_bake${BAKEVERSION}"

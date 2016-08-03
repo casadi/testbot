@@ -30,10 +30,15 @@ git clone git@github.com:jgillis/restricted.git
 git config --global user.email "testbot@casadidev.org"
 git config --global user.name "casaditestbot"
 
-
+if [ -d $HOME/build/testbot/recipes ];
+then
+  export RECIPES_DIR=$HOME/build/testbot/recipes
+else
+  export RECIPES_DIR=$HOME/build/casadi/testbot/recipes
+fi
 function try_fetch_tar () {
   echo "Fetching $1 -> $2"
-  travis_retry $HOME/build/testbot/recipes/fetch.sh $1 && mkdir  -p $2 && tar -xf $1 -C $2 && rm $1
+  travis_retry $RECIPES_DIR/fetch.sh $1 && mkdir  -p $2 && tar -xf $1 -C $2 && rm $1
 }
 
 function fetch_tar() {
@@ -43,13 +48,13 @@ function fetch_tar() {
     GCCSUFFIX="_gcc${SLURP_GCC}"
   fi
   export BAKESUFFIX=""
-  if [ -f $HOME/build/testbot/recipes/$1.yaml ];
+  if [ -f $RECIPES_DIR/$1.yaml ];
   then
     if [ -d $HOME/build/casadi/binaries/casadi ];
     then
-      export BAKEVERSION=`python $HOME/build/testbot/helpers/gitmatch.py $HOME/build/testbot/recipes/$1.yaml $HOME/build/casadi/binaries/casadi`
+      export BAKEVERSION=`python $HOME/build/testbot/helpers/gitmatch.py $RECIPES_DIR/$1.yaml $HOME/build/casadi/binaries/casadi`
     else
-      export BAKEVERSION=`python $HOME/build/testbot/helpers/gitmatch.py $HOME/build/testbot/recipes/$1.yaml $HOME/build/casadi/casadi`
+      export BAKEVERSION=`python $HOME/build/testbot/helpers/gitmatch.py $RECIPES_DIR/$1.yaml $HOME/build/casadi/casadi`
     fi
     echo "For $1, choosing bake version $BAKEVERSION" 
     BAKESUFFIX="_bake${BAKEVERSION}"
@@ -58,27 +63,27 @@ function fetch_tar() {
 }
 
 function fetch_zip() {
-  travis_retry $HOME/build/testbot/recipes/fetch.sh $1_$2.zip && mkdir $1 && unzip $1_$2.tar.gz -d $1 && rm $1_$2.tar.gz
+  travis_retry $RECIPES_DIR/fetch.sh $1_$2.zip && mkdir $1 && unzip $1_$2.tar.gz -d $1 && rm $1_$2.tar.gz
 }
   
 function slurp() {
 
-  if [ -f $HOME/build/testbot/recipes/$1_${SLURP_CROSS}${BITNESS}_${SLURP_OS}.sh ];
+  if [ -f $RECIPES_DIR/$1_${SLURP_CROSS}${BITNESS}_${SLURP_OS}.sh ];
   then
     echo 123;
-    SETUP=1 source $HOME/build/testbot/recipes/$1_${SLURP_CROSS}${BITNESS}_${SLURP_OS}.sh
-  elif [ -f $HOME/build/testbot/recipes/$1_${SLURP_CROSS}_${SLURP_OS}.sh ];
+    SETUP=1 source $RECIPES_DIR/$1_${SLURP_CROSS}${BITNESS}_${SLURP_OS}.sh
+  elif [ -f $RECIPES_DIR/$1_${SLURP_CROSS}_${SLURP_OS}.sh ];
   then
     echo 456;
-    SETUP=1 source $HOME/build/testbot/recipes/$1_${SLURP_CROSS}_${SLURP_OS}.sh
-  elif [ -f $HOME/build/testbot/recipes/$1_${SLURP_OS}.sh ];
+    SETUP=1 source $RECIPES_DIR/$1_${SLURP_CROSS}_${SLURP_OS}.sh
+  elif [ -f $RECIPES_DIR/$1_${SLURP_OS}.sh ];
   then
     echo 678;
-    SETUP=1 source $HOME/build/testbot/recipes/$1_${SLURP_OS}.sh
+    SETUP=1 source $RECIPES_DIR/$1_${SLURP_OS}.sh
   else
     echo 101;
-    echo "$HOME/build/testbot/recipes/$1_${SLURP_OS}.sh"
-    SETUP=1 source $HOME/build/testbot/recipes/$1.sh
+    echo "$RECIPES_DIR/$1_${SLURP_OS}.sh"
+    SETUP=1 source $RECIPES_DIR/$1.sh
   fi
 }
 

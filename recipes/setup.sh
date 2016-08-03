@@ -103,6 +103,7 @@ function slurp_put() {
   fi
   if [ -n ${BAKEVERSION} ];
   then
+    echo "here :$BAKEVERSION:"
     VERSIONSUFFIX="${VERSIONSUFFIX}_bake${BAKEVERSION}"
   fi
   export PYTHONPATH="$PYTHONPATH:$TESTBOT_DIR/helpers:$TESTBOT_DIR"

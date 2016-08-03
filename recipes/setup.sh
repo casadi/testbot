@@ -32,10 +32,12 @@ git config --global user.name "casaditestbot"
 
 if [ -d $HOME/build/testbot/recipes ];
 then
-  export RECIPES_DIR=$HOME/build/testbot/recipes
+  export TESTBOT_DIR=$HOME/build/testbot
 else
-  export RECIPES_DIR=$HOME/build/casadi/testbot/recipes
+  export TESTBOT_DIR=$HOME/build/casadi/testbot
 fi
+export RECIPES_DIR=$TESTBOT_DIR/recipes
+
 function try_fetch_tar () {
   echo "Fetching $1 -> $2"
   travis_retry $RECIPES_DIR/fetch.sh $1 && mkdir  -p $2 && tar -xf $1 -C $2 && rm $1
@@ -97,19 +99,19 @@ function slurp_put() {
   then
     VERSIONSUFFIX="${VERSIONSUFFIX}_bake${BAKEVERSION}"
   fi
-  export PYTHONPATH="$PYTHONPATH:$HOME/build/casadi/testbot/helpers:/home/travis/build/casadi/testbot"
+  export PYTHONPATH="$PYTHONPATH:$TESTBOT_DIR/helpers:$TESTBOT_DIR"
   python -c "from restricted import *; upload('$1.tar.gz','$1$VERSIONSUFFIX.tar.gz')"
 }
 
 export RECIPES_FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 function matlabtunnel() {
-  source $HOME/build/testbot/restricted/env.sh
+  source $TESTBOT_DIR/restricted/env.sh
   sudo bash -c "echo '127.0.0.1	$FLEX_SERVER' >> /etc/hosts;echo '127.0.0.1	$FLEX_HOSTNAME' >> /etc/hosts"
   sudo hostname $FLEX_HOSTNAME
   mkdir -p ~/.matlab/${MATLABRELEASE}_licenses/
   echo -e "SERVER $FLEX_SERVER ANY 1725\nUSE_SERVER" > ~/.matlab/${MATLABRELEASE}_licenses/license.lic
   ssh-keyscan $GATE_SERVER >> ~/.ssh/known_hosts
-  ssh -i $HOME/build/testbot/id_rsa_travis $USER_GATE@$GATE_SERVER -L 1701:$FLEX_SERVER:1701 -L 1719:$FLEX_SERVER:1719 -L 1718:$FLEX_SERVER:1718 -L 2015:$FLEX_SERVER:2015 -L 1815:$FLEX_SERVER:1815 -L 1725:$FLEX_SERVER:1725 -N &
+  ssh -i $TESTBOT_DIR/id_rsa_travis $USER_GATE@$GATE_SERVER -L 1701:$FLEX_SERVER:1701 -L 1719:$FLEX_SERVER:1719 -L 1718:$FLEX_SERVER:1718 -L 2015:$FLEX_SERVER:2015 -L 1815:$FLEX_SERVER:1815 -L 1725:$FLEX_SERVER:1725 -N &
   sleep 3
 }

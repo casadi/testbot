@@ -62,8 +62,9 @@ function fetch_tar() {
     BAKESUFFIX="_bake${BAKEVERSION}"
   fi
   try_fetch_tar $1_$2${GCCSUFFIX}${BAKESUFFIX}.tar.gz $1 || try_fetch_tar $1_$2${BAKESUFFIX}.tar.gz $1
-  export BAKESUFFIX=""
-  export GCCSUFFIX=""
+  export BAKESUFFIX=
+  export GCCSUFFIX=
+  export BAKEVERSION=
 }
 
 function fetch_zip() {
@@ -106,7 +107,7 @@ function slurp_put() {
   fi
   export PYTHONPATH="$PYTHONPATH:$TESTBOT_DIR/helpers:$TESTBOT_DIR"
   python -c "from restricted import *; upload('$1.tar.gz','$1$VERSIONSUFFIX.tar.gz')"
-  export VERSIONSUFFIX=""
+  export VERSIONSUFFIX=
 }
 
 export RECIPES_FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"

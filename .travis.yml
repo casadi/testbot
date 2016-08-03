@@ -16,7 +16,8 @@ matrix:
 #    - env: recipe=ipopt_trusty GCCVERSION=4.7
 #    - os: osx
 #      env: recipe=ipopt_osx
-    
+ 
+    - env: recipe=bonmin_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32   
 #    - env: recipe=bonmin_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=bonmin_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=bonmin_trusty
@@ -30,9 +31,11 @@ matrix:
 #    - os: osx
 #      env: recipe=ecos_osx
 
+    - env: recipe=lapack_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=lapack_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=lapack_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
     
+    - env: recipe=clang_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=clang_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=clang_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=clang_trusty

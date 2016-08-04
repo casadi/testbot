@@ -5,9 +5,7 @@ export SUFFIX=mingwoct${BITNESS}_trusty
 if [ -z "$SETUP" ]; then
   export SLURP_OS=trusty
   echo "ipopt_mingw_start:$BAKEVERSION:"
-  pushd $HOME/build
   slurp mingw_octave
-  popd
   echo "ipopt_mingw_end:$BAKEVERSION:"
   export SUFFIXFILE=_$SUFFIX
   # build must contain mingw, in order for the hsl loader to look for .dll as opposed to .so

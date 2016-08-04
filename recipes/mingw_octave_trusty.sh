@@ -18,7 +18,9 @@ if [ -z "$SETUP" ]; then
   slurp_put mingw_octave$SUFFIXFILE
 else
   echo "mingw_octave_start :$BAKEVERSION:"
+  pushd $HOME/build
   fetch_tar mingw_octave trusty
+  popd
   echo "mingw_octave_end :$BAKEVERSION:"
   export MINGW_ROOT=$HOME/build/mingw_octave/usr
   export PATH=$HOME/build/mingw_octave/usr/bin:$HOME/build/mingw_octave/usr/bin/i686-w64-mingw32:$PATH

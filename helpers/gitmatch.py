@@ -14,7 +14,7 @@ def score(s):
   if p.returncode!=0:
     print >>sys.stderr,"not found"
     return inf
-  print "check score", s
+  print >>sys.stderr, "check score", s
   p = subprocess.Popen(["git","rev-list","--ancestry-path","%s..HEAD" % s, "--count"],stdout=subprocess.PIPE,stderr=subprocess.PIPE,cwd=sys.argv[2])
   out,err = p.communicate()
   print >>sys.stderr, out

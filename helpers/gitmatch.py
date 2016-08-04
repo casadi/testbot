@@ -7,7 +7,6 @@ inf = float('Inf')
 config = yaml.load(file(sys.argv[1],'r'))
 
 def score(s):
-  print s
   if s=="default": return 1e9
   p = subprocess.Popen(["git","merge-base","--is-ancestor",s, "HEAD"],cwd=sys.argv[2])
   p.wait()

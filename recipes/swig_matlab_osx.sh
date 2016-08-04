@@ -14,7 +14,7 @@ if [ -z "$SETUP" ]; then
   tar -zcvf swig_matlab_osx.tar.gz -C swig-matlab-install .
   slurp_put swig_matlab_osx
 else
-  fetch_tar swig_matlab_osx
+  fetch_tar swig_matlab osx
   mkdir -p  $HOME/build/casadi/testbot
   pushd $HOME/build/casadi/testbot && ln -s  $HOME/build/swig  swig-matlab-install  && popd
   export PATH=$HOME/build/swig/bin:$HOME/build/swig/share:$PATH

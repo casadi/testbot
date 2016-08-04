@@ -63,7 +63,7 @@ EOF
 
   svn export http://llvm.org/svn/llvm-project/libcxx/tags/RELEASE_$VERSION/final/include $mypwd/install/include/c++/v1/
 
-  pushd ../install && tar -cvf $mypwd/clang_mingw${BITNESS}_trusty.tar.gz . && popd
+  pushd ../install && tar -cvf $mypwd/clang_mingwoct${BITNESS}_trusty.tar.gz . && popd
 
   cd $mypwd
   slurp_put clang_mingwoct${BITNESS}_trusty

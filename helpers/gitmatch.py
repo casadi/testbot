@@ -9,6 +9,8 @@ config = yaml.load(file(sys.argv[1],'r'))
 def score(s):
   if s=="default": return 1e9
   print >>sys.stderr, "check if in ancestry", s
+  p = subprocess.Popen(["git","fetch","--unshallow"],cwd=sys.argv[2])
+  p.wait()
   p = subprocess.Popen(["git","merge-base","--is-ancestor",s, "HEAD"],cwd=sys.argv[2])
   p.wait()
   if p.returncode!=0:

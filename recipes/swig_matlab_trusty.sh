@@ -15,4 +15,7 @@ else
   pushd $HOME/build/casadi/testbot && ln -s  $HOME/build/swig_matlab  swig-matlab-install  && popd
   export SWIG_HOME=$HOME/build/swig_matlab
   export PATH=$HOME/build/swig_matlab/bin:$HOME/build/swig_matlab/share:$PATH
+  function swig_patch_pyobject() {
+    sed -i -e 's/\"SwigPyObject\"/\"SwigPyCasadiObject\"/g' $SWIG_HOME/share/swig/3.0.11/python/pyrun.swg
+  }
 fi

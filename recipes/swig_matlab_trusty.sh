@@ -13,5 +13,6 @@ else
   fetch_tar swig_matlab trusty
   mkdir -p  $HOME/build/casadi/testbot
   pushd $HOME/build/casadi/testbot && ln -s  $HOME/build/swig_matlab  swig-matlab-install  && popd
+  export SWIG_HOME=$HOME/build/swig_matlab
   export PATH=$HOME/build/swig_matlab/bin:$HOME/build/swig_matlab/share:$PATH
 fi

@@ -44,11 +44,16 @@ matrix:
 #      env: recipe=clang_osx
       
 #    - env: recipe=swig_trusty
-    - env: recipe=swig_matlab_trusty BAKEVERSION=matlab-customdoc
+#    - env: recipe=swig_matlab_trusty BAKEVERSION=matlab-customdoc
+    - env: recipe=swig_matlab_trusty BAKEVERSION=03261ee8fd39559
+    - env: recipe=swig_matlab_trusty BAKEVERSION=288a3239843bdb8
+    - env: recipe=swig_matlab_trusty BAKEVERSION=b5e75d1891a6400
+    - env: recipe=swig_matlab_trusty BAKEVERSION=36bbeb478dfcecc
+    - env: recipe=swig_matlab_trusty BAKEVERSION=bc556312b6872b2
 #    - env: recipe=swig_matlab_trusty BAKEVERSION=82714bf35c33fe2
 #    - env: recipe=swig_matlab_trusty BAKEVERSION=234d6ea3a08ef71
     
-    - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=matlab-customdoc }
+#    - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=matlab-customdoc }
 #    - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=82714bf35c33fe2 }
 #    - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=234d6ea3a08ef71 }
 #    - env: recipe=mingw_octave_trusty

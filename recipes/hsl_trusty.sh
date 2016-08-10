@@ -22,4 +22,5 @@ if [ -z "$SETUP" ]; then
 else
   fetch_tar hsl trusty
   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/build/hsl
+  export HSL=$HOME/build/hsl
 fi

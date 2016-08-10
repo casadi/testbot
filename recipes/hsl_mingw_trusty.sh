@@ -22,10 +22,7 @@ if [ -z "$SETUP" ]; then
   make install
 
   mkdir $mypwd/pack
-  cd $mypwd/coinhsl-install/lib
-  ls
-  sudo apt-get install locate
-  sudo updatedb
+  cd $mypwd/coinhsl-install/bin
   locate libcoinhsl-0.dll
   cp libcoinhsl-0.dll $mypwd/pack/libhsl.dll
 

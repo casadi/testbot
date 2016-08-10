@@ -9,6 +9,7 @@ if [ -z "$SETUP" ]; then
   export SUFFIXFILE=_$SUFFIX
   
   export SLURP_OS=trusty
+  export SLURP_CROSS=mingw
   pushd $HOME/build
   slurp ipopt
   popd

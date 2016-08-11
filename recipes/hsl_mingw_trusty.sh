@@ -27,7 +27,7 @@ if [ -z "$SETUP" ]; then
 
   cp /usr/lib/gcc/$compilerprefix/4.9-posix/*.dll $mypwd/pack
   cp /usr/$compilerprefix/lib/*.dll $mypwd/pack
-  zip -r hsl$SUFFIXFILE $mypwd/pack/*.dll
+  zip -j -r hsl$SUFFIXFILE $mypwd/pack/*.dll
   
   slurp_put hsl$SUFFIXFILE
 else

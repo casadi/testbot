@@ -24,15 +24,10 @@ if [ -z "$SETUP" ]; then
   mkdir $mypwd/pack
   cd $mypwd/coinhsl-install/bin
   cp libcoinhsl-0.dll $mypwd/pack/libhsl.dll
-  pushd $mypwd/pack/ && $compilerprefix-dlltool --dllname libhsl.dll  -l libcoinhsl.lib && popd
-  pushd $mypwd/pack/ && $compilerprefix-dlltool --dllname libhsl.dll  -l coinhsl.lib && popd
-  pushd $mypwd/pack/ && $compilerprefix-dlltool --dllname libhsl.dll  -l hsl.lib && popd
-  pushd $mypwd/pack/ && $compilerprefix-dlltool --dllname libhsl.dll  -l libcoinhsl.a && popd
-  pushd $mypwd/pack/ && $compilerprefix-dlltool --dllname libhsl.dll  -l coinhsl.a && popd
-  pushd $mypwd/pack/ && $compilerprefix-dlltool --dllname libhsl.dll  -l hsl.a && popd
-  pushd $mypwd/pack/ && $compilerprefix-dlltool --dllname libhsl.dll  -l libcoinhsl.dll.a && popd
-  pushd $mypwd/pack/ && $compilerprefix-dlltool --dllname libhsl.dll  -l coinhsl.dll.a && popd
-  pushd $mypwd/pack/ && $compilerprefix-dlltool --dllname libhsl.dll  -l hsl.dll.a && popd
+  pushd $mypwd/pack/
+  gendef libhsl.dll - | sed "s/coinhsl-0/hsl/" | tee  libhsl.def
+  $compilerprefix-dlltool --dllname libhsl.dll -d libhsl.def  -l libcoinhsl.lib
+  popd
   cp /usr/lib/gcc/$compilerprefix/4.9-posix/*.dll $mypwd/pack
   cp /usr/$compilerprefix/lib/*.dll $mypwd/pack
   zip -j -r hsl$SUFFIXFILE $mypwd/pack/*.dll hsl$SUFFIXFILE $mypwd/pack/*.lib hsl$SUFFIXFILE $mypwd/pack/*.a

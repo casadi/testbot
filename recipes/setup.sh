@@ -110,7 +110,7 @@ function slurp_put() {
     VERSIONSUFFIX="${VERSIONSUFFIX}_bake${BAKEVERSION}"
   fi
   export PYTHONPATH="$PYTHONPATH:$TESTBOT_DIR/helpers:$TESTBOT_DIR"
-  python -c "from restricted import *; upload('$1.tar.gz','$1$VERSIONSUFFIX.tar.gz')"
+  python -c "from restricted import *; upload('$1.tar.gz','$1$VERSIONSUFFIX.tar.gz')" || python -c "from restricted import *; upload('$1.zip','$1$VERSIONSUFFIX.zip')"
   unset VERSIONSUFFIX;export VERSIONSUFFIX
 }
 

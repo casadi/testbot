@@ -27,10 +27,15 @@ if [ -z "$SETUP" ]; then
   pushd $mypwd/pack/ && $compilerprefix-dlltool --dllname libhsl.dll  -l libcoinhsl.lib && popd
   pushd $mypwd/pack/ && $compilerprefix-dlltool --dllname libhsl.dll  -l coinhsl.lib && popd
   pushd $mypwd/pack/ && $compilerprefix-dlltool --dllname libhsl.dll  -l hsl.lib && popd
-  
+  pushd $mypwd/pack/ && $compilerprefix-dlltool --dllname libhsl.dll  -l libcoinhsl.a && popd
+  pushd $mypwd/pack/ && $compilerprefix-dlltool --dllname libhsl.dll  -l coinhsl.a && popd
+  pushd $mypwd/pack/ && $compilerprefix-dlltool --dllname libhsl.dll  -l hsl.a && popd
+  pushd $mypwd/pack/ && $compilerprefix-dlltool --dllname libhsl.dll  -l libcoinhsl.dll.a && popd
+  pushd $mypwd/pack/ && $compilerprefix-dlltool --dllname libhsl.dll  -l coinhsl.dll.a && popd
+  pushd $mypwd/pack/ && $compilerprefix-dlltool --dllname libhsl.dll  -l hsl.dll.a && popd
   cp /usr/lib/gcc/$compilerprefix/4.9-posix/*.dll $mypwd/pack
   cp /usr/$compilerprefix/lib/*.dll $mypwd/pack
-  zip -j -r hsl$SUFFIXFILE $mypwd/pack/*.dll hsl$SUFFIXFILE $mypwd/pack/*.lib
+  zip -j -r hsl$SUFFIXFILE $mypwd/pack/*.dll hsl$SUFFIXFILE $mypwd/pack/*.lib hsl$SUFFIXFILE $mypwd/pack/*.a
   
   slurp_put hsl$SUFFIXFILE
 else

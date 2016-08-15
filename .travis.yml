@@ -84,6 +84,13 @@ before_install:
         sudo apt-get install -y gcc g++ gfortran    
       fi
     fi
+    else
+      sudo install_name_tool -id "@rpath/libgfortran.3.dylib" /usr/local/Cellar/gcc/4.9.1/lib/gcc/x86_64-apple-darwin13.3.0/4.9.1/libgfortran.3.dylib
+      sudo install_name_tool -id "@rpath/libquadmath.0.dylib" /usr/local/Cellar/gcc/4.9.1/lib/gcc/x86_64-apple-darwin13.3.0/4.9.1/libquadmath.0.dylib
+      sudo install_name_tool -change /usr/local/Cellar/gcc/4.9.1/lib/gcc/x86_64-apple-darwin13.3.0/4.9.1/libquadmath.0.dylib "@rpath/libquadmath.0.dylib" python_install/casadi/libgfortran.3.dylib  
+      sudo install_name_tool -change /usr/local/Cellar/gcc/4.9.1/lib/gcc/x86_64-apple-darwin13.3.0/4.9.1/libgcc_s.1.dylib "@rpath/libgcc_s.1.dylib" python_install/casadi/libgfortran.3.dylib  
+      sudo install_name_tool -change /usr/local/Cellar/gcc/4.9.1/lib/gcc/x86_64-apple-darwin13.3.0/4.9.1/libgcc_s.1.dylib "@rpath/libgcc_s.1.dylib" python_install/casadi/libquadmath.0.dylib 
+    fi
   - source recipes/setup.sh
 install:
   - set -e

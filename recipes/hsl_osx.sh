@@ -15,7 +15,8 @@ if [ -z "$SETUP" ]; then
   make
   make install
   cd $mypwd/coinhsl-install/lib
-  ln -s libcoinhsl.so libhsl.so
+  ls
+  mv libcoinhsl.dylib libhsl.dylib
   popd
   tar -zcvf hsl_osx.tar.gz -C $mypwd/coinhsl-install/lib . 
 

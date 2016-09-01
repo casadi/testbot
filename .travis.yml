@@ -69,21 +69,20 @@ before_install:
   - |
     if [[ $TRAVIS_OS_NAME == *linux* ]]
     then
-    sudo dpkg --add-architecture i386
-    sudo apt-get update -q
-    sudo apt-get install libpython2.7-dev libc6:i386 libncurses5:i386 libstdc++6:i386
-    sudo apt-get update -qq
-    if [[ $GCCVERSION == 4.6 ]]
-      then
-        sudo apt-get install -y gcc-4.6 g++-4.6 gfortran-4.6
-        export CC=gcc-4.6
-        export CXX=g++-4.6
-        export FC=gfortran-4.6
-        export F77=gfortran-4.6
-      else
-        sudo apt-get install -y gcc g++ gfortran    
+      sudo dpkg --add-architecture i386
+      sudo apt-get update -q
+      sudo apt-get install libpython2.7-dev libc6:i386 libncurses5:i386 libstdc++6:i386
+      sudo apt-get update -qq
+      if [[ $GCCVERSION == 4.6 ]]
+        then
+          sudo apt-get install -y gcc-4.6 g++-4.6 gfortran-4.6
+          export CC=gcc-4.6
+          export CXX=g++-4.6
+          export FC=gfortran-4.6
+          export F77=gfortran-4.6
+        else
+          sudo apt-get install -y gcc g++ gfortran    
       fi
-    fi
     else
       sudo install_name_tool -id "@rpath/libgfortran.3.dylib" /usr/local/Cellar/gcc/4.9.1/lib/gcc/x86_64-apple-darwin13.3.0/4.9.1/libgfortran.3.dylib
       sudo install_name_tool -id "@rpath/libquadmath.0.dylib" /usr/local/Cellar/gcc/4.9.1/lib/gcc/x86_64-apple-darwin13.3.0/4.9.1/libquadmath.0.dylib

@@ -13,7 +13,7 @@ matrix:
 #    - env: recipe=ipopt_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=ipopt_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=ipopt_trusty
-#    - env: recipe=ipopt_trusty GCCVERSION=4.7
+    - env: recipe=ipopt_trusty GCCVERSION=4.6
 #    - os: osx
 #      env: recipe=ipopt_osx
  
@@ -21,13 +21,13 @@ matrix:
 #    - env: recipe=bonmin_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=bonmin_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=bonmin_trusty
-#    - env: recipe=bonmin_trusty GCCVERSION=4.7
+    - env: recipe=bonmin_trusty GCCVERSION=4.6
 #    - {env: recipe=bonmin_osx, os: osx}
  
 #    - env: recipe=ecos_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=ecos_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=ecos_trusty
-#    - env: recipe=ecos_trusty GCCVERSION=4.7
+    - env: recipe=ecos_trusty GCCVERSION=4.6
 #    - os: osx
 #      env: recipe=ecos_osx
 
@@ -39,7 +39,7 @@ matrix:
 #    - env: recipe=clang_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=clang_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=clang_trusty
-#    - env: recipe=clang_trusty GCCVERSION=4.7
+    - env: recipe=clang_trusty GCCVERSION=4.6
 #    - os: osx
 #      env: recipe=clang_osx
       
@@ -59,8 +59,8 @@ matrix:
 #    - env: recipe=hsl_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
     
 #    - env: recipe=hsl_trusty
-#    - env: recipe=hsl_trusty GCCVERSION=4.7
-    - { env: recipe=hsl_osx, os: osx }
+    - env: recipe=hsl_trusty GCCVERSION=4.6
+#    - { env: recipe=hsl_osx, os: osx }
     
     
 python:
@@ -73,13 +73,13 @@ before_install:
     sudo apt-get update -q
     sudo apt-get install libpython2.7-dev libc6:i386 libncurses5:i386 libstdc++6:i386
     sudo apt-get update -qq
-    if [[ $GCCVERSION == 4.7 ]]
+    if [[ $GCCVERSION == 4.6 ]]
       then
-        sudo apt-get install -y gcc-4.7 g++-4.7 gfortran-4.7
-        export CC=gcc-4.7
-        export CXX=g++-4.7
-        export FC=gfortran-4.7
-        export F77=gfortran-4.7
+        sudo apt-get install -y gcc-4.6 g++-4.6 gfortran-4.6
+        export CC=gcc-4.6
+        export CXX=g++-4.6
+        export FC=gfortran-4.6
+        export F77=gfortran-4.6
       else
         sudo apt-get install -y gcc g++ gfortran    
       fi

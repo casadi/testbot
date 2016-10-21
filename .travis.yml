@@ -13,23 +13,23 @@ matrix:
 #    - env: recipe=ipopt_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=ipopt_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=ipopt_trusty
-    - env: recipe=ipopt_trusty GCCVERSION=4.6
-#    - os: osx
-#      env: recipe=ipopt_osx
+#    - env: recipe=ipopt_trusty GCCVERSION=4.6
+    - os: osx
+      env: recipe=ipopt_osx GCCVERSION=4.9
  
 #    - env: recipe=bonmin_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32   
 #    - env: recipe=bonmin_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=bonmin_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=bonmin_trusty
-    - env: recipe=bonmin_trusty GCCVERSION=4.6
-#    - {env: recipe=bonmin_osx, os: osx}
+#    - env: recipe=bonmin_trusty GCCVERSION=4.6
+    - {env: recipe=bonmin_osx GCCVERSION=4.9, os: osx}
  
 #    - env: recipe=ecos_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=ecos_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=ecos_trusty
-    - env: recipe=ecos_trusty GCCVERSION=4.6
-#    - os: osx
-#      env: recipe=ecos_osx
+#    - env: recipe=ecos_trusty GCCVERSION=4.6
+    - os: osx
+      env: recipe=ecos_osx GCCVERSION=4.9
 
 #    - env: recipe=lapack_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=lapack_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
@@ -39,9 +39,9 @@ matrix:
 #    - env: recipe=clang_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=clang_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=clang_trusty
-    - env: recipe=clang_trusty GCCVERSION=4.6
-#    - os: osx
-#      env: recipe=clang_osx
+#    - env: recipe=clang_trusty GCCVERSION=4.6
+    - os: osx
+      env: recipe=clang_osx GCCVERSION=4.9
       
 #    - env: recipe=swig_trusty
 #    - env: recipe=swig_matlab_trusty BAKEVERSION=matlab-customdoc
@@ -49,9 +49,9 @@ matrix:
 #    - env: recipe=swig_matlab_trusty BAKEVERSION=82714bf35c33fe2
 #    - env: recipe=swig_matlab_trusty BAKEVERSION=234d6ea3a08ef71
     
-#    - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=matlab-customdoc }
-#    - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=82714bf35c33fe2 }
-#    - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=234d6ea3a08ef71 }
+     - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=matlab-customdoc GCCVERSION=4.9}
+     - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=82714bf35c33fe2 GCCVERSION=4.9}
+     - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=234d6ea3a08ef71 GCCVERSION=4.9}
 #    - env: recipe=mingw_octave_trusty
 
 #    - env: recipe=hsl_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
@@ -59,8 +59,8 @@ matrix:
 #    - env: recipe=hsl_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
     
 #    - env: recipe=hsl_trusty
-    - env: recipe=hsl_trusty GCCVERSION=4.6
-#    - { env: recipe=hsl_osx, os: osx }
+#    - env: recipe=hsl_trusty GCCVERSION=4.6
+     - { env: recipe=hsl_osx, os: osx, GCCVERSION=4.9 }
     
     
 python:
@@ -84,13 +84,15 @@ before_install:
           sudo apt-get install -y gcc g++ gfortran    
       fi
     else
-      sudo install_name_tool -id "@rpath/libgfortran.3.dylib" /usr/local/Cellar/gcc/4.9.1/lib/gcc/x86_64-apple-darwin13.3.0/4.9.1/libgfortran.3.dylib
-      sudo install_name_tool -id "@rpath/libquadmath.0.dylib" /usr/local/Cellar/gcc/4.9.1/lib/gcc/x86_64-apple-darwin13.3.0/4.9.1/libquadmath.0.dylib
-      sudo install_name_tool -id "@rpath/libgcc_s.1.dylib" /usr/local/Cellar/gcc/4.9.1/lib/gcc/x86_64-apple-darwin13.3.0/4.9.1/libgcc_s.1.dylib
-      sudo install_name_tool -id "@rpath/libgomp.1.dylib" /usr/local/Cellar/gcc/4.9.1/lib/gcc/x86_64-apple-darwin13.3.0/4.9.1/libgomp.1.dylib
-      sudo install_name_tool -change /usr/local/Cellar/gcc/4.9.1/lib/gcc/x86_64-apple-darwin13.3.0/4.9.1/libquadmath.0.dylib "@rpath/libquadmath.0.dylib" python_install/casadi/libgfortran.3.dylib  
-      sudo install_name_tool -change /usr/local/Cellar/gcc/4.9.1/lib/gcc/x86_64-apple-darwin13.3.0/4.9.1/libgcc_s.1.dylib "@rpath/libgcc_s.1.dylib" python_install/casadi/libgfortran.3.dylib  
-      sudo install_name_tool -change /usr/local/Cellar/gcc/4.9.1/lib/gcc/x86_64-apple-darwin13.3.0/4.9.1/libgcc_s.1.dylib "@rpath/libgcc_s.1.dylib" python_install/casadi/libquadmath.0.dylib 
+      shell_session_update() { :; } # Workaround for travis-ci/travis-ci#6522
+      brew reinstall gcc49 --with-fortran
+      sudo install_name_tool -id "@rpath/libgfortran.3.dylib" /usr/local/lib/gcc/4.9/libgfortran.3.dylib
+      sudo install_name_tool -id "@rpath/libquadmath.0.dylib" /usr/local/lib/gcc/4.9/libquadmath.0.dylib
+      sudo install_name_tool -id "@rpath/libgcc_s.1.dylib" /usr/local/lib/gcc/4.9/libgcc_s.1.dylib
+      sudo install_name_tool -id "@rpath/libgomp.1.dylib" /usr/local/lib/gcc/4.9/libgomp.1.dylib
+      sudo install_name_tool -change /usr/local/lib/gcc/4.9/libquadmath.0.dylib "@rpath/libquadmath.0.dylib" python_install/casadi/libgfortran.3.dylib  
+      sudo install_name_tool -change /usr/local/lib/gcc/4.9/libgcc_s.1.dylib "@rpath/libgcc_s.1.dylib" python_install/casadi/libgfortran.3.dylib  
+      sudo install_name_tool -change /usr/local/lib/gcc/4.9/libgcc_s.1.dylib "@rpath/libgcc_s.1.dylib" python_install/casadi/libquadmath.0.dylib 
     fi
   - source recipes/setup.sh
 install:

@@ -14,22 +14,22 @@ matrix:
 #    - env: recipe=ipopt_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=ipopt_trusty
 #    - env: recipe=ipopt_trusty GCCVERSION=4.6
-    - os: osx
-      env: recipe=ipopt_osx GCCVERSION=4.9
+     - os: osx
+       env: recipe=ipopt_osx GCCVERSION=4.9
  
 #    - env: recipe=bonmin_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32   
 #    - env: recipe=bonmin_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=bonmin_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=bonmin_trusty
 #    - env: recipe=bonmin_trusty GCCVERSION=4.6
-    - {env: recipe=bonmin_osx GCCVERSION=4.9, os: osx}
+     - {env: recipe=bonmin_osx GCCVERSION=4.9, os: osx}
  
 #    - env: recipe=ecos_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=ecos_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=ecos_trusty
 #    - env: recipe=ecos_trusty GCCVERSION=4.6
-    - os: osx
-      env: recipe=ecos_osx GCCVERSION=4.9
+     - os: osx
+       env: recipe=ecos_osx GCCVERSION=4.9
 
 #    - env: recipe=lapack_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=lapack_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
@@ -40,8 +40,8 @@ matrix:
 #    - env: recipe=clang_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=clang_trusty
 #    - env: recipe=clang_trusty GCCVERSION=4.6
-    - os: osx
-      env: recipe=clang_osx GCCVERSION=4.9
+     - os: osx
+       env: recipe=clang_osx GCCVERSION=4.9
       
 #    - env: recipe=swig_trusty
 #    - env: recipe=swig_matlab_trusty BAKEVERSION=matlab-customdoc

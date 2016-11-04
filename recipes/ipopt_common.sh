@@ -7,6 +7,25 @@ if [ -z "$SETUP" ]; then
   wget http://www.coin-or.org/download/source/Ipopt/Ipopt-$VERSION.tgz
   tar -xvf Ipopt-$VERSION.tgz
   pushd Ipopt-$VERSION
+  echo <<EOF > dlopen.patch
+diff --git a/Ipopt/src/contrib/LinearSolverLoader/LibraryHandler.c b/Ipopt/src/contrib/LinearSolverLoader/LibraryHandler.c
+index 2387f02..4e75c34 100644
+--- a/Ipopt/src/contrib/LinearSolverLoader/LibraryHandler.c
++++ b/Ipopt/src/contrib/LinearSolverLoader/LibraryHandler.c
+@@ -46,7 +46,11 @@ soHandle_t LSL_loadLib(const char *libName, char *msgBuf, int msgLen)
+     mysnprintf(msgBuf, msgLen, "Windows error while loading dynamic library %s, error = %d.\n(see http://msdn.microsoft.com/en-us/library/ms681381%%28v=vs.85%%29.aspx)\n", libName, GetLastError());
+   }
+ # else
++#ifdef __APPLE__
+   h = dlopen (libName, RTLD_NOW);
++#else
++  h = dlopen (libName, RTLD_NOW | RTLD_DEEPBIND);
++#endif
+   if (NULL == h) {
+     strncpy(msgBuf, dlerror(), msgLen);
+     msgBuf[msgLen-1]=0;
+EOF
+  patch -p1 < dlopen.patch 
   pushd ThirdParty
   #pushd ASL && ./get.ASL && popd
   pushd Blas && ./get.Blas && popd 

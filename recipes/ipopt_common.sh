@@ -7,7 +7,7 @@ if [ -z "$SETUP" ]; then
   wget http://www.coin-or.org/download/source/Ipopt/Ipopt-$VERSION.tgz
   tar -xvf Ipopt-$VERSION.tgz
   pushd Ipopt-$VERSION
-  echo <<EOF > dlopen.patch
+  cat <<EOF > dlopen.patch
 diff --git a/Ipopt/src/contrib/LinearSolverLoader/LibraryHandler.c b/Ipopt/src/contrib/LinearSolverLoader/LibraryHandler.c
 index 2387f02..4e75c34 100644
 --- a/Ipopt/src/contrib/LinearSolverLoader/LibraryHandler.c

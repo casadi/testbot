@@ -9,7 +9,7 @@ if [ -z "$SETUP" ]; then
   wget http://www.coin-or.org/Tarballs/Bonmin/Bonmin-$VERSION.tgz
   tar -xvf Bonmin-$VERSION.tgz
   pushd Bonmin-$VERSION
-  echo <<EOF > dlopen.patch
+  cat <<EOF > dlopen.patch
 diff --git a/Ipopt/src/contrib/LinearSolverLoader/LibraryHandler.c b/Ipopt/src/contrib/LinearSolverLoader/LibraryHandler.c
 index 2387f02..4e75c34 100644
 --- a/Ipopt/src/contrib/LinearSolverLoader/LibraryHandler.c

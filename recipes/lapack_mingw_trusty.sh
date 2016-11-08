@@ -43,10 +43,11 @@ SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE NEVER)
 EOF
 
   cmake -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake ..
-  make lapack -j2
+  make lapack -j2 VERBOSE=1
   pushd lib && tar -cvf $mypwd/lapack_mingw${BITNESS}_trusty.tar.gz . && popd
   popd && popd
   slurp_put lapack_mingw${BITNESS}_trusty
+  nm lapack_mingw${BITNESS}_trusty/lib/libcoinlapack.a | grep -i dlapmt
 
 else
   fetch_tar lapack mingw${BITNESS}_trusty

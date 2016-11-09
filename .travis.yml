@@ -33,8 +33,8 @@ matrix:
 #       env: recipe=ecos_osx GCCVERSION=4.9
 
 #    - env: recipe=lapack_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
-    - env: recipe=lapack_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-    - env: recipe=lapack_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+#    - env: recipe=lapack_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
+#    - env: recipe=lapack_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
     
 #    - env: recipe=clang_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=clang_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
@@ -50,9 +50,10 @@ matrix:
 #    - env: recipe=swig_matlab_trusty BAKEVERSION=82714bf35c33fe2
 #    - env: recipe=swig_matlab_trusty BAKEVERSION=234d6ea3a08ef71
     
-#     - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=matlab-customdoc GCCVERSION=4.9}
-#     - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=82714bf35c33fe2 GCCVERSION=4.9}
-#     - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=234d6ea3a08ef71 GCCVERSION=4.9}
+     - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=matlab-customdoc}
+     - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=b921b0ee5fa928a16}
+     - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=82714bf35c33fe2}
+     - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=234d6ea3a08ef71}
 #    - env: recipe=mingw_octave_trusty
 
 #    - env: recipe=hsl_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32

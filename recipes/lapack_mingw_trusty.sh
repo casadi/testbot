@@ -47,7 +47,6 @@ EOF
   pushd lib && tar -cvf $mypwd/lapack_mingw${BITNESS}_trusty.tar.gz . && popd
   popd && popd
   slurp_put lapack_mingw${BITNESS}_trusty
-  nm libcoinlapack.a | grep -i dlapmt
 
 else
   fetch_tar lapack mingw${BITNESS}_trusty

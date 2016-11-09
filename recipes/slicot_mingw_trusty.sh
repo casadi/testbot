@@ -40,4 +40,5 @@ EOF
 else
   fetch_tar slicot${BITNESS}_trusty
   export SLICOT_LIBRARY_DIR=$HOME/build/slicot
+  export CASADI_ALLOW_GPL=ON
 fi

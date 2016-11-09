@@ -44,7 +44,7 @@ EOF
 
   cmake -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake ..
   make lapack -j2 VERBOSE=1
-  pushd lib &&   nm lib/libcoinlapack.a | grep -i dlapmt && tar -cvf $mypwd/lapack_mingw${BITNESS}_trusty.tar.gz . && popd
+  pushd lib && tar -cvf $mypwd/lapack_mingw${BITNESS}_trusty.tar.gz . && popd
   popd && popd
   slurp_put lapack_mingw${BITNESS}_trusty
   nm libcoinlapack.a | grep -i dlapmt

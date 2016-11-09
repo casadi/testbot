@@ -22,14 +22,14 @@ if [ -z "$SETUP" ]; then
   F77=$compilerprefix-gfortran
   LDFLAGS += -Wl,--as-needed
 
-  SLICOT_SRC=$(sort $(shell echo src/*.f))
-  SLICOT_OBJ=$(SLICOT_SRC:.f=.o)
+  SLICOT_SRC=\$(sort \$(shell echo src/*.f))
+  SLICOT_OBJ=\$(SLICOT_SRC:.f=.o)
 
   src/%.o : src/%.f
-          $(F77) $(FFLAGS) -fPIC -c $< -o $@
+          \$(F77) \$(FFLAGS) -fPIC -c \$< -o \$@
 
-  libslicot.dll: $(SLICOT_OBJ)
-          $(F77) $(LDFLAGS) -shared -Wl,-soname=libslicot.dll -o $@ $^ -L$LIB -llapack -lblas -llapack
+  libslicot.dll: \$(SLICOT_OBJ)
+          \$(F77) \$(LDFLAGS) -shared -Wl,-soname=libslicot.dll -o \$@ \$^ -L$LIB -llapack -lblas -llapack
 EOF
 
   make

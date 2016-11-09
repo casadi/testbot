@@ -18,27 +18,28 @@ if [ -z "$SETUP" ]; then
 
   cd slicot
 
-  cat <<EOF >makefile
-  F77=$compilerprefix-gfortran
-  LDFLAGS += -Wl,--as-needed
+  TAB="$(printf '\t')"
+  
+cat <<EOF >makefile
+F77=$compilerprefix-gfortran
+LDFLAGS += -Wl,--as-needed
 
-  SLICOT_SRC=$(sort $(shell echo src/*.f))
-  SLICOT_OBJ=$(SLICOT_SRC:.f=.o)
+SLICOT_SRC=\$(sort \$(shell echo src/*.f))
+SLICOT_OBJ=\$(SLICOT_SRC:.f=.o)
 
-  src/%.o : src/%.f
-          $(F77) $(FFLAGS) -fPIC -c $< -o $@
+src/%.o : src/%.f
+$TAB\$(F77) \$(FFLAGS) -fPIC -c \$< -o \$@
 
-  libslicot.dll: $(SLICOT_OBJ)
-          $(F77) $(LDFLAGS) -shared -Wl,-soname=libslicot.dll -o $@ $^ -L$LIB -llapack -lblas -llapack
+libslicot.dll: \$(SLICOT_OBJ)
+$TAB\$(F77) \$(LDFLAGS) -shared -Wl,-soname=libslicot.dll -o \$@ \$^ -L$LIB -llapack -lblas -llapack
 EOF
 
   make
-  tar -cvf $mypwd/slicot${BITNESS}_trusty.tar.gz libslicot.dll
-  popd && popd
-  slurp_put slicot${BITNESS}_trusty
+  tar -cvf slicot_mingw${BITNESS}_trusty.tar.gz libslicot.dll
+  slurp_put slicot_mingw${BITNESS}_trusty
 
 else
-  fetch_tar slicot${BITNESS}_trusty
+  fetch_tar slicot slicot_mingw${BITNESS}_trusty
   export SLICOT_LIBRARY_DIR=$HOME/build/slicot
   export CASADI_ALLOW_GPL=ON
 fi

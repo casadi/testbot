@@ -39,7 +39,7 @@ EOF
   slurp_put slicot_mingw${BITNESS}_trusty
 
 else
-  fetch_tar slicot slicot_mingw${BITNESS}_trusty
+  fetch_tar slicot mingw${BITNESS}_trusty
   export SLICOT_LIBRARY_DIR=$HOME/build/slicot
   export CASADI_ALLOW_GPL=ON
 fi

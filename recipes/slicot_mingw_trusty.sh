@@ -8,7 +8,7 @@ if [ -z "$SETUP" ]; then
   export SLURP_CROSS=mingw
   export SLURP_OS=trusty
 
-  slurp lapack_mingw
+  slurp lapack
 
   mypwd=`pwd`
 

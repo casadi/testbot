@@ -3,16 +3,16 @@
 set -e
 
 if [ -z "$SETUP" ]; then
+  mypwd=`pwd`
 
+  mingw_setup
 
   export SLURP_CROSS=mingw
   export SLURP_OS=trusty
 
+  pushd $HOME/build
   slurp lapack
-
-  mypwd=`pwd`
-
-  mingw_setup
+  popd
 
   git clone https://anonscm.debian.org/git/debian-science/packages/slicot.git
 
@@ -33,7 +33,7 @@ if [ -z "$SETUP" ]; then
 EOF
 
   make
-  pushd lib && tar -cvf $mypwd/slicot${BITNESS}_trusty.tar.gz . && popd
+  tar -cvf $mypwd/slicot${BITNESS}_trusty.tar.gz libslicot.dll
   popd && popd
   slurp_put slicot${BITNESS}_trusty
 

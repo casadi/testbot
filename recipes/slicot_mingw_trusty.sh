@@ -35,11 +35,10 @@ $TAB\$(F77) \$(LDFLAGS) -shared -Wl,-soname=libslicot.dll -o \$@ \$^ -L$LIB -lla
 EOF
 
   make
-  tar -cvf $mypwd/slicot${BITNESS}_trusty.tar.gz libslicot.dll
-  popd && popd
-  slurp_put slicot${BITNESS}_trusty
+  tar -cvf slicot_mingw${BITNESS}_trusty.tar.gz libslicot.dll
+  slurp_put slicot_mingw${BITNESS}_trusty
 
 else
-  fetch_tar slicot${BITNESS}_trusty
+  fetch_tar slicot slicot_mingw${BITNESS}_trusty
   export SLICOT_LIBRARY_DIR=$HOME/build/slicot
 fi

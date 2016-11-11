@@ -11,6 +11,15 @@ function allowfail() {
         $(exit $ERR);
 }
 
+function assertfail() {
+        ERR=$?
+        if [ $ERR -eq "0" ]
+        then
+                $(exit 1);
+                return;
+        fi
+        $(exit 0);
+}
 
 function mingw_setup() {
 sudo apt-get update -qq

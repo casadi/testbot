@@ -35,7 +35,7 @@ $TAB\$(F77) \$(LDFLAGS) -shared -Wl,-soname=libslicot.dll -o \$@ \$^ -L$LIB -lla
 EOF
 
   make
-  zip -j -r f slicot_mingw${BITNESS}_trusty.zip libslicot.dll
+  zip -j -r slicot_mingw${BITNESS}_trusty.zip libslicot.dll
   slurp_put slicot_mingw${BITNESS}_trusty
 
 else

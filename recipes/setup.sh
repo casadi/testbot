@@ -126,7 +126,7 @@ export RECIPES_FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 function matlabtunnel() {
   source $TESTBOT_DIR/restricted/env.sh
-  sudo bash -c "echo -e '127.0.0.1	$FLEX_SERVER\n' >> /etc/hosts;echo '127.0.0.1	$FLEX_HOSTNAME\n' >> /etc/hosts"
+  sudo bash -c "echo -e '\n127.0.0.1	$FLEX_SERVER\n' >> /etc/hosts;echo '127.0.0.1	$FLEX_HOSTNAME\n' >> /etc/hosts"
   cat /etc/hosts
   sudo hostname $FLEX_HOSTNAME
   mkdir -p ~/.matlab/${MATLABRELEASE}_licenses/

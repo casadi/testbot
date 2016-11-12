@@ -35,11 +35,11 @@ $TAB\$(F77) \$(LDFLAGS) -shared -Wl,-soname=libslicot.dll -o \$@ \$^ -L$LIB -lla
 EOF
 
   make
-  tar -cvf slicot_mingw${BITNESS}_trusty.tar.gz libslicot.dll
+  zip -j -r f slicot_mingw${BITNESS}_trusty.zip libslicot.dll
   slurp_put slicot_mingw${BITNESS}_trusty
 
 else
-  fetch_tar slicot mingw${BITNESS}_trusty
+  fetch_zip slicot mingw${BITNESS}_trusty
   export SLICOT_LIBRARY_DIR=$HOME/build/slicot
   export CASADI_ALLOW_GPL=ON
 fi

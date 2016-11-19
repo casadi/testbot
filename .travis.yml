@@ -14,7 +14,7 @@ matrix:
 #    - env: recipe=ipopt_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=ipopt_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=ipopt_trusty
-#    - env: recipe=ipopt_trusty GCCVERSION=4.6
+    - env: recipe=ipopt_trusty GCCVERSION=4.7
 #     - os: osx
 #       env: recipe=ipopt_osx GCCVERSION=4.9
  
@@ -22,7 +22,7 @@ matrix:
 #    - env: recipe=bonmin_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=bonmin_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=bonmin_trusty
-#    - env: recipe=bonmin_trusty GCCVERSION=4.6
+    - env: recipe=bonmin_trusty GCCVERSION=4.7
 #     - {env: recipe=bonmin_osx GCCVERSION=4.9, os: osx}
  
 #    - env: recipe=ecos_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
@@ -36,8 +36,8 @@ matrix:
 #     - env: recipe=lapack_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #     - env: recipe=lapack_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
   
-     - env: recipe=slicot_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-     - env: recipe=slicot_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+#     - env: recipe=slicot_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
+#     - env: recipe=slicot_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
   
 #    - env: recipe=clang_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=clang_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64

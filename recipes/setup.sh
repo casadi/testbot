@@ -9,7 +9,7 @@ ssh-keyscan shell.sourceforge.net >> ~/.ssh/known_hosts
 
 
 export PATH=$HOME/.local/bin:$PATH
-pip install --user ryptography==1.5.3
+pip install --user cryptography==1.5.3
 pip install --user requests==2.6.0
 set -e -E
 pip install --user psutil

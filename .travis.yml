@@ -87,8 +87,7 @@ before_install:
         then
           if [[ $GCCVERSION == 5 ]]
           then
-            sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-            sudo apt-get update -q
+            pinning xenial
           fi
           sudo apt-get install -y gcc-$GCCVERSION g++-$GCCVERSION gfortran-$GCCVERSION
           export CC=gcc-$GCCVERSION

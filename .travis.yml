@@ -76,6 +76,7 @@ matrix:
 python:
 - "2.7_with_system_site_packages"
 before_install:
+  - source recipes/setup.sh
   - |
     if [[ $TRAVIS_OS_NAME == *linux* ]]
     then
@@ -110,7 +111,7 @@ before_install:
       sudo install_name_tool -id "@rpath/libgomp.1.dylib" /usr/local/lib/gcc/4.9/libgomp.1.dylib
       export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/usr/local/lib/gcc/4.9/
     fi
-  - source recipes/setup.sh
+
 install:
   - set -e
   - source shellhelpers && false || allowfail 1 && echo "okay"

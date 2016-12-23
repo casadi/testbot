@@ -76,14 +76,18 @@ matrix:
 python:
 - "2.7_with_system_site_packages"
 before_install:
-  - source recipes/setup.sh
-  - |
+ - |
     if [[ $TRAVIS_OS_NAME == *linux* ]]
     then
       sudo dpkg --add-architecture i386
       sudo apt-get update -q
       sudo apt-get install libpython2.7-dev libc6:i386 libncurses5:i386 libstdc++6:i386
       sudo apt-get update -qq
+    fi
+  - source recipes/setup.sh
+  - |
+    if [[ $TRAVIS_OS_NAME == *linux* ]]
+    then
       if [[ $GCCVERSION ]]
         then
           if [[ $GCCVERSION == 5 ]]

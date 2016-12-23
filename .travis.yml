@@ -88,8 +88,10 @@ before_install:
           if [[ $GCCVERSION == 5 ]]
           then
             pinning xenial
+            sudo apt-get install -t xenial -y gcc-$GCCVERSION g++-$GCCVERSION gfortran-$GCCVERSION
+          else
+            sudo apt-get install -y gcc-$GCCVERSION g++-$GCCVERSION gfortran-$GCCVERSION
           fi
-          sudo apt-get install -y gcc-$GCCVERSION g++-$GCCVERSION gfortran-$GCCVERSION
           export CC=gcc-$GCCVERSION
           export CXX=g++-$GCCVERSION
           export FC=gfortran-$GCCVERSION

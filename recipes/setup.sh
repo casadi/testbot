@@ -51,7 +51,7 @@ function try_fetch_zip() {
 
 function try_fetch_7z() {
   echo "Fetching $1 -> $2"
-  travis_retry $RECIPES_DIR/fetch.sh $1.7z && mkdir -p $2 && 7za e $1.zip -o $2 -y && rm $1.7z
+  travis_retry $RECIPES_DIR/fetch.sh $1.7z && mkdir -p $2 && 7za e $1.7z -o$2 -y && rm $1.7z
 }
 
 function fetch_generic() {

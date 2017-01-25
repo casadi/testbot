@@ -45,7 +45,13 @@ function try_fetch_tar () {
 }
 
 function try_fetch_zip() {
+  echo "Fetching $1 -> $2"
   travis_retry $RECIPES_DIR/fetch.sh $1.zip && mkdir -p $2 && unzip $1.zip -d $2 && rm $1.zip
+}
+
+function try_fetch_7z() {
+  echo "Fetching $1 -> $2"
+  travis_retry $RECIPES_DIR/fetch.sh $1.7z && mkdir -p $2 && 7za e $1.zip -o $2 -y && rm $1.7z
 }
 
 function fetch_generic() {
@@ -81,6 +87,10 @@ function fetch_tar() {
 
 function fetch_zip() {
   fetch_generic $1 $2 "zip"
+}
+
+function fetch_7z() {
+  fetch_generic $1 $2 "7z"
 }
   
 function slurp() {
@@ -135,4 +145,8 @@ function matlabtunnel() {
   ssh-keyscan $GATE_SERVER >> ~/.ssh/known_hosts
   ssh -i $TESTBOT_DIR/id_rsa_travis $USER_GATE@$GATE_SERVER -L 1701:$FLEX_SERVER:1701 -L 1719:$FLEX_SERVER:1719 -L 1718:$FLEX_SERVER:1718 -L 2015:$FLEX_SERVER:2015 -L 1815:$FLEX_SERVER:1815 -L 1725:$FLEX_SERVER:1725 -L 27000:$FLEX_SERVER:27000 -N &
   sleep 3
+}
+
+function get_commit() {
+  export COMMIT=`git rev-parse --short=7 HEAD`
 }

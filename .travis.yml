@@ -16,8 +16,7 @@ matrix:
 #    - env: recipe=ipopt_trusty
 #    - env: recipe=ipopt_trusty GCCVERSION=5
 #    - env: recipe=ipopt_trusty GCCVERSION=4.7
-    - os: osx
-      env: recipe=ipopt_osx GCCVERSION=4.9
+    - {env: recipe=ipopt_osx GCCVERSION=4.9, os: osx}
  
 #    - env: recipe=bonmin_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32   
 #    - env: recipe=bonmin_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
@@ -32,8 +31,8 @@ matrix:
 #    - env: recipe=ecos_trusty
 #    - env: recipe=ecos_trusty GCCVERSION=5
 #    - env: recipe=ecos_trusty GCCVERSION=4.6
-     - os: osx
-       env: recipe=ecos_osx GCCVERSION=4.9
+    - {env: recipe=ecos_osx GCCVERSION=4.9, os: osx}
+       
 
 #    - env: recipe=lapack_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #     - env: recipe=lapack_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
@@ -48,8 +47,7 @@ matrix:
 #    - env: recipe=clang_trusty
 #    - env: recipe=clang_trusty GCCVERSION=5
 #    - env: recipe=clang_trusty GCCVERSION=4.6
-    - os: osx
-      env: recipe=clang_osx GCCVERSION=4.9
+    - {env: recipe=clang_osx GCCVERSION=4.9, os: osx}
       
 #    - env: recipe=swig_trusty
     - env: recipe=swig_matlab_trusty BAKEVERSION=matlab-customdoc
@@ -70,7 +68,7 @@ matrix:
 #    - env: recipe=hsl_trusty
 #    - env: recipe=hsl_trusty GCCVERSION=5
 #    - env: recipe=hsl_trusty GCCVERSION=4.6
-    - { env: recipe=hsl_osx, os: osx, GCCVERSION=4.9 }
+    - { env: recipe=hsl_osx GCCVERSION=4.9, os: osx }
     
     
 python:

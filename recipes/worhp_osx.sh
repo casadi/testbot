@@ -2,7 +2,7 @@
 set -e
 
 if [ -z "$SETUP" ]; then
-  
+  echo "noop"
 else
   try_fetch_7z libworhp_macosx10.9_gcc49_1.8-3cdb565 worhp
   export WORHP=$HOME/build/worhp

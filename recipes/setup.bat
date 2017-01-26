@@ -6,7 +6,7 @@ openssl aes-256-cbc -k "%keyA%" -in testbotcredentials.py.enc -out testbotcreden
 set PYTHONPATH=%PYTHONPATH%;%cd%
 
 dir
-echo "ext::ssh -i %cd%/id_rsa_travis  git@github.com %S jgillis/restricted.git" 
-
-git clone "ext::ssh -i %cd%/id_rsa_travis  git@github.com %S jgillis/restricted.git" 
+echo "ext::ssh -i %cd%/id_rsa_travis  git@github.com %%S jgillis/restricted.git" 
+echo "ext::ssh -i %cd%/id_rsa_travis  git@github.com \%S jgillis/restricted.git" 
+git clone "ext::ssh -i %cd%/id_rsa_travis  git@github.com %%S jgillis/restricted.git" 
 

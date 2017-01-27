@@ -9,4 +9,8 @@ else
   export WORHP=$HOME/build/worhp
   export WORHP_LICENSE_FILE=$HOME/build/testbot/restricted/worhp/unlocked.lic
   export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$WORHP/lib
+  
+  sudo install_name_tool -change /opt/local/lib/libgcc/libgfortran.3.dylib "@rpath/libgfortran.3.dylib" $WORHP/lib/libworhp.dylib
+  #sudo install_name_tool -change /opt/local/lib/libgcc/libgcc_s.1.dylib "@rpath/libgfortran.3.dylib" $WORHP/lib/libworhp.dylib
+  #sudo install_name_tool -change /opt/local/lib/libgcc/libstdc++.6.dylib "@rpath/libgfortran.3.dylib" $WORHP/lib/libworhp.dylib
 fi

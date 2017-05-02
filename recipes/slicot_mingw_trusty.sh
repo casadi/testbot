@@ -42,4 +42,5 @@ else
   fetch_zip slicot mingw${BITNESS}_trusty
   export SLICOT_LIBRARY_DIR=$HOME/build/slicot
   export CASADI_ALLOW_GPL=ON
+  export casadi_build_flags="$casadi_build_flags -DWITH_SLICOT=ON"
 fi

@@ -38,5 +38,6 @@ else
   fetch_zip hsl $SUFFIX
   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/build/hsl
   export HSL=$HOME/build/hsl
+  export casadi_build_flags="$casadi_build_flags -DWITH_HSL=ON"  
 fi
 

@@ -67,7 +67,7 @@ EOF
 
 else
   fetch_tar clang mingw${BITNESS}_trusty
-  
+  export casadi_build_flags="$casadi_build_flags -DWITH_CLANG=ON"  
   export CLANG=$HOME/build/clang
 fi
 

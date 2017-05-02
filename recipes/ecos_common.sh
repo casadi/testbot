@@ -12,5 +12,6 @@ else
   echo "SUFFIX" $SUFFIX
   fetch_tar ecos $SUFFIX
   export ECOS=$HOME/build/ecos
+  export casadi_build_flags="$casadi_build_flags -DWITH_ECOS=ON"  
 fi
 

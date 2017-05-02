@@ -70,7 +70,8 @@ EOF
 
 else
   fetch_tar clang mingwoct${BITNESS}_trusty
-  
+  export casadi_build_flags="$casadi_build_flags -DWITH_CLANG=ON -DOLD_LLVM=ON"  
+
   export CLANG=$HOME/build/clang
 fi
 

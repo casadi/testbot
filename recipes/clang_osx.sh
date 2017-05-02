@@ -28,5 +28,5 @@ if [ -z "$SETUP" ]; then
 else
   fetch_tar clang osx
   export ECOS=$HOME/build/clang
-  export casadi_build_flags="$casadi_build_flags -DWITH_CLANG=ON"
+  export casadi_build_flags="$casadi_build_flags -DWITH_CLANG=ON -DOLD_LLVM=ON"
 fi

@@ -1,5 +1,5 @@
-import subprocess
 from __future__ import print_function
+import subprocess
 import sys
 
 def eprint(*args, **kwargs):

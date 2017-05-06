@@ -105,7 +105,7 @@ before_install:
     else
       shell_session_update() { :; } # Workaround for travis-ci/travis-ci#6522
       brew install binutils
-      brew reinstall gcc49 --with-fortran
+      brew reinstall gcc49@4.9.3 --with-fortran
       export FC=gfortran-4.9
       export F77=gfortran-4.9
       sudo install_name_tool -id "@rpath/libgfortran.3.dylib" /usr/local/lib/gcc/4.9/libgfortran.3.dylib

@@ -22,7 +22,7 @@ def score(s):
   print >>sys.stderr, out
   return int(out) if p.returncode==0 else inf
 
-print sorted([(k,v,score(k)) for k,v in config.items()],key=lambda x:x[2])[0][1]
+print(sorted([(k,v,score(k)) for k,v in config.items()],key=lambda x:x[2])[0][1])
 
 
 

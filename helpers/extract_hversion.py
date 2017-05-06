@@ -1,4 +1,4 @@
-for l in file('casadi_meta.cpp','r').readlines():
+for l in open('casadi_meta.cpp','r').readlines():
   if "CasadiMeta::version" in l:
     version = l.split('"')[1]
     if "+" not in version:

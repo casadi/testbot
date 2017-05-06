@@ -4,7 +4,7 @@ import sys
 import yaml
 inf = float('Inf')
 
-config = yaml.load(file(sys.argv[1],'r'))
+config = yaml.load(open(sys.argv[1],'r'))
 
 def score(s):
   if s=="default": return 1e9

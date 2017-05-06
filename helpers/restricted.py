@@ -40,7 +40,7 @@ def upload(filename,remote_filename=None):
   r = s.get('https://api.github.com/repos/jgillis/restricted/releases',timeout=timeout)
   assert r.ok, str(r)
   print(r.json())
-  l = filter(lambda x: x["name"]=="Perpetual",r.json())
+  l = list(filter(lambda x: x["name"]=="Perpetual",r.json()))
   release = l[0]
 
   for a in get_assets(release["assets_url"],timeout=timeout,params=myparams):
@@ -59,7 +59,7 @@ def upload(filename,remote_filename=None):
 def download(filename):
   r = s.get('https://api.github.com/repos/jgillis/restricted/releases',timeout=timeout)
   assert r.ok, str(r)
-  l = filter(lambda x: x["name"]=="Perpetual",r.json())
+  l = list(filter(lambda x: x["name"]=="Perpetual",r.json()))
   release = l[0]
 
   for a in get_assets(release["assets_url"],timeout=timeout,params=myparams):

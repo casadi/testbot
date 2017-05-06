@@ -39,19 +39,19 @@ def upload(filename,remote_filename=None):
     remote_filename = filename
   r = s.get('https://api.github.com/repos/jgillis/restricted/releases',timeout=timeout)
   assert r.ok, str(r)
-  print r.json()
+  print(r.json())
   l = filter(lambda x: x["name"]=="Perpetual",r.json())
   release = l[0]
 
   for a in get_assets(release["assets_url"],timeout=timeout,params=myparams):
     if a["name"]==remote_filename:
-     print "Overwriting"
+     print("Overwriting")
      r = s.delete(a["url"])
      assert r.ok, str(r)
      time.sleep(1)
         
 
-  print "Uploading", filename, "to", remote_filename
+  print("Uploading", filename, "to", remote_filename)
   rs = s.post(release["upload_url"].replace("{?name,label}",""),params={"name": remote_filename,"label": ""},data=file(filename,"rb"),verify=False,headers={"Content-Type":"application/gzip"},timeout=timeout)
   assert rs.ok, str(rs.json())
   return rs

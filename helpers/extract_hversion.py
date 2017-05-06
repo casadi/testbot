@@ -6,4 +6,4 @@ for l in file('casadi_meta.cpp','r').readlines():
   if "CasadiMeta::git_describe" in l:
     version = l.split('"')[1]
 
-print version
+print(version)

@@ -42,6 +42,37 @@ sudo apt-get install -q -y -t vivid mingw-w64
 sudo apt-get install -q -y -t vivid mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfortran-mingw-w64 mingw-w64-tools
 }
 
+function python_setup() {
+  if [[ $TRAVIS_OS_NAME == *linux* ]]
+  then
+    wget http://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh
+  else
+    wget http://repo.continuum.io/miniconda/Miniconda2-latest-MacOSX-x86_64.sh -O miniconda.sh
+  fi
+  chmod +x miniconda.sh
+  ./miniconda.sh -b
+  export PATH=$HOME/miniconda2/bin:$PATH
+  conda update --yes conda
+  conda create --yes -n condaenv python=$TRAVIS_PYTHON_VERSION requests pyyaml numpy=$NUMPYVERSION scipy matplotlib
+  conda install --yes -n condaenv pip
+  source activate condaenv
+  export PYTHONVERSION_DOT3=`python -c "import sys;print('%s.%s.%s' % sys.version_info[:3])"`
+  echo ":$PYTHONVERSION_DOT3:"
+  export PYTHONVERSION_DOT2=`python -c "import sys;print('%s.%s' % sys.version_info[:2])"`
+  echo ":$PYTHONVERSION_DOT2:"
+  export PYTHONVERSION=`python -c "import sys;print('%s%s' % sys.version_info[:2])"`
+  echo ":$PYTHONVERSION:"
+  export PYTHONVERSION1=`python -c "import sys;print(sys.version_info[0])"`
+  echo ":$PYTHONVERSION1:"
+  if [[ $PYTHONVERSION1 == 3 ]]
+  then
+    export WITH_PYTHON3=ON
+    export PYTHONLIB_MOD=m
+  else
+    export PYTHONLIB_MOD=
+  fi
+}
+
 function pinning() {
 cat <<EOF | sudo tee --append  /etc/apt/sources.list
     deb-src http://archive.ubuntu.com/ubuntu $1 main restricted universe multiverse

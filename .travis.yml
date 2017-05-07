@@ -118,6 +118,7 @@ before_install:
 install:
   - set -e
   - source shellhelpers && false || allowfail 1 && echo "okay"
+  - remote_access
   - source recipes/$recipe.sh
 script:
   - echo "All is fine"

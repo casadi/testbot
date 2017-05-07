@@ -11,6 +11,9 @@ if [ -z "$SETUP" ]; then
   tar -xvf coinhsl.tar.gz
   cd coinhsl-2014.01.10
   tar -xvf ../metis-4.0.3.tar.gz
+  echo "./configure --prefix=$mypwd/coinhsl-install LIBS=-L$HOME/build/ipopt-install/lib"
+  pwd
+  remote_access
   ./configure --prefix=$mypwd/coinhsl-install LIBS="-L$HOME/build/ipopt-install/lib" --with-blas="-lcoinblas -lcoinlapack -lcoinblas -lgfortran" CXXFLAGS="-g -O2 -fopenmp" FCFLAGS="-g -O2 -fopenmp"
   make
   make install

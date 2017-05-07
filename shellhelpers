@@ -42,6 +42,20 @@ sudo apt-get install -q -y -t vivid mingw-w64
 sudo apt-get install -q -y -t vivid mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfortran-mingw-w64 mingw-w64-tools
 }
 
+function osx_rpath() {
+      sudo install_name_tool -id "@rpath/libgfortran.3.dylib" /usr/local/lib/gcc/4.9/libgfortran.3.dylib
+      sudo install_name_tool -id "@rpath/libquadmath.0.dylib" /usr/local/lib/gcc/4.9/libquadmath.0.dylib
+      sudo install_name_tool -id "@rpath/libgcc_s.1.dylib" /usr/local/lib/gcc/4.9/libgcc_s.1.dylib
+      sudo install_name_tool -id "@rpath/libgomp.1.dylib" /usr/local/lib/gcc/4.9/libgomp.1.dylib
+}
+
+function osx_rpath_restore() {
+      sudo install_name_tool -id "/usr/local/lib/gcc/4.9/libgfortran.3.dylib" /usr/local/lib/gcc/4.9/libgfortran.3.dylib
+      sudo install_name_tool -id "/usr/local/lib/gcc/4.9/libquadmath.0.dylib" /usr/local/lib/gcc/4.9/libquadmath.0.dylib
+      sudo install_name_tool -id "/usr/local/lib/gcc/4.9/libgcc_s.1.dylib" /usr/local/lib/gcc/4.9/libgcc_s.1.dylib
+      sudo install_name_tool -id "/usr/local/lib/gcc/4.9/libgomp.1.dylib" /usr/local/lib/gcc/4.9/libgomp.1.dylib
+}
+
 function python_setup() {
   if [[ $TRAVIS_OS_NAME == *linux* ]]
   then

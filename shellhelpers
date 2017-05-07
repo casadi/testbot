@@ -60,6 +60,9 @@ function osx_rpath() {
 }
 
 function osx_rpath_restore() {
+
+      echo "sudo install_name_tool -id $FORTRAN_FULL $FORTRAN_FULL" 
+      
       sudo install_name_tool -id "$FORTRAN_FULL" $FORTRAN_FULL
       sudo install_name_tool -id "$QUADMATH_FULL" $QUADMATH_FULL
       sudo install_name_tool -id "$GCC_FULL" $GCC_FULL

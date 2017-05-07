@@ -71,6 +71,7 @@ function python_setup() {
   else
     export PYTHONLIB_MOD=
   fi
+  pip install pysftp
 }
 
 function pinning() {

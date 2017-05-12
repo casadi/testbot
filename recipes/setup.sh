@@ -31,6 +31,9 @@ git clone git@github.com:jgillis/restricted.git
 git config --global user.email "testbot@casadidev.org"
 git config --global user.name "casaditestbot"
 
+
+export casadi_build_flags="$casadi_build_flags -DWITH_COMMON=ON -DWITH_HPMPC=ON -DWITH_BUILD_HPMPC=ON -DWITH_BLASFEO=ON -DWITH_BUILD_BLASFEO=ON"
+
 if [ -d $HOME/build/testbot/recipes ];
 then
   export TESTBOT_DIR=$HOME/build/testbot

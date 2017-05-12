@@ -12,7 +12,7 @@ if [ -z "$SETUP" ]; then
   cd coinhsl-2014.01.10
   tar -xvf ../metis-4.0.3.tar.gz
   osx_rpath_restore
-  ./configure --prefix=$mypwd/coinhsl-install LIBS="-L$HOME/build/ipopt-install/lib" --with-blas="-lcoinblas -lcoinlapack -lcoinblas -lgfortran" CXXFLAGS="-g -O2 -fopenmp" FCFLAGS="-g -O2 -fopenmp"
+  ./configure --prefix=$mypwd/coinhsl-install LIBS="-L$HOME/build/ipopt-install/lib" --with-blas="-lcoinblas -lcoinlapack -lcoinblas -lgfortran" CXXFLAGS="-O2" FCFLAGS="-O2"
   osx_rpath
   make
   make install

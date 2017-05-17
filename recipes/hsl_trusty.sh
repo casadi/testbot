@@ -9,7 +9,7 @@ if [ -z "$SETUP" ]; then
   tar -xvf coinhsl.tar.gz
   cd coinhsl-2014.01.10
   tar -xvf ../metis-4.0.3.tar.gz
-  ./configure --prefix=$mypwd/coinhsl-install LIBS="-llapack" --with-blas="-L/usr/lib -lblas" CXXFLAGS="-O2" FCFLAGS="-O2"
+  ./configure --prefix=$mypwd/coinhsl-install --disable-static --enable-shared LIBS="-llapack" --with-blas="-L/usr/lib -lblas" CXXFLAGS="-O2 -fPIC -ftls-model=local-dynamic" FCFLAGS="-O2 -fPIC -ftls-model=local-dynamic"
   make
   make install
   cd $mypwd/coinhsl-install/lib

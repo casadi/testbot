@@ -24,13 +24,13 @@ if [ -z "$SETUP" ]; then
 else
   echo "mingw_octave_start :$BAKEVERSION:"
   pushd $HOME/build
-  fetch_tar mingw_octave$BITNESS mingw_octave
+  fetch_tar mingw_octave$BITNESS trusty
   popd
   echo "mingw_octave_end :$BAKEVERSION:"
-  export MINGW_ROOT=$HOME/build/mingw_octave/usr
-  export PATH=$HOME/build/mingw_octave/usr/bin:$HOME/build/mingw_octave/usr/bin/$compilerprefix:$PATH
-  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/build/mingw_octave/usr/x86_64-unknown-linux-gnu/$compilerprefix/lib/
+  export MINGW_ROOT=$HOME/build/mingw_octave$BITNESS/usr
+  export PATH=$HOME/build/mingw_octave$BITNESS/usr/bin:$HOME/build/mingw_octave$BITNESS/usr/bin/$compilerprefix:$PATH
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/build/mingw_octave$BITNESS/usr/x86_64-unknown-linux-gnu/$compilerprefix/lib/
   mkdir -p /home/travis/build/casadi/testbot/
   # For .la files
-  ln -s $HOME/build/mingw_octave /home/travis/build/casadi/testbot/mxe-octave
+  ln -s $HOME/build/mingw_octave$BITNESS /home/travis/build/casadi/testbot/mxe-octave
 fi

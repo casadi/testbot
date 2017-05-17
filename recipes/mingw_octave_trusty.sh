@@ -23,8 +23,8 @@ else
   popd
   echo "mingw_octave_end :$BAKEVERSION:"
   export MINGW_ROOT=$HOME/build/mingw_octave/usr
-  export PATH=$HOME/build/mingw_octave/usr/bin:$HOME/build/mingw_octave/usr/bin/i686-w64-mingw32:$PATH
-  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/build/mingw_octave/usr/x86_64-unknown-linux-gnu/i686-w64-mingw32/lib/
+  export PATH=$HOME/build/mingw_octave/usr/bin:$HOME/build/mingw_octave/usr/bin/$compilerprefix:$PATH
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/build/mingw_octave/usr/x86_64-unknown-linux-gnu/$compilerprefix/lib/
   mkdir -p /home/travis/build/casadi/testbot/
   # For .la files
   ln -s $HOME/build/mingw_octave /home/travis/build/casadi/testbot/mxe-octave

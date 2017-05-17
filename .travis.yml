@@ -76,6 +76,7 @@ matrix:
     
     
     - env: recipe=hsl_trusty
+    - env: recipe=hsl_trusty GCCVERSION=4.7
 #    - env: recipe=hsl_trusty GCCVERSION=5
 #    - env: recipe=hsl_trusty GCCVERSION=4.6
     - { env: recipe=hsl_osx GCCVERSION=4.9, os: osx }

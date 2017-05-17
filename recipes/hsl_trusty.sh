@@ -21,6 +21,7 @@ if [ -z "$SETUP" ]; then
   slurp_put hsl_trusty
 else
   fetch_tar hsl trusty
+  rm hsl/*.a
   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/build/hsl
   export HSL=$HOME/build/hsl
   export casadi_build_flags="$casadi_build_flags -DWITH_HSL=ON"  

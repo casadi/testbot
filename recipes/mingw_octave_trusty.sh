@@ -11,12 +11,12 @@ if [ -z "$SETUP" ]; then
   autoconf
   if [[ $BITNESS == 64 ]]
   then
-    ./configure --enable-system-gcc --enable-windows-64
+    ./configure --enable-windows-64
   else
-    ./configure --enable-system-gcc --disable-windows-64
+    ./configure --disable-windows-64
   fi
   (while true ; do sleep 60 ; echo "ping" ; done ) &
-  make mingw-w64
+  make gcc
   ls -al
   echo "tar -zcvf mingw_octave$BITNESS$SUFFIXFILE.tar.gz -C $mypwd usr /dev/null"
   tar -zcvf mingw_octave$BITNESS$SUFFIXFILE.tar.gz usr >/dev/null

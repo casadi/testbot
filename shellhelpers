@@ -47,17 +47,19 @@ function osx_rpath() {
       export QUADMATH_FULL=/usr/local/lib/gcc/4.9/libquadmath.0.dylib
       export GCC_FULL=/usr/local/lib/gcc/4.9/libgcc_s.1.dylib
       export GOMP_FULL=/usr/local/lib/gcc/4.9/libgomp.1.dylib
-      export CXX_FULL=/usr/local/Cellar/gcc@4.9/4.9.4/lib/gcc/4.9/libstd++.6.dylib
+      export CXX_FULL=/usr/local/Cellar/gcc@4.9/4.9.4/lib/gcc/4.9/libstdc++.6.dylib
       
       sudo install_name_tool -id "@rpath/libgfortran.3.dylib" $FORTRAN_FULL
       sudo install_name_tool -id "@rpath/libquadmath.0.dylib" $QUADMATH_FULL
       sudo install_name_tool -id "@rpath/libgcc_s.1.dylib" $GCC_FULL
       sudo install_name_tool -id "@rpath/libgomp.1.dylib" $GOMP_FULL
-      
+      sudo install_name_tool -id "@rpath/libstdc++.1.dylib" $CXX_FULL
+       
       sudo install_name_tool -change $QUADMATH_FULL "@rpath/libquadmath.0.dylib" $FORTRAN_FULL
       sudo install_name_tool -change /usr/local/Cellar/gcc@4.9/4.9.4/lib/gcc/4.9/libquadmath.0.dylib "@rpath/libquadmath.0.dylib" $FORTRAN_FULL
       sudo install_name_tool -change $GCC_FULL "@rpath/libgcc_s.1.dylib" $FORTRAN_FULL 
       sudo install_name_tool -change $GCC_FULL "@rpath/libgcc_s.1.dylib" $QUADMATH_FULL
+      sudo install_name_tool -change $GCC_FULL "@rpath/libgcc_s.1.dylib" $CXX_FULL
 }
 
 function osx_rpath_restore() {
@@ -68,9 +70,11 @@ function osx_rpath_restore() {
       sudo install_name_tool -id "$QUADMATH_FULL" $QUADMATH_FULL
       sudo install_name_tool -id "$GCC_FULL" $GCC_FULL
       sudo install_name_tool -id "$GOMP_FULL" $GOMP_FULL
+      sudo install_name_tool -id "$CXX_FULL" $CXX_FULL
       
       sudo install_name_tool -change "@rpath/libgcc_s.1.dylib" $GCC_FULL $QUADMATH_FULL
       sudo install_name_tool -change "@rpath/libgcc_s.1.dylib" $GCC_FULL $FORTRAN_FULL
+      sudo install_name_tool -change "@rpath/libgcc_s.1.dylib" $GCC_FULL $CXX_FULL
       sudo install_name_tool -change "@rpath/libquadmath.0.dylib" $QUADMATH_FULL $FORTRAN_FULL
 }
 

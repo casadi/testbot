@@ -11,6 +11,9 @@ else
   export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$WORHP/lib
   
   sudo install_name_tool -change /opt/local/lib/libgcc/libgfortran.3.dylib "@rpath/libgfortran.3.dylib" $WORHP/lib/libworhp.dylib
+  sudo install_name_tool -change /opt/local/lib/libgcc/libgcc_s.1.dylib "@rpath/libgcc_s.1.dylib" $WORHP/lib/libworhp.dylib
+  ls /opt/local/lib/libgcc/libstdc++.6.dylib
+  
   #sudo install_name_tool -change /opt/local/lib/libgcc/libgcc_s.1.dylib "@rpath/libgfortran.3.dylib" $WORHP/lib/libworhp.dylib
   #sudo install_name_tool -change /opt/local/lib/libgcc/libstdc++.6.dylib "@rpath/libgfortran.3.dylib" $WORHP/lib/libworhp.dylib
   export casadi_build_flags="$casadi_build_flags -DWITH_WORHP=ON"

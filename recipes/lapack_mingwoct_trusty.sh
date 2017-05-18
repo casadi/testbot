@@ -54,7 +54,6 @@ EOF
 else
   fetch_tar lapack mingwoct${BITNESS}_trusty
   export LIB=$HOME/build/lapack
-  export CMAKE_LIBRARY_PATH="$CMAKE_LIBRARY_PATH:$MINGW_LIB"
   export casadi_build_flags="$casadi_build_flags -DWITH_LAPACK=ON"  
 fi
 

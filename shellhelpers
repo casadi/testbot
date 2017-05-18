@@ -47,7 +47,7 @@ function osx_rpath() {
       export QUADMATH_FULL=/usr/local/lib/gcc/4.9/libquadmath.0.dylib
       export GCC_FULL=/usr/local/lib/gcc/4.9/libgcc_s.1.dylib
       export GOMP_FULL=/usr/local/lib/gcc/4.9/libgomp.1.dylib
-      export CXX_FULL=/usr/local/lib/gcc/4.9/libstd++.6.dylib
+      export CXX_FULL=/usr/local/Cellar/gcc@4.9/4.9.4/lib/gcc/4.9/libstd++.6.dylib
       
       sudo install_name_tool -id "@rpath/libgfortran.3.dylib" $FORTRAN_FULL
       sudo install_name_tool -id "@rpath/libquadmath.0.dylib" $QUADMATH_FULL

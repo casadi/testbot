@@ -28,8 +28,9 @@ else
   popd
   echo "mingw_octave_end :$BAKEVERSION:"
   export MINGW_ROOT=$HOME/build/mingw_octave$BITNESS/usr
-  export PATH=$HOME/build/mingw_octave$BITNESS/usr/bin:$HOME/build/mingw_octave$BITNESS/usr/bin/$compilerprefix:$PATH
-  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/build/mingw_octave$BITNESS/usr/x86_64-unknown-linux-gnu/$compilerprefix/lib/
+  export MINGW_LIB=$MINGW_ROOT/mingw_octave$BITNESS/lib
+  export PATH=$MINGW_ROOT/bin:$MINGW_ROOT/bin/$compilerprefix:$PATH
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$MINGW_ROOT/x86_64-unknown-linux-gnu/$compilerprefix/lib/:$MINGW_LIB
   mkdir -p /home/travis/build/casadi/testbot/
   # For .la files
   ln -s $HOME/build/mingw_octave$BITNESS /home/travis/build/casadi/testbot/mxe-octave

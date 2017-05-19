@@ -5,7 +5,7 @@ if [ -z "$SETUP" ]; then
   echo "noop"
 else
   #try_fetch_7z libworhp_vs2013_1.9-1_16_10 worhp
-  try_fetch_7z worhp_1.10_mingw worhp
+  try_fetch_zip worhp_1.10_mingw worhp
     echo "bitness: ${BITNESS}"
   ls $HOME/build/worhp
   export WORHP=$HOME/build/worhp/

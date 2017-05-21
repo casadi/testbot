@@ -11,5 +11,5 @@ else
   export WORHP=$HOME/build/worhp/vs2013-Release
   mv $WORHP/bin${BITNESS} $WORHP/lib
   export WORHP_LICENSE_FILE=$HOME/build/testbot/restricted/worhp/unlocked.lic
-  export casadi_build_flags="$casadi_build_flags -DWITH_WORHP=ON"
+  export casadi_build_flags="$casadi_build_flags -DWITH_WORHP=OFF"
 fi

@@ -32,7 +32,7 @@ git config --global user.email "testbot@casadidev.org"
 git config --global user.name "casaditestbot"
 
 
-export casadi_build_flags="$casadi_build_flags -DWITH_NO_QPOASES_BANNER=ON -DWITH_COMMON=ON -DWITH_HPMPC=ON -DWITH_BUILD_HPMPC=ON -DWITH_BLASFEO=ON -DWITH_BUILD_BLASFEO=ON"
+export casadi_build_flags="$casadi_build_flags -DWITH_SO_VERSION=OFF -DWITH_NO_QPOASES_BANNER=ON -DWITH_COMMON=ON -DWITH_HPMPC=ON -DWITH_BUILD_HPMPC=ON -DWITH_BLASFEO=ON -DWITH_BUILD_BLASFEO=ON"
 
 if [ -d $HOME/build/testbot/recipes ];
 then

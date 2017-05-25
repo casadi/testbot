@@ -20,7 +20,7 @@ if [ -z "$SETUP" ]; then
   ls
   mv libcoinhsl.0.dylib libhsl.dylib
   rm libcoinhsl.dylib
-  sudo install_name_tool -id "@path/libhsl.dylib" libhsl.dylib
+  sudo install_name_tool -id "@rpath/libhsl.dylib" libhsl.dylib
   popd
   tar -zcvf hsl_osx.tar.gz -C $mypwd/coinhsl-install/lib . 
 

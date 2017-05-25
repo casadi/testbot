@@ -55,7 +55,7 @@ matrix:
 #    - env: recipe=clang_trusty
 #    - env: recipe=clang_trusty GCCVERSION=5
 #    - env: recipe=clang_trusty GCCVERSION=4.6
-    - {env: recipe=clang_osx GCCVERSION=4.9, os: osx}
+#    - {env: recipe=clang_osx GCCVERSION=4.9, os: osx}
       
 #    - env: recipe=swig_trusty
 #    - env: recipe=swig_matlab_trusty BAKEVERSION=matlab-customdoc
@@ -79,7 +79,7 @@ matrix:
 #    - env: recipe=hsl_trusty GCCVERSION=4.7
 #    - env: recipe=hsl_trusty GCCVERSION=5
 #    - env: recipe=hsl_trusty GCCVERSION=4.6
-#    - { env: recipe=hsl_osx GCCVERSION=4.9, os: osx }
+    - { env: recipe=hsl_osx GCCVERSION=4.9, os: osx }
     
     
 python:

@@ -89,7 +89,7 @@ function python_setup() {
   ./miniconda.sh -b
   export PATH=$HOME/miniconda2/bin:$PATH
   conda update --yes conda
-  conda create --yes -n condaenv python=$TRAVIS_PYTHON_VERSION requests pyyaml numpy=$NUMPYVERSION scipy matplotlib=1.5
+  conda create --yes -n condaenv python=$TRAVIS_PYTHON_VERSION requests pyyaml numpy=$NUMPYVERSION scipy matplotlib
   conda install --yes -n condaenv pip
   source activate condaenv
   export PYTHONVERSION_DOT3=`python -c "import sys;print('%s.%s.%s' % sys.version_info[:3])"`

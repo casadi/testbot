@@ -78,7 +78,7 @@ function osx_rpath_restore() {
       sudo install_name_tool -change "@rpath/libquadmath.0.dylib" $QUADMATH_FULL $FORTRAN_FULL
 }
 
-function python_setup() {
+function python_setup_light() {
   if [[ $TRAVIS_OS_NAME == *linux* ]]
   then
     wget http://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh
@@ -89,9 +89,16 @@ function python_setup() {
   ./miniconda.sh -b
   export PATH=$HOME/miniconda2/bin:$PATH
   conda update --yes conda
-  conda create --yes -n condaenv python=$TRAVIS_PYTHON_VERSION requests pyyaml numpy=$NUMPYVERSION scipy matplotlib
+  conda create --yes -n condaenv python=2.7 requests pyyaml
   conda install --yes -n condaenv pip
   source activate condaenv
+  pip install pysftp
+}
+
+function python_setup() {
+  conda create --yes -n condaenv_build python=$TRAVIS_PYTHON_VERSION requests pyyaml numpy=$NUMPYVERSION scipy matplotlib
+  conda install --yes -n condaenv_build pip
+  source activate condaenv_build
   export PYTHONVERSION_DOT3=`python -c "import sys;print('%s.%s.%s' % sys.version_info[:3])"`
   echo ":$PYTHONVERSION_DOT3:"
   export PYTHONVERSION_DOT2=`python -c "import sys;print('%s.%s' % sys.version_info[:2])"`

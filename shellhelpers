@@ -122,6 +122,7 @@ function python_setup() {
   else
     export CMAKE_PYTHON_LIBRARY=${CMAKE_PYTHON_LIBRARY}.dylib
   fi
+  python-config --cflags
   export CMAKE_PYTHON_INCLUDE_DIR=$HOME/miniconda2/envs/condaenv/include/python${PYTHONVERSION_DOT2}${PYTHONLIB_MOD}
 }
 

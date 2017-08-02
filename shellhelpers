@@ -115,7 +115,7 @@ function python_setup() {
     export PYTHONLIB_MOD=
   fi
   pip install pysftp
-  export CMAKE_PYTHON_LIBRARY=$HOME/miniconda2/envs/condaenv/lib/libpython${PYTHONVERSION_DOT2}${PYTHONLIB_MOD}
+  export CMAKE_PYTHON_LIBRARY=$HOME/miniconda2/envs/condaenv_build/lib/libpython${PYTHONVERSION_DOT2}${PYTHONLIB_MOD}
   if [[ $TRAVIS_OS_NAME == *linux* ]]
   then
     export CMAKE_PYTHON_LIBRARY=${CMAKE_PYTHON_LIBRARY}.so
@@ -123,7 +123,7 @@ function python_setup() {
     export CMAKE_PYTHON_LIBRARY=${CMAKE_PYTHON_LIBRARY}.dylib
   fi
   python-config --cflags
-  export CMAKE_PYTHON_INCLUDE_DIR=$HOME/miniconda2/envs/condaenv/include/python${PYTHONVERSION_DOT2}${PYTHONLIB_MOD}
+  export CMAKE_PYTHON_INCLUDE_DIR=$HOME/miniconda2/envs/condaenv_build/include/python${PYTHONVERSION_DOT2}${PYTHONLIB_MOD}
 }
 
 function pinning() {

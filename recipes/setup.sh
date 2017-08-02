@@ -2,7 +2,7 @@
 set -e -E
 
 source shellhelpers
-python_setup_light
+python_setup_light > /dev/null
 
 ssh-keyscan github.com >> ~/.ssh/known_hosts
 ssh-keyscan web.sourceforge.net >> ~/.ssh/known_hosts

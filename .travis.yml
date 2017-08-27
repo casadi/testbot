@@ -17,7 +17,7 @@ matrix:
 #    - env: recipe=ipopt_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=ipopt_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=ipopt_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
-    - env: recipe=ipopt_dockcross DOCKCROSS=manylinux BITNESS=64
+#    - env: recipe=ipopt_dockcross DOCKCROSS=manylinux BITNESS=64
 #    - env: recipe=ipopt_trusty
 #    - env: recipe=ipopt_trusty GCCVERSION=5
 #    - env: recipe=ipopt_trusty GCCVERSION=4.7
@@ -75,8 +75,10 @@ matrix:
 #    - env: recipe=hsl_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=hsl_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
     
-    
-#    - env: recipe=hsl_trusty
+
+
+#    - env: recipe=ipopt_dockcross DOCKCROSS=manylinux BITNESS=64    
+    - env: recipe=hsl_trusty DOCKCROSS=manylinux BITNESS=64
 #    - env: recipe=hsl_trusty GCCVERSION=4.7
 #    - env: recipe=hsl_trusty GCCVERSION=5
 #    - env: recipe=hsl_trusty GCCVERSION=4.6

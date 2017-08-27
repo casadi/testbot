@@ -77,8 +77,7 @@ matrix:
     
 
 
-#    - env: recipe=ipopt_dockcross DOCKCROSS=manylinux BITNESS=64    
-    - env: recipe=hsl_trusty DOCKCROSS=manylinux BITNESS=64
+    - env: recipe=hsl_dockcross DOCKCROSS=manylinux BITNESS=64
 #    - env: recipe=hsl_trusty GCCVERSION=4.7
 #    - env: recipe=hsl_trusty GCCVERSION=5
 #    - env: recipe=hsl_trusty GCCVERSION=4.6

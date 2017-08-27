@@ -145,6 +145,13 @@ sudo apt-get update -qq
 }
 
 function dockcross_setup_start() {
+  if [[ $BITNESS == *64* ]]
+  then
+    export ARCH=${DOCKCROSS}-x64
+  else
+    export ARCH=${DOCKCROSS}-x86
+  fi
+
   echo $PATH > $HOME/pathold.txt
   docker pull dockcross/$ARCH
   docker run --rm dockcross/$ARCH > dockcross

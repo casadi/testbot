@@ -122,7 +122,6 @@ function python_setup() {
   else
     export CMAKE_PYTHON_LIBRARY=${CMAKE_PYTHON_LIBRARY}.dylib
   fi
-  python-config --cflags
   export CMAKE_PYTHON_INCLUDE_DIR=$HOME/miniconda2/envs/condaenv_build/include/python${PYTHONVERSION_DOT2}${PYTHONLIB_MOD}
   export MANYLINUX_PYTHON_DIR=/opt/python/cp${PYTHONVERSION}-cp${PYTHONVERSION}m/
   export MANYLINUX_PYTHON_INCLUDE_DIR=${MANYLINUX_PYTHON_DIR}/include/python${PYTHONVERSION_DOT2}${PYTHONLIB_MOD}/
@@ -143,6 +142,24 @@ cat <<EOF | sudo tee /etc/apt/preferences.d/mytest
     Pin-priority: 600
 EOF
 sudo apt-get update -qq
+}
+
+function dockcross_setup_start() {
+  echo $PATH > $HOME/pathold.txt
+  docker pull dockcross/$ARCH
+  docker run --rm dockcross/$ARCH > dockcross
+  perl -p -i -e 's/^ +-v.*$/    -v \$HOME:\$HOME \\/g;s/^ +\$HOST_VOLUMES .*/    -w \$HOST_PWD --env-file \$HOME\/env.txt \\/g;s/^d +\$FINAL_IMAGE \"\$@\"/ \$FINAL_IMAGE bash -c \"source \$HOME\/path_appends.txt ; \$@\"/g' dockcross
+  cat dockcross
+  chmod +x ./dockcross
+  export PATH=`pwd`:$PATH
+}
+
+function dockcross_setup_finish() {
+  printenv | grep -v PATH | grep -v miniconda > $HOME/env.txt
+  echo $PATH > $HOME/pathnew.txt
+  echo -n "$MANYLINUX_PYTHON_DIR/bin/:" > $HOME/pathcross.txt
+  dockcross bash -c 'echo -n $PATH' >> $HOME/pathcross.txt
+  python -c "n = open('$HOME/pathnew.txt','r').read().split(':');o = open('$HOME/pathold.txt','r').read().split(':');print('PATH=%s:%s' % (open('$HOME/pathcross.txt','r').read().rstrip(),':'.join([i.rstrip() for i in n if i not in o and 'miniconda' not in i])))" >> $HOME/env.txt
 }
 
 function remote_access() {

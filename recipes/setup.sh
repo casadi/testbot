@@ -151,6 +151,10 @@ function matlabtunnel() {
   sleep 3
 }
 
+function build_env() {
+  $BUILD_ENV $@
+}
+
 function get_commit() {
   export COMMIT=`git rev-parse --short=7 HEAD`
 }

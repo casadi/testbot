@@ -35,9 +35,9 @@ EOF
   popd
   mkdir build
   pushd build
-  ../configure $FLAGS --prefix=$HOME/ipopt-install --disable-shared ADD_FFLAGS=-fPIC ADD_CFLAGS=-fPIC ADD_CXXFLAGS=-fPIC --with-blas=BUILD --with-lapack=BUILD --with-mumps=BUILD --with-metis=BUILD --without-hsl --without-asl
-  make
-  make install
+  buildenv ../configure $FLAGS --prefix=$HOME/ipopt-install --disable-shared ADD_FFLAGS=-fPIC ADD_CFLAGS=-fPIC ADD_CXXFLAGS=-fPIC --with-blas=BUILD --with-lapack=BUILD --with-mumps=BUILD --with-metis=BUILD --without-hsl --without-asl
+  buildenv make
+  buildenv make install
   popd && popd
   tar -zcvf ipopt$SUFFIXFILE.tar.gz -C $HOME/ipopt-install .
   slurp_put ipopt$SUFFIXFILE

@@ -156,13 +156,13 @@ function dockcross_setup_start() {
   docker pull dockcross/$ARCH
   docker run --rm dockcross/$ARCH > dockcross
   perl -p -i -e 's/^ +-v.*$/    -v \$HOME:\$HOME \\/g;s/^ +\$HOST_VOLUMES .*/    -w \$HOST_PWD --env-file \$HOME\/env.txt \\/g;s/^d +\$FINAL_IMAGE \"\$@\"/ \$FINAL_IMAGE bash -c \"source \$HOME\/path_appends.txt ; \$@\"/g' dockcross
-  cat dockcross
+  #cat dockcross
   chmod +x ./dockcross
   export PATH=`pwd`:$PATH
 }
 
 function dockcross_setup_finish() {
-  printenv | grep -v PATH | grep -v miniconda > $HOME/env.txt
+  printenv | grep -v miniconda > $HOME/env.txt
   echo $PATH > $HOME/pathnew.txt
   echo -n "$MANYLINUX_PYTHON_DIR/bin/:" > $HOME/pathcross.txt
   dockcross bash -c 'echo -n $PATH' >> $HOME/pathcross.txt

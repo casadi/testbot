@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export SUFFIX=dockcross_manylinux${BITNESS}
+export SUFFIX=manylinux${BITNESS}_dockcross
 
 if [ -z "$SETUP" ]; then
   export BUILD_ENV=dockcross

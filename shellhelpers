@@ -124,7 +124,8 @@ function python_setup() {
   fi
   python-config --cflags
   export CMAKE_PYTHON_INCLUDE_DIR=$HOME/miniconda2/envs/condaenv_build/include/python${PYTHONVERSION_DOT2}${PYTHONLIB_MOD}
-  export MANYLINUX_PYTHON_INCLUDE_DIR=/opt/python/cp${PYTHONVERSION}-cp${PYTHONVERSION}m/include/python${PYTHONVERSION_DOT2}${PYTHONLIB_MOD}/
+  export MANYLINUX_PYTHON_DIR=/opt/python/cp${PYTHONVERSION}-cp${PYTHONVERSION}m/
+  export MANYLINUX_PYTHON_INCLUDE_DIR=${MANYLINUX_PYTHON_DIR}/include/python${PYTHONVERSION_DOT2}${PYTHONLIB_MOD}/
 }
 
 function pinning() {

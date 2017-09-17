@@ -1,5 +1,8 @@
 #!/bin/bash
 set -e
+]
+export SUFFIX=manylinux${BITNESS}_dockcross
+export SUFFIXFILE=_$SUFFIX
 
 if [ -z "$SETUP" ]; then
   source recipes/clang_common.sh
@@ -8,7 +11,7 @@ if [ -z "$SETUP" ]; then
   dockcross_setup_finish
   mypwd=`pwd`
 
-  sudo apt-get install libc6-dev
+  #sudo apt-get install libc6-dev
 
   svn co http://llvm.org/svn/llvm-project/llvm/tags/RELEASE_$VERSION/final/ llvm
   cd llvm/tools
@@ -20,17 +23,17 @@ if [ -z "$SETUP" ]; then
   mkdir build
   cd build
 
-  build_env cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$mypwd/install" ../llvm
+  build_env bash -c 'export PATH=/opt/python/cp27-cp27m/bin:$PATH;cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$mypwd/install" ../llvm'
   build_env make clang-tblgen install -j2
   cp bin/clang-tblgen "$mypwd/install/bin"
 
-  pushd ../install && tar -cvf $mypwd/clang_trusty.tar.gz . && popd
+  pushd ../install && tar -cvf $mypwd/clang$SUFFIXFILE.tar.gz . && popd
 
   cd $mypwd
-  slurp_put clang_trusty
+  slurp_put clang$SUFFIXFILE
 
 else
-  fetch_tar clang trusty
+  fetch_tar clang $SUFFIX
   export CLANG=$HOME/build/clang
   export casadi_build_flags="$casadi_build_flags -DWITH_CLANG=ON -DOLD_LLVM=ON"
 fi

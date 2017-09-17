@@ -17,8 +17,8 @@ matrix:
 #    - env: recipe=ipopt_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=ipopt_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=ipopt_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
-    - env: recipe=ipopt_dockcross DOCKCROSS=manylinux BITNESS=64
-    - env: recipe=ipopt_dockcross DOCKCROSS=manylinux BITNESS=32
+#    - env: recipe=ipopt_dockcross DOCKCROSS=manylinux BITNESS=64
+#    - env: recipe=ipopt_dockcross DOCKCROSS=manylinux BITNESS=32
 #    - env: recipe=ipopt_trusty
 #    - env: recipe=ipopt_trusty GCCVERSION=5
 #    - env: recipe=ipopt_trusty GCCVERSION=4.7
@@ -33,16 +33,16 @@ matrix:
 #    - env: recipe=bonmin_trusty GCCVERSION=5
 #    - env: recipe=bonmin_trusty GCCVERSION=4.7
 #    - {env: recipe=bonmin_osx GCCVERSION=4.9, os: osx}
-    - env: recipe=bonmin_dockcross DOCKCROSS=manylinux BITNESS=64
-    - env: recipe=bonmin_dockcross DOCKCROSS=manylinux BITNESS=32
+#    - env: recipe=bonmin_dockcross DOCKCROSS=manylinux BITNESS=64
+#    - env: recipe=bonmin_dockcross DOCKCROSS=manylinux BITNESS=32
 #    - env: recipe=ecos_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=ecos_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=ecos_trusty
 #    - env: recipe=ecos_trusty GCCVERSION=5
 #    - env: recipe=ecos_trusty GCCVERSION=4.6
 #    - {env: recipe=ecos_osx GCCVERSION=4.9, os: osx}
-    - env: recipe=ecos_dockcross DOCKCROSS=manylinux BITNESS=64
-    - env: recipe=ecos_dockcross DOCKCROSS=manylinux BITNESS=32
+#    - env: recipe=ecos_dockcross DOCKCROSS=manylinux BITNESS=64
+#    - env: recipe=ecos_dockcross DOCKCROSS=manylinux BITNESS=32
 #    - env: recipe=lapack_mingwoct_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=lapack_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #     - env: recipe=lapack_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
@@ -78,8 +78,8 @@ matrix:
 #    - env: recipe=hsl_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=hsl_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
     
-    - env: recipe=hsl_dockcross DOCKCROSS=manylinux BITNESS=64
-    - env: recipe=clang_dockcross DOCKCROSS=manylinux BITNESS=32
+#    - env: recipe=hsl_dockcross DOCKCROSS=manylinux BITNESS=64
+    - env: recipe=hsl_dockcross DOCKCROSS=manylinux BITNESS=32
 #    - env: recipe=hsl_trusty GCCVERSION=4.7
 #    - env: recipe=hsl_trusty GCCVERSION=5
 #    - env: recipe=hsl_trusty GCCVERSION=4.6

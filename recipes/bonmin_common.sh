@@ -38,10 +38,10 @@ EOF
   mkdir build
   pushd build
   # build must contain mingw, in order for the hsl loader to look for .dll as opposed to .so
-  ../configure $FLAGS --prefix=$HOME/bonmin-install --disable-shared ADD_FFLAGS=-fPIC ADD_CFLAGS=-fPIC ADD_CXXFLAGS=-fPIC --with-blas=BUILD --with-lapack=BUILD --with-mumps=BUILD --with-metis=BUILD --without-hsl --without-asl
+  build_env ../configure $FLAGS --prefix=$HOME/bonmin-install --disable-shared ADD_FFLAGS=-fPIC ADD_CFLAGS=-fPIC ADD_CXXFLAGS=-fPIC --with-blas=BUILD --with-lapack=BUILD --with-mumps=BUILD --with-metis=BUILD --without-hsl --without-asl
   (while true ; do sleep 60 ; echo "ping" ; done ) &
-  make 2> /dev/null
-  make install
+  build_env make 2> /dev/null
+  build_env make install
   popd && popd
   tar -zcvf bonmin$SUFFIXFILE.tar.gz -C $HOME/bonmin-install .
   slurp_put bonmin$SUFFIXFILE

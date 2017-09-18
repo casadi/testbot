@@ -23,8 +23,9 @@ if [ -z "$SETUP" ]; then
   mkdir build
   cd build
 
-  build_env bash -c 'export PATH=/opt/python/cp27-cp27m/bin:$PATH;cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$mypwd/install" ../llvm;make clang-tblgen install -j2'
-  #build_env make clang-tblgen install -j2
+  export PATH=/opt/python/cp27-cp27m/bin:$PATH
+  build_env cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$mypwd/install" ../llvm
+  build_env make clang-tblgen install -j2
   cp bin/clang-tblgen "$mypwd/install/bin"
 
   pushd ../install && tar -cvf $mypwd/clang$SUFFIXFILE.tar.gz . && popd

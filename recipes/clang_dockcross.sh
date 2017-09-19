@@ -24,7 +24,7 @@ if [ -z "$SETUP" ]; then
   cd build
 
   echo 'export PATH=/opt/python/cp27-cp27m/bin:$PATH' >> $HOME/path_appends.txt
-  build_env cmake 'cat $HOME/path_appends.txt;echo $PATH'
+  build_env bash -c 'cat $HOME/path_appends.txt;echo $PATH'
   build_env cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$mypwd/install" ../llvm
   build_env make clang-tblgen install -j2
   cp bin/clang-tblgen "$mypwd/install/bin"

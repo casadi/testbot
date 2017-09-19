@@ -9,6 +9,7 @@ if [ -z "$SETUP" ]; then
   export BUILD_ENV=dockcross
   dockcross_setup_start
   dockcross_setup_finish
+  cat dockcross
   mypwd=`pwd`
 
   #sudo apt-get install libc6-dev

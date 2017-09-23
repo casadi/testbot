@@ -161,7 +161,6 @@ function dockcross_setup_start() {
   echo -e "#!/bin/bash\nsource \$HOME/dockcross_at_start\n>&2 echo \"\$@\"\neval \$@" > $HOME/dockcross_at_start_trigger
   chmod +x $HOME/dockcross_at_start_trigger
   touch $HOME/dockcross_at_start
-  cat dockcross_at_start_trigger
   export PATH=`pwd`:$PATH
   echo "dockcross_setup_start done"
 }

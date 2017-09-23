@@ -22,12 +22,14 @@ if [ -z "$SETUP" ]; then
   cd ../..
   mkdir build
   cd build
+  
+  echo -e "[WandiscoSVN]\nname=Wandisco SVN Repo\nbaseurl=http://opensource.wandisco.com/centos/5/svn-1.8/RPMS/$basearch/\nenabled=1\ngpgcheck=1" > subversion.repo
+  
+  wget http://opensource.wandisco.com/RPM-GPG-KEY-WANdisco
+  gpg --quiet --with-fingerprint ./RPM-GPG-KEY-WANdisco
 
   echo 'export PATH=/opt/python/cp27-cp27m/bin:$PATH' >> $HOME/dockcross_at_start
-  build_env env
-
-  build_env "sudo yum install -y libxml2-devel subversion;cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=\"$mypwd/install\" ../llvm;make clang-tblgen install"
-  #build_env make clang-tblgen install -j2
+  build_env "sudo rpm --import ./RPM-GPG-KEY-WANdisco;sudo cp subversion.repo /etc/yum.repos.d/wandisco-svn.repo;sudo yum clean all;sudo yum install -y libxml2-devel subversion;cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=\"$mypwd/install\" ../llvm;make clang-tblgen install"
   cp bin/clang-tblgen "$mypwd/install/bin"
 
   pushd ../install && tar -cvf $mypwd/clang$SUFFIXFILE.tar.gz . && popd

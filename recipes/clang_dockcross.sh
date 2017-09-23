@@ -26,7 +26,7 @@ if [ -z "$SETUP" ]; then
   echo 'export PATH=/opt/python/cp27-cp27m/bin:$PATH' >> $HOME/dockcross_at_start
   build_env env
 
-  build_env "sudo yum install libxml2 subversion;cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=\"$mypwd/install\" ../llvm;make clang-tblgen install -j2"
+  build_env "sudo yum install -y libxml2 subversion;cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=\"$mypwd/install\" ../llvm;make clang-tblgen install -j2"
   #build_env make clang-tblgen install -j2
   cp bin/clang-tblgen "$mypwd/install/bin"
 

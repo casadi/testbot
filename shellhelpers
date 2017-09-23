@@ -158,11 +158,11 @@ function dockcross_setup_start() {
   perl -p -i -e 's/^ +-v.*$/    -v \$HOME:\$HOME \\/g;s/^ +\$HOST_VOLUMES .*/    -w \$HOST_PWD --env-file \$HOME\/env.txt \\/g;s/^ +\$FINAL_IMAGE \"\$@\"/ \$FINAL_IMAGE \"dockcross_at_start_trigger \$@\"/g' dockcross
   #cat dockcross
   chmod +x ./dockcross
-  echo "$HOME/dockcross_at_start\n\$@" > dockcross_at_start_trigger
+  echo "source $HOME/dockcross_at_start\n\$@" > dockcross_at_start_trigger
   chmod +x ./dockcross_at_start_trigger
-  echo "" > $HOME/dockcross_at_start
-  chmod +x $HOME/dockcross_at_start
+  touch $HOME/dockcross_at_start
   export PATH=`pwd`:$PATH
+  echo "dockcross_setup_start done"
 }
 
 function dockcross_setup_finish() {

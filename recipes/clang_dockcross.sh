@@ -23,7 +23,7 @@ if [ -z "$SETUP" ]; then
   mkdir build
   cd build
   
-  echo -e "[WandiscoSVN]\nname=Wandisco SVN Repo\nbaseurl=http://opensource.wandisco.com/centos/5/svn-1.8/RPMS/$basearch/\nenabled=1\ngpgcheck=1" > subversion.repo
+  echo -e "[WandiscoSVN]\nname=Wandisco SVN Repo\nbaseurl=http://opensource.wandisco.com/centos/5/svn-1.8/RPMS/\$basearch/\nenabled=1\ngpgcheck=1" > subversion.repo
   
   wget http://opensource.wandisco.com/RPM-GPG-KEY-WANdisco
   gpg --quiet --with-fingerprint ./RPM-GPG-KEY-WANdisco

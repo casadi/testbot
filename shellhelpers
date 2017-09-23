@@ -157,7 +157,7 @@ function dockcross_setup_start() {
   docker run --rm dockcross/$ARCH > dockcross
   perl -p -i -e 's/^ +-v.*$/    -v \$HOME:\$HOME \\/g;s/^ +\$HOST_VOLUMES .*/    -w \$HOST_PWD --env-file \$HOME\/env.txt \\/g;s/^ +\$FINAL_IMAGE \"\$@\"/ \$FINAL_IMAGE \$HOME\/dockcross_at_start_trigger \"\$@\"/g' dockcross
   chmod +x ./dockcross
-  echo -e "#!/bin/bash\nsource \$HOME/dockcross_at_start\n>&2 echo \"\$@\"\neval \$@" > $HOME/dockcross_at_start_trigger
+  echo -e "#!/bin/bash\nsource \$HOME/dockcross_at_start\neval \$@" > $HOME/dockcross_at_start_trigger
   chmod +x $HOME/dockcross_at_start_trigger
   touch $HOME/dockcross_at_start
   export PATH=`pwd`:$PATH

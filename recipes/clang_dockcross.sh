@@ -32,16 +32,16 @@ if [ -z "$SETUP" ]; then
   echo 'hey'
   dockcross_at_start_trigger
   echo 'hey'
-  build_env env
+  #build_env env
 
-  build_env cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$mypwd/install" ../llvm
-  build_env make clang-tblgen install -j2
-  cp bin/clang-tblgen "$mypwd/install/bin"
+  #build_env cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$mypwd/install" ../llvm
+  #build_env make clang-tblgen install -j2
+  #cp bin/clang-tblgen "$mypwd/install/bin"
 
-  pushd ../install && tar -cvf $mypwd/clang$SUFFIXFILE.tar.gz . && popd
+  #pushd ../install && tar -cvf $mypwd/clang$SUFFIXFILE.tar.gz . && popd
 
-  cd $mypwd
-  slurp_put clang$SUFFIXFILE
+  #cd $mypwd
+  #slurp_put clang$SUFFIXFILE
 
 
 else

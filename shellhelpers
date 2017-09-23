@@ -161,6 +161,7 @@ function dockcross_setup_start() {
   echo "source $HOME/dockcross_at_start\n\$@" > dockcross_at_start_trigger
   chmod +x ./dockcross_at_start_trigger
   touch $HOME/dockcross_at_start
+  cat dockcross_at_start_trigger
   export PATH=`pwd`:$PATH
   echo "dockcross_setup_start done"
 }
@@ -169,6 +170,8 @@ function dockcross_setup_finish() {
   printenv | grep -v miniconda > $HOME/env.txt
   echo $PATH > $HOME/pathnew.txt
   echo -n "$MANYLINUX_PYTHON_DIR/bin/:" > $HOME/pathcross.txt
+  echo 'hey123'
+  dockcross_at_start_trigger
   dockcross bash -c 'echo -n $PATH' >> $HOME/pathcross.txt
   
   python -c "n = open('$HOME/pathnew.txt','r').read().split(':');o = open('$HOME/pathold.txt','r').read().split(':');print('PATH=%s:%s' % (open('$HOME/pathcross.txt','r').read().rstrip(),':'.join([i.rstrip() for i in n if i not in o and 'miniconda' not in i])))" >> $HOME/env.txt

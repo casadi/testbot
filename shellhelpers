@@ -171,6 +171,7 @@ function dockcross_setup_finish() {
   echo $PATH > $HOME/pathnew.txt
   echo -n "$MANYLINUX_PYTHON_DIR/bin/:" > $HOME/pathcross.txt
   echo 'hey123'
+  remote_access
   dockcross "echo -n \$PATH" >> $HOME/pathcross.txt
   echo 'hey123'
   

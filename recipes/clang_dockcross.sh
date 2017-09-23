@@ -26,11 +26,6 @@ if [ -z "$SETUP" ]; then
 
   echo 'hey'
   echo 'export PATH=/opt/python/cp27-cp27m/bin:$PATH' >> $HOME/dockcross_at_start
-  
-  echo 'hey'
-  source $HOME/dockcross_at_start
-  echo 'hey'
-  dockcross_at_start_trigger
   echo 'hey'
   build_env env
 

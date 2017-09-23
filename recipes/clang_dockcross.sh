@@ -28,7 +28,7 @@ if [ -z "$SETUP" ]; then
   echo 'export PATH=/opt/python/cp27-cp27m/bin:$PATH' >> $HOME/dockcross_at_start
   
   echo 'hey'
-  $HOME/dockcross_at_start
+  source $HOME/dockcross_at_start
   echo 'hey'
   dockcross_at_start_trigger
   echo 'hey'

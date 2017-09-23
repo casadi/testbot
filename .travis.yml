@@ -127,7 +127,7 @@ before_install:
     fi
 
 install:
-  - set -e
+  #- set -e
   - source shellhelpers && false || allowfail 1 && echo "okay"
   - source recipes/$recipe.sh
 script:

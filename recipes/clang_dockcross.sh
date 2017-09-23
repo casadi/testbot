@@ -24,8 +24,7 @@ if [ -z "$SETUP" ]; then
   mkdir build
   cd build
 
-  echo 'export PATH=/opt/python/cp27-cp27m/bin:$PATH' >> $HOME/path_appends.txt
-  cat $HOME/path_appends.txt
+  echo 'export PATH=/opt/python/cp27-cp27m/bin:$PATH' >> $HOME/dockcross_at_start
   build_env env
 
   build_env cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$mypwd/install" ../llvm

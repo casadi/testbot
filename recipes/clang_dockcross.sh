@@ -36,6 +36,7 @@ if [ -z "$SETUP" ]; then
   cd $mypwd
   slurp_put clang$SUFFIXFILE
 
+
 else
   fetch_tar clang $SUFFIX
   export CLANG=$HOME/build/clang

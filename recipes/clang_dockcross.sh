@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+#set -e
 
 export SUFFIX=manylinux${BITNESS}_dockcross
 export SUFFIXFILE=_$SUFFIX

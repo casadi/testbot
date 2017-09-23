@@ -172,6 +172,7 @@ function dockcross_setup_finish() {
   dockcross "echo -n \$PATH" >> $HOME/pathcross.txt
   echo 'hey123'
   cat $HOME/pathcross.txt
+  echo 'end'
   
   python -c "n = open('$HOME/pathnew.txt','r').read().split(':');o = open('$HOME/pathold.txt','r').read().split(':');print('PATH=%s:%s' % (open('$HOME/pathcross.txt','r').read().rstrip(),':'.join([i.rstrip() for i in n if i not in o and 'miniconda' not in i])))" >> $HOME/env.txt
 }

@@ -25,6 +25,9 @@ if [ -z "$SETUP" ]; then
   cd build
 
   echo 'export PATH=/opt/python/cp27-cp27m/bin:$PATH' >> $HOME/dockcross_at_start
+  
+  $HOME/dockcross_at_start
+  dockcross_at_start_trigger
   build_env env
 
   build_env cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$mypwd/install" ../llvm

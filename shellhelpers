@@ -155,7 +155,7 @@ function dockcross_setup_start() {
   echo $PATH > $HOME/pathold.txt
   docker pull dockcross/$ARCH
   docker run --rm dockcross/$ARCH > dockcross
-  perl -p -i -e 's/^ +-v.*$/    -v \$HOME:\$HOME \\/g;s/^ +\$HOST_VOLUMES .*/    -w \$HOST_PWD --env-file \$HOME\/env.txt \\/g;s/^ +\$FINAL_IMAGE \"\$@\"/ \$FINAL_IMAGE \"dockcross_at_start_trigger \$@\"/g' dockcross
+  perl -p -i -e 's/^ +-v.*$/    -v \$HOME:\$HOME \\/g;s/^ +\$HOST_VOLUMES .*/    -w \$HOST_PWD --env-file \$HOME\/env.txt \\/g;s/^ +\$FINAL_IMAGE \"\$@\"/ \$FINAL_IMAGE \"$HOME/dockcross_at_start_trigger \$@\"/g' dockcross
   #cat dockcross
   chmod +x ./dockcross
   echo "source $HOME/dockcross_at_start\n\$@" > dockcross_at_start_trigger

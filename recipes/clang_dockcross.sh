@@ -29,7 +29,7 @@ if [ -z "$SETUP" ]; then
   gpg --quiet --with-fingerprint ./RPM-GPG-KEY-WANdisco
 
   echo 'export PATH=/opt/python/cp27-cp27m/bin:$PATH' >> $HOME/dockcross_at_start
-  build_env "sudo rpm --import ./RPM-GPG-KEY-WANdisco;sudo cp subversion.repo /etc/yum.repos.d/wandisco-svn.repo;sudo yum clean all;sudo yum install epel-release;sudo yum install -y subversion;sudo yum install -y libxml2-devel;cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=\"$mypwd/install\" ../llvm;make clang-tblgen install"
+  build_env "sudo rpm --import ./RPM-GPG-KEY-WANdisco;sudo cp subversion.repo /etc/yum.repos.d/wandisco-svn.repo;sudo yum clean all;sudo yum install -y epel-release;sudo yum install -y subversion;sudo yum install -y libxml2-devel;cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=\"$mypwd/install\" ../llvm;make clang-tblgen install"
   cp bin/clang-tblgen "$mypwd/install/bin"
 
   pushd ../install && tar -cvf $mypwd/clang$SUFFIXFILE.tar.gz . && popd

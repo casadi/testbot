@@ -19,7 +19,7 @@ if [ -z "$SETUP" ]; then
   cd build
 
   cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$mypwd/install" ../llvm
-  make clang-tblgen install
+  make clang-tblgen install -j2
   cp bin/clang-tblgen "$mypwd/install/bin"
 
   pushd ../install && tar -cvf $mypwd/clang_trusty.tar.gz . && popd

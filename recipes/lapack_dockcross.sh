@@ -21,7 +21,7 @@ if [ -z "$SETUP" ]; then
   mkdir build
   pushd build
 
-  build_env "cmake .. && make lapack -j2 VERBOSE=1"
+  build_env "cmake -DCMAKE_Fortran_FLAGS=-fPIC .. && make lapack -j2 VERBOSE=1"
   pushd lib && tar -cvf $mypwd/lapack$SUFFIXFILE.tar.gz . && popd
   popd && popd
   slurp_put lapack$SUFFIXFILE

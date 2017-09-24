@@ -47,7 +47,10 @@ matrix:
 #    - env: recipe=lapack_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #     - env: recipe=lapack_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #     - env: recipe=lapack_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
-  
+
+    - env: recipe=lapack_dockcross DOCKCROSS=manylinux BITNESS=64
+    - env: recipe=lapack_dockcross DOCKCROSS=manylinux BITNESS=32    
+
 #     - env: recipe=slicot_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #     - env: recipe=slicot_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
   
@@ -59,8 +62,8 @@ matrix:
 #    - env: recipe=clang_trusty GCCVERSION=5
 #    - env: recipe=clang_trusty GCCVERSION=4.6
 #    - {env: recipe=clang_osx GCCVERSION=4.9, os: osx}
-    - env: recipe=clang_dockcross DOCKCROSS=manylinux BITNESS=64
-    - env: recipe=clang_dockcross DOCKCROSS=manylinux BITNESS=32    
+#    - env: recipe=clang_dockcross DOCKCROSS=manylinux BITNESS=64
+#    - env: recipe=clang_dockcross DOCKCROSS=manylinux BITNESS=32    
 #    - env: recipe=swig_trusty
 #    - env: recipe=swig_matlab_trusty BAKEVERSION=matlab-customdoc
 #    - env: recipe=swig_matlab_trusty BAKEVERSION=b921b0ee5fa928a16

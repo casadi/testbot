@@ -15,8 +15,14 @@ os_name   = sys.argv[3]
 bitness   = sys.argv[4]
 dir_name  = sys.argv[5]
 
+
+if version.startswith("v"):
+  version = version[1:]
 if os_name=="manylinux":
-  tag = "cp%s-none-manylinux1_x86_64" % (pyversion)
+  if bitness=="64":
+    tag = "cp%s-none-manylinux1_x86_64" % (pyversion)
+  else:
+    tag = "cp%s-none-manylinux1_i686" % (pyversion)
 elif os_name=="osx":
   tag = ["cp%s-none-macosx_10_6_intel" % (pyversion),
          "cp%s-none-macosx_10_9_intel" % (pyversion),
@@ -70,7 +76,6 @@ distinfo_dir = os.path.join(bdist_dir,'%s.dist-info' % wheel_dist_name)
 if not os.path.exists(distinfo_dir):
   os.mkdir(distinfo_dir)
 
-print os.listdir(dir_name)
 for d in os.listdir(dir_name):
   if not d.startswith("casadi"):
     shutil.move(os.path.join(dir_name, d),os.path.join(bdist_dir,"casadi"))
@@ -136,3 +141,5 @@ else:
 write_record(bdist_dir, distinfo_dir)
 archive_wheelfile(fullname,dir_name)
 
+import sys
+sys.stdout.write(wheel_dist_name)

@@ -142,4 +142,4 @@ write_record(bdist_dir, distinfo_dir)
 archive_wheelfile(fullname,dir_name)
 
 import sys
-sys.stdout.write(wheel_dist_name)
+sys.stdout.write(fullname+".whl")

@@ -18,7 +18,7 @@ dir_name  = sys.argv[5]
 
 if version.startswith("v"):
   version = version[1:]
-if os_name=="manylinux":
+if os_name=="linux":
   if bitness=="64":
     tag = "cp%s-none-manylinux1_x86_64" % (pyversion)
   else:

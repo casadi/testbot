@@ -9,5 +9,5 @@ else
   export WORHP=$HOME/build/worhp
   export WORHP_LICENSE_FILE=$HOME/build/testbot/restricted/worhp/unlocked.lic
   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$WORHP/lib
-  export casadi_build_flags="$casadi_build_flags -DWITH_WORHP=OFF"  
+  export casadi_build_flags="$casadi_build_flags -DWITH_WORHP=ON"  
 fi

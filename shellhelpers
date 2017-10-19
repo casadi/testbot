@@ -204,3 +204,6 @@ function test_commit() {
   fi
 }
 
+function matlabgcc() {
+  export LD_PRELOAD=/home/travis/miniconda2/pkgs/libgcc-5.2.0-0/lib/libstdc++.so.6
+}

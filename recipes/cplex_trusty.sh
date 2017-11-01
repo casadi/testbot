@@ -8,5 +8,6 @@ else
   try_fetch_tar cplex_linux1263 cplex
   export ILOG_LICENSE_FILE=$ILOG_LICENSE_FILE=$HOME/build/testbot/restricted/cplex/access.ilm
   export CPLEX=$HOME/build/cplex/
+  export LD_LIBRARY_PATH=$CPLEX/bin/x86-64_linux
   export casadi_build_flags="$casadi_build_flags -DWITH_CPLEX=ON -DWITH_CPLEX_SHARED=ON -DCPLEX_VERSION=1263"  
 fi

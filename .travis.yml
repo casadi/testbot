@@ -122,6 +122,7 @@ before_install:
       fi
     else
       shell_session_update() { :; } # Workaround for travis-ci/travis-ci#6522
+      brew update
       brew install binutils
       brew reinstall gcc49 --with-fortran
       export FC=gfortran-4.9

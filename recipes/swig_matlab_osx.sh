@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+##set -e
 
 if [ -z "$SETUP" ]; then
   #brew install pcre automake

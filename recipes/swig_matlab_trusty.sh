@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+#set -e
 
 if [ -z "$SETUP" ]; then
   sudo apt-get install -y libpcre3-dev automake yodl

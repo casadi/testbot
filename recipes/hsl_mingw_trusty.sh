@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+#set -e
 
 export SUFFIX=mingw${BITNESS}_trusty
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+##set -e
 
 if [ -z "$SETUP" ]; then
   sudo apt-get install -y libblas-dev liblapack-dev

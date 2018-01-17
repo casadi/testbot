@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+##set -e
 
 sudo apt-get install -y libblas-dev liblapack-dev gfortran
 wget http://ftp.gnu.org/gnu/autoconf/autoconf-2.69.tar.gz

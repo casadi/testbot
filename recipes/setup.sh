@@ -1,5 +1,5 @@
 #!/bin/bash
-#set -e -E
+set -e -E
 
 source shellhelpers
 python_setup_light > /dev/null
@@ -133,9 +133,14 @@ function slurp_common_test() {
   slurp hsl
   slurp snopt
   slurp gurobi
-  slurp cplex
   slurp worhp
   slurp slicot
+  if [ "$TRAVIS_OS_NAME" == "osx" ]; then
+    echo "skipping"
+  else
+    slurp cplex
+    slurp clang
+  fi
 }
 
 function slurp_put() {

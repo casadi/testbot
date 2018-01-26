@@ -129,7 +129,8 @@ before_install:
       export F77=gfortran-4.9
       osx_rpath
     fi
-
+  - sudo updatedb
+  - locate libstdc++.6.dylib
 install:
   - set -e
   - source shellhelpers && false || allowfail 1 && echo "okay"

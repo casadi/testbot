@@ -38,6 +38,9 @@ cat <<EOF | sudo tee /etc/apt/preferences.d/mytest
     Pin-priority: 600
 EOF
 sudo apt-get update -qq
+debconf-set-selections <<< "console-setup console-setup/charmap47 select UTF-8"
+debconf-set-selections <<< "console-setup console-setup/codeset47 select . Combined - Latin; Slavic Cyrillic; Greek"
+sudo apt-get install -q -y -t xenial dpkg
 sudo apt-get install -q -y -t xenial mingw-w64 
 sudo apt-get install -q -y -t xenial mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfortran-mingw-w64 mingw-w64-tools
 }

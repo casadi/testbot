@@ -121,6 +121,19 @@ function slurp() {
   export SUFFIXFILE=$SUFFIXFILE_BACKUP
 }
 
+function slurp_common() {
+  slurp ecos
+  slurp hsl
+  slurp clang
+  slurp snopt
+  slurp gurobi
+  slurp ipopt
+  slurp bonmin
+  slurp cplex
+  slurp worhp
+  slurp slicot
+}
+
 function slurp_put() {
   VERSIONSUFFIX=""
   if [ -n "$GCCVERSION" ];

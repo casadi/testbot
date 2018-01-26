@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e -E
+#set -e -E
 
 source shellhelpers
 python_setup_light > /dev/null

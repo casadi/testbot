@@ -123,10 +123,14 @@ function slurp() {
 
 function slurp_common() {
   slurp ecos
-  slurp clang
   slurp ipopt
   slurp bonmin
   slurp_common_test
+  if [ "$TRAVIS_OS_NAME" == "osx" ]; then
+    echo "skipping"
+  else
+    slurp clang
+  fi
 }
 
 function slurp_common_test() {
@@ -139,7 +143,6 @@ function slurp_common_test() {
     echo "skipping"
   else
     slurp cplex
-    slurp clang
   fi
 }
 

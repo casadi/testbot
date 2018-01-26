@@ -123,12 +123,16 @@ function slurp() {
 
 function slurp_common() {
   slurp ecos
-  slurp hsl
   slurp clang
-  slurp snopt
-  slurp gurobi
   slurp ipopt
   slurp bonmin
+  slurp_common_test
+}
+
+function slurp_common_test() {
+  slurp hsl
+  slurp snopt
+  slurp gurobi
   slurp cplex
   slurp worhp
   slurp slicot

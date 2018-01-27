@@ -22,7 +22,7 @@ matrix:
     - env: recipe=ipopt_trusty
 #    - env: recipe=ipopt_trusty GCCVERSION=5
 #    - env: recipe=ipopt_trusty GCCVERSION=4.7
-#    - {env: recipe=ipopt_osx GCCVERSION=4.9, os: osx, osx_image: xcode7.3}
+    - {env: recipe=ipopt_osx GCCVERSION=4.9, os: osx, osx_image: xcode7.3}
  
  
 #    - env: recipe=bonmin_mingwoct_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64 
@@ -32,7 +32,7 @@ matrix:
 #    - env: recipe=bonmin_trusty
 #    - env: recipe=bonmin_trusty GCCVERSION=5
 #    - env: recipe=bonmin_trusty GCCVERSION=4.7
-#    - {env: recipe=bonmin_osx GCCVERSION=4.9, os: osx, osx_image: xcode7.3}
+    - {env: recipe=bonmin_osx GCCVERSION=4.9, os: osx, osx_image: xcode7.3}
 #    - env: recipe=bonmin_dockcross DOCKCROSS=manylinux BITNESS=64
 #    - env: recipe=bonmin_dockcross DOCKCROSS=manylinux BITNESS=32
 #    - env: recipe=ecos_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
@@ -40,7 +40,7 @@ matrix:
 #    - env: recipe=ecos_trusty
 #    - env: recipe=ecos_trusty GCCVERSION=5
 #    - env: recipe=ecos_trusty GCCVERSION=4.6
-#    - {env: recipe=ecos_osx GCCVERSION=4.9, os: osx, osx_image: xcode7.3}
+    - {env: recipe=ecos_osx GCCVERSION=4.9, os: osx, osx_image: xcode7.3}
 #    - env: recipe=ecos_dockcross DOCKCROSS=manylinux BITNESS=64
 #    - env: recipe=ecos_dockcross DOCKCROSS=manylinux BITNESS=32
 #    - env: recipe=lapack_mingwoct_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
@@ -70,7 +70,7 @@ matrix:
 #    - env: recipe=swig_matlab_trusty BAKEVERSION=82714bf35c33fe2
 #    - env: recipe=swig_matlab_trusty BAKEVERSION=234d6ea3a08ef71
     
-#    - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=matlab-customdoc, osx_image: xcode7.3}
+    - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=matlab-customdoc, osx_image: xcode7.3}
 #     - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=b921b0ee5fa928a16}
 #     - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=82714bf35c33fe2}
 #     - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=234d6ea3a08ef71}
@@ -86,7 +86,7 @@ matrix:
 #    - env: recipe=hsl_trusty GCCVERSION=4.7
 #    - env: recipe=hsl_trusty GCCVERSION=5
 #    - env: recipe=hsl_trusty GCCVERSION=4.6
-#    - { env: recipe=hsl_osx GCCVERSION=4.9, os: osx, osx_image: xcode7.3 }
+    - { env: recipe=hsl_osx GCCVERSION=4.9, os: osx, osx_image: xcode7.3 }
     
     
 python:
@@ -125,8 +125,10 @@ before_install:
       brew update
       brew install binutils
       brew reinstall gcc49 --with-fortran
-      export FC=gfortran-4.9
-      export F77=gfortran-4.9
+      export FC=gfortran-$GCCVERSION
+      export F77=gfortran-$GCCVERSION
+      export CC=gcc-$GCCVERSION
+      export CXX=g++-$GCCVERSION
       #sudo /usr/libexec/locate.updatedb
       #locate libstdc++*
       #locate libgomp*

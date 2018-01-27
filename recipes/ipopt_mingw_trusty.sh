@@ -8,6 +8,6 @@ if [ -z "$SETUP" ]; then
   # build must contain mingw, in order for the hsl loader to look for .dll as opposed to .so
   export FLAGS="--host $compilerprefix --enable-dependency-linking --build mingw32"
 fi
-
+remote_access
 source $RECIPES_FOLDER/ipopt_common.sh
 

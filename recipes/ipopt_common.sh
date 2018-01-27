@@ -36,6 +36,9 @@ EOF
   mkdir build
   pushd build
   mkdir $HOME/ipopt-install
+  
+  # required for modern x86_64-w64-mingw32-pkg-config
+  export PKG_CONFIG_LIBDIR=$HOME/Ipopt-$VERSION/build/ThirdParty/Blas:$HOME/Ipopt-$VERSION/build/ThirdParty/Lapack:$HOME/Ipopt-$VERSION/build/ThirdParty/Metis:$HOME/Ipopt-$VERSION/build/ThirdParty/Mumps
   build_env ../configure $FLAGS --prefix=$HOME/ipopt-install --disable-shared ADD_FFLAGS=-fPIC ADD_CFLAGS=-fPIC ADD_CXXFLAGS=-fPIC --with-blas=BUILD --with-lapack=BUILD --with-mumps=BUILD --with-metis=BUILD --without-hsl --without-asl
   build_env make
   build_env make install

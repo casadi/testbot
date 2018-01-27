@@ -139,11 +139,7 @@ function slurp_common_test() {
   slurp gurobi
   slurp worhp
   slurp slicot
-  if [ "$TRAVIS_OS_NAME" == "osx" ]; then
-    echo "skipping"
-  else
-    slurp cplex
-  fi
+  slurp cplex
 }
 
 function slurp_put() {

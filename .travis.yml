@@ -131,8 +131,12 @@ before_install:
       locate libstdc++.6.dylib
       osx_rpath
     fi
-  - sudo updatedb
+  - sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
   - locate libstdc++.6.dylib
+  - locate libgomp
+  - locate libgcc_s
+  - locate libquadmath
+  - locate libgfortran
 install:
   - set -e
   - source shellhelpers && false || allowfail 1 && echo "okay"

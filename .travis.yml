@@ -19,7 +19,7 @@ matrix:
     - env: recipe=ipopt_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=ipopt_dockcross DOCKCROSS=manylinux BITNESS=64
 #    - env: recipe=ipopt_dockcross DOCKCROSS=manylinux BITNESS=32
-#    - env: recipe=ipopt_trusty
+    - env: recipe=ipopt_trusty
 #    - env: recipe=ipopt_trusty GCCVERSION=5
 #    - env: recipe=ipopt_trusty GCCVERSION=4.7
 #    - {env: recipe=ipopt_osx GCCVERSION=4.9, os: osx, osx_image: xcode7.3}

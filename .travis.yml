@@ -127,16 +127,14 @@ before_install:
       brew reinstall gcc49 --with-fortran
       export FC=gfortran-4.9
       export F77=gfortran-4.9
-      sudo updatedb
+      sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
       locate libstdc++.6.dylib
+      locate libgomp
+      locate libgcc_s
+      locate libquadmath
+      locate libgfortran
       osx_rpath
     fi
-  - sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
-  - locate libstdc++.6.dylib
-  - locate libgomp
-  - locate libgcc_s
-  - locate libquadmath
-  - locate libgfortran
 install:
   - set -e
   - source shellhelpers && false || allowfail 1 && echo "okay"

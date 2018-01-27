@@ -143,6 +143,11 @@ before_install:
 install:
   - set -e
   - source shellhelpers && false || allowfail 1 && echo "okay"
+  - |
+    if [[ $compilerprefix == *w64* ]]
+    then
+      mingw_setup
+    fi
   - source recipes/$recipe.sh
 script:
   - echo "All is fine"

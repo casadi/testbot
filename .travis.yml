@@ -127,17 +127,17 @@ before_install:
       brew reinstall gcc49 --with-fortran
       export FC=gfortran-4.9
       export F77=gfortran-4.9
-      sudo /usr/libexec/locate.updatedb
-      locate libstdc++*
-      locate libgomp*
-      locate libgcc_s*
-      locate libquadmath*
-      locate libgfortran*
-      find / -name "libstdc++*"
-      find / -name "libgomp*"
-      find / -name "libgcc_s*"
-      find / -name "libquadmath*"
-      find / -name "libgfortran*"
+      #sudo /usr/libexec/locate.updatedb
+      #locate libstdc++*
+      #locate libgomp*
+      #locate libgcc_s*
+      #locate libquadmath*
+      #locate libgfortran*
+      #find / -name "libstdc++*"
+      #find / -name "libgomp*"
+      #find / -name "libgcc_s*"
+      #find / -name "libquadmath*"
+      #find / -name "libgfortran*"
       osx_rpath
     fi
 install:

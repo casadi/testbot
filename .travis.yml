@@ -127,6 +127,8 @@ before_install:
       brew reinstall gcc49 --with-fortran
       export FC=gfortran-4.9
       export F77=gfortran-4.9
+      sudo updatedb
+      locate libstdc++.6.dylib
       osx_rpath
     fi
   - sudo updatedb

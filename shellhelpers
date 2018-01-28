@@ -11,7 +11,6 @@ function allowfail() {
         $(exit $ERR);
 }
 
-
 function assertfail() {
         ERR=$?
         if [ $ERR -eq "0" ]

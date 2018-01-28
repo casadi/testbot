@@ -11,5 +11,4 @@ else
   export PKG_CONFIG_LIBDIR=$PKG_CONFIG_LIBDIR:$HOME/ipopt-install/lib/pkgconfig
 fi
 source $RECIPES_FOLDER/ipopt_common.sh
-remote_access
 

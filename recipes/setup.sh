@@ -44,17 +44,17 @@ fi
 export RECIPES_DIR=$TESTBOT_DIR/recipes
 
 function try_fetch_tar () {
-  echo "Fetching $1 -> $2"
+  echo "Fetching $1.tar.gz -> $2"
   travis_retry $RECIPES_DIR/fetch.sh $1.tar.gz && mkdir -p $2 && tar -xf $1.tar.gz -C $2 && rm $1.tar.gz
 }
 
 function try_fetch_zip() {
-  echo "Fetching $1 -> $2"
+  echo "Fetching $1.zip -> $2"
   travis_retry $RECIPES_DIR/fetch.sh $1.zip && mkdir -p $2 && unzip $1.zip -d $2 && rm $1.zip
 }
 
 function try_fetch_7z() {
-  echo "Fetching $1 -> $2"
+  echo "Fetching $1.7z -> $2"
   travis_retry $RECIPES_DIR/fetch.sh $1.7z && mkdir -p $2 && 7za x $1.7z -o$2 -y && rm $1.7z
 }
 
@@ -79,26 +79,26 @@ function fetch_generic() {
   else
     echo "Null bake"
   fi
-  try_fetch_$3 $1_$2${GCCSUFFIX}${BAKESUFFIX} $1 || try_fetch_$3 $1_$2${BAKESUFFIX} $1
+  try_fetch_tar $1_$2${GCCSUFFIX}${BAKESUFFIX} $1 || try_fetch_tar $1_$2${BAKESUFFIX} $1 || try_fetch_zip $1_$2${GCCSUFFIX}${BAKESUFFIX} $1 || try_fetch_zip $1_$2${BAKESUFFIX} $1 || try_fetch_7z $1_$2${GCCSUFFIX}${BAKESUFFIX} $1 || try_fetch_7z $1_$2${BAKESUFFIX} $1
   unset BAKESUFFIX;export BAKESUFFIX
   unset GCCSUFFIX;export GCCSUFFIX
   unset BAKEVERSION;export BAKEVERSION
 }
 
 function fetch_tar() {
-  fetch_generic $1 $2 "tar"
+  fetch_generic $1 $2
 }
 
 function fetch_zip() {
-  fetch_generic $1 $2 "zip"
+  fetch_generic $1 $2
 }
 
 function fetch_7z() {
-  fetch_generic $1 $2 "7z"
+  fetch_generic $1 $2
 }
 
 function fetch() {
-  fetch_tar $1 $2 ; fetch_zip $1 $2 ; fetch_7z $1 $2
+  fetch_generic $1 $2
 }
   
 function slurp() {

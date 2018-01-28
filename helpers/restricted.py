@@ -39,7 +39,6 @@ def upload(filename,remote_filename=None):
     remote_filename = filename
   r = s.get('https://api.github.com/repos/jgillis/restricted/releases',timeout=timeout)
   assert r.ok, str(r)
-  print(r.json())
   l = list(filter(lambda x: x["name"]=="Perpetual",r.json()))
   release = l[0]
 

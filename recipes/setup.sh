@@ -96,6 +96,10 @@ function fetch_zip() {
 function fetch_7z() {
   fetch_generic $1 $2 "7z"
 }
+
+function fetch() {
+  fetch_tar $1 $2 || fetch_zip $1 $2 || fetch_7z $1 $2
+}
   
 function slurp() {
   export SUFFIX_BACKUP=$SUFFIX

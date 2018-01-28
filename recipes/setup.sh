@@ -98,7 +98,7 @@ function fetch_7z() {
 }
 
 function fetch() {
-  fetch_tar $1 $2 || fetch_zip $1 $2 || fetch_7z $1 $2
+  fetch_tar $1 $2 ; fetch_zip $1 $2 ; fetch_7z $1 $2
 }
   
 function slurp() {

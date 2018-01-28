@@ -35,6 +35,11 @@ EOF
   pushd Metis && ./get.Metis && popd 
   pushd Mumps && ./get.Mumps && popd
   popd
+  if [[ $compilerprefix == *w64* ]]
+  then
+      # required for modern x86_64-w64-mingw32-pkg-config
+      find . -type f -name "*" -exec sed -i'' -e 's/PKG_CONFIG_PATH/PKG_CONFIG_LIBDIR/g' {} +
+  fi
   mkdir build
   pushd build
   # build must contain mingw, in order for the hsl loader to look for .dll as opposed to .so

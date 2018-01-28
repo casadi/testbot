@@ -1,6 +1,6 @@
 #!/bin/bash
 
-fetch_tar snopt $SUFFIX
+fetch snopt $SUFFIX
 export SNOPT=$HOME/build/snopt
 export casadi_build_flags="$casadi_build_flags -DWITH_SNOPT=ON"
 

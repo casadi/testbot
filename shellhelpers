@@ -60,6 +60,7 @@ function osx_rpath() {
       sudo install_name_tool -id "@rpath/libgfortran.3.dylib" $FORTRAN_FULL
       sudo install_name_tool -id "@rpath/libquadmath.0.dylib" $QUADMATH_FULL
       sudo install_name_tool -id "@rpath/libgcc_s.1.dylib" $GCC_FULL
+      sudo install_name_tool -id "@rpath/libgcc_s.1.dylib" /usr/local/lib/gcc/4.9/libgcc_s.1.dylib
       sudo install_name_tool -id "@rpath/libgomp.1.dylib" $GOMP_FULL
       sudo install_name_tool -id "@rpath/libstdc++.1.dylib" $CXX_FULL
        
@@ -77,6 +78,7 @@ function osx_rpath_restore() {
       sudo install_name_tool -id "$FORTRAN_FULL" $FORTRAN_FULL
       sudo install_name_tool -id "$QUADMATH_FULL" $QUADMATH_FULL
       sudo install_name_tool -id "$GCC_FULL" $GCC_FULL
+      sudo install_name_tool -id "/usr/local/lib/gcc/4.9/libgcc_s.1.dylib" /usr/local/lib/gcc/4.9/libgcc_s.1.dylib
       sudo install_name_tool -id "$GOMP_FULL" $GOMP_FULL
       sudo install_name_tool -id "$CXX_FULL" $CXX_FULL
       

@@ -33,13 +33,17 @@ EOF
   pushd Metis && ./get.Metis && popd 
   pushd Mumps && ./get.Mumps && popd
   popd
+  if [[ $compilerprefix == *w64* ]]
+  then
+      find . -type f -name "*" -exec sed -i'' -e 's/PKG_CONFIG_PATH/PKG_CONFIG_LIBDIR/g' {} +
+  fi
   mkdir build
   pushd build
   mkdir $HOME/ipopt-install
   
   # required for modern x86_64-w64-mingw32-pkg-config
   pwd=`pwd`
-  export PKG_CONFIG_LIBDIR=$PWD/ThirdParty/Blas:$PWD/ThirdParty/Lapack:$PWD/ThirdParty/Metis:$PWD/ThirdParty/Mumps
+  #export PKG_CONFIG_LIBDIR=$PWD/ThirdParty/Blas:$PWD/ThirdParty/Lapack:$PWD/ThirdParty/Metis:$PWD/ThirdParty/Mumps
   build_env ../configure $FLAGS --prefix=$HOME/ipopt-install --disable-shared ADD_FFLAGS=-fPIC ADD_CFLAGS=-fPIC ADD_CXXFLAGS=-fPIC --with-blas=BUILD --with-lapack=BUILD --with-mumps=BUILD --with-metis=BUILD --without-hsl --without-asl
   build_env make
   build_env make install

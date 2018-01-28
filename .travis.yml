@@ -140,7 +140,12 @@ before_install:
       #find / -name "libgcc_s*"
       #find / -name "libquadmath*"
       #find / -name "libgfortran*"
-      osx_rpath
+      if [[ $recipe == *swig* ]]
+      then
+        echo "nothing"
+      else
+        osx_rpath
+      fi
     fi
 install:
   - #set -e

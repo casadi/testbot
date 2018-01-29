@@ -5,7 +5,7 @@ if [ -z "$SETUP" ]; then
   echo "noop"
 else
   echo "nothing to do"
-  try_fetch_tar cplex_win1280 cplex
+  try_fetch_zip cplex_win1280 cplex
   export ILOG_LICENSE_FILE=$ILOG_LICENSE_FILE=$HOME/build/testbot/restricted/cplex/access.ilm
   export CPLEX=$HOME/build/cplex/
   ls $CPLEX

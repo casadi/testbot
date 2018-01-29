@@ -143,8 +143,8 @@ function slurp_common_test() {
   slurp gurobi
   slurp worhp
   slurp slicot
-  slurp cplex
-  slurp knitro
+  #slurp cplex
+  #slurp knitro
 }
 
 function slurp_put() {

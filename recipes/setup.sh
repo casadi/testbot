@@ -144,6 +144,7 @@ function slurp_common_test() {
   slurp worhp
   slurp slicot
   slurp cplex
+  slurp knitro
 }
 
 function slurp_put() {

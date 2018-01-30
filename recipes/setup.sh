@@ -1,5 +1,8 @@
 #!/bin/bash
-#set -e -E
+if [ -n "$KEEP_GOING" ];
+then
+  set -e -E
+fi
 
 source shellhelpers
 python_setup_light > /dev/null
@@ -12,7 +15,7 @@ ssh-keyscan shell.sourceforge.net >> ~/.ssh/known_hosts
 export PATH=$HOME/.local/bin:$PATH
 pip install cryptography==1.5.3
 pip install requests==2.6.0
-#set -e -E
+
 pip install psutil
 echo $?
 pip install pyaml

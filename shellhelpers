@@ -21,6 +21,18 @@ function assertfail() {
         $(exit 0);
 }
 
+function osx_gcc49_setup() {
+      brew update
+      brew tap homebrew/science
+      brew cask uninstall oclint
+      brew install binutils p7zip
+      brew reinstall gcc49 --with-fortran
+      export CC=gcc-4.9
+      export CXX=g++-4.9
+      export FC=gfortran-4.9
+      export F77=gfortran-4.9
+}
+
 function mingw_setup() {
 sudo apt-get update -qq
 sudo apt-get remove -qq -y mingw32

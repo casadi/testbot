@@ -46,32 +46,34 @@ sudo apt-get install -q -y -t xenial mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfort
 }
 
 function osx_rpath() {
-      export FORTRAN_FULL=/usr/local/lib/gcc/4.9/libgfortran.3.dylib
+      export FORTRAN_FULL_ALT=/usr/local/lib/gcc/4.9/libgfortran.3.dylib
       export FORTRAN_FULL=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/libgfortran.3.dylib
-      export QUADMATH_FULL=/usr/local/lib/gcc/4.9/libquadmath.0.dylib
+      export QUADMATH_FULL_ALT=/usr/local/lib/gcc/4.9/libquadmath.0.dylib
       export QUADMATH_FULL=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/libquadmath.0.dylib
-      export GCC_FULL=/usr/local/lib/gcc/4.9/libgcc_s.1.dylib
+      export GCC_FULL_ALT=/usr/local/lib/gcc/4.9/libgcc_s.1.dylib
       export GCC_FULL=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/libgcc_s.1.dylib
-      export GOMP_FULL=/usr/local/lib/gcc/4.9/libgomp.1.dylib
+      export GOMP_FULL_ALT=/usr/local/lib/gcc/4.9/libgomp.1.dylib
       export GOMP_FULL=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/libgomp.1.dylib
-      export CXX_FULL=/usr/local/Cellar/gcc@4.9/4.9.4/lib/gcc/4.9/libstdc++.6.dylib
+      export CXX_FULL_ALT=/usr/local/Cellar/gcc@4.9/4.9.4/lib/gcc/4.9/libstdc++.6.dylib
       export CXX_FULL=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/libstdc++.6.dylib
       
       sudo install_name_tool -id "@rpath/libgfortran.3.dylib" $FORTRAN_FULL
-      sudo install_name_tool -id "@rpath/libgfortran.3.dylib" /usr/local/lib/gcc/4.9/libgfortran.3.dylib
+      sudo install_name_tool -id "@rpath/libgfortran.3.dylib" $FORTRAN_FULL_ALT
       sudo install_name_tool -id "@rpath/libquadmath.0.dylib" $QUADMATH_FULL
-      sudo install_name_tool -id "@rpath/libquadmath.0.dylib" /usr/local/lib/gcc/4.9/libquadmath.0.dylib
+      sudo install_name_tool -id "@rpath/libquadmath.0.dylib "$QUADMATH_FULL_ALT
       sudo install_name_tool -id "@rpath/libgcc_s.1.dylib" $GCC_FULL
-      sudo install_name_tool -id "@rpath/libgcc_s.1.dylib" /usr/local/lib/gcc/4.9/libgcc_s.1.dylib
+      sudo install_name_tool -id "@rpath/libgcc_s.1.dylib" $GCC_FULL_ALT
       sudo install_name_tool -id "@rpath/libgomp.1.dylib" $GOMP_FULL
-      sudo install_name_tool -id "@rpath/libgomp.1.dylib" /usr/local/lib/gcc/4.9/libgomp.1.dylib
+      sudo install_name_tool -id "@rpath/libgomp.1.dylib" $GOMP_FULL_ALT
       sudo install_name_tool -id "@rpath/libstdc++.6.dylib" $CXX_FULL
        
       sudo install_name_tool -change $QUADMATH_FULL "@rpath/libquadmath.0.dylib" $FORTRAN_FULL
-      #sudo install_name_tool -change /usr/local/Cellar/gcc@4.9/4.9.4/lib/gcc/4.9/libquadmath.0.dylib "@rpath/libquadmath.0.dylib" $FORTRAN_FULL
       sudo install_name_tool -change $GCC_FULL "@rpath/libgcc_s.1.dylib" $FORTRAN_FULL 
       sudo install_name_tool -change $GCC_FULL "@rpath/libgcc_s.1.dylib" $QUADMATH_FULL
       sudo install_name_tool -change $GCC_FULL "@rpath/libgcc_s.1.dylib" $CXX_FULL
+      sudo install_name_tool -change $GCC_FULL_ALT "@rpath/libgcc_s.1.dylib" $FORTRAN_FULL 
+      sudo install_name_tool -change $GCC_FULL_ALT "@rpath/libgcc_s.1.dylib" $QUADMATH_FULL
+      sudo install_name_tool -change $GCC_FULL_ALT "@rpath/libgcc_s.1.dylib" $CXX_FULL
 }
 
 function osx_rpath_restore() {

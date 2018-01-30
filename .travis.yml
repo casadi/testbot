@@ -148,7 +148,7 @@ before_install:
       fi
     fi
 install:
-  - #set -e
+  - set -e
   - source shellhelpers && false || allowfail 1 && echo "okay"
   - |
     if [[ $compilerprefix == *w64* ]]

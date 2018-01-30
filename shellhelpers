@@ -69,7 +69,7 @@ function osx_rpath() {
       ls $GCC_FULL
       ls $GOMP_FULL_ALT
       ls $GOMP_FULL
-      ls $CXX_FULL_ALT
+      #ls $CXX_FULL_ALT
       ls $CXX_FULL
       
       echo 1
@@ -83,7 +83,7 @@ function osx_rpath() {
       echo 1
       sudo install_name_tool -id "@rpath/libgcc_s.1.dylib" $GCC_FULL
       echo 1
-      sudo install_name_tool -id "@rpath/libgcc_s.1.dylib" $GCC_FULL_ALT
+      #sudo install_name_tool -id "@rpath/libgcc_s.1.dylib" $GCC_FULL_ALT
       echo 1
       sudo install_name_tool -id "@rpath/libgomp.1.dylib" $GOMP_FULL
       echo 1

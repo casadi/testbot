@@ -22,7 +22,7 @@ if [ -z "$SETUP" ]; then
   ls
   mv libcoinhsl.0.dylib libhsl.dylib
   rm libcoinhsl.dylib
-  #sudo install_name_tool -change $GCC_FULL "@rpath/libgcc_s.1.dylib" libhsl.dylib
+  sudo install_name_tool -change $GCC_FULL_ALT "@rpath/libgcc_s.1.dylib" libhsl.dylib
   sudo install_name_tool -id "@rpath/libhsl.dylib" libhsl.dylib
   otool -l libhsl.dylib
   popd

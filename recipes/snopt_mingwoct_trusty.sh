@@ -1,4 +1,2 @@
 #!/bin/bash
-
-export SUFFIX=mingwoct${BITNESS}_trusty
-source $RECIPES_FOLDER/snopt_common.sh
+source snopt_mingw_trusty.sh

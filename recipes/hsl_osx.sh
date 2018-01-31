@@ -31,6 +31,7 @@ else
   rm hsl/*.a # Dangerous to have static libs lying around
   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/build/hsl
   export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$HOME/build/hsl
+  ls $HOME/build/hsl
   export HSL=$HOME/build/hsl
   export casadi_build_flags="$casadi_build_flags -DWITH_HSL=ON"  
 fi

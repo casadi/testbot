@@ -1,3 +1,3 @@
 #!/bin/bash
 
-source cplex_mingw_trusty.sh
+source $RECIPES_DIR/cplex_mingw_trusty.sh

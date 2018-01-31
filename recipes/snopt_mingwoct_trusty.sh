@@ -1,2 +1,2 @@
 #!/bin/bash
-source snopt_mingw_trusty.sh
+source $RECIPES_DIR/snopt_mingw_trusty.sh

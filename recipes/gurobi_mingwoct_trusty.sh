@@ -1,2 +1,2 @@
 #!/bin/bash
-source gurobi_mingw_trusty.sh
+source $RECIPES_DIR/gurobi_mingw_trusty.sh

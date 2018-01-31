@@ -1,3 +1,3 @@
 #!/bin/bash
 
-source knitro_mingw_trusty.sh
+source $RECIPES_DIR/knitro_mingw_trusty.sh

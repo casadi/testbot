@@ -8,9 +8,9 @@ if [ -z "$SETUP" ]; then
   export SLURP_CROSS=mingwoct
   export SLURP_OS=trusty
 
-  slurp mingw_octave
 
   pushd $HOME/build
+  slurp mingw_octave
   slurp lapack
   popd
 

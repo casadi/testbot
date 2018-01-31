@@ -155,7 +155,10 @@ install:
   - |
     if [[ $compilerprefix == *w64* ]]
     then
-      mingw_setup
+      if [[ $recipe == *mingw_* ]]
+      then
+        mingw_setup # exclude mingwoct
+      fi
     fi
   - source recipes/$recipe.sh
 script:

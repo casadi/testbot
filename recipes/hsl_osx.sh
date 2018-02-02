@@ -12,6 +12,7 @@ if [ -z "$SETUP" ]; then
   wget http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/OLD/metis-4.0.3.tar.gz
   tar -xvf coinhsl.tar.gz
   cd coinhsl-2014.01.10
+  sed -i '.original' 's/SHLIBEXT "so"/SHLIBEXT "dylib"/' loadmetis/loadmetis.c
   tar -xvf ../metis-4.0.3.tar.gz
   osx_rpath_restore
   ./configure --prefix=$mypwd/coinhsl-install LIBS="-L$HOME/build/ipopt-install/lib" --with-blas="-lcoinblas -lcoinlapack -lcoinblas -lgfortran" CXXFLAGS="-O2" FCFLAGS="-O2"

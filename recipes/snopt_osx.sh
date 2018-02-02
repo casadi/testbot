@@ -1,4 +1,4 @@
 #!/bin/bash
 export SUFFIX=osx
 source $RECIPES_FOLDER/snopt_common.sh
-export DYLD_LIBRARY_PATH=$SNOPT:$DYLD_LIBRARY_PATH
+export MY_LIBRARY_PATH=$SNOPT:$MY_LIBRARY_PATH

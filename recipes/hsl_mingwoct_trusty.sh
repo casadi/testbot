@@ -18,7 +18,7 @@ if [ -z "$SETUP" ]; then
   tar -xvf coinhsl.tar.gz && cd coinhsl-2014.01.10 && tar -xvf ../metis-4.0.3.tar.gz
   ./configure --disable-static --enable-shared --host $compilerprefix --prefix=$mypwd/coinhsl-install LIBS="-L/home/travis/ipopt-install/lib" --with-blas="-lcoinblas -lcoinlapack -lcoinblas" CXXFLAGS="" FCFLAGS="-O2" CFLAGS="-O2" || cat config.log
   sed -i "s/deplibs_check_method=.*/deplibs_check_method=\"pass_all\"/" libtool
-  sed -i "s/soname_spec=.*/libhsl.dll/" libtool
+  sed -i "s/soname_spec=.*/soname_spec=\"libhsl.dll\"/" libtool
   make VERBOSE=1
   make install
 

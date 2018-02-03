@@ -78,8 +78,8 @@ matrix:
 #     - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=234d6ea3a08ef71}
 #    - env: recipe=mingw_octave_trusty
 
-    - env: recipe=hsl_mingwoct_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-    - env: recipe=hsl_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+#    - env: recipe=hsl_mingwoct_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
+#    - env: recipe=hsl_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
     - env: recipe=hsl_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
     - env: recipe=hsl_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
     
@@ -150,7 +150,7 @@ before_install:
       fi
     fi
 install:
-  - set -e
+  - #set -e
   - source shellhelpers && false || allowfail 1 && echo "okay"
   - |
     if [[ $compilerprefix == *w64* ]]
@@ -160,7 +160,7 @@ install:
         mingw_setup # exclude mingwoct
       fi
     fi
-  - source recipes/$recipe.sh
+  - source recipes/$recipe.sh || remote_access
 script:
   - echo "All is fine"
   

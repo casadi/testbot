@@ -268,13 +268,15 @@ function matlabgcc() {
 }
 
 function bake_my_library_path() {
-  IFS=":"
-  pushd /usr/local/lib
-  for i in $MY_LIBRARY_PATH; do
-    if [ -n "$i" ];
-    then
-      sudo ln -s $i/* . || echo "file existed"
-    fi
-  done
-  popd
+  if [ "$TRAVIS_OS_NAME" == "osx" ]; then
+          IFS=":"
+          pushd /usr/local/lib
+          for i in $MY_LIBRARY_PATH; do
+            if [ -n "$i" ];
+            then
+              sudo ln -s $i/* . || echo "file existed"
+            fi
+          done
+          popd
+  fi
 }

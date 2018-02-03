@@ -19,6 +19,9 @@ if [ -z "$SETUP" ]; then
   ./configure --disable-static --enable-shared --host $compilerprefix --prefix=$mypwd/coinhsl-install LIBS="-L/home/travis/ipopt-install/lib" --with-blas="-lcoinblas -lcoinlapack -lcoinblas" CXXFLAGS="" FCFLAGS="-O2" CFLAGS="-O2" || cat config.log
   sed -i "s/deplibs_check_method=.*/deplibs_check_method=\"pass_all\"/" libtool
   sed -i "s/soname_spec=.*/soname_spec=\"libhsl.dll\"/" libtool
+  sed -i "s/libname_spec=.*/libname_spec=\"libhsl\"/" libtool
+  sed -i "s/library_names_spec=.*/libname_spec=\"libhsl.dll.a\"/" libtool
+
   make
   make install
 

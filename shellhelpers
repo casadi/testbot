@@ -266,3 +266,15 @@ function test_commit() {
 function matlabgcc() {
   export LD_PRELOAD=/home/travis/miniconda2/pkgs/libgcc-5.2.0-0/lib/libstdc++.so.6
 }
+
+function bake_my_library_path() {
+  IFS=":"
+  pushd /usr/local/lib
+  for i in $MY_LIBRARY_PATH; do
+    if [ -n "$i" ];
+    then
+      sudo ln -s $i/* . || echo "file existed"
+    fi
+  done
+  popd
+}

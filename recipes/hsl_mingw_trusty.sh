@@ -29,7 +29,7 @@ if [ -z "$SETUP" ]; then
   gendef libhsl.dll - | tee  libhsl.def
   $compilerprefix-dlltool --dllname libhsl.dll -d libhsl.def  -l libhsl.lib
   popd
-  cp /usr/lib/gcc/$compilerprefix/4.9-posix/*.dll $mypwd/pack
+  cp /usr/lib/gcc/$compilerprefix/5.3-posix/*.dll $mypwd/pack
   cp /usr/$compilerprefix/lib/*.dll $mypwd/pack
   zip -j -r hsl$SUFFIXFILE $mypwd/pack/*.dll hsl$SUFFIXFILE $mypwd/pack/*.lib hsl$SUFFIXFILE $mypwd/pack/*.a
   

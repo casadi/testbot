@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ -n "$KEEP_GOING" ];
+if [ -z "$KEEP_GOING" ];
 then
   set -e -E
 fi

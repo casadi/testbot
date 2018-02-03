@@ -28,7 +28,7 @@ if [ -z "$SETUP" ]; then
   sudo apt-get install -y mingw-w64-tools
   gendef libhsl.dll - | sed "s/coinhsl-0/hsl/" | tee  libhsl.def
   which $compilerprefix-dlltool
-  $compilerprefix-dlltool --dllname libhsl.dll -d libhsl.def  -l libcoinhsl.lib
+  #$compilerprefix-dlltool --dllname libhsl.dll -d libhsl.def  -l libcoinhsl.lib
   $compilerprefix-dlltool --dllname libhsl.dll -d libhsl.def  -l libhsl.lib
   popd
   zip -j -r hsl$SUFFIXFILE $mypwd/pack/*.dll hsl$SUFFIXFILE $mypwd/pack/*.lib hsl$SUFFIXFILE $mypwd/pack/*.a

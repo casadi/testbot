@@ -26,7 +26,7 @@ if [ -z "$SETUP" ]; then
   cp libcoinhsl-0.dll $mypwd/pack/libhsl.dll
   pushd $mypwd/pack/
   gendef libhsl.dll - | sed "s/coinhsl-0/hsl/" | tee  libhsl.def
-  $compilerprefix-dlltool --dllname libhsl.dll -d libhsl.def  -l libcoinhsl.lib
+  #$compilerprefix-dlltool --dllname libhsl.dll -d libhsl.def  -l libcoinhsl.lib
   $compilerprefix-dlltool --dllname libhsl.dll -d libhsl.def  -l libhsl.lib
   popd
   cp /usr/lib/gcc/$compilerprefix/4.9-posix/*.dll $mypwd/pack

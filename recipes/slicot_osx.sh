@@ -28,7 +28,7 @@ SLICOT_OBJ=\$(SLICOT_SRC:.f=.o)
 src/%.o : src/%.f
 $TAB\$(F77) \$(FFLAGS) -fPIC -c \$< -o \$@
 
-libslicot.dll: \$(SLICOT_OBJ)
+libslicot.dylib: \$(SLICOT_OBJ)
 $TAB\$(F77) \$(LDFLAGS) -shared -Wl,-soname=libslicot.dylib -o \$@ \$^ -L$LIB -llapack -lblas -llapack
 EOF
 

@@ -47,7 +47,8 @@ matrix:
 #    - env: recipe=lapack_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=lapack_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=lapack_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
-
+    - {env: recipe=lapack_osx GCCVERSION=4.9, os: osx, osx_image: xcode7.3}
+    
 #    - env: recipe=lapack_dockcross DOCKCROSS=manylinux BITNESS=64
 #    - env: recipe=lapack_dockcross DOCKCROSS=manylinux BITNESS=32    
 
@@ -80,8 +81,8 @@ matrix:
 
 #    - env: recipe=hsl_mingwoct_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=hsl_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
-    - env: recipe=hsl_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
-    - env: recipe=hsl_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
+#    - env: recipe=hsl_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+#    - env: recipe=hsl_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
     
 #    - env: recipe=hsl_dockcross DOCKCROSS=manylinux BITNESS=64
 #    - env: recipe=hsl_dockcross DOCKCROSS=manylinux BITNESS=32

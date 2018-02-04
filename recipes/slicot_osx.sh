@@ -20,7 +20,6 @@ if [ -z "$SETUP" ]; then
   
 cat <<EOF >makefile
 F77=gfortran-4.9
-LDFLAGS += -Wl,--as-needed
 
 SLICOT_SRC=\$(sort \$(shell echo src/*.f))
 SLICOT_OBJ=\$(SLICOT_SRC:.f=.o)

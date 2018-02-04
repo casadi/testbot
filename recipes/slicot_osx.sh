@@ -28,7 +28,7 @@ src/%.o : src/%.f
 $TAB\$(F77) \$(FFLAGS) -fPIC -c \$< -o \$@
 
 libslicot.dylib: \$(SLICOT_OBJ)
-$TAB\$(F77) \$(LDFLAGS) -shared -Wl,-soname=libslicot.dylib -o \$@ \$^ -L$LIB -llapack -lblas -llapack
+$TAB\$(F77) \$(LDFLAGS) -shared -Wl,-install_name,libslicot.dylib, -o \$@ \$^ -L$LIB -llapack -lblas -llapack
 EOF
 
   make

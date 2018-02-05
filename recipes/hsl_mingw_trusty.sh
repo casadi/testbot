@@ -16,6 +16,7 @@ if [ -z "$SETUP" ]; then
   pushd restricted
   wget http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/OLD/metis-4.0.3.tar.gz
   tar -xvf coinhsl.tar.gz && cd coinhsl-2014.01.10 && tar -xvf ../metis-4.0.3.tar.gz
+  autoupdate
   sed -i "s/AC_INIT(coinhsl/AC_INIT(hsl/" configure.ac
   make distclean
   rm -rf autom4te.cache

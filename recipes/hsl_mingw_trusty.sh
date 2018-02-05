@@ -27,10 +27,11 @@ if [ -z "$SETUP" ]; then
 
   mkdir $mypwd/pack
   cd $mypwd/coinhsl-install/bin
-  cp libhsl-0.dll $mypwd/pack/libhsl.dll
+  #cp libhsl-0.dll $mypwd/pack/libhsl.dll
+  cp *.dll $mypwd/pack/
   pushd $mypwd/pack/
-  gendef libhsl.dll - | tee  libhsl.def
-  $compilerprefix-dlltool --dllname libhsl.dll -d libhsl.def  -l libhsl.lib
+  #gendef libhsl.dll - | tee  libhsl.def
+  #$compilerprefix-dlltool --dllname libhsl.dll -d libhsl.def  -l libhsl.lib
   popd
   cp /usr/lib/gcc/$compilerprefix/5.3-posix/*.dll $mypwd/pack
   cp /usr/$compilerprefix/lib/*.dll $mypwd/pack

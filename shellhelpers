@@ -23,7 +23,7 @@ function assertfail() {
 
 function osx_gcc49_setup() {
       brew update
-      brew tap homebrew/science
+      #brew tap homebrew/science
       brew cask uninstall oclint
       brew install binutils p7zip
       brew reinstall gcc49 --with-fortran

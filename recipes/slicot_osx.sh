@@ -39,6 +39,7 @@ EOF
 else
   fetch_zip slicot osx
   export SLICOT_LIBRARY_DIR=$HOME/build/slicot
+  export MY_LIBRARY_PATH=$MY_LIBRARY_PATH:$SLICOT_LIBRARY_DIR
   export CASADI_ALLOW_GPL=ON
   export casadi_build_flags="$casadi_build_flags -DWITH_SLICOT=ON"
 fi

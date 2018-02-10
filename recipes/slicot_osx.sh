@@ -32,6 +32,7 @@ $TAB\$(F77) \$(LDFLAGS) -shared -Wl,-install_name,libslicot.dylib -o \$@ \$^ -L$
 EOF
 
   make
+  sudo install_name_tool -change $GCC_FULL_ALT "@rpath/libgcc_s.1.dylib" libslicot.dylib
   zip -j -r slicot_osx.zip libslicot.dylib
   slurp_put slicot_osx
 

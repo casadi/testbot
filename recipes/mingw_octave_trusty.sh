@@ -31,6 +31,7 @@ else
   export MINGW_LIB=$MINGW_ROOT/$compilerprefix/lib
   export PATH=$MINGW_ROOT/bin:$MINGW_ROOT/bin/$compilerprefix:$PATH
   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$MINGW_ROOT/x86_64-unknown-linux-gnu/$compilerprefix/lib/:$MINGW_LIB
+  echo $MINGW_LIB
   mkdir -p /home/travis/build/casadi/testbot/
   # For .la files
   ln -s $HOME/build/mingw_octave$BITNESS /home/travis/build/casadi/testbot/mxe-octave

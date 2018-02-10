@@ -71,6 +71,8 @@ EOF
 else
   fetch_tar clang mingwoct${BITNESS}_trusty
   export CMAKE_LIBRARY_PATH="$CMAKE_LIBRARY_PATH:$MINGW_LIB"
+  echo $CMAKE_LIBRARY_PATH
+  ls $CMAKE_LIBRARY_PATH
   export casadi_build_flags="$casadi_build_flags -DWITH_CLANG=ON -DOLD_LLVM=ON"  
 
   export CLANG=$HOME/build/clang

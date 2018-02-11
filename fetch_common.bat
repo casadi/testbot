@@ -17,7 +17,8 @@ choco install vcredist2015
 python -c "from restricted import *; download('ww_ifort_redist_intel64_2017.6.270.msi')"
 ww_ifort_redist_intel64_2017.6.270.msi /quiet /qn
 
-set PATH=%PATH%;C:\projects\binaries\;C:\projects\binaries\bin%BITNESS%;C:\projects\binaries\bin
+
+set PATH=%PATH%;C:\projects\binaries\;C:\projects\binaries\bin%BITNESS%;C:\projects\binaries\bin;"C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64_win\compiler"
 set WORHP_LICENSE_FILE=C:\projects\binaries\testbot\restricted\worhp\unlocked.lic
 dir
 set PATH=%PATH%;C:\projects\binaries\;

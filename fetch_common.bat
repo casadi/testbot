@@ -9,6 +9,9 @@ python -c "from restricted import *; download('libworhp_vs2013_1.10-2.7z')"
 python -c "from restricted import *; download('gurobi650_mingw%BITNESS%_trusty.zip')"
 7z x -y "gurobi650_mingw%BITNESS%_trusty.zip" > nul
 
+python -c "from restricted import *; download('snopt_mingw%BITNESS%_trusty.zip')"
+7z x -y "snopt_mingw%BITNESS%_trusty.zip" > nul
+
 set PATH=%PATH%;C:\projects\binaries\;C:\projects\binaries\bin%BITNESS%;C:\projects\binaries\bin
 set WORHP_LICENSE_FILE=C:\projects\binaries\testbot\restricted\worhp\unlocked.lic
 dir

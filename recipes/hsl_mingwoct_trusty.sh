@@ -9,6 +9,7 @@ if [ -z "$SETUP" ]; then
   export SLURP_OS=trusty
   slurp mingw_octave
   export SLURP_CROSS=mingwoct
+  sudo apt-get install -y mingw-w64-tools # for gendef
 fi
 
 source $RECIPES_DIR/hsl_mingw_common.sh

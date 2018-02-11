@@ -12,6 +12,11 @@ python -c "from restricted import *; download('gurobi650_mingw%BITNESS%_trusty.z
 python -c "from restricted import *; download('snopt_mingw%BITNESS%_trusty.zip')"
 7z x -y "snopt_mingw%BITNESS%_trusty.zip" > nul
 
+choco install vcredist2015
+
+python -c "from restricted import *; download('ww_ifort_redist_intel64_2017.6.270.msi')"
+ww_ifort_redist_intel64_2017.6.270.msi /quiet /qn
+
 set PATH=%PATH%;C:\projects\binaries\;C:\projects\binaries\bin%BITNESS%;C:\projects\binaries\bin
 set WORHP_LICENSE_FILE=C:\projects\binaries\testbot\restricted\worhp\unlocked.lic
 dir

@@ -170,13 +170,14 @@ export RECIPES_FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 function matlabtunnel() {
   source $TESTBOT_DIR/restricted/env.sh
-  sudo bash -c "echo -e '\n127.0.0.1	$FLEX_SERVER\n' >> /etc/hosts;echo -e '127.0.0.1	$FLEX_HOSTNAME\n' >> /etc/hosts"
+  echo -e "\n127.0.0.1	$FLEX_SERVER\n" | sudo tee -a /etc/hosts
+  echo -e "127.0.0.1	$FLEX_HOSTNAME\n" | sudo tee -a /etc/hosts
   cat /etc/hosts
   sudo hostname $FLEX_HOSTNAME
   mkdir -p ~/.matlab/${MATLABRELEASE}_licenses/
   echo -e "SERVER $FLEX_SERVER ANY 1725\nUSE_SERVER" > ~/.matlab/${MATLABRELEASE}_licenses/license.lic
   ssh-keyscan $GATE_SERVER >> ~/.ssh/known_hosts
-  ssh -i $TESTBOT_DIR/id_rsa_travis $USER_GATE@$GATE_SERVER -L 1701:$FLEX_SERVER:1701 -L 1719:$FLEX_SERVER:1719 -L 1718:$FLEX_SERVER:1718 -L 2015:$FLEX_SERVER:2015 -L 1815:$FLEX_SERVER:1815 -L 1725:$FLEX_SERVER:1725 -L 27000:$FLEX_SERVER:27000 -N || ssh -i $TESTBOT_DIR/id_rsa_travis $USER_GATE@$GATE_SERVER -L 1701/$FLEX_SERVER/1701 -L 1719/$FLEX_SERVER/1719 -L 1718/$FLEX_SERVER/1718 -L 2015/$FLEX_SERVER/2015 -L 1815/$FLEX_SERVER/1815 -L 1725/$FLEX_SERVER/1725 -L 27000/$FLEX_SERVER/27000 -N &
+  ssh -i $TESTBOT_DIR/id_rsa_travis $USER_GATE@$GATE_SERVER -L 1701:$FLEX_SERVER:1701 -L 1719:$FLEX_SERVER:1719 -L 1718:$FLEX_SERVER:1718 -L 2015:$FLEX_SERVER:2015 -L 1815:$FLEX_SERVER:1815 -L 1725:$FLEX_SERVER:1725 -L 27000:$FLEX_SERVER:27000 -N &
   sleep 3
 }
 

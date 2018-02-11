@@ -33,8 +33,9 @@ if [ -z "$SETUP" ]; then
   gendef libhsl.dll - | tee  libhsl.def
   $compilerprefix-dlltool --dllname libhsl.dll -d libhsl.def  -l libhsl.lib
   popd
-  cp /usr/lib/gcc/$compilerprefix/5.3-posix/*.dll $mypwd/pack
-  cp /usr/$compilerprefix/lib/*.dll $mypwd/pack
+  cp /usr/lib/gcc/$compilerprefix/5.3-posix/*.dll $mypwd/pack || allowfail 1
+  cp /usr/$compilerprefix/lib/*.dll $mypwd/pack || allowfail 1
+  cp $MINGW_LIB/usr/lib/gcc/i686-w64-mingw32/4.9.4/*.dll $mypwd/pack || allowfail 1
   zip -j -r hsl$SUFFIXFILE $mypwd/pack/*.dll hsl$SUFFIXFILE $mypwd/pack/*.lib hsl$SUFFIXFILE $mypwd/pack/*.a
   
   slurp_put hsl$SUFFIXFILE

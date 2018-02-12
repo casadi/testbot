@@ -10,6 +10,6 @@ else
   export CPLEX=$HOME/build/cplex
   ls $CPLEX
   export MY_LIBRARY_PATH=$MY_LIBRARY_PATH:$CPLEX/cplex/bin/x86-64_osx
-  cp $CPLEX/cplex/bin/x86-64_osx/cplex $CPLEX/cplex/bin/x86-64_osx/libcplex1280.dylib
+  cp $CPLEX/cplex/bin/x86-64_osx/libcplex1280.jnilib $CPLEX/cplex/bin/x86-64_osx/libcplex1280.dylib
   export casadi_build_flags="$casadi_build_flags -DWITH_CPLEX=ON -DWITH_CPLEX_SHARED=ON -DCPLEX_VERSION=1280"  
 fi

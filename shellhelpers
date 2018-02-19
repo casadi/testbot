@@ -140,6 +140,8 @@ function osx_rpath_restore() {
 function osx_rpath_patch() {
         sudo find $1 -name "*.dylib" -exec install_name_tool -change $GCC_FULL_ALT "@rpath/libgcc_s.1.dylib" {} \;
         sudo find $1 -name "*.so" -exec install_name_tool -change $GCC_FULL_ALT "@rpath/libgcc_s.1.dylib" {} \;
+        sudo find $1 -name "*.mexmaci64" -exec install_name_tool -change $GCC_FULL_ALT "@rpath/libgcc_s.1.dylib" {} \;
+        sudo find $1 -name "*.mex" -exec install_name_tool -change $GCC_FULL_ALT "@rpath/libgcc_s.1.dylib" {} \;
 }
 
 function python_setup_light() {

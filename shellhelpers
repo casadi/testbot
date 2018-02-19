@@ -137,6 +137,11 @@ function osx_rpath_restore() {
       sudo install_name_tool -change "@rpath/libquadmath.0.dylib" $QUADMATH_FULL $FORTRAN_FULL
 }
 
+function osx_rpath_patch() {
+        sudo find $1 -name "*.dylib" -exec install_name_tool -change $GCC_FULL_ALT "@rpath/libgcc_s.1.dylib" {} \;
+        sudo find $1 -name "*.so" -exec install_name_tool -change $GCC_FULL_ALT "@rpath/libgcc_s.1.dylib" {} \;
+}
+
 function python_setup_light() {
   if [[ $TRAVIS_OS_NAME == *linux* ]]
   then

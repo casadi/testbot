@@ -146,7 +146,7 @@ function slurp_common_test() {
   slurp gurobi
   slurp worhp
   slurp slicot
-  #slurp cplex
+  slurp cplex
   slurp knitro
 }
 

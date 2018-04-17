@@ -10,7 +10,7 @@ else
     echo "bitness: ${BITNESS}"
   ls $HOME/build/worhp
   export WORHP=$HOME/build/worhp
-  mv $WORHP/bin $WORHP/lib
+  mv $WORHP/bin/* $WORHP/lib
   rm $WORHP/lib/worhp.dll.a
   export WORHP_LICENSE_FILE=$HOME/build/testbot/restricted/worhp/unlocked.lic
   export casadi_build_flags="$casadi_build_flags -DWITH_WORHP=ON"

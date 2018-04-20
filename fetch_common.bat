@@ -3,8 +3,8 @@ python -c "from restricted import *; download('hsl_mingw%BITNESS%_trusty.zip')"
 python -c "from restricted import *; download('slicot_mingw%BITNESS%_trusty.zip')"
 7z x -y "slicot_mingw%BITNESS%_trusty.zip" > nul
 
-python -c "from restricted import *; download('libworhp_vs2013_1.10-2.7z')"
-7z x -y "libworhp_vs2013_1.10-2.7z" > nul
+python -c "from restricted import *; download('worhp_1.12-1_win%BITNESS%.zip')"
+7z x -y "worhp_1.12-1_win%BITNESS%.zip" > nul
 
 python -c "from restricted import *; download('gurobi650_mingw%BITNESS%_trusty.zip')"
 7z x -y "gurobi650_mingw%BITNESS%_trusty.zip" > nul

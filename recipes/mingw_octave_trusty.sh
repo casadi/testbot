@@ -8,6 +8,7 @@ if [ -z "$SETUP" ]; then
   mypwd=`pwd`
   hg clone http://hg.octave.org/mxe-octave/
   cd mxe-octave
+  hg update d88f6ada9d07
   autoconf
   if [[ $BITNESS == 64 ]]
   then

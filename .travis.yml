@@ -53,9 +53,9 @@ matrix:
 #    - env: recipe=lapack_dockcross DOCKCROSS=manylinux BITNESS=32    
 
 #     - env: recipe=slicot_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-     - env: recipe=slicot_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+    - env: recipe=slicot_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #     - env: recipe=slicot_mingwoct_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-     - env: recipe=slicot_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+    - env: recipe=slicot_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - {env: recipe=slicot_osx GCCVERSION=4.9, os: osx, osx_image: xcode7.3}
 #    - env: recipe=clang_mingwoct_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
     - env: recipe=clang_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32

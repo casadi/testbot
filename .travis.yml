@@ -10,13 +10,13 @@ language: generic
 
 matrix:
   include: 
-#    - env: recipe=mingw_octave_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
+    - env: recipe=mingw_octave_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=mingw_octave_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
     
 #    - env: recipe=ipopt_mingwoct_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-    - env: recipe=ipopt_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+#    - env: recipe=ipopt_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=ipopt_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-    - env: recipe=ipopt_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+#    - env: recipe=ipopt_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=ipopt_dockcross DOCKCROSS=manylinux BITNESS=64
 #    - env: recipe=ipopt_dockcross DOCKCROSS=manylinux BITNESS=32
 #    - env: recipe=ipopt_trusty
@@ -26,9 +26,9 @@ matrix:
  
  
 #    - env: recipe=bonmin_mingwoct_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64 
-    - env: recipe=bonmin_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32   
+#    - env: recipe=bonmin_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32   
 #    - env: recipe=bonmin_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-    - env: recipe=bonmin_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+#    - env: recipe=bonmin_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=bonmin_trusty
 #    - env: recipe=bonmin_trusty GCCVERSION=5
 #    - env: recipe=bonmin_trusty GCCVERSION=4.7
@@ -44,23 +44,23 @@ matrix:
 #    - env: recipe=ecos_dockcross DOCKCROSS=manylinux BITNESS=64
 #    - env: recipe=ecos_dockcross DOCKCROSS=manylinux BITNESS=32
 #    - env: recipe=lapack_mingwoct_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-    - env: recipe=lapack_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+#    - env: recipe=lapack_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=lapack_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-    - env: recipe=lapack_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+#    - env: recipe=lapack_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - {env: recipe=lapack_osx GCCVERSION=4.9, os: osx, osx_image: xcode7.3}
     
 #    - env: recipe=lapack_dockcross DOCKCROSS=manylinux BITNESS=64
 #    - env: recipe=lapack_dockcross DOCKCROSS=manylinux BITNESS=32    
 
 #     - env: recipe=slicot_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-    - env: recipe=slicot_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+#    - env: recipe=slicot_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #     - env: recipe=slicot_mingwoct_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-    - env: recipe=slicot_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+#    - env: recipe=slicot_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - {env: recipe=slicot_osx GCCVERSION=4.9, os: osx, osx_image: xcode7.3}
 #    - env: recipe=clang_mingwoct_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-    - env: recipe=clang_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+#    - env: recipe=clang_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=clang_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-    - env: recipe=clang_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+#    - env: recipe=clang_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=clang_trusty
 #    - env: recipe=clang_trusty GCCVERSION=5
 #    - env: recipe=clang_trusty GCCVERSION=4.6
@@ -80,7 +80,7 @@ matrix:
 #    - env: recipe=mingw_octave_trusty
 
 #    - env: recipe=hsl_mingwoct_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
-    - env: recipe=hsl_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
+#    - env: recipe=hsl_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=hsl_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=hsl_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
     
@@ -158,7 +158,12 @@ install:
     then
       if [[ $recipe == *mingw_* ]]
       then
-        mingw_setup # exclude mingwoct
+        if [[ $recipe == *octave* ]]
+        then
+          echo "Nothing to do"
+        else
+          mingw_setup # exclude mingwoct
+        fi
       fi
     fi
   - source recipes/$recipe.sh || remote_access

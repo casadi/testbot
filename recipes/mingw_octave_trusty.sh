@@ -17,7 +17,7 @@ if [ -z "$SETUP" ]; then
     ./configure --disable-windows-64 --disable-fortran-int64
   fi
   (while true ; do sleep 60 ; echo "ping" ; done ) &
-  make build-gcc
+  make build-gcc -j2
   ls -al
   echo "tar -zcvf mingw_octave$BITNESS$SUFFIXFILE.tar.gz -C $mypwd usr /dev/null"
   tar -zcvf mingw_octave$BITNESS$SUFFIXFILE.tar.gz usr >/dev/null

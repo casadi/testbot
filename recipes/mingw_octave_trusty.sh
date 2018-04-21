@@ -12,9 +12,9 @@ if [ -z "$SETUP" ]; then
   autoconf
   if [[ $BITNESS == 64 ]]
   then
-    ./configure --enable-windows-64 --enable-fortran-int-64
+    ./configure --enable-windows-64 --enable-fortran-int64
   else
-    ./configure --disable-windows-64 --disable-fortran-int-64
+    ./configure --disable-windows-64 --disable-fortran-int64
   fi
   (while true ; do sleep 60 ; echo "ping" ; done ) &
   make build-gcc

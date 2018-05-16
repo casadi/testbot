@@ -19,6 +19,7 @@ pip install requests==2.6.0
 pip install psutil
 echo $?
 pip install pyaml
+openssl version -a
 openssl aes-256-cbc -k "$keypass" -in id_rsa_travis.enc -out id_rsa_travis -d
 openssl aes-256-cbc -k "$keypass" -in testbotcredentials.py.enc -out testbotcredentials.py -d
 openssl aes-256-cbc -k "$keypass" -in env.sh.enc -out env.sh -d

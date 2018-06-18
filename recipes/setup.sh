@@ -147,11 +147,11 @@ function slurp_common_test() {
   slurp gurobi
   slurp worhp
   slurp slicot
-  if [[ "$TRAVIS_BRANCH" == *windows* ]]; then
-    echo "skipping"
-  else
-    slurp cplex
-  fi
+  #if [[ "$TRAVIS_BRANCH" == *windows* ]]; then
+  #  echo "skipping"
+  #else
+  slurp cplex
+  #fi
   slurp knitro
 }
 

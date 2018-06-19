@@ -12,6 +12,6 @@ else
     export CPLEX=$HOME/build/
     ls $CPLEX
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CPLEX/cplex/bin/x86_win64
-    export casadi_build_flags="$casadi_build_flags -DWITH_CPLEX=ON -DWITH_CPLEX_SHARED=ON -DCPLEX_VERSION=1280 -DCPLEX_DEFINITIONS='-DCPXSIZE_BITS=64'
+    export casadi_build_flags="$casadi_build_flags -DWITH_CPLEX=ON -DWITH_CPLEX_SHARED=ON -DCPLEX_VERSION=1280 -DCPLEX_DEFINITIONS='-DCPXSIZE_BITS=64'"
   #fi
 fi

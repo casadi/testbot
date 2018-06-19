@@ -23,7 +23,7 @@ python -c "from restricted import *; download('cplex_win1280.zip')"
 python -c "from restricted import *; download('knitro_mingw%BITNESS%_trusty.zip')"
 7z x -y "knitro_mingw%BITNESS%_trusty.zip" > nul
 
-set PATH=%PATH%;C:\projects\binaries\worhp\bin;\C:\projects\binaries\;C:\projects\binaries\bin%BITNESS%;C:\projects\binaries\bin;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64_win\compiler;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\ia32_win\compiler
+set PATH=%PATH%;C:\projects\binaries\worhp\bin;\C:\projects\binaries\;C:\projects\binaries\bin%BITNESS%;C:\projects\binaries\bin;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64_win\compiler;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\ia32_win\compiler;C:\projects\binaries\bin\x64_win%BITNESS%;
 set WORHP_LICENSE_FILE=C:\projects\binaries\testbot\restricted\worhp\unlocked.lic
 dir
 dir worhp

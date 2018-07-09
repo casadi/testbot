@@ -162,7 +162,12 @@ function python_setup_light() {
 }
 
 function python_setup() {
-  conda create --yes -n condaenv_build python=$TRAVIS_PYTHON_VERSION requests pyyaml numpy scipy matplotlib
+  if [[ -z "$PYTHON_VERSION" ]]
+  then
+    export PYTHON_VERSION=$TRAVIS_PYTHON_VERSION
+  fi
+  echo "py $PYTHON_VERSION"
+  conda create --yes -n condaenv_build python=$PYTHON_VERSION requests pyyaml numpy scipy matplotlib
   conda install --yes -n condaenv_build pip
   source activate condaenv_build
   export PYTHONVERSION_DOT3=`python -c "import sys;print('%s.%s.%s' % sys.version_info[:3])"`

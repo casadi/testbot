@@ -168,7 +168,8 @@ function python_setup() {
   fi
   echo "py $PYTHON_VERSION"
   conda info
-  conda update --all --yes
+  conda update --debug --all --yes
+  conda update conda --yes
   conda create --yes -n condaenv_build python=$PYTHON_VERSION requests pyyaml numpy scipy matplotlib
   conda install --yes -n condaenv_build pip
   source activate condaenv_build

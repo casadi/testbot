@@ -167,6 +167,7 @@ function python_setup() {
     export PYTHON_VERSION=$TRAVIS_PYTHON_VERSION
   fi
   echo "py $PYTHON_VERSION"
+  remote_access
   conda info
   conda update --debug --all --yes
   conda update conda --yes

@@ -51,6 +51,7 @@ EOF
 else
   fetch_tar lapack mingw${BITNESS}_trusty
   export LIB=$HOME/build/lapack
+  export CASADI_EXTRA_LIBRARIES_LAPACK=gfortran
   export casadi_build_flags="$casadi_build_flags -DWITH_LAPACK=ON"  
 fi
 

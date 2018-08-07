@@ -167,10 +167,7 @@ function python_setup() {
     export PYTHON_VERSION=$TRAVIS_PYTHON_VERSION
   fi
   echo "py $PYTHON_VERSION"
-  remote_access
-  conda info
-  conda update --debug --all --yes
-  conda update conda --yes
+  conda update --prefix /home/travis/miniconda2 conda --yes
   conda create --yes -n condaenv_build python=$PYTHON_VERSION requests pyyaml numpy scipy matplotlib
   conda install --yes -n condaenv_build pip
   source activate condaenv_build

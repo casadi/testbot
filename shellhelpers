@@ -270,7 +270,11 @@ function remote_access() {
 function test_commit() {
   if [ $TESTCOMMIT ]; then
   pushd $HOME/build/casadi/binaries
+  
+  git config --global user.email "testbot@casadidev.org"
+  git config --global user.name "casaditestbot"
   git remote add github git@github.com:casadi/binaries.git
+  
   git fetch github
   git checkout $1
   git commit -a -m "automatic test commit $COMMIT" || allowfail 1

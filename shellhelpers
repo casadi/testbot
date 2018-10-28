@@ -246,6 +246,8 @@ function dockcross_setup_finish() {
   printenv | grep -v miniconda > $HOME/env.txt
   echo $PATH > $HOME/pathnew.txt
   echo -n "$MANYLINUX_PYTHON_DIR/bin/:" > $HOME/pathcross.txt
+  echo $PATH
+  echo $HOME/pathcross.txt
   echo 'hey123'
   dockcross "echo -n \$PATH" >> $HOME/pathcross.txt
   echo 'hey123'

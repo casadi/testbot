@@ -195,7 +195,7 @@ function python_setup() {
     export CMAKE_PYTHON_LIBRARY=${CMAKE_PYTHON_LIBRARY}.dylib
   fi
   export CMAKE_PYTHON_INCLUDE_DIR=$HOME/miniconda2/envs/condaenv_build/include/python${PYTHONVERSION_DOT2}${PYTHONLIB_MOD}
-  export MANYLINUX_PYTHON_DIR=/opt/python/cp${PYTHONVERSION}-cp${PYTHONVERSION}m/
+  export MANYLINUX_PYTHON_DIR=/opt/python/cp${PYTHONVERSION}-cp${PYTHONVERSION}m
   export MANYLINUX_PYTHON3_BIN=/opt/python/cp36-cp36m/bin
   export MANYLINUX_PYTHON3=$MANYLINUX_PYTHON3_BIN/python
   export MANYLINUX_PYTHON_INCLUDE_DIR=${MANYLINUX_PYTHON_DIR}/include/python${PYTHONVERSION_DOT2}${PYTHONLIB_MOD}/
@@ -230,6 +230,8 @@ function dockcross_setup_start() {
   docker pull dockcross/$ARCH
   #docker pull jgillis/dockcross_manylinux
   docker run --rm dockcross/$ARCH > dockcross
+  chmod +x ./dockcross
+  ./dockcross "echo 123"
   #docker run --rm  jgillis/dockcross_manylinux > dockcross
   cat dockcross
   #sed -i "s/dockcross\/manylinux-x64/jgillis\/dockcross_manylinux/" dockcross

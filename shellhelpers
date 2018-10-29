@@ -240,6 +240,7 @@ function dockcross_setup_start() {
   echo -e "#!/usr/bin/env bash\nsource \$HOME/dockcross_at_start\neval \$@" > $HOME/dockcross_at_start_trigger
   chmod +x $HOME/dockcross_at_start_trigger
   touch $HOME/dockcross_at_start
+  touch $HOME/env.txt
   ./dockcross "echo 123"
   export PATH=`pwd`:$PATH
   echo "dockcross_setup_start done"

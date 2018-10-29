@@ -233,7 +233,7 @@ function dockcross_setup_start() {
   #docker run --rm  jgillis/dockcross_manylinux > dockcross
   cat dockcross
   #sed -i "s/dockcross\/manylinux-x64/jgillis\/dockcross_manylinux/" dockcross
-  perl -p -i -e 's/^ +-v.*$/    -v \$HOME:\$HOME -v \/:\/host \\/g;s/^ +\$HOST_VOLUMES .*/    -w \$HOST_PWD --env-file \$HOME\/env.txt \\/g;s/^ +\$FINAL_IMAGE \"\$@\"/ \$FINAL_IMAGE \$HOME\/dockcross_at_start_trigger \"\$@\"/g;s/' dockcross
+  perl -p -i -e 's/^ +-v.*$/    -v \$HOME:\$HOME -v \/:\/host \\/g;s/^ +\$HOST_VOLUMES .*/    -w \$HOST_PWD --env-file \$HOME\/env.txt \\/g;s/^ +\$FINAL_IMAGE \"\$@\"/ \$FINAL_IMAGE \$HOME\/dockcross_at_start_trigger \"\$@\"/g;' dockcross
   chmod +x ./dockcross
 
   echo -e "#!/bin/bash\nsource \$HOME/dockcross_at_start\neval \$@" > $HOME/dockcross_at_start_trigger

@@ -24,6 +24,7 @@ if [ -z "$SETUP" ]; then
   dockcross make
   dockcross make install  
   cd $mypwd/coinhsl-install/lib
+  echo "foobaz"
   ln -s libcoinhsl.so libhsl.so
   popd
   echo "foobar"

@@ -26,6 +26,8 @@ if [ -z "$SETUP" ]; then
   cd $mypwd/coinhsl-install/lib
   ln -s libcoinhsl.so libhsl.so
   popd
+  echo "foobar"
+  ls $mypwd/coinhsl-install/lib 
   tar -zcvf hsl$SUFFIXFILE.tar.gz -C $mypwd/coinhsl-install/lib . 
 
   #echo "test" > libhsl.tar.gz

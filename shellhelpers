@@ -167,6 +167,7 @@ function python_setup() {
     export PYTHON_VERSION=$TRAVIS_PYTHON_VERSION
   fi
   echo "py $PYTHON_VERSION"
+  conda config --set ssl_verify no
   conda update --prefix $HOME/miniconda2 conda --yes
   conda create --yes -n condaenv_build python=$PYTHON_VERSION requests pyyaml numpy scipy wheel==0.31.1 matplotlib
   conda install --yes -n condaenv_build pip

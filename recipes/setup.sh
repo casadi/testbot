@@ -144,6 +144,11 @@ function slurp_common() {
 function slurp_common_test() {
   slurp hsl
   slurp snopt
+  if [ "$TRAVIS_OS_NAME" == "osx" ]; then
+    brew install gcc@7
+  else
+    echo "skip"
+  fi
   slurp gurobi
   slurp worhp
   slurp slicot

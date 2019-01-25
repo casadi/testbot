@@ -143,11 +143,12 @@ function slurp_common() {
 
 function slurp_common_test() {
   slurp hsl
-  slurp snopt
+
   if [ "$TRAVIS_OS_NAME" == "osx" ]; then
-    xcode-select --install
-    brew install gcc
+    #xcode-select --install
+    #brew install gcc
   else
+    slurp snopt
     echo "skip"
   fi
   slurp gurobi

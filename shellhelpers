@@ -156,9 +156,9 @@ function python_setup_light() {
   export PATH=$HOME/miniconda2/bin:$PATH
   #conda update --yes conda
   conda create --yes -n condaenv python=2.7 requests pyyaml libgcc
-  conda install --yes -n condaenv pip
+  conda install --quiet --yes -n condaenv pip
   source activate condaenv
-  pip install pysftp
+  pip install --quiet pysftp
 }
 
 function python_setup() {
@@ -170,7 +170,7 @@ function python_setup() {
   conda config --set ssl_verify no
   conda update --prefix $HOME/miniconda2 conda --yes
   conda create --yes -n condaenv_build python=$PYTHON_VERSION requests pyyaml numpy scipy wheel==0.31.1 matplotlib
-  conda install --yes -n condaenv_build pip
+  conda install --quiet --yes -n condaenv_build pip
   source activate condaenv_build
   export PYTHONVERSION_DOT3=`python -c "import sys;print('%s.%s.%s' % sys.version_info[:3])"`
   echo ":$PYTHONVERSION_DOT3:"
@@ -187,7 +187,7 @@ function python_setup() {
   else
     export PYTHONLIB_MOD=
   fi
-  pip install pysftp
+  pip install --quiet pysftp
   export CMAKE_PYTHON_LIBRARY=$HOME/miniconda2/envs/condaenv_build/lib/libpython${PYTHONVERSION_DOT2}${PYTHONLIB_MOD}
   if [[ $TRAVIS_OS_NAME == *linux* ]]
   then

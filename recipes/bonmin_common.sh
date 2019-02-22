@@ -52,7 +52,7 @@ EOF
   slurp_put bonmin$SUFFIXFILE
 else
   fetch_tar bonmin $SUFFIX
-  export casadi_build_flags="$casadi_build_flags -DWITH_BONMIN=ON -DWITH_CLP=ON"
+  export casadi_build_flags="$casadi_build_flags -DWITH_BONMIN=ON -DWITH_CLP=ON -DWITH_CBC=ON"
   
   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$HOME/bonmin-install/lib/pkgconfig
   pushd $HOME/ && ln -s  $HOME/build/bonmin bonmin-install && popd

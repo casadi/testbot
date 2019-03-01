@@ -11,4 +11,5 @@ else
   ls $GUROBI_HOME/lib
   echo $LD_LIBRARY_PATH
   export casadi_build_flags="$casadi_build_flags -DWITH_GUROBI=ON"  
+  export SKIP_GUROBI_TESTS=1
 fi

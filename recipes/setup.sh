@@ -149,7 +149,11 @@ function slurp_common_test() {
     #brew install gcc
     echo "skip"
   else
-    slurp snopt
+    if [ "$BITNESS" == "32" ] && [[ $compilerprefix == *"mingw"* ]]; then
+      echo "snopt not available for 32 bit Windows"
+    else
+      slurp snopt
+    fi
     echo "skip"
   fi
   slurp gurobi

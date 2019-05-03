@@ -152,7 +152,8 @@ function slurp_common_test() {
     if [ "$BITNESS" == "32" ] && [[ $compilerprefix == *"mingw"* ]]; then
       echo "snopt not available for 32 bit Windows"
     else
-      slurp snopt
+      #slurp snopt
+      echo "skipping snopt"
     fi
     echo "skip"
   fi

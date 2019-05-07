@@ -169,7 +169,7 @@ function python_setup() {
   echo "py $PYTHON_VERSION"
   conda config --set ssl_verify no
   conda update --prefix $HOME/miniconda2 conda --yes
-  conda create --quiet --yes -n condaenv_build python=$PYTHON_VERSION requests pyyaml numpy scipy wheel matplotlib # ==0.31.1
+  conda create --quiet --yes -n condaenv_build python=$PYTHON_VERSION requests pyyaml numpy scipy wheel==0.31.1 matplotlib # ==0.31.1
   conda install --quiet --yes -n condaenv_build pip
   source activate condaenv_build
   export PYTHONVERSION_DOT3=`python -c "import sys;print('%s.%s.%s' % sys.version_info[:3])"`

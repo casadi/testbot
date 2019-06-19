@@ -174,7 +174,7 @@ function python_setup() {
     conda create --quiet --yes -n condaenv_build python=$PYTHON_VERSION requests pyyaml numpy scipy wheel==0.31.1 matplotlib # ==0.31.1
   else
     conda create --quiet --yes -n condaenv_build python=$PYTHON_VERSION requests pyyaml numpy scipy wheel matplotlib
-  end
+  fi
   conda install --quiet --yes -n condaenv_build pip
   source activate condaenv_build
   export PYTHONVERSION_DOT3=`python -c "import sys;print('%s.%s.%s' % sys.version_info[:3])"`

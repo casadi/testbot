@@ -297,7 +297,7 @@ function test_commit() {
   echo "a"
   git submodule sync
   echo "b"
-  git submodule update --depth 50
+  git submodule update
   echo "c"
   git fetch github
   echo "d"

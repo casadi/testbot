@@ -294,9 +294,13 @@ function test_commit() {
   git config --global user.name "casaditestbot"
   git remote add github git@github.com:casadi/binaries.git
   
+  echo "a"
   git submodule sync
+  echo "b"
   git submodule update --depth 50
+  echo "c"
   git fetch github
+  echo "d"
   git checkout $1
   git commit -a -m "automatic test commit $COMMIT" || allowfail 1
   test $(git status --porcelain | grep UU | wc -c) -eq 0

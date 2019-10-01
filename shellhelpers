@@ -295,6 +295,7 @@ function test_commit() {
   git remote add github git@github.com:casadi/binaries.git
   
   git submodule sync
+  git submodule update --depth 50
   git fetch github
   git checkout $1
   git commit -a -m "automatic test commit $COMMIT" || allowfail 1

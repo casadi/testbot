@@ -299,7 +299,7 @@ function test_commit() {
   echo "b"
   git submodule update
   echo "c"
-  git fetch github
+  git fetch github || allowfail 1
   echo "d"
   git checkout $1
   git commit -a -m "automatic test commit $COMMIT" || allowfail 1

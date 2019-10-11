@@ -38,7 +38,7 @@ function osx_gcc7_setup() {
       #brew tap homebrew/science
       brew cask uninstall oclint
       brew install binutils p7zip
-      brew reinstall gcc7 #--with-fortran
+      brew reinstall gcc@7 #--with-fortran
       export CC=gcc-7
       export CXX=g++-7
       export FC=gfortran-7

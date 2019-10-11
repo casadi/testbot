@@ -70,7 +70,9 @@ sudo apt-get install -q -y -t xenial mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfort
 }
 
 function osx_rpath_gcc7() {
-      find /usr/local/Cellar/ -name *libstdc++* 
+      find /usr/local/Cellar -name *libstdc++.*.dylib | gep -v 386 | grep -v 4.9
+      find /usr/local/Cellar -name *libgomp.*.dylib | gep -v 386 | grep -v 4.9
+      
       export FORTRAN_FULL_ALT=/usr/local/lib/gcc/4.9/libgfortran.3.dylib
       export FORTRAN_FULL=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/libgfortran.3.dylib
       

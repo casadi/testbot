@@ -38,8 +38,8 @@ function osx_gcc7_setup() {
       #brew tap homebrew/science
       brew cask uninstall oclint
       brew install binutils p7zip
-      #brew reinstall gcc@7 #--with-fortran
-      export CC=gcc
+      brew reinstall gcc@9.2 #--with-fortran
+      export CC=gcc-9
       export CXX=g++-9
       export FC=gfortran-9
       export F77=gfortran-9
@@ -77,21 +77,17 @@ function osx_rpath_gcc7() {
       find /usr/local -name *libquadmath.*.dylib | grep -v 386
       find /usr/local -name *libgcc_s.*.dylib | grep -v 386
    
-      export FORTRAN_FULL_ALT=/usr/local/lib/gcc/4.9/libgfortran.3.dylib
-      export FORTRAN_FULL=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/libgfortran.3.dylib
-      
-      export QUADMATH_FULL_ALT=/usr/local/lib/gcc/4.9/libquadmath.0.dylib
-      export QUADMATH_FULL=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/libquadmath.0.dylib
-      
-      export GCC_FULL_ALT=/usr/local/lib/gcc/4.9/libgcc_s.1.dylib
-      export GCC_FULL=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/libgcc_s.1.dylib
-      
-      export GOMP_FULL_ALT=/usr/local/lib/gcc/4.9/libgomp.1.dylib
-      export GOMP_FULL=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/libgomp.1.dylib
-      
-      export CXX_FULL_ALT=/usr/local/Cellar/gcc@4.9/4.9.4/lib/gcc/4.9/libstdc++.6.dylib
-      export CXX_FULL=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/libstdc++.6.dylib
-      
+      export CXX_FULL=`find /usr/local -name *libstdc++.*.dylib | grep -v 386`
+      export GOMP_FULL=`find /usr/local -name *libgomp.*.dylib | grep -v 386`
+      export FORTRAN_FULL=`find /usr/local -name *libgfortran.*.dylib | grep -v 386`
+      export QUADMATH_FULL=`find /usr/local -name *libquadmath.*.dylib | grep -v 386`
+      export GCC_FULL=`find /usr/local -name *libgcc_s.*.dylib | grep -v 386`
+      export FORTRAN_FULL_ALT=$FORTRAN_FULL
+      export QUADMATH_FULL_ALT=$QUADMATH_FULL
+      export GCC_FULL_ALT=$GCC_FULL
+      export GOMP_FULL_ALT=$GOMP_FULL
+      export CXX_FULL_ALT=$CXX_FULL
+
       ls $FORTRAN_FULL_ALT
       ls $FORTRAN_FULL
       ls $QUADMATH_FULL_ALT
@@ -104,9 +100,9 @@ function osx_rpath_gcc7() {
       ls $CXX_FULL
       
       echo 1
-      sudo install_name_tool -id "@rpath/libgfortran.3.dylib" $FORTRAN_FULL
+      sudo install_name_tool -id "@rpath/libgfortran.5.dylib" $FORTRAN_FULL
       echo 1
-      sudo install_name_tool -id "@rpath/libgfortran.3.dylib" $FORTRAN_FULL_ALT
+      sudo install_name_tool -id "@rpath/libgfortran.5.dylib" $FORTRAN_FULL_ALT
       echo 1
       sudo install_name_tool -id "@rpath/libquadmath.0.dylib" $QUADMATH_FULL
       echo 1

@@ -39,7 +39,9 @@ function osx_gcc7_setup() {
       brew cask uninstall oclint
       brew install binutils p7zip
       brew config
+      sudo rm -rf /Library/Developer/CommandLineTools
       xcode-select --install
+      brew config
       brew uninstall --ignore-dependencies gcc@9
       brew install gcc@9 #--with-fortran
       export CC=gcc-9

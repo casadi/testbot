@@ -38,12 +38,12 @@ function osx_gcc7_setup() {
       #brew tap homebrew/science
       brew cask uninstall oclint
       brew install binutils p7zip
-      brew reinstall gcc@8 #--with-fortran
-      export CC=gcc-8
-      export CXX=g++-8
-      export FC=gfortran-8
-      export F77=gfortran-8
-      gcc-8 --version
+      brew reinstall gcc@9 #--with-fortran
+      export CC=gcc-9
+      export CXX=g++-9
+      export FC=gfortran-9
+      export F77=gfortran-9
+      gcc-9 --version
 }
 
 function mingw_setup() {
@@ -77,11 +77,11 @@ function osx_rpath_gcc7() {
       find /usr/local -name *libquadmath.*.dylib | grep -v 386
       find /usr/local -name *libgcc_s.*.dylib | grep -v 386
    
-      export CXX_FULL=`find /usr/local -name *libstdc++.*.dylib | grep -v 386 | grep 8`
-      export GOMP_FULL=`find /usr/local -name *libgomp.*.dylib | grep -v 386 | grep 8`
-      export FORTRAN_FULL=`find /usr/local -name *libgfortran.*.dylib | grep -v 386 | grep 8`
-      export QUADMATH_FULL=`find /usr/local -name *libquadmath.*.dylib | grep -v 386 | grep 8`
-      export GCC_FULL=`find /usr/local -name *libgcc_s.*.dylib | grep -v 386 | grep 8`
+      export CXX_FULL=`find /usr/local -name *libstdc++.*.dylib | grep -v 386`
+      export GOMP_FULL=`find /usr/local -name *libgomp.*.dylib | grep -v 386`
+      export FORTRAN_FULL=`find /usr/local -name *libgfortran.*.dylib | grep -v 386`
+      export QUADMATH_FULL=`find /usr/local -name *libquadmath.*.dylib | grep -v 386`
+      export GCC_FULL=`find /usr/local -name *libgcc_s.*.dylib | grep -v 386`
       export FORTRAN_FULL_ALT=$FORTRAN_FULL
       export QUADMATH_FULL_ALT=$QUADMATH_FULL
       export GCC_FULL_ALT=$GCC_FULL

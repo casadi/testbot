@@ -34,8 +34,12 @@ function osx_gcc49_setup() {
 }
 
 function osx_gcc7_setup() {
+      brew config
       sudo rm -rf /Library/Developer/CommandLineTools
+      brew config
+      find / -name CommandLineTools
       brew update
+      
       #brew tap homebrew/science
       brew cask uninstall oclint
       brew install binutils p7zip

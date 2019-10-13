@@ -35,7 +35,9 @@ function osx_gcc49_setup() {
 
 function osx_gcc7_setup() {
       sudo rm -rf /Library/Developer/CommandLineTools
+      ls
       travis_retry $RECIPES_DIR/fetch.sh CommandLineTools.pkg
+      ls 
       sudo installer -pkg CommandLineTools.pkg -target /
       brew config
       xcode-select --install

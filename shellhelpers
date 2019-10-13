@@ -35,28 +35,14 @@ function osx_gcc49_setup() {
 
 function osx_gcc7_setup() {
       sudo rm -rf /Library/Developer/CommandLineTools
-      ls
       travis_retry $RECIPES_DIR/fetch.sh CommandLineTools.pkg
-      echo $?
-      ls 
       sudo installer -pkg CommandLineTools.pkg -target /
-      brew config
-      xcode-select --install
-      brew config
-      brew upgrade
       brew config
       brew update
       
       #brew tap homebrew/science
       brew cask uninstall oclint
       brew install binutils p7zip
-      brew config
-      #softwareupdate --list
-      #softwareupdate --install --all
-      brew config
-      #sudo rm -rf /Library/Developer/CommandLineTools
-      #xcode-select --install
-      brew config
       brew uninstall --ignore-dependencies gcc@9
       brew install gcc@9 #--with-fortran
       export CC=gcc-9

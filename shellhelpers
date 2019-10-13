@@ -36,6 +36,7 @@ function osx_gcc49_setup() {
 function osx_gcc7_setup() {
       brew config
       sudo rm -rf /Library/Developer/CommandLineTools
+      xcode-select --install
       brew config
       brew upgrade
       brew config

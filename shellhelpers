@@ -54,11 +54,11 @@ function osx_gcc7_setup() {
       echo "#include <sys/cdefs.h>" > a.txt
       cat a.txt b.txt > c.txt
       sudo mv c.txt /usr/local/Cellar/gcc/9.2.0_1/include/c++/9.2.0/algorithm
-      rm a.txt b.txt c.txt
+      rm b.txt
       cp /Users/travis/build/casadi/binaries/casadi/external_packages/CSparse/Include/cs.h b.txt
       cat a.txt b.txt > c.txt
       mv c.txt /Users/travis/build/casadi/binaries/casadi/external_packages/CSparse/Include/cs.h
-      rm a.txt b.txt c.txt
+      rm a.txt b.txt
 }
 
 function mingw_setup() {

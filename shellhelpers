@@ -50,6 +50,10 @@ function osx_gcc7_setup() {
       export FC=gfortran-9
       export F77=gfortran-9
       gcc-9 --version
+      cp /usr/local/Cellar/gcc/9.2.0_1/include/c++/9.2.0/algorithm b.txt
+      echo "#include <sys/cdefs.h>" > a.txt
+      cat a.txt b.txt > c.txt
+      sudo mv c.txt /usr/local/Cellar/gcc/9.2.0_1/include/c++/9.2.0/algorithm
 }
 
 function mingw_setup() {

@@ -118,7 +118,8 @@ function osx_rpath_gcc7() {
       export GCC_FULL=`find /usr/local -name *libgcc_s.*.dylib | grep -v 386`
       export FORTRAN_FULL_ALT=$FORTRAN_FULL
       export QUADMATH_FULL_ALT=$QUADMATH_FULL
-      export GCC_FULL_ALT=$GCC_FULL
+      ls /usr/local/lib/gcc/9/libgcc_s.1.dylib
+      export GCC_FULL_ALT="/usr/local/lib/gcc/9/libgcc_s.1.dylib"
       export GOMP_FULL_ALT=$GOMP_FULL
       export CXX_FULL_ALT=$CXX_FULL
 

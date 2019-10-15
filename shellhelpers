@@ -50,15 +50,34 @@ function osx_gcc7_setup() {
       export FC=gfortran-9
       export F77=gfortran-9
       gcc-9 --version
-      cp /usr/local/Cellar/gcc/9.2.0_1/include/c++/9.2.0/algorithm b.txt
-      echo "#include <sys/cdefs.h>" > a.txt
-      cat a.txt b.txt > c.txt
-      sudo mv c.txt /usr/local/Cellar/gcc/9.2.0_1/include/c++/9.2.0/algorithm
-      rm b.txt
-      cp /Users/travis/build/casadi/binaries/casadi/external_packages/CSparse/Include/cs.h b.txt
-      cat a.txt b.txt > c.txt
-      mv c.txt /Users/travis/build/casadi/binaries/casadi/external_packages/CSparse/Include/cs.h
-      rm a.txt b.txt
+cat <<EOF > a.txt
+#ifndef __has_builtin
+#define __has_builtin(x) 0
+#endif
+#ifndef __has_include
+#define __has_include(x) 0
+#endif
+#ifndef __has_feature
+#define __has_feature(x) 0
+#endif
+#ifndef __has_attribute
+#define __has_attribute(x) 0
+#endif
+#ifndef __has_extension
+#define __has_extension(x) 0
+#endif
+EOF
+      cat a.txt /Applications/Xcode-11.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/stdlib.h > c.txt
+      sudo mv c.txt /Applications/Xcode-11.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/stdlib.h
+      #cp /usr/local/Cellar/gcc/9.2.0_1/include/c++/9.2.0/algorithm b.txt
+      #echo "#include <sys/cdefs.h>" > a.txt
+      #cat a.txt b.txt > c.txt
+      #sudo mv c.txt /usr/local/Cellar/gcc/9.2.0_1/include/c++/9.2.0/algorithm
+      #rm b.txt
+      #cp /Users/travis/build/casadi/binaries/casadi/external_packages/CSparse/Include/cs.h b.txt
+      #cat a.txt b.txt > c.txt
+      #mv c.txt /Users/travis/build/casadi/binaries/casadi/external_packages/CSparse/Include/cs.h
+      #rm a.txt b.txt
 }
 
 function mingw_setup() {

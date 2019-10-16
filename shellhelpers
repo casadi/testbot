@@ -37,11 +37,11 @@ function osx_gcc7_setup() {
       gcc --version
       conda install -y -c conda-forge c-compiler cxx-compiler fortran-compiler
       gcc --version
-      conda activate condaenv_build
+      source activate condaenv_build
       gcc --version
-      conda activate condaenv_build
+      source activate condaenv_build
       gcc --version
-      conda activate condaenv_build
+      source activate condaenv_build
       gcc --version
       #conda install -c conda-forge 
       #conda install -c conda-forge fortran-compiler      

@@ -34,6 +34,11 @@ function osx_gcc49_setup() {
 }
 
 function osx_gcc7_setup() {
+      conda create --build
+      conda activate build
+      conda install c-tools
+      conda install cxx-tools
+      conda install fortran-tools      
       sudo rm -rf /Library/Developer/CommandLineTools
       travis_retry $RECIPES_DIR/fetch.sh CommandLineTools.pkg
       sudo installer -pkg CommandLineTools.pkg -target /
@@ -43,13 +48,13 @@ function osx_gcc7_setup() {
       #brew tap homebrew/science
       brew cask uninstall oclint
       brew install binutils p7zip
-      brew uninstall --ignore-dependencies gcc@9
-      brew install gcc@9 #--with-fortran
-      export CC=gcc-9
-      export CXX=g++-9
-      export FC=gfortran-9
-      export F77=gfortran-9
-      gcc-9 --version
+      #brew uninstall --ignore-dependencies gcc@9
+      #brew install gcc@9 #--with-fortran
+      #export CC=gcc-9
+      #export CXX=g++-9
+      #export FC=gfortran-9
+      #export F77=gfortran-9
+      #gcc-9 --version
 cat <<EOF > a.txt
 #ifndef __has_builtin
 #define __has_builtin(x) 0

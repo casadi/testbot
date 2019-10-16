@@ -34,11 +34,10 @@ function osx_gcc49_setup() {
 }
 
 function osx_gcc7_setup() {
-      conda create --build
-      conda activate build
       conda install c-tools
       conda install cxx-tools
       conda install fortran-tools      
+      
       sudo rm -rf /Library/Developer/CommandLineTools
       travis_retry $RECIPES_DIR/fetch.sh CommandLineTools.pkg
       sudo installer -pkg CommandLineTools.pkg -target /
@@ -110,21 +109,15 @@ sudo apt-get install -q -y -t xenial mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfort
 }
 
 function osx_rpath_gcc7() {
-      find /usr/local -name *libstdc++.*.dylib | grep -v 386
-      find /usr/local -name *libgomp.*.dylib | grep -v 386
-      find /usr/local -name *libgfortran.*.dylib | grep -v 386
-      find /usr/local -name *libquadmath.*.dylib | grep -v 386
-      find /usr/local -name *libgcc_s.*.dylib | grep -v 386
-   
-      export CXX_FULL=`find /usr/local -name *libstdc++.*.dylib | grep -v 386`
-      export GOMP_FULL=`find /usr/local -name *libgomp.*.dylib | grep -v 386`
-      export FORTRAN_FULL=`find /usr/local -name *libgfortran.*.dylib | grep -v 386`
-      export QUADMATH_FULL=`find /usr/local -name *libquadmath.*.dylib | grep -v 386`
-      export GCC_FULL=`find /usr/local -name *libgcc_s.*.dylib | grep -v 386`
+
+      export CXX_FULL=$HOME/miniconda2/envs/condaenv_build/lib/libc++.1.dylib
+      export GOMP_FULL=$HOME/miniconda2/envs/condaenv_build/lib/libgomp.1.dylib
+      export FORTRAN_FULL=$HOME/miniconda2/envs/condaenv_build/lib/libgfortran.4.dylib
+      export QUADMATH_FULL=$HOME/miniconda2/envs/condaenv_build/lib/libquadmath.0.dylib
+      export GCC_FULL=$HOME/miniconda2/envs/condaenv_build/lib/libgcc_s.1.dylib
       export FORTRAN_FULL_ALT=$FORTRAN_FULL
       export QUADMATH_FULL_ALT=$QUADMATH_FULL
-      ls /usr/local/lib/gcc/9/libgcc_s.1.dylib
-      export GCC_FULL_ALT="/usr/local/lib/gcc/9/libgcc_s.1.dylib"
+      export GCC_FULL_ALT=$GCC_FULL
       export GOMP_FULL_ALT=$GOMP_FULL
       export CXX_FULL_ALT=$CXX_FULL
 
@@ -140,9 +133,9 @@ function osx_rpath_gcc7() {
       ls $CXX_FULL
       
       echo 1
-      sudo install_name_tool -id "@rpath/libgfortran.5.dylib" $FORTRAN_FULL
+      sudo install_name_tool -id "@rpath/libgfortran.4.dylib" $FORTRAN_FULL
       echo 1
-      sudo install_name_tool -id "@rpath/libgfortran.5.dylib" $FORTRAN_FULL_ALT
+      sudo install_name_tool -id "@rpath/libgfortran.4.dylib" $FORTRAN_FULL_ALT
       echo 1
       sudo install_name_tool -id "@rpath/libquadmath.0.dylib" $QUADMATH_FULL
       echo 1
@@ -156,7 +149,7 @@ function osx_rpath_gcc7() {
       echo 1
       sudo install_name_tool -id "@rpath/libgomp.1.dylib" $GOMP_FULL_ALT
       echo 1
-      sudo install_name_tool -id "@rpath/libstdc++.6.dylib" $CXX_FULL
+      sudo install_name_tool -id "@rpath/libc++.1.dylib" $CXX_FULL
       echo 1
        
       echo 2

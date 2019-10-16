@@ -34,9 +34,9 @@ function osx_gcc49_setup() {
 }
 
 function osx_gcc7_setup() {
-      conda install c-tools
-      conda install cxx-tools
-      conda install fortran-tools      
+      conda install -c conda-forge c-tools
+      conda install -c conda-forge cxx-tools
+      conda install -c conda-forge fortran-tools      
       
       sudo rm -rf /Library/Developer/CommandLineTools
       travis_retry $RECIPES_DIR/fetch.sh CommandLineTools.pkg

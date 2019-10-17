@@ -5,7 +5,7 @@
 if [ -z "$SETUP" ]; then
   mypwd=`pwd`
 
-  export SLURP_GCC=4.9
+  export SLURP_GCC=7
   export SLURP_OS=osx
 
   pushd $HOME/build
@@ -19,7 +19,7 @@ if [ -z "$SETUP" ]; then
   TAB="$(printf '\t')"
   
 cat <<EOF >makefile
-F77=gfortran-4.9
+F77=$FC
 
 SLICOT_SRC=\$(sort \$(shell echo src/*.f))
 SLICOT_OBJ=\$(SLICOT_SRC:.f=.o)

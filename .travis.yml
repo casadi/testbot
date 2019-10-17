@@ -127,8 +127,8 @@ before_install:
       fi
     else
       shell_session_update() { :; } # Workaround for travis-ci/travis-ci#6522
-      brew update
-      brew install binutils
+      #brew update
+      #brew install binutils
       python_setup
       osx_gcc7_setup
       #brew reinstall gcc49 #--with-fortran

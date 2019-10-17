@@ -49,7 +49,7 @@ function osx_gcc7_setup() {
       #sudo rm -rf /Library/Developer/CommandLineTools
       #travis_retry $RECIPES_DIR/fetch.sh CommandLineTools.pkg
       #sudo installer -pkg CommandLineTools.pkg -target /
-      brew config
+      #brew config
       brew update
       
       #brew tap homebrew/science

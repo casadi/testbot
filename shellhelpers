@@ -39,31 +39,10 @@ function osx_gcc7_setup() {
       conda install -y -c conda-forge c-compiler cxx-compiler fortran-compiler
       gcc --version
       source activate condaenv_build
-      gcc --version
-      source activate condaenv_build
-      gcc --version
-      source activate condaenv_build
-      gcc --version
-      #conda install -c conda-forge 
-      #conda install -c conda-forge fortran-compiler      
-      
-      #sudo rm -rf /Library/Developer/CommandLineTools
-      #travis_retry $RECIPES_DIR/fetch.sh CommandLineTools.pkg
-      #sudo installer -pkg CommandLineTools.pkg -target /
-      brew config
+
       brew update
-      
-      #brew tap homebrew/science
-      brew install binutils p7zip
-      #echo "cask uninstall oclint"
-      #brew cask install oclint
-      #brew uninstall --ignore-dependencies gcc@9
-      #brew install gcc@9 #--with-fortran
-      #export CC=gcc-9
-      #export CXX=g++-9
-      #export FC=gfortran-9
-      #export F77=gfortran-9
-      #gcc-9 --version
+      brew install p7zip
+
 cat <<EOF > a.txt
 #ifndef __has_builtin
 #define __has_builtin(x) 0
@@ -81,17 +60,7 @@ cat <<EOF > a.txt
 #define __has_extension(x) 0
 #endif
 EOF
-      #cat a.txt /Applications/Xcode-11.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/stdlib.h > c.txt
-      #sudo mv c.txt /Applications/Xcode-11.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/stdlib.h
-      ##cp /usr/local/Cellar/gcc/9.2.0_1/include/c++/9.2.0/algorithm b.txt
-      ##echo "#include <sys/cdefs.h>" > a.txt
-      ##cat a.txt b.txt > c.txt
-      ##sudo mv c.txt /usr/local/Cellar/gcc/9.2.0_1/include/c++/9.2.0/algorithm
-      ##rm b.txt
-      ##cp /Users/travis/build/casadi/binaries/casadi/external_packages/CSparse/Include/cs.h b.txt
-      ##cat a.txt b.txt > c.txt
-      ##mv c.txt /Users/travis/build/casadi/binaries/casadi/external_packages/CSparse/Include/cs.h
-      ##rm a.txt b.txt
+
 }
 
 function mingw_setup() {

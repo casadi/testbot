@@ -4,7 +4,7 @@
 
 if [ -z "$SETUP" ]; then
   export SLURP_OS=osx
-  export SLURP_GCC=4.9
+  export SLURP_GCC=7
   pushd $HOME/build && slurp ipopt && popd
   
   mypwd=`pwd`

@@ -50,13 +50,13 @@ function osx_gcc7_setup() {
       #sudo rm -rf /Library/Developer/CommandLineTools
       #travis_retry $RECIPES_DIR/fetch.sh CommandLineTools.pkg
       #sudo installer -pkg CommandLineTools.pkg -target /
-      #brew config
+      brew config
       brew update
       
       #brew tap homebrew/science
       brew install binutils p7zip
-      echo "cask uninstall oclint"
-      brew cask install oclint
+      #echo "cask uninstall oclint"
+      #brew cask install oclint
       #brew uninstall --ignore-dependencies gcc@9
       #brew install gcc@9 #--with-fortran
       #export CC=gcc-9

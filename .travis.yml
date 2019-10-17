@@ -2,6 +2,7 @@ env:
   global: 
     - secure: bOPhFqXlBfwm73ac6BMSba2UR3vwnYVDqyXeAs/5SxrW2hW7/V/MmYLQL3h3BpOYfPBa1ganEAKYrd9K6HWJN16MHyROBEbFpZmZ5DFbK/pUjYaJp+8giSytxWBzEjo2f129azETNgvzjANbpAe0+uYaxupUPvpfQkPPrII+2Jc=
     - PYTHON_VERSION=3.7
+    - KEEP_GOING=1
     
 os: linux
 

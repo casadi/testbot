@@ -51,7 +51,7 @@ def upload(filename,remote_filename=None):
         
 
   print("Uploading", filename, "to", remote_filename)
-  rs = s.post(release["upload_url"].replace("{?name,label}",""),params={"name": remote_filename,"label": ""},data=file(filename,"rb"),verify=False,headers={"Content-Type":"application/gzip"},timeout=timeout)
+  rs = s.post(release["upload_url"].replace("{?name,label}",""),params={"name": remote_filename,"label": ""},data=open(filename,"rb"),verify=False,headers={"Content-Type":"application/gzip"},timeout=timeout)
   assert rs.ok, str(rs.json())
   return rs
 

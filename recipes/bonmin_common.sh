@@ -4,7 +4,7 @@ if [ -z "$SETUP" ]; then
 
   mypwd=`pwd`
 
-  VERSION=1.8.7
+  VERSION=1.8.4
 
   wget http://www.coin-or.org/Tarballs/Bonmin/Bonmin-$VERSION.tgz
   tar -xvf Bonmin-$VERSION.tgz

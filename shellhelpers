@@ -120,7 +120,7 @@ function osx_rpath_gcc7() {
       ls $HOME/miniconda2/envs/condaenv_build/lib/
       export CXX_FULL=$HOME/miniconda2/envs/condaenv_build/lib/libc++.1.dylib
       export GOMP_FULL=$HOME/miniconda2/envs/condaenv_build/lib/libgomp.1.dylib
-      export FORTRAN_FULL=$HOME/miniconda2/envs/condaenv_build/lib/libgfortran.4.dylib
+      export FORTRAN_FULL=$HOME/miniconda2/envs/condaenv_build/lib/libgfortran.3.dylib
       export QUADMATH_FULL=$HOME/miniconda2/envs/condaenv_build/lib/libquadmath.0.dylib
       export GCC_FULL=$HOME/miniconda2/envs/condaenv_build/lib/libgcc_s.1.dylib
       export FORTRAN_FULL_ALT=$FORTRAN_FULL
@@ -141,9 +141,9 @@ function osx_rpath_gcc7() {
       ls $CXX_FULL
       
       echo 1
-      sudo install_name_tool -id "@rpath/libgfortran.4.dylib" $FORTRAN_FULL
+      sudo install_name_tool -id "@rpath/libgfortran.3.dylib" $FORTRAN_FULL
       echo 1
-      sudo install_name_tool -id "@rpath/libgfortran.4.dylib" $FORTRAN_FULL_ALT
+      sudo install_name_tool -id "@rpath/libgfortran.3.dylib" $FORTRAN_FULL_ALT
       echo 1
       sudo install_name_tool -id "@rpath/libquadmath.0.dylib" $QUADMATH_FULL
       echo 1

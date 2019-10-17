@@ -2,7 +2,7 @@
 
 if [ -z "$SETUP" ]; then
 
-  VERSION=3.12.3
+  VERSION=3.12.13
 
   wget http://www.coin-or.org/download/source/Ipopt/Ipopt-$VERSION.tgz
   tar -xvf Ipopt-$VERSION.tgz

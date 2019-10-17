@@ -24,6 +24,7 @@ function assertfail() {
 function osx_gcc49_setup() {
       brew update
       #brew tap homebrew/science
+      echo "cask uninstall oclint"
       brew cask uninstall oclint
       brew install binutils p7zip
       brew reinstall gcc49 #--with-fortran
@@ -54,6 +55,7 @@ function osx_gcc7_setup() {
       
       #brew tap homebrew/science
       brew install binutils p7zip
+      echo "cask uninstall oclint"
       brew cask install oclint
       #brew uninstall --ignore-dependencies gcc@9
       #brew install gcc@9 #--with-fortran

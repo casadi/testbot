@@ -54,6 +54,7 @@ function osx_gcc7_setup() {
       
       #brew tap homebrew/science
       brew install binutils p7zip
+      brew cask install oclint
       #brew uninstall --ignore-dependencies gcc@9
       #brew install gcc@9 #--with-fortran
       #export CC=gcc-9

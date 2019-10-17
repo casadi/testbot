@@ -35,7 +35,6 @@ index 2387f02..4e75c34 100644
 
  #ifndef IPOPT_NOMUMPSNOTE
        if( linear_solver_ == "mumps" )
-
 EOF
   patch -p1 < dlopen.patch 
   pushd ThirdParty

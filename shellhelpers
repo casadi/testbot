@@ -28,10 +28,11 @@ function osx_gcc49_setup() {
       echo "cask uninstall oclint"
       brew cask uninstall oclint
       brew install binutils p7zip
-      brew uninstall --force gcc49
-      wget -o $(brew --cache -s gcc49) https://homebrew.bintray.com/bottles/gcc@4.9-4.9.4_1.el_capitan.bottle.tar.gz
-      brew install gcc49
-      #brew reinstall gcc49 #--with-fortran
+      pushd "$(brew --repo homebrew/core)" && git checkout 820c7654f0c070f42180959354f818e8dde0f748 && popd
+      #brew uninstall --force gcc49
+      #wget -o $(brew --cache -s gcc49) https://homebrew.bintray.com/bottles/gcc@4.9-4.9.4_1.el_capitan.bottle.tar.gz
+      #brew install gcc49
+      HOMEBREW_NO_AUTO_UPDATE=1 brew reinstall gcc49 #--with-fortran
       export CC=gcc-4.9
       export CXX=g++-4.9
       export FC=gfortran-4.9

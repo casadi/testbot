@@ -13,8 +13,8 @@ ssh-keyscan shell.sourceforge.net >> ~/.ssh/known_hosts
 
 
 export PATH=$HOME/.local/bin:$PATH
-pip install cryptography==1.5.3
-pip install requests==2.6.0
+pip install cryptography#==1.5.3
+pip install requests#==2.6.0
 
 pip install psutil
 echo $?

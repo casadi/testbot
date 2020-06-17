@@ -22,6 +22,7 @@ function assertfail() {
 }
 
 function osx_gcc49_setup() {
+      brew untap homebrew/versions #  Authentication failed for 'https://github.com/Homebrew/homebrew-versions/'
       brew update -v
       #brew tap homebrew/science
       echo "cask uninstall oclint"

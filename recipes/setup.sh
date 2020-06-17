@@ -25,7 +25,7 @@ openssl version -a
 #openssl aes-256-cbc -k "$keypass" -in env.sh.enc -out env.sh -d
 openssl aes-256-cbc -iter 100000 -pbkdf2 -k "$keypass" -in id_rsa_travis.enc111 -out id_rsa_travis -d
 openssl aes-256-cbc -iter 100000 -pbkdf2 -k "$keypass" -in testbotcredentials.py.enc111 -out testbotcredentials.py -d
-openssl aes-256-cbc -iter 100000 -pbkdf2 -k "$keypass" -in env.sh.enc -out env.sh111 -d
+openssl aes-256-cbc -iter 100000 -pbkdf2 -k "$keypass" -in env.sh.enc111 -out env.sh -d
 
 chmod 600 id_rsa_travis
 

@@ -22,7 +22,7 @@ function assertfail() {
 }
 
 function osx_gcc49_setup() {
-      brew update
+      brew update -v
       #brew tap homebrew/science
       echo "cask uninstall oclint"
       brew cask uninstall oclint

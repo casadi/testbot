@@ -22,13 +22,15 @@ function assertfail() {
 }
 
 function osx_gcc49_setup() {
+      wget -o gcc.tar.gz https://homebrew.bintray.com/bottles/gcc@4.9-4.9.4_1.el_capitan.bottle.tar.gz
       brew untap homebrew/versions #  Authentication failed for 'https://github.com/Homebrew/homebrew-versions/'
       brew update -v
       #brew tap homebrew/science
       echo "cask uninstall oclint"
       brew cask uninstall oclint
       brew install binutils p7zip
-      brew reinstall gcc49 #--with-fortran
+      brew install -f gcc.tar.gz
+      #brew reinstall gcc49 #--with-fortran
       export CC=gcc-4.9
       export CXX=g++-4.9
       export FC=gfortran-4.9

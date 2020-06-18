@@ -37,6 +37,7 @@ function osx_gcc49_setup() {
       export CXX=g++-4.9
       export FC=gfortran-4.9
       export F77=gfortran-4.9
+      brew install libffi
 }
 
 function osx_gcc7_setup() {
@@ -269,6 +270,7 @@ function python_setup() {
     conda create --quiet --yes -n condaenv_build python=$PYTHON_VERSION requests pyyaml numpy scipy wheel==0.31.1 matplotlib # ==0.31.1
   else
     conda create --quiet --yes -n condaenv_build python=$PYTHON_VERSION requests pyyaml numpy scipy wheel matplotlib
+    cp /usr/local/opt/libffi/lib/libffi.6.dylib /Users/travis/miniconda2/lib/
   fi
   conda install --quiet --yes -n condaenv_build pip
   source activate condaenv_build

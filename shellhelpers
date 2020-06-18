@@ -269,8 +269,9 @@ function python_setup() {
   then
     conda create --quiet --yes -n condaenv_build python=$PYTHON_VERSION requests pyyaml numpy scipy wheel==0.31.1 matplotlib # ==0.31.1
   else
-    conda create --quiet --yes -n condaenv_build python=$PYTHON_VERSION requests pyyaml numpy scipy wheel matplotlib
+    ls /usr/local/opt/libffi/lib
     cp /usr/local/opt/libffi/lib/libffi.6.dylib /Users/travis/miniconda2/lib/
+    conda create --quiet --yes -n condaenv_build python=$PYTHON_VERSION requests pyyaml numpy scipy wheel matplotlib
   fi
   conda install --quiet --yes -n condaenv_build pip
   source activate condaenv_build

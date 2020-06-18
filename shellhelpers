@@ -37,7 +37,7 @@ function osx_gcc49_setup() {
       export CXX=g++-4.9
       export FC=gfortran-4.9
       export F77=gfortran-4.9
-      brew install libffi
+      HOMEBREW_NO_AUTO_UPDATE=1 brew install libffi
 }
 
 function osx_gcc7_setup() {

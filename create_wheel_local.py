@@ -1,5 +1,6 @@
 import os
-from wheel.util import urlsafe_b64encode, native, open_for_csv
+from wheel.util import urlsafe_b64encode, native
+from auditwheel.wheeltools import open_for_csv
 from wheel.archive import archive_wheelfile
 import hashlib
 import csv

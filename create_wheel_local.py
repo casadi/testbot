@@ -1,6 +1,5 @@
 import os
 from wheel.util import urlsafe_b64encode, native
-from auditwheel.wheeltools import open_for_csv
 from wheel.archive import archive_wheelfile
 import hashlib
 import csv
@@ -9,6 +8,15 @@ from email.generator import Generator
 import shutil
 
 import sys
+
+def open_for_csv(name, mode):
+    if sys.version_info[0] < 3:
+        kwargs = {}
+        mode += 'b'
+    else:
+        kwargs = {'newline': '', 'encoding': 'utf-8'}
+
+    return open(name, mode, **kwargs)
 
 version   = sys.argv[1]
 pyversion = sys.argv[2]

@@ -330,19 +330,39 @@ sudo apt-get update -qq
 function dockcross_setup_start() {
   if [[ $BITNESS == *64* ]]
   then
-    export ARCH=${DOCKCROSS}-x64
+    if [[ $PYTHONVERSION == 38 ]]
+    then
+      export ARCH=${DOCKCROSS}1-x64
+    else
+      export ARCH=${DOCKCROSS}-x64
+    fi
   else
-    export ARCH=${DOCKCROSS}-x86
+    if [[ $PYTHONVERSION == 38 ]]
+    then
+      export ARCH=${DOCKCROSS}1-x86
+    else
+      export ARCH=${DOCKCROSS}-x86
+    fi
   fi
 
   echo $PATH > $HOME/pathold.txt
-  #docker pull dockcross/$ARCH
-  docker pull jgillis/dockcross-$ARCH:v1
-  #docker run --rm dockcross/$ARCH > dockcross
-  docker run --rm  jgillis/dockcross-$ARCH:v1 > dockcross
+  if [[ $PYTHONVERSION == 38 ]]
+  then
+    docker pull dockcross/$ARCH:latest
+    docker run --rm dockcross/$ARCH:latest > dockcross
+  else
+    docker pull jgillis/dockcross-$ARCH:v1
+    docker run --rm  jgillis/dockcross-$ARCH:v1 > dockcross
+  fi
+
   chmod +x ./dockcross
   cat dockcross
-  sed -i "s/dockcross\/$ARCH/jgillis\/dockcross-$ARCH:v1/" dockcross
+  if [[ $PYTHONVERSION == 38 ]]
+  then
+    echo "done"
+  else
+     sed -i "s/dockcross\/$ARCH/jgillis\/dockcross-$ARCH:v1/" dockcross
+  fi
   perl -p -i -e 's/^ +-v.*$/    -v \$HOME:\$HOME -v \/:\/host \\/g;s/^ +\$HOST_VOLUMES .*/    -w \$HOST_PWD --env-file \$HOME\/env.txt \\/g;s/^ +\$FINAL_IMAGE \"\$@\"/ \$FINAL_IMAGE \$HOME\/dockcross_at_start_trigger \"\$@\"/g;' dockcross
   chmod +x ./dockcross
 

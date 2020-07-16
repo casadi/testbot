@@ -290,11 +290,14 @@ function python_setup() {
     if [[ $PYTHONVERSION == 38 ]]
     then
       export PYTHONLIB_MOD=
+      export PYTHONDIR_MOD=
     else
       export PYTHONLIB_MOD=m
+      export PYTHONDIR_MOD=m
     fi
   else
     export PYTHONLIB_MOD=
+    export PYTHONDIR_MOD=m
   fi
   pip install --quiet pysftp
   export CMAKE_PYTHON_LIBRARY=$HOME/miniconda2/envs/condaenv_build/lib/libpython${PYTHONVERSION_DOT2}${PYTHONLIB_MOD}
@@ -305,7 +308,7 @@ function python_setup() {
     export CMAKE_PYTHON_LIBRARY=${CMAKE_PYTHON_LIBRARY}.dylib
   fi
   export CMAKE_PYTHON_INCLUDE_DIR=$HOME/miniconda2/envs/condaenv_build/include/python${PYTHONVERSION_DOT2}${PYTHONLIB_MOD}
-  export MANYLINUX_PYTHON_DIR=/opt/python/cp${PYTHONVERSION}-cp${PYTHONVERSION}${PYTHONLIB_MOD}
+  export MANYLINUX_PYTHON_DIR=/opt/python/cp${PYTHONVERSION}-cp${PYTHONVERSION}${PYTHONDIR_MOD}
   export MANYLINUX_PYTHON3_BIN=/opt/python/cp36-cp36m/bin
   export MANYLINUX_PYTHON3=$MANYLINUX_PYTHON3_BIN/python
   export MANYLINUX_PYTHON_INCLUDE_DIR=${MANYLINUX_PYTHON_DIR}/include/python${PYTHONVERSION_DOT2}${PYTHONLIB_MOD}/

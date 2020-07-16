@@ -28,7 +28,7 @@ function osx_gcc49_setup() {
       echo "cask uninstall oclint"
       brew cask uninstall oclint
       #brew install binutils p7zip gnupg
-      brew upgrade gnupg
+      #brew upgrade gnupg
       pushd "$(brew --repo homebrew/core)" && git checkout 0ef7dea87d27e8de1474e160925d9a44dda09c2c && popd
       pushd "$(brew --repo homebrew/cask)" && git checkout 0583489 && popd
       #brew uninstall --force gcc49

@@ -34,13 +34,17 @@ function osx_gcc49_setup() {
       #brew uninstall --force gcc49
       #wget -o $(brew --cache -s gcc49) https://homebrew.bintray.com/bottles/gcc@4.9-4.9.4_1.el_capitan.bottle.tar.gz
       #brew install gcc49
-      HOMEBREW_NO_AUTO_UPDATE=1 brew install binutils p7zip
-      HOMEBREW_NO_AUTO_UPDATE=1 brew reinstall gcc49 #--with-fortran
+      HOMEBREW_NO_AUTO_UPDATE=1 brew install --build-bottle $(brew deps binutils p7zip) binutils p7zip
+      HOMEBREW_NO_AUTO_UPDATE=1 brew bottle $(brew deps binutils p7zip) binutils p7zip
+      HOMEBREW_NO_AUTO_UPDATE=1 brew reinstall --build-bottle $(brew deps binutils gcc49) gcc49 #--with-fortran
+      HOMEBREW_NO_AUTO_UPDATE=1 brew bottle $(brew deps gcc49) gcc49
       export CC=gcc-4.9
       export CXX=g++-4.9
       export FC=gfortran-4.9
       export F77=gfortran-4.9
-      HOMEBREW_NO_AUTO_UPDATE=1 brew install libffi
+      HOMEBREW_NO_AUTO_UPDATE=1 brew install --build-bottle $(brew deps libffi) libffi
+      HOMEBREW_NO_AUTO_UPDATE=1 brew bottle $(brew deps libffi) libffi
+      ls
       echo "done homebrew"
 }
 

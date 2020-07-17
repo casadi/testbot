@@ -466,7 +466,7 @@ function cp_libs() {
 }
 
 function cp_libs_gcc7() {
-  cp $FORTRAN_FULL $QUADMATH_FULL $GCC_FULL $CXX_FULL $MATLABPATH/casadi $CXXABI_FULL
+  cp $FORTRAN_FULL $QUADMATH_FULL $GCC_FULL $CXX_FULL $CXXABI_FULL $MATLABPATH/casadi
 }
 
 function matlabgcc() {

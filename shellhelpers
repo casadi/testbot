@@ -46,7 +46,7 @@ function osx_gcc49_setup() {
 
 function osx_gcc7_setup() {
       gcc --version
-      conda install -y -c conda-forge c-compiler cxx-compiler fortran-compiler
+      conda install -y -c conda-forge c-compiler==1.0.4 cxx-compiler==1.0.4 fortran-compiler==1.0.4
       gcc --version
       source activate condaenv_build
 

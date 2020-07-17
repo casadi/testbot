@@ -34,12 +34,18 @@ function osx_gcc49_setup() {
       #brew uninstall --force gcc49
       #wget -o $(brew --cache -s gcc49) https://homebrew.bintray.com/bottles/gcc@4.9-4.9.4_1.el_capitan.bottle.tar.gz
       #brew install gcc49
-      HOMEBREW_NO_AUTO_UPDATE=1 brew install --build-bottle binutils p7zip
-      HOMEBREW_NO_AUTO_UPDATE=1 brew reinstall gcc49 #--with-fortran
       export CC=gcc-4.9
       export CXX=g++-4.9
       export FC=gfortran-4.9
       export F77=gfortran-4.9
+      
+      fetch_tar gcc4.9_cellar
+      tar -xf gcc4.9_cellar.tar.gz -C /usr/local/Cellar
+      HOMEBREW_NO_AUTO_UPDATE=1 brew link
+      return
+      
+      HOMEBREW_NO_AUTO_UPDATE=1 brew install --build-bottle binutils p7zip
+      HOMEBREW_NO_AUTO_UPDATE=1 brew reinstall gcc49 #--with-fortran
       HOMEBREW_NO_AUTO_UPDATE=1 brew install libffi
       tar -zcf gcc4.9_cellar.tar.gz -C /usr/local/Cellar /usr/local/Cellar
       slurp_put gcc4.9_cellar

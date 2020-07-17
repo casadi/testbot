@@ -51,6 +51,10 @@ function osx_gcc7_setup() {
       conda install -y -c conda-forge c-compiler==1.0.4 cxx-compiler==1.0.4 fortran-compiler==1.0.4
       gcc --version
       source activate condaenv_build
+      
+      conda install -y -c conda-pack
+      conda pack -n condaenv_build  -o gcc7_conda.tar.gz
+      slurp_put gcc7_conda
 
       brew update
       brew install p7zip

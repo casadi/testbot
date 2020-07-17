@@ -61,7 +61,8 @@ EOF
 
 else
   fetch_tar ipopt $SUFFIX
-  
+  pwd
+  ls $HOME/build/ipopt
   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$HOME/ipopt-install/lib/pkgconfig
   pushd $HOME && ln -s  $HOME/build/ipopt ipopt-install && popd
   export casadi_build_flags="$casadi_build_flags -DWITH_IPOPT=ON"

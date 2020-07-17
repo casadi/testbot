@@ -40,8 +40,8 @@ function osx_gcc49_setup() {
       export CXX=g++-4.9
       export FC=gfortran-4.9
       export F77=gfortran-4.9
-      HOMEBREW_NO_AUTO_UPDATE=1 brew installlibffi
-      tar -zcvf gcc4.9_cellar.tar.gz -C /usr/local/Cellar /usr/local/Cellar
+      HOMEBREW_NO_AUTO_UPDATE=1 brew install libffi
+      tar -zcf gcc4.9_cellar.tar.gz -C /usr/local/Cellar /usr/local/Cellar
       slurp_put gcc4.9_cellar
       echo "done homebrew"
 }

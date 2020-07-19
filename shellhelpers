@@ -44,10 +44,11 @@ function osx_gcc49_setup() {
       #tar -xf gcc4.9_cellar.tar.gz -C /usr/local/Cellar
       #HOMEBREW_NO_AUTO_UPDATE=1 brew link
       #return
+      export HOMEBREW_NO_AUTO_UPDATE=1
       
-      HOMEBREW_NO_AUTO_UPDATE=1 brew install --build-bottle binutils p7zip
-      HOMEBREW_NO_AUTO_UPDATE=1 brew reinstall gcc49 #--with-fortran
-      HOMEBREW_NO_AUTO_UPDATE=1 brew install libffi
+      brew install --build-bottle binutils p7zip
+      brew reinstall gcc49 #--with-fortran
+      brew install libffi
       #tar -zcf gcc4.9_cellar.tar.gz -C /usr/local/Cellar /usr/local/Cellar
       #slurp_put gcc4.9_cellar
       echo "done homebrew"

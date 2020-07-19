@@ -61,9 +61,9 @@ function osx_gcc7_setup() {
       gcc --version
       source activate condaenv_build
       
-      conda install -y -c conda-pack
-      conda pack -n condaenv_build  -o gcc7_conda.tar.gz
-      slurp_put gcc7_conda
+      #conda install -y -c conda-pack
+      #conda pack -n condaenv_build  -o gcc7_conda.tar.gz
+      #slurp_put gcc7_conda
 
       brew update
       brew install p7zip
@@ -464,11 +464,11 @@ function test_commit() {
 }
 
 function cp_libs() {
-  cp $FORTRAN_FULL $QUADMATH_FULL $GCC_FULL $CXX_FULL $MATLABPATH/casadi
+  cp $FORTRAN_FULL $QUADMATH_FULL $GCC_FULL $CXX_FULL $1
 }
 
 function cp_libs_gcc7() {
-  cp $FORTRAN_FULL $QUADMATH_FULL $GCC_FULL $CXX_FULL $CXXABI_FULL $MATLABPATH/casadi
+  cp $FORTRAN_FULL $QUADMATH_FULL $GCC_FULL $CXX_FULL $CXXABI_FULL $1
 }
 
 function matlabgcc() {

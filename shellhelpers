@@ -39,6 +39,8 @@ function osx_gcc49_setup() {
       export CXX=g++-4.9
       export FC=gfortran-4.9
       export F77=gfortran-4.9
+      echo "cellar"
+      ls /usr/local/Cellar/
       
       # almost finished
       brew unlink gcc@4.9
@@ -53,6 +55,8 @@ function osx_gcc49_setup() {
       brew link --verbose gcc@49
       ls /usr/local/lib/gcc/
       brew link libffi binutils p7zip gnupg
+      echo "cellar"
+      ls /usr/local/Cellar/
       return
       
       

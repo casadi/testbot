@@ -44,8 +44,7 @@ function osx_gcc49_setup() {
       brew unlink gcc@4.9
       fetch_tar cellar
       sudo cp -R cellar/usr /
-      ls /usr/local/lib/gcc/
-      ls  /usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/
+      sudo mkdir -p  /usr/local/lib/gcc/4.9
       #sudo cp /usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/libgfortran.3.dylib /usr/local/lib/gcc/4.9/libgfortran.3.dylib
       ls
       ls cellar

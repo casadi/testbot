@@ -52,7 +52,7 @@ function osx_gcc49_setup() {
       ls cellar
       #tar -xf cellar__gcc4.9.tar.gz -C /usr/local/Cellar
       echo "linking"
-      brew link --verbose gcc@49
+      brew link --verbose gcc@4.9
       ls /usr/local/lib/gcc/
       brew link libffi binutils p7zip gnupg
       echo "cellar"

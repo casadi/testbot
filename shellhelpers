@@ -44,11 +44,12 @@ function osx_gcc49_setup() {
       brew unlink gcc@4.9
       fetch_tar cellar
       sudo cp -R cellar/usr /
+      sudo cp /usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/libgfortran.3.dylib /usr/local/lib/gcc/4.9/libgfortran.3.dylib
       ls
       ls cellar
       #tar -xf cellar__gcc4.9.tar.gz -C /usr/local/Cellar
       brew link gcc@4.9
-      brew link gcc49 libffi binutils p7zip gnupg
+      brew link libffi binutils p7zip gnupg
       return
       
       

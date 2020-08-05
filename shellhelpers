@@ -46,7 +46,7 @@ function osx_gcc49_setup() {
       ls
       ls cellar
       #tar -xf cellar__gcc4.9.tar.gz -C /usr/local/Cellar
-      #brew link
+      brew link gcc49 libffi binutils p7zip gnupg
       return
       
       

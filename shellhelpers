@@ -41,10 +41,10 @@ function osx_gcc49_setup() {
       export F77=gfortran-4.9
       
       # almost finished
-      #fetch_tar gcc4.9_cellar
-      #tar -xf gcc4.9_cellar.tar.gz -C /usr/local/Cellar
-      #brew link
-      #return
+      fetch_tar gcc4.9_cellar
+      tar -xf gcc4.9_cellar.tar.gz -C /usr/local/Cellar
+      brew link
+      return
       
       
       brew install --build-bottle binutils p7zip

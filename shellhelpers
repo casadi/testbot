@@ -42,9 +42,10 @@ function osx_gcc49_setup() {
       
       # almost finished
       fetch_tar cellar
+      cp -R cellar/usr /
       ls
       ls cellar
-      tar -xf cellar__gcc4.9.tar.gz -C /usr/local/Cellar
+      #tar -xf cellar__gcc4.9.tar.gz -C /usr/local/Cellar
       brew link
       return
       

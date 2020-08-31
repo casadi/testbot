@@ -554,7 +554,7 @@ function script_debian() {
   for i in `seq 100`; do echo "foo"; done
   rm -rf $1/*dist-info
   for i in `seq 100`; do echo "bar"; done
-  (pushd $1/casadi/jit || pushd $1/casadi/casadi/jit) && bash get_system_includes.sh gcc-4.8 c++ >  system_includes.txt && popd 
+  (pushd $1/casadi/jit || pushd $1/casadi/casadi/jit) && ls && bash get_system_includes.sh gcc-4.8 c++ >  system_includes.txt && popd 
   for i in `seq 100`; do echo "baz"; done
 
 }

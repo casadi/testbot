@@ -503,6 +503,8 @@ function bake_my_library_path() {
 }
 
 function before_install_debian() {
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6B05F25D762E3157
+  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
   sudo apt-get update
 
   python_setup

@@ -551,5 +551,5 @@ function script_debian() {
   unzip $WHEEL -d $1
   rm -rf $1/*dist-info
   (pushd $1/casadi/jit || pushd $1/casadi/casadi/jit) && bash get_system_includes.sh gcc-4.8 c++ >  system_includes.txt && popd 
-  popd
+
 }

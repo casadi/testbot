@@ -501,3 +501,22 @@ function bake_my_library_path() {
           popd
   fi
 }
+
+function before_install_debian() {
+  sudo apt-get update
+
+  python_setup
+  dockcross_setup_start
+  export SLURP_OS=trusty
+  slurp swig_matlab
+  export SLURP_OS=dockcross
+  export SLURP_CROSS=$DOCKCROSS
+  sudo apt-get install p7zip-full -y
+  slurp_common
+  slurp lapack
+    
+  popd
+
+  sudo apt-get install -y binutils gcc g++ gfortran cmake liblapack-dev libmumps-seq-dev libblas-dev liblapack-dev libxml2-dev fakeroot rpm alien
+
+}

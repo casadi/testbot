@@ -520,3 +520,36 @@ function before_install_debian() {
   sudo apt-get install -y binutils gcc g++ gfortran cmake liblapack-dev libmumps-seq-dev libblas-dev liblapack-dev libxml2-dev fakeroot rpm alien
 
 }
+
+# scripts_debian $OCTAVEPATH "-DWITH_OPENMP=OFF -DWITH_SELFCONTAINED=ON -DWITH_OCTAVE=ON  -DWITH_OCTAVE_IMPORT=ON -DCMAKE_INSTALL_PREFIX=/host$OCTAVEPATH" matlab_source
+function script_debian() {
+
+  pushd casadi
+  mkdir build_temp
+  pushd build_temp
+  bash -c "cmake $casadi_build_flags $2 -DSWIG_EXPORT=ON .."
+  make $3
+  popd
+
+
+  mkdir build
+  pushd build
+  export BACKUP_PKG_CONFIG_PATH=$PKG_CONFIG_PATH
+  dockcross_setup_finish
+  grep "CONFIG_PATH" $HOME/env.txt
+  echo $casadi_build_flags
+  dockcross "echo \$PKG_CONFIG_PATH"
+  dockcross "export CASADI_EXTRA_LIBRARIES_LAPACK=gfortran;export PKG_CONFIG_PATH=$BACKUP_PKG_CONFIG_PATH;cmake  $casadi_build_flags $2 -DSWIG_IMPORT=ON .."
+  dockcross  "make install VERBOSE=1"
+  popd
+  
+  export WHEEL=`python $HOME/build/testbot/create_wheel_local.py $COMMIT $PYTHONVERSION linux $BITNESS $1`
+  echo $WHEEL
+  git clone https://github.com/jgillis/auditwheel
+  dockcross "$MANYLINUX_PYTHON3_BIN/pip install pyelftools wheel==0.31.1 && pushd auditwheel && $MANYLINUX_PYTHON3 setup.py install && popd && echo "$MANYLINUX_PYTHON3_BIN/auditwheel repair -g quadmath -g gfortran -e '.*snopt.*' -L . --no-update-tags -w . $WHEEL" && $MANYLINUX_PYTHON3_BIN/auditwheel repair -g quadmath -g gfortran -e '.*snopt.*' -L . --no-update-tags -w . $WHEEL"
+  rm -rf $1
+  unzip $WHEEL -d $1
+  rm -rf $1/*dist-info
+  (pushd $1/casadi/jit || pushd $1/casadi/casadi/jit) && bash get_system_includes.sh gcc-4.8 c++ >  system_includes.txt && popd 
+  popd
+}

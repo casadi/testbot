@@ -7,14 +7,11 @@ if [ -z "$SETUP" ]; then
   dockcross_setup_start
   dockcross_setup_finish
   export SUFFIXFILE=_$SUFFIX
-  dockcross bash -c "apt-get install -y libpcre3-dev automake yodl"
+  dockcross bash -c "yum install -y libpcre3-dev automake yodl"
   mypwd=`pwd`
   pushd restricted && git clone https://github.com/jaeandersson/swig.git
   pushd swig && git checkout $BAKEVERSION
-  dockcross ./autogen.sh
-  dockcross ./configure --prefix=$mypwd/swig-matlab-install
-  dockcross make
-  dockcross make install
+  dockcross "yum install -y libpcre3-dev automake yodl; ./autogen.sh ; ./configure --prefix=$mypwd/swig-matlab-install; make ; make install"
   popd && popd
   tar -zcvf swig$SUFFIXFILE.tar.gz -C swig-matlab-install .
   slurp_put swig$SUFFIXFILE

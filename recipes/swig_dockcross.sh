@@ -11,7 +11,7 @@ if [ -z "$SETUP" ]; then
   mypwd=`pwd`
   pushd restricted && git clone https://github.com/jaeandersson/swig.git
   pushd swig && git checkout $BAKEVERSION
-  dockcross "yum install -y libpcre3-dev automake yodl; ./autogen.sh ; ./configure --prefix=$mypwd/swig-matlab-install; make ; make install"
+  dockcross "yum -y install libpcre3-dev automake yodl; ./autogen.sh ; ./configure --prefix=$mypwd/swig-matlab-install; make ; make install"
   popd && popd
   tar -zcvf swig$SUFFIXFILE.tar.gz -C swig-matlab-install .
   slurp_put swig$SUFFIXFILE

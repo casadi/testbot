@@ -522,7 +522,6 @@ function before_install_debian() {
 
 }
 
-# scripts_debian $OCTAVEPATH "-DWITH_OPENMP=OFF -DWITH_SELFCONTAINED=ON -DWITH_OCTAVE=ON  -DWITH_OCTAVE_IMPORT=ON -DCMAKE_INSTALL_PREFIX=/host$OCTAVEPATH" matlab_source
 function script_debian() {
 
   pushd casadi
@@ -537,6 +536,9 @@ function script_debian() {
   dockcross "export CASADI_EXTRA_LIBRARIES_LAPACK=gfortran;export PKG_CONFIG_PATH=$BACKUP_PKG_CONFIG_PATH;cmake  $casadi_build_flags $2 .."
   dockcross  "make install VERBOSE=1"
   popd
+  pwd
+  ls
+  ls $1
   
   export WHEEL=`python $HOME/build/testbot/create_wheel_local.py $COMMIT $PYTHONVERSION linux $BITNESS $1`
   echo $WHEEL

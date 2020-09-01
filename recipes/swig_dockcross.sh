@@ -7,7 +7,6 @@ if [ -z "$SETUP" ]; then
   dockcross_setup_start
   dockcross_setup_finish
   export SUFFIXFILE=_$SUFFIX
-  dockcross bash -c "yum install -y libpcre3-dev automake yodl"
   mypwd=`pwd`
   pushd restricted && git clone https://github.com/jaeandersson/swig.git
   pushd swig && git checkout $BAKEVERSION

@@ -15,7 +15,11 @@ if [ -z "$SETUP" ]; then
   tar -zcvf swig$SUFFIXFILE.tar.gz -C swig-matlab-install .
   slurp_put swig$SUFFIXFILE
 else
+  echo "foo"
+  pwd
+  ls
   fetch_tar swig $SUFFIX
+  ls
   mkdir -p  $HOME/build/casadi/testbot
   pushd $HOME/build/casadi/testbot && ln -s  $HOME/build/swig_matlab  swig-matlab-install  && popd
   export SWIG_HOME=/host/$HOME/build/swig_matlab

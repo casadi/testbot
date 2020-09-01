@@ -18,8 +18,9 @@ else
   fetch_tar swig $SUFFIX
   mkdir -p  $HOME/build/casadi/testbot
   pushd $HOME/build/casadi/testbot && ln -s  $HOME/build/swig_matlab  swig-matlab-install  && popd
-  export SWIG_HOME=$HOME/build/swig_matlab
+  export SWIG_HOME=/host/$HOME/build/swig_matlab
   export PATH=$SWIG_HOME/bin:$SWIG_HOME/share:$PATH
+  ls $HOME/build/swig_matlab
   function swig_patch_pyobject() {
     sed -i -e 's/\"SwigPyObject\"/\"SwigPyCasadiObject\"/g' $SWIG_HOME/share/swig/3.0.11/python/pyrun.swg
   }

@@ -525,6 +525,7 @@ function before_install_debian() {
 # scripts_debian $OCTAVEPATH "-DWITH_OPENMP=OFF -DWITH_SELFCONTAINED=ON -DWITH_OCTAVE=ON  -DWITH_OCTAVE_IMPORT=ON -DCMAKE_INSTALL_PREFIX=/host$OCTAVEPATH" matlab_source
 function script_debian() {
 
+  pushd casadi
 
   mkdir build
   pushd build

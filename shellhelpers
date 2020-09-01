@@ -529,7 +529,7 @@ function script_debian() {
   pushd casadi
   mkdir build_temp
   pushd build_temp
-  bash -c "cmake $casadi_build_flags $2 -DSWIG_EXPORT=ON .."
+  bash -c "cmake $casadi_build_flags $2 -DCMAKE_FIND_DEBUG_MODE=true -DSWIG_EXPORT=ON .."
   make $3
   popd
 

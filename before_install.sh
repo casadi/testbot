@@ -10,15 +10,16 @@ echo $?
 pushd testbot && source recipes/setup.sh
 echo $?
 echo "popd"
+for i in {1..30}; do echo "foobar1"; done
 popd
-echo "before_install return"
-echo $?
+for i in {1..30}; do echo "foobar2"; done
 
-for i in {1..30}; do echo "foobar"; done
+
 
 ssh-keyscan web.sourceforge.net >> ~/.ssh/known_hosts 
 echo $?
+for i in {1..30}; do echo "foobar"; done
 
-echo "before_install.sh finish"
+echo "before_install finish"
 pwd
 echo $?

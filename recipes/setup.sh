@@ -259,7 +259,7 @@ function get_commit() {
 
 echo "setup done"
 
-if [ -z "$KEEP_GOING" ];
-then
-  set -e -E
-fi
+#if [ -z "$KEEP_GOING" ];
+#then
+#  set -e -E
+#fi

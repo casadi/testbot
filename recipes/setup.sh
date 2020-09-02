@@ -37,9 +37,16 @@ Host github.com
 EOF
 
 git clone git@github.com:jgillis/restricted.git
-git config --global user.email "testbot@casadidev.org"
-git config --global user.name "casaditestbot"
+for i in {1..30}; do echo "foo"; done
 
+git config --global user.email "testbot@casadidev.org"
+echo $?
+
+for i in {1..30}; do echo "bar"; done
+git config --global user.name "casaditestbot"
+echo $?
+
+for i in {1..30}; do echo "baz"; done
 
 export casadi_build_flags="$casadi_build_flags -DWITH_COLPACK=ON -DWITH_OSQP=ON -DWITH_THREAD_MINGW=ON -DWITH_THREAD=ON -DWITH_AMPL=ON -DCMAKE_BUILD_TYPE=Release -DWITH_SO_VERSION=OFF -DWITH_NO_QPOASES_BANNER=ON -DWITH_COMMON=ON -DWITH_HPMPC=OFF -DWITH_BUILD_HPMPC=OFF -DWITH_BLASFEO=OFF -DWITH_BUILD_BLASFEO=OFF -DINSTALL_INTERNAL_HEADERS=ON"
 

@@ -503,6 +503,8 @@ function bake_my_library_path() {
 }
 
 function before_install_debian() {
+  echo "start before_install_debian at:"
+  pwd
   sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6B05F25D762E3157
   wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
   sudo apt-get update
@@ -520,29 +522,13 @@ function before_install_debian() {
 
   sudo apt-get install -y binutils gcc g++ gfortran cmake liblapack-dev libmumps-seq-dev libblas-dev liblapack-dev libxml2-dev fakeroot rpm alien
 
-}
-
-function before_install_debian() {
-  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6B05F25D762E3157
-  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-  sudo apt-get update
-
-  python_setup
-  dockcross_setup_start
-  export SLURP_OS=dockcross
-  export SLURP_CROSS=$DOCKCROSS
-  sudo apt-get install p7zip-full -y
-  slurp swig
-  slurp_common
-  slurp lapack
-    
-  popd
-
-  sudo apt-get install -y binutils gcc g++ gfortran cmake liblapack-dev libmumps-seq-dev libblas-dev liblapack-dev libxml2-dev fakeroot rpm alien
-
+  echo "finish before_install_debian at:"
+  pwd
 }
 
 function before_install_osx() {
+  echo "start before_install_osx at:"
+  pwd
   python_setup
   osx_gcc7_setup
   gcc --version
@@ -551,12 +537,12 @@ function before_install_osx() {
   slurp_common
   bake_my_library_path
   
-  echo "finish before_install_osx"
+  echo "finish before_install_osx at:"
   pwd
 }
 
 function script_osx() {
-  echo "start script_osx"
+  echo "start script_osx at:"
   pwd
 
   pkg-config --libs --cflags ipopt
@@ -591,10 +577,13 @@ function script_osx() {
   otool -l $1/casadi/libquadmath.0.dylib | grep /usr/local || assertfail
   otool -l $1/casadi/libcasadi.dylib | grep /usr/local || assertfail
   
+  echo "finish script_osx at:"
+  pwd
 }
 
 function script_debian() {
-
+  echo "start script_debian at:"
+  pwd
   pushd casadi
 
   mkdir build
@@ -620,4 +609,6 @@ function script_debian() {
   rm -rf $1/*dist-info
   pushd $1/casadi/jit || pushd $1/casadi/casadi/jit && ls && bash get_system_includes.sh gcc-4.8 c++ >  system_includes.txt && popd 
 
+  echo "finish script_debian at:"
+  pwd
 }

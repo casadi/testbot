@@ -7,7 +7,10 @@ echo $?
 echo "COMMIT: $COMMIT"
 pushd ../../ && git clone https://github.com/casadi/testbot.git
 echo $?
-pushd testbot && source recipes/setup.sh && popd
+pushd testbot && source recipes/setup.sh
+echo $?
+echo "popd"
+popd
 echo "before_install return"
 echo $?
 

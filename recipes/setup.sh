@@ -1,8 +1,5 @@
 #!/bin/bash
-if [ -z "$KEEP_GOING" ];
-then
-  set -e -E
-fi
+echo "foo"
 echo $?
 
 source shellhelpers

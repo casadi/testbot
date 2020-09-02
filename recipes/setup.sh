@@ -30,14 +30,17 @@ echo $?
 openssl version -a
 echo $?
 
-set +e +E
+
 (openssl aes-256-cbc -k "$keypass" -in id_rsa_travis.enc -out id_rsa_travis -d || openssl aes-256-cbc -iter 100000 -pbkdf2 -k "$keypass" -in id_rsa_travis.enc111 -out id_rsa_travis -d)
 echo $?
 (openssl aes-256-cbc -k "$keypass" -in testbotcredentials.py.enc -out testbotcredentials.py -d || openssl aes-256-cbc -iter 100000 -pbkdf2 -k "$keypass" -in testbotcredentials.py.enc111 -out testbotcredentials.py -d)
 echo $?
 #openssl aes-256-cbc -k "$keypass" -in env.sh.enc -out env.sh -d || echo $? && openssl aes-256-cbc -iter 100000 -pbkdf2 -k "$keypass" -in env.sh.enc111 -out env.sh -d
 echo $?
-set -e -E
+if [ -z "$KEEP_GOING" ];
+then
+  set -e -E
+fi
 
 chmod 600 id_rsa_travis
 

@@ -52,7 +52,7 @@ echo $?
 echo $?
 (openssl aes-256-cbc -k "$keypass" -in testbotcredentials.py.enc -out testbotcredentials.py -d || openssl aes-256-cbc -iter 100000 -pbkdf2 -k "$keypass" -in testbotcredentials.py.enc111 -out testbotcredentials.py -d)
 echo $?
-#openssl aes-256-cbc -k "$keypass" -in env.sh.enc -out env.sh -d || echo $? && openssl aes-256-cbc -iter 100000 -pbkdf2 -k "$keypass" -in env.sh.enc111 -out env.sh -d
+openssl aes-256-cbc -k "$keypass" -in env.sh.enc -out env.sh -d || openssl aes-256-cbc -iter 100000 -pbkdf2 -k "$keypass" -in env.sh.enc111 -out env.sh -d
 echo $?
 if [ -z "$KEEP_GOING" ];
 then
@@ -92,6 +92,8 @@ else
   export TESTBOT_DIR=$HOME/build/casadi/testbot
 fi
 export RECIPES_DIR=$TESTBOT_DIR/recipes
+
+echo "setup done"
 
 function try_fetch_tar () {
   echo "Fetching $1.tar.gz -> $2"

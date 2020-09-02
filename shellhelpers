@@ -556,7 +556,11 @@ function script_osx() {
   pkg-config --libs --cflags ipopt
   pkg-config --libs --cflags bonmin
   
+  pwd
+  ls
   pushd casadi
+  pwd
+  ls
   mkdir build
   pushd build
   gcc --version

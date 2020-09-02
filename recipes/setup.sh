@@ -96,12 +96,7 @@ echo $?
 export RECIPES_FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 echo $?
 
-echo "setup done"
 
-if [ -z "$KEEP_GOING" ];
-then
-  set -e -E
-fi
 
 function try_fetch_tar () {
   echo "Fetching $1.tar.gz -> $2"
@@ -261,3 +256,10 @@ function build_env() {
 function get_commit() {
   export COMMIT=`git rev-parse --short=7 HEAD`
 }
+
+echo "setup done"
+
+if [ -z "$KEEP_GOING" ];
+then
+  set -e -E
+fi

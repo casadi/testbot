@@ -11,8 +11,7 @@ python_setup_light > /dev/null
 echo $?
 
 ssh-keyscan github.com >> ~/.ssh/known_hosts
-ec
-ho $?
+echo $?
 ssh-keyscan web.sourceforge.net >> ~/.ssh/known_hosts
 echo $?
 ssh-keyscan shell.sourceforge.net >> ~/.ssh/known_hosts

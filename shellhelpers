@@ -552,6 +552,36 @@ function before_install_osx() {
   bake_my_library_path
 }
 
+function script_osx() {
+  pkg-config --libs --cflags ipopt
+  pkg-config --libs --cflags bonmin
+  
+  pushd casadi
+  mkdir build
+  pushd build
+  gcc --version
+  source activate condaenv_build
+  gcc --version
+  bash -c "cmake $casadi_build_flags $2 .."
+  osx_rpath_gcc7
+  make VERBOSE=1
+  sudo mkdir -p /ColPack_libs
+  sudo chmod 777 /ColPack_libs
+  make install
+  popd
+  cp_libs_gcc7 $1/casadi
+  osx_rpath_patch $1/casadi
+  
+  otool -l $FORTRAN_FULL
+  otool -l $QUADMATH_FULL
+  otool -l $GCC_FULL
+
+  otool -l $1/casadi/libgfortran.3.dylib | grep /usr/local || assertfail
+  otool -l $1/casadi/libgcc_s.1.dylib | grep /usr/local || assertfail
+  otool -l $1/casadi/libquadmath.0.dylib | grep /usr/local || assertfail
+  otool -l $1/casadi/libcasadi.dylib | grep /usr/local || assertfail
+}
+
 function script_debian() {
 
   pushd casadi

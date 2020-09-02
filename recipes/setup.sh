@@ -54,10 +54,7 @@ echo $?
 echo $?
 openssl aes-256-cbc -k "$keypass" -in env.sh.enc -out env.sh -d || openssl aes-256-cbc -iter 100000 -pbkdf2 -k "$keypass" -in env.sh.enc111 -out env.sh -d
 echo $?
-if [ -z "$KEEP_GOING" ];
-then
-  set -e -E
-fi
+
 
 chmod 600 id_rsa_travis
 echo $?
@@ -94,6 +91,11 @@ fi
 export RECIPES_DIR=$TESTBOT_DIR/recipes
 
 echo "setup done"
+
+if [ -z "$KEEP_GOING" ];
+then
+  set -e -E
+fi
 
 function try_fetch_tar () {
   echo "Fetching $1.tar.gz -> $2"

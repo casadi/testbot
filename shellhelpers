@@ -537,6 +537,8 @@ function before_install_osx() {
   slurp_common
   bake_my_library_path
   
+  popd
+  
   echo "finish before_install_osx at:"
   pwd
 }

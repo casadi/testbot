@@ -85,10 +85,16 @@ export casadi_build_flags="$casadi_build_flags -DWITH_COLPACK=ON -DWITH_OSQP=ON 
 if [ -d $HOME/build/testbot/recipes ];
 then
   export TESTBOT_DIR=$HOME/build/testbot
+  echo $?
 else
   export TESTBOT_DIR=$HOME/build/casadi/testbot
+  echo $?
 fi
 export RECIPES_DIR=$TESTBOT_DIR/recipes
+echo $?
+
+export RECIPES_FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+echo $?
 
 echo "setup done"
 
@@ -234,7 +240,6 @@ function slurp_put() {
   unset VERSIONSUFFIX;export VERSIONSUFFIX
 }
 
-export RECIPES_FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 function matlabtunnel() {
   source $TESTBOT_DIR/restricted/env.sh

@@ -20,7 +20,8 @@ ssh-keyscan web.sourceforge.net >> ~/.ssh/known_hosts
 echo $?
 for i in {1..30}; do echo "foobar"; done
 
-
+# Do not attempt to move this into setup.sh
+# Nearly lost my sanity after hours of struggle
 if [ -z "$KEEP_GOING" ];
 then
   set -e -E

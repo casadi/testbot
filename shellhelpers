@@ -550,9 +550,15 @@ function before_install_osx() {
   mkdir -p /Users/travis/build/casadi/testbot
   slurp_common
   bake_my_library_path
+  
+  echo "finish before_install_osx"
+  pwd
 }
 
 function script_osx() {
+  echo "start script_osx"
+  pwd
+
   pkg-config --libs --cflags ipopt
   pkg-config --libs --cflags bonmin
   
@@ -584,6 +590,7 @@ function script_osx() {
   otool -l $1/casadi/libgcc_s.1.dylib | grep /usr/local || assertfail
   otool -l $1/casadi/libquadmath.0.dylib | grep /usr/local || assertfail
   otool -l $1/casadi/libcasadi.dylib | grep /usr/local || assertfail
+  
 }
 
 function script_debian() {

@@ -54,12 +54,13 @@ echo $?
 echo $?
 #openssl aes-256-cbc -k "$keypass" -in env.sh.enc -out env.sh -d || echo $? && openssl aes-256-cbc -iter 100000 -pbkdf2 -k "$keypass" -in env.sh.enc111 -out env.sh -d
 echo $?
-if [ -z "$KEEP_GOING" ];
-then
-  set -e -E
-fi
+#if [ -z "$KEEP_GOING" ];
+#then
+#  set -e -E
+#fi
 
 chmod 600 id_rsa_travis
+echo $?
 
 cat <<EOF >> ~/.ssh/config
 Host github.com
@@ -67,8 +68,10 @@ Host github.com
         User git
         IdentityFile $(pwd)/id_rsa_travis
 EOF
+echo $?
 
 git clone git@github.com:jgillis/restricted.git
+echo $?
 for i in {1..30}; do echo "foo"; done
 
 git config --global user.email "testbot@casadidev.org"

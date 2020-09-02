@@ -20,6 +20,12 @@ ssh-keyscan web.sourceforge.net >> ~/.ssh/known_hosts
 echo $?
 for i in {1..30}; do echo "foobar"; done
 
+
+if [ -z "$KEEP_GOING" ];
+then
+  set -e -E
+fi
+
 echo "wget script finish"
 pwd
 echo $?

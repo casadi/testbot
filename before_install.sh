@@ -12,7 +12,7 @@ echo $?
 echo "popd"
 for i in {1..30}; do echo "foobar1"; done
 popd || echo $?
-for i in {1..30}; do echo "foobar2"; done
+for i in {1..100}; do echo "foobar2"; done
 
 
 

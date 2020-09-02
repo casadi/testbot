@@ -3,30 +3,38 @@ if [ -z "$KEEP_GOING" ];
 then
   set -e -E
 fi
+echo $?
 
 source shellhelpers
+echo $?
 python_setup_light > /dev/null
+echo $?
 
 ssh-keyscan github.com >> ~/.ssh/known_hosts
+ec
+ho $?
 ssh-keyscan web.sourceforge.net >> ~/.ssh/known_hosts
+echo $?
 ssh-keyscan shell.sourceforge.net >> ~/.ssh/known_hosts
-
+echo $?
 
 export PATH=$HOME/.local/bin:$PATH
 pip install cryptography #==1.5.3
+echo $?
 pip install requests #==2.6.0
+echo $?
 
 pip install psutil
 echo $?
 pip install pyaml
+echo $?
 openssl version -a
+echo $?
 
 set +e +E
-# openssl aes-256-cbc -k "$keypass" -in id_rsa_travis.enc -out id_rsa_travis -d || 
-openssl aes-256-cbc -iter 100000 -pbkdf2 -k "$keypass" -in id_rsa_travis.enc111 -out id_rsa_travis -d
+(openssl aes-256-cbc -k "$keypass" -in id_rsa_travis.enc -out id_rsa_travis -d || openssl aes-256-cbc -iter 100000 -pbkdf2 -k "$keypass" -in id_rsa_travis.enc111 -out id_rsa_travis -d)
 echo $?
-#openssl aes-256-cbc -k "$keypass" -in testbotcredentials.py.enc -out testbotcredentials.py -d || 
-openssl aes-256-cbc -iter 100000 -pbkdf2 -k "$keypass" -in testbotcredentials.py.enc111 -out testbotcredentials.py -d
+(openssl aes-256-cbc -k "$keypass" -in testbotcredentials.py.enc -out testbotcredentials.py -d || openssl aes-256-cbc -iter 100000 -pbkdf2 -k "$keypass" -in testbotcredentials.py.enc111 -out testbotcredentials.py -d)
 echo $?
 #openssl aes-256-cbc -k "$keypass" -in env.sh.enc -out env.sh -d || echo $? && openssl aes-256-cbc -iter 100000 -pbkdf2 -k "$keypass" -in env.sh.enc111 -out env.sh -d
 echo $?

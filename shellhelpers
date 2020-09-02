@@ -527,15 +527,21 @@ function before_install_debian() {
 }
 
 function before_install_osx() {
-  echo "start before_install_osx at:"
+  for i in {1..30}; do echo "start before_install_osx at:"; done
   pwd
   python_setup
+  for i in {1..30}; do echo "foo"; done
   osx_gcc7_setup
+  for i in {1..30}; do echo "baz"; done
   gcc --version
+  for i in {1..30}; do echo "bar"; done
   slurp swig_matlab
+  for i in {1..30}; do echo "foo"; done
   mkdir -p /Users/travis/build/casadi/testbot
   slurp_common
+  for i in {1..30}; do echo "bar"; done
   bake_my_library_path
+  for i in {1..30}; do echo "baz"; done
   
   popd
   

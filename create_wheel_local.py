@@ -22,16 +22,14 @@ version   = sys.argv[1]
 pyversion = sys.argv[2]
 os_name   = sys.argv[3]
 bitness   = sys.argv[4]
-dir_name  = sys.argv[5]
+arch      = sys.argv[5]
+dir_name  = sys.argv[6]
 
 
 if version.startswith("v"):
   version = version[1:]
 if os_name=="linux":
-  if bitness=="64":
-    tag = "cp%s-none-manylinux1_x86_64" % (pyversion)
-  else:
-    tag = "cp%s-none-manylinux1_i686" % (pyversion)
+  tag = "cp%s-none-%s" % (pyversion,arch)
 elif os_name=="osx":
   tag = ["cp%s-none-macosx_10_6_intel" % (pyversion),
          "cp%s-none-macosx_10_9_intel" % (pyversion),

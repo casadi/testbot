@@ -372,41 +372,12 @@ sudo apt-get update -qq
 }
 
 function dockcross_setup_start() {
-  if [[ $BITNESS == *64* ]]
-  then
-    if [[ $PYTHONVERSION == 38 ]]
-    then
-      export ARCH=${DOCKCROSS}1-x64
-    else
-      export ARCH=${DOCKCROSS}-x64
-    fi
-  else
-    if [[ $PYTHONVERSION == 38 ]]
-    then
-      export ARCH=${DOCKCROSS}1-x86
-    else
-      export ARCH=${DOCKCROSS}-x86
-    fi
-  fi
-
   echo $PATH > $HOME/pathold.txt
-  if [[ $PYTHONVERSION == 38 ]]
-  then
-    docker pull dockcross/$ARCH:latest
-    docker run --rm dockcross/$ARCH:latest > dockcross
-  else
-    docker pull jgillis/dockcross-$ARCH:v1
-    docker run --rm  jgillis/dockcross-$ARCH:v1 > dockcross
-  fi
+  docker pull dockcross/$ARCH:latest
+  docker run --rm dockcross/$ARCH:latest > dockcross
 
   chmod +x ./dockcross
   cat dockcross
-  if [[ $PYTHONVERSION == 38 ]]
-  then
-    echo "done"
-  else
-     sed -i "s/dockcross\/$ARCH/jgillis\/dockcross-$ARCH:v1/" dockcross
-  fi
   perl -p -i -e 's/^ +-v.*$/    -v \$HOME:\$HOME -v \/:\/host \\/g;s/^ +\$HOST_VOLUMES .*/    -w \$HOST_PWD --env-file \$HOME\/env.txt \\/g;s/^ +\$FINAL_IMAGE \"\$@\"/ \$FINAL_IMAGE \$HOME\/dockcross_at_start_trigger \"\$@\"/g;' dockcross
   chmod +x ./dockcross
 
@@ -512,7 +483,7 @@ function before_install_debian() {
   python_setup
   dockcross_setup_start
   export SLURP_OS=dockcross
-  export SLURP_CROSS=$DOCKCROSS
+  export SLURP_CROSS=$ARCH
   sudo apt-get install p7zip-full -y
   slurp swig
   slurp_common
@@ -608,7 +579,7 @@ function script_debian() {
   ls
   ls $1
   
-  export WHEEL=`python $HOME/build/testbot/create_wheel_local.py $COMMIT $PYTHONVERSION linux $BITNESS $1`
+  export WHEEL=`python $HOME/build/testbot/create_wheel_local.py $COMMIT $PYTHONVERSION linux $ARCH none $1`
   echo $WHEEL
   git clone https://github.com/jgillis/auditwheel
   dockcross "$MANYLINUX_PYTHON3_BIN/pip install pyelftools wheel==0.31.1 && pushd auditwheel && $MANYLINUX_PYTHON3 setup.py install && popd && echo "$MANYLINUX_PYTHON3_BIN/auditwheel repair -g quadmath -g gfortran -e '.*snopt.*' -L . --no-update-tags -w . $WHEEL" && $MANYLINUX_PYTHON3_BIN/auditwheel repair -g quadmath -g gfortran -e '.*snopt.*' -L . --no-update-tags -w . $WHEEL"

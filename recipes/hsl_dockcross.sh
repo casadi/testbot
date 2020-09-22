@@ -1,7 +1,7 @@
 #!/bin/bash
 ##set -e
 
-export SUFFIX=manylinux${BITNESS}_dockcross
+export SUFFIX=${ARCH}_dockcross
 
 if [ -z "$SETUP" ]; then
   dockcross_setup_start
@@ -19,7 +19,7 @@ if [ -z "$SETUP" ]; then
   tar -xvf coinhsl.tar.gz
   cd coinhsl-2014.01.10
   tar -xvf ../metis-4.0.3.tar.gz
-  dockcross "./configure --prefix=$mypwd/coinhsl-install --disable-static --enable-shared LIBS='-L/home/travis/ipopt-install/lib' --with-blas='-lcoinblas -lcoinlapack -lcoinblas' CXXFLAGS='-O2 -fPIC -ftls-model=local-dynamic' FCFLAGS='-O2 -fPIC -ftls-model=local-dynamic' || cat config.log"
+  dockcross "./configure $CROSS_CONFIGURE --prefix=$mypwd/coinhsl-install --disable-static --enable-shared LIBS='-L/home/travis/ipopt-install/lib' --with-blas='-lcoinblas -lcoinlapack -lcoinblas' CXXFLAGS='-O2 -fPIC -ftls-model=local-dynamic' FCFLAGS='-O2 -fPIC -ftls-model=local-dynamic' || cat config.log"
   sed -i "s/deplibs_check_method=.*/deplibs_check_method=\"pass_all\"/" libtool
   dockcross make
   dockcross make install  

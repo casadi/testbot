@@ -58,7 +58,7 @@ EOF
     echo " hey $FLAGS"
   fi
   FLAGS="--host=x86_64-pc-linux-gnu --build=\$CROSS_TRIPLE $FLAGS --enable-dependency-linking"
-  FLAGS="--host=\$CROSS_TRIPLE $FLAGS --enable-dependency-linking"
+  FLAGS="--host=\$CROSS_TRIPLE $FLAGS --build=x86_64-pc-linux-gnu --enable-dependency-linking"
   echo "$FLAGS"
   echo $FLAGS
   echo $CC

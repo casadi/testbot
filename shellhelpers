@@ -408,14 +408,14 @@ function dockcross_setup_finish() {
   dockcross "echo F77=\$FC" >> $HOME/env.txt
   
   if [ -n "$ARCH" ]; then
-    dockcross echo -n "--host=\$CROSS_TRIPLE --enable-dependency-linking"
     export CROSS_CONFIGURE=`dockcross echo -n "--host=\\$CROSS_TRIPLE --enable-dependency-linking"`
-    echo "arch"
   fi
-  echo "CROSS_CONFIGURE: $CROSS_CONFIGURE"
-  if [ "$ARCH" = "manylinux2014-aarch64"; then
+  if [ "$ARCH" = "manylinux2014-aarch64" ]; then
     echo "FLIBS=-L/usr/xcc/aarch64-unknown-linux-gnueabi/lib/gcc/aarch64-unknown-linux-gnueabi/4.9.4 -L/usr/xcc/aarch64-unknown-linux-gnueabi/lib/gcc/aarch64-unknown-linux-gnueabi/4.9.4/../../../../aarch64-unknown-linux-gnueabi/lib/../lib64 -L/usr/xcc/aarch64-unknown-linux-gnueabi/aarch64-unknown-linux-gnueabi/sysroot/lib/../lib64 -L/usr/xcc/aarch64-unknown-linux-gnueabi/aarch64-unknown-linux-gnueabi/sysroot/usr/lib/../lib64 -L/usr/xcc/aarch64-unknown-linux-gnueabi/lib/gcc/aarch64-unknown-linux-gnueabi/4.9.4/../../../../aarch64-unknown-linux-gnueabi/lib -L/usr/xcc/aarch64-unknown-linux-gnueabi/aarch64-unknown-linux-gnueabi/sysroot/lib -L/usr/xcc/aarch64-unknown-linux-gnueabi/aarch64-unknown-linux-gnueabi/sysroot/usr/lib -lgfortran -lm -lgcc_s" >> $HOME/env.txt
   fi
+  
+  echo "testje"
+  dockcross echo "\$F77 \$FLIBS"
 
   python -c "n = open('$HOME/pathnew.txt','r').read().split(':');o = open('$HOME/pathold.txt','r').read().split(':');print('PATH=%s:%s' % (open('$HOME/pathcross.txt','r').read().rstrip(),':'.join([i.rstrip() for i in n if i not in o and 'miniconda' not in i])))" >> $HOME/env.txt
   cat $HOME/pathnew.txt

@@ -408,7 +408,8 @@ function dockcross_setup_finish() {
   dockcross "echo F77=\$FC" >> $HOME/env.txt
   
   if [ -n "$ARCH" ]; then
-    export CROSS_CONFIGURE=`dockcross echo -n "--host=\$CROSS_TRIPLE --enable-dependency-linking"`
+    dockcross echo -n "--host=\$CROSS_TRIPLE --enable-dependency-linking"
+    export CROSS_CONFIGURE=`dockcross echo -n "--host=\\$CROSS_TRIPLE --enable-dependency-linking"`
     echo "arch"
   fi
   echo "CROSS_CONFIGURE: $CROSS_CONFIGURE"

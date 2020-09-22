@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #set -e
-export SUFFIX=manylinux${BITNESS}_dockcross
+export SUFFIX=${ARCH}_dockcross
 export SUFFIXFILE=_$SUFFIX
 
 if [ -z "$SETUP" ]; then

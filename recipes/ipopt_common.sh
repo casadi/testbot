@@ -54,10 +54,10 @@ EOF
   mkdir $HOME/ipopt-install
   echo "foobar"
   if [ -n "$CROSS_TRIPLE" ]; then
-    FLAGS="--host=\$CROSS_TRIPLE --build=\$CROSS_TRIPLE $FLAGS"
-    echo "$FLAGS"
+    FLAGS="--host=x86_64-pc-linux-gnu --build=\$CROSS_TRIPLE $FLAGS"
+    echo " hey $FLAGS"
   fi
-  FLAGS="--host=\$CROSS_TRIPLE --build=\$CROSS_TRIPLE $FLAGS"
+  FLAGS="--host=x86_64-pc-linux-gnu --build=\$CROSS_TRIPLE $FLAGS"
   echo "$FLAGS"
   echo $FLAGS
   echo $CC

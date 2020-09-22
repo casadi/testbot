@@ -68,7 +68,7 @@ EOF
   build_env echo \$F77
   build_env echo $CC
   build_env echo \${CROSS_ROOT}/bin/\${CROSS_TRIPLE}-gcc
-  build_env F77=\$FC ../configure $FLAGS --prefix=$HOME/ipopt-install --disable-shared ADD_FFLAGS=-fPIC ADD_CFLAGS=-fPIC ADD_CXXFLAGS=-fPIC --with-blas=BUILD --with-lapack=BUILD --with-mumps=BUILD --with-metis=BUILD --without-hsl --without-asl
+  build_env F77=\$FC ../configure $FLAGS --prefix=$HOME/ipopt-install --disable-shared ADD_FFLAGS=-fPIC ADD_CFLAGS=-fPIC ADD_CXXFLAGS=-fPIC --with-blas=BUILD --with-lapack=BUILD --with-mumps=BUILD --with-metis=BUILD --without-hsl --without-asl \|\| cat config.log
   build_env make
   build_env make install
   popd && popd

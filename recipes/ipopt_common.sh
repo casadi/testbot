@@ -59,6 +59,8 @@ EOF
   fi
   #FLAGS="--host=x86_64-pc-linux-gnu --build=\$CROSS_TRIPLE $FLAGS --enable-dependency-linking"
   FLAGS="--host=\$CROSS_TRIPLE $FLAGS --enable-dependency-linking"
+  # Looking at ThirdParty/Blas/config.log, configure logic seems to generate FLIBS with "-lm'" in it
+  export FLIBS="-L/usr/xcc/aarch64-unknown-linux-gnueabi/lib/gcc/aarch64-unknown-linux-gnueabi/4.9.4 -L/usr/xcc/aarch64-unknown-linux-gnueabi/lib/gcc/aarch64-unknown-linux-gnueabi/4.9.4/../../../../aarch64-unknown-linux-gnueabi/lib/../lib64 -L/usr/xcc/aarch64-unknown-linux-gnueabi/aarch64-unknown-linux-gnueabi/sysroot/lib/../lib64 -L/usr/xcc/aarch64-unknown-linux-gnueabi/aarch64-unknown-linux-gnueabi/sysroot/usr/lib/../lib64 -L/usr/xcc/aarch64-unknown-linux-gnueabi/lib/gcc/aarch64-unknown-linux-gnueabi/4.9.4/../../../../aarch64-unknown-linux-gnueabi/lib -L/usr/xcc/aarch64-unknown-linux-gnueabi/aarch64-unknown-linux-gnueabi/sysroot/lib -L/usr/xcc/aarch64-unknown-linux-gnueabi/aarch64-unknown-linux-gnueabi/sysroot/usr/lib -lgfortran -lm -lgcc_s"
   echo "$FLAGS"
   echo $FLAGS
   echo $CC
@@ -68,7 +70,7 @@ EOF
   build_env echo \$F77
   build_env echo $CC
   build_env echo \${CROSS_ROOT}/bin/\${CROSS_TRIPLE}-gcc
-  build_env F77=\$FC ../configure $FLAGS --prefix=$HOME/ipopt-install --disable-shared ADD_FFLAGS=-fPIC ADD_CFLAGS=-fPIC ADD_CXXFLAGS=-fPIC --with-blas=BUILD --with-lapack=BUILD --with-mumps=BUILD --with-metis=BUILD --without-hsl --without-asl \|\| cat ThirdParty/Blas/config.log
+  build_env F77=\$FC FLIBS=$FLIBS ../configure $FLAGS --prefix=$HOME/ipopt-install --disable-shared ADD_FFLAGS=-fPIC ADD_CFLAGS=-fPIC ADD_CXXFLAGS=-fPIC --with-blas=BUILD --with-lapack=BUILD --with-mumps=BUILD --with-metis=BUILD --without-hsl --without-asl \|\| cat ThirdParty/Blas/config.log
   build_env make
   build_env make install
   popd && popd

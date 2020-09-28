@@ -1,7 +1,7 @@
 #!/bin/bash
 #set -e
 
-export SUFFIX=manylinux${BITNESS}_dockcross
+export SUFFIX=${ARCH}_dockcross
 
 if [ -z "$SETUP" ]; then
   dockcross_setup_start
@@ -10,7 +10,7 @@ if [ -z "$SETUP" ]; then
   mypwd=`pwd`
   pushd restricted && git clone https://github.com/jaeandersson/swig.git
   pushd swig && git checkout $BAKEVERSION
-  dockcross "sudo yum -y install pcre-devel; ./autogen.sh ; ./configure --prefix=$mypwd/swig-matlab-install; make ; make install"
+  dockcross "sudo yum -y install pcre-devel; ./autogen.sh ; ./configure \$CROSS_CONFIGUR --prefix=$mypwd/swig-matlab-install; make ; make install"
   popd && popd
   tar -zcvf swig$SUFFIXFILE.tar.gz -C swig-matlab-install .
   slurp_put swig$SUFFIXFILE

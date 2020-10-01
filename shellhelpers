@@ -495,10 +495,10 @@ function before_install_debian() {
 
   python_setup
   dockcross_setup_start
+  slurp swig
   export SLURP_OS=dockcross
   export SLURP_CROSS=$ARCH
   sudo apt-get install p7zip-full -y
-  slurp swig
   slurp_common
   slurp lapack
     
@@ -576,6 +576,14 @@ function script_osx() {
 function script_debian() {
   echo "start script_debian at:"
   pwd
+
+  pushd casadi
+  mkdir build_temp
+  pushd build_temp
+  bash -c "cmake $4 -DSWIG_EXPORT=ON .."
+  make $3
+  popd
+
   pushd casadi
 
   mkdir build
@@ -585,7 +593,7 @@ function script_debian() {
   grep "CONFIG_PATH" $HOME/env.txt
   echo $casadi_build_flags
   dockcross "echo \$PKG_CONFIG_PATH"
-  dockcross "export CASADI_EXTRA_LIBRARIES_LAPACK=gfortran;export PKG_CONFIG_PATH=$BACKUP_PKG_CONFIG_PATH;cmake -DCMAKE_TOOLCHAIN_FILE=\${CROSS_ROOT}/Toolchain.cmake $casadi_build_flags $2 .."
+  dockcross "export CASADI_EXTRA_LIBRARIES_LAPACK=gfortran;export PKG_CONFIG_PATH=$BACKUP_PKG_CONFIG_PATH;cmake -DCMAKE_TOOLCHAIN_FILE=\${CROSS_ROOT}/Toolchain.cmake $casadi_build_flags $2 -SWIG_IMPORT=ON .."
   dockcross  "make install VERBOSE=1"
   popd
   pwd

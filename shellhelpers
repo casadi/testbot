@@ -374,9 +374,9 @@ sudo apt-get update -qq
 function dockcross_setup_start() {
   echo $PATH > $HOME/pathold.txt
   docker pull dockcross/$ARCH:latest
-  docker pull dockcross/manylinux1-x64:latest
+  docker pull dockcross/manylinux2014-x64:latest
   docker run --rm dockcross/$ARCH:latest > dockcross
-  docker run --rm dockcross/manylinux1-x64:latest > dockcross_common
+  docker run --rm dockcross/manylinux2014-x64:latest > dockcross_common
   
   chmod +x ./dockcross
   chmod +x ./dockcross_common

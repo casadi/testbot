@@ -31,8 +31,8 @@ ssh-keyscan github.com >> ~/.ssh/known_hosts
 echo $?
 ssh-keyscan web.sourceforge.net >> ~/.ssh/known_hosts
 echo $?
-ssh-keyscan shell.sourceforge.net >> ~/.ssh/known_hosts
-echo $?
+#ssh-keyscan shell.sourceforge.net >> ~/.ssh/known_hosts
+#echo $?
 
 export PATH=$HOME/.local/bin:$PATH
 pip install cryptography #==1.5.3

@@ -208,15 +208,24 @@ function slurp_common_test() {
     fi
     echo "skip"
   fi
-  slurp gurobi
-  slurp worhp
-  slurp slicot
+  #slurp gurobi
+  #slurp worhp
+  #slurp slicot
   #if [[ "$TRAVIS_BRANCH" == *windows* ]]; then
   #  echo "skipping"
   #else
-  slurp cplex
+  #slurp cplex
   #fi
-  slurp knitro
+  if [ "$ARCH" == "manylinux2014-aarch64" ]; then
+    echo "skipping third-party solvers for amd"
+  else
+    slurp gurobi
+    slurp worhp
+    slurp slicot
+    slurp cplex
+    slurp knitro
+  fi
+
 }
 
 function slurp_put() {

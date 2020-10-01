@@ -495,7 +495,8 @@ function before_install_debian() {
 
   python_setup
   dockcross_setup_start
-  slurp swig
+  export SLURP_OS=trusty
+  slurp swig_matlab
   export SLURP_OS=dockcross
   export SLURP_CROSS=$ARCH
   sudo apt-get install p7zip-full -y

@@ -607,7 +607,7 @@ function script_debian() {
   export WHEEL=`python $HOME/build/testbot/create_wheel_local.py $COMMIT $PYTHONVERSION linux $ARCH none $1`
   echo $WHEEL
   git clone https://github.com/jgillis/auditwheel
-  dockcross "/usr/bin/qemu-aarch64 $MANYLINUX_PYTHON3_BIN/pip install pyelftools wheel==0.31.1 && pushd auditwheel && /usr/bin/qemu-aarch64 $MANYLINUX_PYTHON3 setup.py install && popd && echo "$MANYLINUX_PYTHON3_BIN/auditwheel repair -g quadmath -g gfortran -e '.*snopt.*' -L . --no-update-tags -w . $WHEEL" && /usr/bin/qemu-aarch64 $MANYLINUX_PYTHON3_BIN/auditwheel repair -g quadmath -g gfortran -e '.*snopt.*' -L . --no-update-tags -w . $WHEEL"
+  dockcross "$MANYLINUX_PYTHON3_BIN/pip install pyelftools wheel==0.31.1 && pushd auditwheel && $MANYLINUX_PYTHON3 setup.py install && popd && echo "$MANYLINUX_PYTHON3_BIN/auditwheel repair -g quadmath -g gfortran -e '.*snopt.*' -L . --no-update-tags -w . $WHEEL" && $MANYLINUX_PYTHON3_BIN/auditwheel repair -g quadmath -g gfortran -e '.*snopt.*' -L . --no-update-tags -w . $WHEEL"
   rm -rf $1
   unzip $WHEEL -d $1
   rm -rf $1/*dist-info

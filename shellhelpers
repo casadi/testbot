@@ -374,13 +374,18 @@ sudo apt-get update -qq
 function dockcross_setup_start() {
   echo $PATH > $HOME/pathold.txt
   docker pull dockcross/$ARCH:latest
+  docker pull dockcross/manylinux1-x64:latest
   docker run --rm dockcross/$ARCH:latest > dockcross
-
+  docker run --rm dockcross/manylinux1-x64:latest > dockcross_common
+  
   chmod +x ./dockcross
-  cat dockcross
+  chmod +x ./dockcross_common
+  #cat dockcross
   perl -p -i -e 's/^ +-v.*$/    -v \$HOME:\$HOME -v \/:\/host \\/g;s/^ +\$HOST_VOLUMES .*/    -w \$HOST_PWD --env-file \$HOME\/env.txt \\/g;s/^ +\$FINAL_IMAGE \"\$@\"/ \$FINAL_IMAGE \$HOME\/dockcross_at_start_trigger \"\$@\"/g;' dockcross
+  perl -p -i -e 's/^ +-v.*$/    -v \$HOME:\$HOME -v \/:\/host \\/g;s/^ +\$HOST_VOLUMES .*/    -w \$HOST_PWD --env-file \$HOME\/env.txt \\/g;s/^ +\$FINAL_IMAGE \"\$@\"/ \$FINAL_IMAGE \$HOME\/dockcross_at_start_trigger \"\$@\"/g;' dockcross_common
   chmod +x ./dockcross
-
+  chmod +x ./dockcross_common
+  
   echo -e "#!/usr/bin/env bash\nsource \$HOME/dockcross_at_start\neval \$@" > $HOME/dockcross_at_start_trigger
   chmod +x $HOME/dockcross_at_start_trigger
   touch $HOME/dockcross_at_start
@@ -602,7 +607,7 @@ function script_debian() {
   export WHEEL=`python $HOME/build/testbot/create_wheel_local.py $COMMIT $PYTHONVERSION linux $ARCH none $1`
   echo $WHEEL
   git clone https://github.com/jgillis/auditwheel
-  dockcross "$MANYLINUX_PYTHON3_BIN/pip install pyelftools wheel==0.31.1 && pushd auditwheel && $MANYLINUX_PYTHON3 setup.py install && popd && echo "$MANYLINUX_PYTHON3_BIN/auditwheel repair -g quadmath -g gfortran -e '.*snopt.*' -L . --no-update-tags -w . $WHEEL" && $MANYLINUX_PYTHON3_BIN/auditwheel repair -g quadmath -g gfortran -e '.*snopt.*' -L . --no-update-tags -w . $WHEEL"
+  dockcross_common "$MANYLINUX_PYTHON3_BIN/pip install pyelftools wheel==0.31.1 && pushd auditwheel && $MANYLINUX_PYTHON3 setup.py install && popd && echo "$MANYLINUX_PYTHON3_BIN/auditwheel repair -g quadmath -g gfortran -e '.*snopt.*' -L . --no-update-tags -w . $WHEEL" && $MANYLINUX_PYTHON3_BIN/auditwheel repair -g quadmath -g gfortran -e '.*snopt.*' -L . --no-update-tags -w . $WHEEL"
   rm -rf $1
   unzip $WHEEL -d $1
   rm -rf $1/*dist-info

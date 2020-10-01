@@ -604,14 +604,14 @@ function script_debian() {
   ls
   ls $1
   
-  export WHEEL=`python $HOME/build/testbot/create_wheel_local.py $COMMIT $PYTHONVERSION linux $ARCH none $1`
-  echo $WHEEL
-  git clone https://github.com/jgillis/auditwheel
-  dockcross "$MANYLINUX_PYTHON3_BIN/pip install pyelftools wheel==0.31.1 && pushd auditwheel && $MANYLINUX_PYTHON3 setup.py install && popd && echo "$MANYLINUX_PYTHON3_BIN/auditwheel repair -g quadmath -g gfortran -e '.*snopt.*' -L . --no-update-tags -w . $WHEEL" && $MANYLINUX_PYTHON3_BIN/auditwheel repair -g quadmath -g gfortran -e '.*snopt.*' -L . --no-update-tags -w . $WHEEL"
-  rm -rf $1
-  unzip $WHEEL -d $1
-  rm -rf $1/*dist-info
-  pushd $1/casadi/jit || pushd $1/casadi/casadi/jit && ls && bash get_system_includes.sh gcc-4.8 c++ >  system_includes.txt && popd 
+  #export WHEEL=`python $HOME/build/testbot/create_wheel_local.py $COMMIT $PYTHONVERSION linux $ARCH none $1`
+  #echo $WHEEL
+  #git clone https://github.com/jgillis/auditwheel
+  #dockcross "$MANYLINUX_PYTHON3_BIN/pip install pyelftools wheel==0.31.1 && pushd auditwheel && $MANYLINUX_PYTHON3 setup.py install && popd && echo "$MANYLINUX_PYTHON3_BIN/auditwheel repair -g quadmath -g gfortran -e '.*snopt.*' -L . --no-update-tags -w . $WHEEL" && $MANYLINUX_PYTHON3_BIN/auditwheel repair -g quadmath -g gfortran -e '.*snopt.*' -L . --no-update-tags -w . $WHEEL"
+  #rm -rf $1
+  #unzip $WHEEL -d $1
+  #rm -rf $1/*dist-info
+  #pushd $1/casadi/jit || pushd $1/casadi/casadi/jit && ls && bash get_system_includes.sh gcc-4.8 c++ >  system_includes.txt && popd 
 
   echo "finish script_debian at:"
   pwd

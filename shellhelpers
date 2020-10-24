@@ -284,7 +284,7 @@ function python_setup_light() {
   then
     wget http://repo.continuum.io/miniconda/Miniconda2-py27_4.8.3-Linux-x86_64.sh -O miniconda.sh
   else
-    wget http://repo.continuum.io/miniconda/Miniconda2-4.7.12.1-MacOSX-x86_64.sh -O miniconda.sh
+    wget http://repo.continuum.io/miniconda/Miniconda2-py27_4.8.3-MacOSX-x86_64.sh -O miniconda.sh
   fi
   chmod +x miniconda.sh
   ./miniconda.sh -b

@@ -306,10 +306,10 @@ function python_setup() {
   conda update --prefix $HOME/miniconda2 conda --yes
   if [[ $TRAVIS_OS_NAME == *linux* ]]
   then
-    conda create --quiet --yes -n condaenv_build python=$PYTHON_VERSION requests pyyaml numpy scipy matplotlib # ==0.31.1
+    conda create --quiet --yes -n condaenv_build -c conda-forge python=$PYTHON_VERSION requests pyyaml numpy scipy matplotlib # ==0.31.1
   else
     cp /usr/local//Cellar/libffi/3.2.1/lib/libffi.6.dylib /Users/travis/miniconda2/lib/
-    conda create --quiet --yes -n condaenv_build python=$PYTHON_VERSION requests pyyaml numpy scipy wheel matplotlib
+    conda create --quiet --yes -n condaenv_build -c conda-forge python=$PYTHON_VERSION requests pyyaml numpy scipy wheel matplotlib
   fi
   conda install --quiet --yes -n condaenv_build pip
   source activate condaenv_build

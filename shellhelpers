@@ -327,7 +327,7 @@ function python_setup() {
   if [[ $PYTHONVERSION1 == 3 ]]
   then
     export WITH_PYTHON3=ON
-    if [[ $PYTHONVERSION == 38 ]]
+    if [[ $PYTHONVERSION == 38 || $PYTHONVERSION == 39 ]]
     then
       export PYTHONLIB_MOD=
       export PYTHONDIR_MOD=
@@ -340,6 +340,7 @@ function python_setup() {
     export PYTHONDIR_MOD=m
   fi
   pip install --quiet pysftp
+  ls $HOME/miniconda2/envs/condaenv_build/lib/
   export CMAKE_PYTHON_LIBRARY=$HOME/miniconda2/envs/condaenv_build/lib/libpython${PYTHONVERSION_DOT2}${PYTHONLIB_MOD}
   if [[ $TRAVIS_OS_NAME == *linux* ]]
   then

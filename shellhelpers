@@ -398,7 +398,7 @@ function dockcross_setup_start() {
 
 function dockcross_setup_finish() {
   cat $HOME/dockcross_at_start
-  printenv | grep -v miniconda > $HOME/env.txt
+  printenv | grep -v miniconda | grep -v CXX > $HOME/env.txt
   echo $PATH > $HOME/pathnew.txt
   echo -n "$MANYLINUX_PYTHON_DIR/bin/:" > $HOME/pathcross.txt
   echo $PATH
@@ -611,7 +611,11 @@ function script_debian() {
   echo $1
   git clone https://github.com/jgillis/auditwheel && pushd auditwheel && git checkout fix && popd
   echo 123
-  dockcross "cp -R `\$CXX -print-sysroot`/lib lib-sysroot"
+  dockcross "echo \$CXX"
+  dockcross "echo $CXX"
+  dockcross "echo \${CXX}"
+  dockcross "echo ${CXX}"
+  dockcross "cp -R `${CXX} -print-sysroot`/lib lib-sysroot"
   ls
   dockcross "$MANYLINUX_PYTHON3_BIN/pip install pyelftools wheel && pushd auditwheel && $MANYLINUX_PYTHON3 setup.py install && popd && LD_LIBRARY_PATH=`pwd`/lib-sysroot $MANYLINUX_PYTHON3_BIN/auditwheel repair -L . --no-update-tags -w . $WHEEL"
   ls

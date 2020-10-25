@@ -609,11 +609,12 @@ function script_debian() {
   echo "BAZ"
   echo $WHEEL
   echo $1
-  git clone https://github.com/jgillis/auditwheel && git checkout fix
+  git clone https://github.com/jgillis/auditwheel && pushd auditwheel && git checkout fix && popd
   echo 123
   dockcross "cp -R `\$CXX -print-sysroot`/lib lib-sysroot"
   ls
   dockcross "$MANYLINUX_PYTHON3_BIN/pip install pyelftools wheel && pushd auditwheel && $MANYLINUX_PYTHON3 setup.py install && popd && LD_LIBRARY_PATH=`pwd`/lib-sysroot $MANYLINUX_PYTHON3_BIN/auditwheel repair -L . --no-update-tags -w . $WHEEL"
+  ls
   rm -rf $1
   unzip $WHEEL -d $1
   rm -rf $1/*dist-info

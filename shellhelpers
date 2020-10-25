@@ -327,7 +327,7 @@ function python_setup() {
   if [[ $PYTHONVERSION1 == 3 ]]
   then
     export WITH_PYTHON3=ON
-    if [[ $PYTHONVERSION == 38 || $PYTHONVERSION == 39  ]]
+    if [[ $PYTHONVERSION == 38 || $PYTHONVERSION == 39 ]]
     then
       export PYTHONLIB_MOD=
       export PYTHONDIR_MOD=
@@ -379,14 +379,14 @@ sudo apt-get update -qq
 function dockcross_setup_start() {
   if [[ $BITNESS == *64* ]]
   then
-    if [[ $PYTHONVERSION == 38 ]]
+    if [[ $PYTHONVERSION == 38 || $PYTHONVERSION == 39 ]]
     then
       export ARCH=${DOCKCROSS}1-x64
     else
       export ARCH=${DOCKCROSS}-x64
     fi
   else
-    if [[ $PYTHONVERSION == 38 ]]
+    if [[ $PYTHONVERSION == 38 || $PYTHONVERSION == 39 ]]
     then
       export ARCH=${DOCKCROSS}1-x86
     else
@@ -406,7 +406,7 @@ function dockcross_setup_start() {
 
   chmod +x ./dockcross
   cat dockcross
-  if [[ $PYTHONVERSION == 38 ]]
+  if [[ $PYTHONVERSION == 38 || $PYTHONVERSION == 39 ]]
   then
     echo "done"
   else

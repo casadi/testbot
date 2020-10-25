@@ -343,6 +343,7 @@ function python_setup() {
   echo "foobar"
   ls $HOME/miniconda2/envs/condaenv_build/lib
   ls $HOME/miniconda2/envs/condaenv_build/include
+  ls $HOME/miniconda2/envs/condaenv_build/bin  
   export CMAKE_PYTHON_LIBRARY=$HOME/miniconda2/envs/condaenv_build/lib/libpython${PYTHONVERSION_DOT2}${PYTHONLIB_MOD}
   if [[ $TRAVIS_OS_NAME == *linux* ]]
   then
@@ -354,6 +355,7 @@ function python_setup() {
   export MANYLINUX_PYTHON_DIR=/opt/python/cp${PYTHONVERSION}-cp${PYTHONVERSION}${PYTHONDIR_MOD}
   export MANYLINUX_PYTHON3_BIN=/opt/python/cp36-cp36m/bin
   export MANYLINUX_PYTHON3=$MANYLINUX_PYTHON3_BIN/python
+  ls /opt/python/
   export MANYLINUX_PYTHON_INCLUDE_DIR=${MANYLINUX_PYTHON_DIR}/include/python${PYTHONVERSION_DOT2}${PYTHONLIB_MOD}/
 }
 
@@ -393,7 +395,7 @@ function dockcross_setup_start() {
   fi
 
   echo $PATH > $HOME/pathold.txt
-  if [[ $PYTHONVERSION == 38 ]]
+  if [[ $PYTHONVERSION == 38 || $PYTHONVERSION == 39 ]]
   then
     docker pull dockcross/$ARCH:latest
     docker run --rm dockcross/$ARCH:latest > dockcross

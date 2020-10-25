@@ -606,7 +606,7 @@ function script_debian() {
   ls $1
   
   export WHEEL=`python $HOME/build/testbot/create_wheel_local.py $COMMIT $PYTHONVERSION linux null $ARCH $1`
-  ECHO "BAZ"
+  echo "BAZ"
   echo $WHEEL
   echo $1
   git clone -branch fix https://github.com/jgillis/auditwheel

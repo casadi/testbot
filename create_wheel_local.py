@@ -29,7 +29,7 @@ dir_name  = sys.argv[6]
 if version.startswith("v"):
   version = version[1:]
 if os_name=="linux":
-  tag = "cp%s-none-%s" % (pyversion,arch)
+  tag = "cp%s-none-%s" % (pyversion,arch.replace("-","_"))
 elif os_name=="osx":
   tag = ["cp%s-none-macosx_10_6_intel" % (pyversion),
          "cp%s-none-macosx_10_9_intel" % (pyversion),

@@ -7,7 +7,7 @@ echo $?
 echo "COMMIT: $COMMIT"
 pushd ../../ && git clone https://github.com/casadi/testbot.git
 echo $?
-pushd testbot && source recipes/setup.sh
+pushd testbot && git checkout trial2 && source recipes/setup.sh
 echo $?
 echo "popd"
 for i in {1..30}; do echo "foobar1"; done

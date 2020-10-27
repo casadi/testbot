@@ -53,7 +53,7 @@ EOF
   mkdir build
   pushd build
   # build must contain mingw, in order for the hsl loader to look for .dll as opposed to .so
-  build_env ../configure $FLAGS --prefix=$HOME/bonmin-install --disable-shared ADD_FFLAGS=-fPIC ADD_CFLAGS=-fPIC ADD_CXXFLAGS=-fPIC --with-blas=BUILD --with-lapack=BUILD --with-mumps=BUILD --with-metis=BUILD --without-hsl --without-asl
+  build_env ../configure $CROSS_CONFIGURE $FLAGS --prefix=$HOME/bonmin-install --disable-shared ADD_FFLAGS=-fPIC ADD_CFLAGS=-fPIC ADD_CXXFLAGS=-fPIC --with-blas=BUILD --with-lapack=BUILD --with-mumps=BUILD --with-metis=BUILD --without-hsl --without-asl
   (while true ; do sleep 60 ; echo "ping" ; done ) &
   build_env make 2> /dev/null
   build_env make install

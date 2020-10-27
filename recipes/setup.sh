@@ -34,6 +34,7 @@ echo $?
 #ssh-keyscan shell.sourceforge.net >> ~/.ssh/known_hosts
 echo $?
 
+
 export PATH=$HOME/.local/bin:$PATH
 pip install cryptography #==1.5.3
 echo $?
@@ -185,7 +186,7 @@ function slurp_common() {
   slurp ipopt
   slurp bonmin
   slurp_common_test
-  if [ "$TRAVIS_OS_NAME" == "osx" ]; then
+  if [ "$TRAVIS_OS_NAME" == "osx" ] || [ "$ARCH" == "manylinux2014-aarch64" ]; then
     echo "skipping"
   else
     slurp clang

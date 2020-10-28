@@ -45,9 +45,9 @@ matrix:
 #    - env: recipe=ecos_trusty GCCVERSION=5
 #    - env: recipe=ecos_trusty GCCVERSION=4.6
 #    - {env: recipe=ecos_osx GCCVERSION=7, os: osx, osx_image: xcode9.4}
-    - env: recipe=ecos_dockcross ARCH=manylinux1-x64
-    - env: recipe=ecos_dockcross ARCH=manylinux1-x86
-    - env: recipe=ecos_dockcross ARCH=manylinux2014-aarch64
+#    - env: recipe=ecos_dockcross ARCH=manylinux1-x64
+#    - env: recipe=ecos_dockcross ARCH=manylinux1-x86
+#    - env: recipe=ecos_dockcross ARCH=manylinux2014-aarch64
 #    - env: recipe=lapack_mingwoct_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=lapack_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=lapack_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
@@ -118,6 +118,7 @@ before_install:
       sudo apt-get update -qq
     fi
   - source recipes/setup.sh
+  - (while true ; do sleep 60 ; echo "ping" ; done ) &
   - |
     if [[ $TRAVIS_OS_NAME == *linux* ]]
     then

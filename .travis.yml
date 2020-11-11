@@ -21,7 +21,7 @@ matrix:
 #    - env: recipe=ipopt_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=ipopt_dockcross ARCH=manylinux1-x64
 #    - env: recipe=ipopt_dockcross ARCH=manylinux1-x86
-#    - env: recipe=ipopt_dockcross ARCH=manylinux2014-aarch64
+    - env: recipe=ipopt_dockcross ARCH=manylinux2014-aarch64
 #    - env: recipe=ipopt_trusty
 #    - env: recipe=ipopt_trusty GCCVERSION=5
 #    - env: recipe=ipopt_trusty GCCVERSION=4.7
@@ -38,7 +38,7 @@ matrix:
 #    - {env: recipe=bonmin_osx GCCVERSION=7, os: osx, osx_image: xcode9.4}
 #    - env: recipe=bonmin_dockcross ARCH=manylinux1-x64
 #    - env: recipe=bonmin_dockcross ARCH=manylinux1-x86
-#    - env: recipe=bonmin_dockcross ARCH=manylinux2014-aarch64
+    - env: recipe=bonmin_dockcross ARCH=manylinux2014-aarch64
 #    - env: recipe=ecos_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=ecos_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=ecos_trusty
@@ -47,7 +47,7 @@ matrix:
 #    - {env: recipe=ecos_osx GCCVERSION=7, os: osx, osx_image: xcode9.4}
 #    - env: recipe=ecos_dockcross ARCH=manylinux1-x64
 #    - env: recipe=ecos_dockcross ARCH=manylinux1-x86
-#    - env: recipe=ecos_dockcross ARCH=manylinux2014-aarch64
+    - env: recipe=ecos_dockcross ARCH=manylinux2014-aarch64
 #    - env: recipe=lapack_mingwoct_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=lapack_mingwoct_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
 #    - env: recipe=lapack_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
@@ -56,7 +56,7 @@ matrix:
     
 #    - env: recipe=lapack_dockcross ARCH=manylinux1-x64
 #    - env: recipe=lapack_dockcross ARCH=manylinux1-x86    
-#    - env: recipe=lapack_dockcross ARCH=manylinux2014-aarch64
+    - env: recipe=lapack_dockcross ARCH=manylinux2014-aarch64
 
 #    - env: recipe=slicot_mingw_trusty compilerprefix=x86_64-w64-mingw32 BITNESS=64
 #    - env: recipe=slicot_mingw_trusty compilerprefix=i686-w64-mingw32 BITNESS=32
@@ -83,7 +83,7 @@ matrix:
     
 #    - env: recipe=swig_dockcross ARCH=manylinux1-x64 BAKEVERSION=matlab-customdoc
 #    - env: recipe=swig_dockcross ARCH=manylinux1-x86 BAKEVERSION=matlab-customdoc
-#    - env: recipe=swig_dockcross ARCH=manylinux2014-aarch64 BAKEVERSION=matlab-customdoc
+    - env: recipe=swig_dockcross ARCH=manylinux2014-aarch64 BAKEVERSION=matlab-customdoc
     
 #    - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=matlab-customdoc GCCVERSION=7, osx_image: xcode9.4}
 #     - { os: osx, env: recipe=swig_matlab_osx BAKEVERSION=b921b0ee5fa928a16}
@@ -98,7 +98,7 @@ matrix:
     
 #    - env: recipe=hsl_dockcross ARCH=manylinux1-x64
 #    - env: recipe=hsl_dockcross ARCH=manylinux1-x86
-#    - env: recipe=hsl_dockcross ARCH=manylinux2014-aarch64
+    - env: recipe=hsl_dockcross ARCH=manylinux2014-aarch64
 
 #    - env: recipe=hsl_trusty GCCVERSION=4.7
 #    - env: recipe=hsl_trusty GCCVERSION=5

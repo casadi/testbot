@@ -55,7 +55,8 @@ echo $?
 echo $?
 openssl aes-256-cbc -k "$keypass" -in env.sh.enc -out env.sh -d || openssl aes-256-cbc -iter 100000 -pbkdf2 -k "$keypass" -in env.sh.enc111 -out env.sh -d
 echo $?
-
+echo "after decrypt"
+ls -al
 
 chmod 600 id_rsa_travis
 echo $?

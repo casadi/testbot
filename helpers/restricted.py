@@ -13,7 +13,7 @@ from testbotcredentials import TestBotCredentials
 tbc = TestBotCredentials()
 
 s = requests.Session()
-s.auth = tbc.github
+s.auth = ("casadibot",os.environ["casadibot_token"])
 s.headers.update({'Accept': 'application/vnd.github.manifold-preview'})
 
 myparams = {"per_page": 100}

@@ -598,7 +598,7 @@ function script_debian() {
   grep "CONFIG_PATH" $HOME/env.txt
   echo $casadi_build_flags
   dockcross "echo \$PKG_CONFIG_PATH"
-  dockcross "export CASADI_EXTRA_LIBRARIES_LAPACK=gfortran;export PKG_CONFIG_PATH=$BACKUP_PKG_CONFIG_PATH;cmake -DCMAKE_TOOLCHAIN_FILE=\${CROSS_ROOT}/Toolchain.cmake $casadi_build_flags $2 -DSWIG_IMPORT=ON .."
+  dockcross "export CASADI_EXTRA_LIBRARIES_LAPACK=gfortran;export PKG_CONFIG_PATH=$BACKUP_PKG_CONFIG_PATH;cmake $casadi_build_flags $2 -DSWIG_IMPORT=ON .."
   dockcross  "make install VERBOSE=1"
   popd
   pwd

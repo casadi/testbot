@@ -187,7 +187,7 @@ function slurp_common() {
   slurp ipopt
   slurp bonmin
   slurp_common_test
-  if [ "$TRAVIS_OS_NAME" == "osx" ] || [ "$ARCH" == "manylinux2014-aarch64" ]; then
+  if [ "$TRAVIS_OS_NAME" == "osx" ] || [ "$ARCH" == "manylinux2014-aarch64" ]  || [ "$ARCH" == "manylinux1-x86" ]; then
     echo "skipping"
   else
     slurp clang

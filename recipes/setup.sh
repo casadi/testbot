@@ -218,8 +218,8 @@ function slurp_common_test() {
   #else
   #slurp cplex
   #fi
-  if [ "$ARCH" == "manylinux2014-aarch64" ]; then
-    echo "skipping third-party solvers for amd"
+  if [ "$ARCH" == "manylinux2014-aarch64" ] || [ "$ARCH" == "manylinux1-x86" ]; then
+    echo "skipping third-party solvers for amd/x86"
   else
     slurp gurobi
     slurp worhp

@@ -544,6 +544,7 @@ function before_install_osx() {
   for i in {1..30}; do echo "foo"; done
   mkdir -p /Users/travis/build/casadi/testbot
   slurp_common
+  slurp lapack
   for i in {1..30}; do echo "bar"; done
   bake_my_library_path
   for i in {1..30}; do echo "baz"; done

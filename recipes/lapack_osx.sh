@@ -25,5 +25,11 @@ else
   fetch_tar lapack $SUFFIX
   export LIB=$HOME/build/lapack
   export DYLD_LIBRARY_PATH=$LIB:$DYLD_LIBRARY_PATH
+  cp lapack/libblas.a lapack/libblas.lib
+  cp lapack/liblapack.a lapack/liblapack.lib
+  ehco "lapack"
+  pwd
+  ls
+  ls $LIB
   export casadi_build_flags="$casadi_build_flags -DWITH_LAPACK=ON -DBLA_VENDOR=Generic -DBLA_STATIC=ON"  
 fi

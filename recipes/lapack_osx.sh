@@ -24,5 +24,6 @@ if [ -z "$SETUP" ]; then
 else
   fetch_tar lapack $SUFFIX
   export LIB=$HOME/build/lapack
-  export casadi_build_flags="$casadi_build_flags -DWITH_LAPACK=ON"  
+  export DYLD_LIBRARY_PATH=$LIB:$DYLD_LIBRARY_PATH
+  export casadi_build_flags="$casadi_build_flags -DWITH_LAPACK=ON -DBLA_VENDOR=Generic -DBLA_STATIC=ON"  
 fi

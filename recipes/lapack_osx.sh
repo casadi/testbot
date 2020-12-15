@@ -27,7 +27,7 @@ else
   export DYLD_LIBRARY_PATH=$LIB:$DYLD_LIBRARY_PATH
   cp lapack/libblas.a lapack/libblas.lib
   cp lapack/liblapack.a lapack/liblapack.lib
-  ehco "lapack"
+  echo "lapack"
   pwd
   ls
   ls $LIB

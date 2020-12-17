@@ -182,7 +182,7 @@ function slurp() {
 
 function slurp_common() {
   slurp ecos
-  slurp ipopt
+  slurp ipoptArmin
   slurp bonmin
   slurp_common_test
   if [ "$TRAVIS_OS_NAME" == "osx" ]; then

@@ -25,6 +25,9 @@ else
   fetch_tar lapack $SUFFIX
   export LIB=$HOME/build/lapack
   export DYLD_LIBRARY_PATH=$LIB:$DYLD_LIBRARY_PATH
+  export BLAS_ROOT=$LIB
+  export LAPACK_ROOT=$LIB # as of cmake 3.12
+  export CMAKE_LIBRARY_PATH=$LIB:$CMAKE_LIBRARY_PATH
   echo "lapack"
   pwd
   ls

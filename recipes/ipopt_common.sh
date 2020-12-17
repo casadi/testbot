@@ -47,11 +47,11 @@ EOF
   build_env make
   build_env make install
   popd && popd
-  tar -zcvf ipopt$SUFFIXFILE.tar.gz -C $HOME/ipopt-install .
-  slurp_put ipopt$SUFFIXFILE
+  tar -zcvf ipoptArmin$SUFFIXFILE.tar.gz -C $HOME/ipopt-install .
+  slurp_put ipoptArmin$SUFFIXFILE
 
 else
-  fetch_tar ipopt $SUFFIX
+  fetch_tar ipoptArmin $SUFFIX
   pwd
   ls $HOME/build/ipopt
   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$HOME/ipopt-install/lib/pkgconfig

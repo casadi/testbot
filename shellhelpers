@@ -572,6 +572,9 @@ function script_osx() {
   gcc --version
   source activate condaenv_build
   gcc --version
+  echo $MY_LIBRARY_PATH
+  echo "MY_LIBRARY_PATH"
+  echo $DYLD_LIBRARY_PATH
   bash -c "cmake $casadi_build_flags $2 .."
   osx_rpath_gcc7
   make VERBOSE=1

@@ -33,7 +33,7 @@ if [ -z "$SETUP" ]; then
 else
   fetch_tar hsl osx
   rm hsl/*.a # Dangerous to have static libs lying around
-  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/build/hsl
+  export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$HOME/build/hsl
   export MY_LIBRARY_PATH=$MY_LIBRARY_PATH:$HOME/build/hsl
   ls $HOME/build/hsl
   export HSL=$HOME/build/hsl

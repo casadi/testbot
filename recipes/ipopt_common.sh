@@ -4,9 +4,11 @@ if [ -z "$SETUP" ]; then
 
   VERSION=3.12.3
 
+  wget https://github.com/dthierry/IpoptOld/archive/l1_sep_2020.zip
+  unzip l1_sep_2020.zip
   wget http://www.coin-or.org/download/source/Ipopt/Ipopt-$VERSION.tgz
   tar -xvf Ipopt-$VERSION.tgz
-  pushd Ipopt-$VERSION
+  pushd IpoptOld-l1_sep_2020
   cat <<EOF > dlopen.patch
 diff --git a/Ipopt/src/contrib/LinearSolverLoader/LibraryHandler.c b/Ipopt/src/contrib/LinearSolverLoader/LibraryHandler.c
 index 2387f02..4e75c34 100644
@@ -24,17 +26,6 @@ index 2387f02..4e75c34 100644
    if (NULL == h) {
      strncpy(msgBuf, dlerror(), msgLen);
      msgBuf[msgLen-1]=0;
---- a/Ipopt/src/Algorithm/IpIpoptAlg.cpp	2013-10-19 20:18:04.000000000 +0200
-+++ b/Ipopt/src/Algorithm/IpIpoptAlg.cpp	2019-10-17 13:12:55.000291572 +0200
-@@ -262,7 +262,7 @@
-     }
- 
-     if (!isResto) {
--      Jnlst().Printf(J_ITERSUMMARY, J_MAIN, "This is Ipopt version "IPOPT_VERSION", running with linear solver %s.\n", linear_solver_.c_str());
-+      Jnlst().Printf(J_ITERSUMMARY, J_MAIN, "This is Ipopt version " IPOPT_VERSION ", running with linear solver %s.\n", linear_solver_.c_str());
-
- #ifndef IPOPT_NOMUMPSNOTE
-       if( linear_solver_ == "mumps" )
 EOF
   patch -p1 < dlopen.patch 
   pushd ThirdParty

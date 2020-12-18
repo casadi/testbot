@@ -3,13 +3,13 @@
 if [ -z "$SETUP" ]; then
 
   VERSION=0.3.13
-
+  (while true ; do sleep 60 ; echo "ping" ; done ) &
   wget https://github.com/xianyi/OpenBLAS/archive/v${VERSION}.zip -O openblas.zip
-  unzip openblas.zip
+  unzip openblas.zip > /dev/null
   pushd OpenBLAS-$VERSION
   mkdir $HOME/openblas-install
   #build_env cmake -DDYNAMIC_ARCH=ON -DCMAKE_INSTALL_PREFIX=$HOME/openblas-install ..
-  build_env make DYNAMIC_ARCH=1 DYNAMIC_OLDER=1 NO_SHARED=0 USE_OPENMP=0 USE_THREAD=1 NUM_THREADS=32
+  build_env make DYNAMIC_ARCH=1 DYNAMIC_OLDER=1 NO_SHARED=0 USE_OPENMP=0 USE_THREAD=1 NUM_THREADS=32 > /dev/null
   build_env make PREFIX=$HOME/openblas-install install
   install_name_tool -id "@rpath/libopenblas.0.dylib" $HOME/openblas-install/lib/libopenblas.0.dylib
   popd

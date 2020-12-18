@@ -10,9 +10,9 @@ if [ -z "$SETUP" ]; then
   mkdir build
   pushd build
   mkdir $HOME/openblas-install
-  build_env cmake -DDYNAMIC_ARCH=ON -DCMAKE_INSTALL_PREFIX=$HOME/openblas-install ..
-  build_env make
-  build_env make install
+  #build_env cmake -DDYNAMIC_ARCH=ON -DCMAKE_INSTALL_PREFIX=$HOME/openblas-install ..
+  build_env make DYNAMIC_ARCH=1 DYNAMIC_OLDER=1 NO_SHARED=0 USE_OPENMP=0 USE_THREAD=1 NUM_THREADS=32
+  build_env make PREFIX=$HOME/openblas-install install
   popd && popd
   tar -zcvf openblas$SUFFIXFILE.tar.gz -C $HOME/openblas-install .
   slurp_put openblas$SUFFIXFILE
@@ -22,7 +22,7 @@ else
   pwd
   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$HOME/openblas-install/lib/pkgconfig
   pushd $HOME && ln -s  $HOME/build/openblas openblas-install && popd
-  export LIB=$HOME/build/openblas
+  export LIB=$HOME/build/openblas/lib
   export DYLD_LIBRARY_PATH=$LIB:$DYLD_LIBRARY_PATH
   export BLAS_ROOT=$LIB
   export LAPACK_ROOT=$LIB # as of cmake 3.12

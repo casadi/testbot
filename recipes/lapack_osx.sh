@@ -34,5 +34,5 @@ else
   ls $LIB
   cp lapack/libblas.a lapack/libblas.lib
   cp lapack/liblapack.a lapack/liblapack.lib
-  export casadi_build_flags="$casadi_build_flags -DWITH_LAPACK=ON -DBLA_VENDOR=Generic -DBLA_STATIC=ON"  
+  export casadi_build_flags="$casadi_build_flags -DCMAKE_POLICY_DEFAULT_CMP0074=NEW -DWITH_LAPACK=ON -DBLA_VENDOR=Generic -DBLA_STATIC=ON"  
 fi

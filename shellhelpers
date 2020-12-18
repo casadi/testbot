@@ -584,6 +584,7 @@ function script_osx() {
   popd
   cp_libs_gcc7 $1/casadi
   osx_rpath_patch $1/casadi
+  cp $HOME/extra_libs/* $1/casadi
   
   otool -l $FORTRAN_FULL
   otool -l $QUADMATH_FULL

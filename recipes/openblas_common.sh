@@ -23,6 +23,9 @@ else
   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$HOME/openblas-install/lib/pkgconfig
   pushd $HOME && ln -s  $HOME/build/openblas openblas-install && popd
   export LIB=$HOME/build/openblas/lib
+  mkdir -p $HOME/extra_libs
+  sudo install_name_tool -id "@rpath/libopenblas.0.dylib" $LIB/libopenblas.0.dylib
+  cp $LIB/libopenblas.0.dylib $HOME/extra_libs
   export DYLD_LIBRARY_PATH=$LIB:$DYLD_LIBRARY_PATH
   export BLAS_ROOT=$LIB
   export LAPACK_ROOT=$LIB # as of cmake 3.12
